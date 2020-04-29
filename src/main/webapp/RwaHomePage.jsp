@@ -78,9 +78,8 @@
 					    	<a class="dropdown-item" href="DriverInformation.jsp">Driver Information </a>
 					    	<a class="dropdown-item" href="SecurityStaff.jsp">Security Staff Information</a>
 					    	<a class="dropdown-item" href="AddNewTenant.jsp">Tenant Information</a>
-					    	<a class="dropdown-item" href="#">Vendor and Supplier</a>
+					    	<a class="dropdown-item" href="Supplier.jsp">Supplier Master </a>
 					    	<a class="dropdown-item" href="#">Maintenance Staff</a>
-					    	
 					    </div>
 					</div>
 					<div class="dropdown" > 

@@ -43,32 +43,36 @@
 		<br />
 
 		<div class="container" > 
-		   	<form id="login" name="login" action="getLoginChecking" method="post" class="form-horizontal" autocomplete="off">
+		   	<form id="login" name="login" action="CaptchServlet" method="post" class="form-signin form-horizontal" autocomplete="off">
 				<div class="row justify-content-md-center " >
-	 				<div class="col-sm-8 bg-light">
-								<div class="form-group row ">
-				 				 	<label class="control-label col-sm-12 text-right" >
-				 				 	<a href="HomePage.jsp " class="bg-dark text-white" data-toggle="tooltip" title="click to Go Home Page"><%= Information.home%></a>
-				 				 	</label>
-								</div>
+	 				<div class="col-sm-8">
 
 		    		    <div class="card ">
 							<div class="card-header bg-primary text-white text-center" style="max-height: 60px; padding-top:0px; padding-bottom:0px;" >
 				    			<h5 class="card-title"><%= Information.LoginTitle%></h5>
-				    			<p><%= Information.LoginTitle1%></p>
 						  	</div>
-						  	<div class="card-body">
-								<div class="form-group row">
-									<label class="col-sm-2 col-form-label"></label>
-									<label for="inputLogin" class="col-sm-2 col-form-label"><%= Information.loginId%></label>
-									<div class="col-sm-4">
+						  	<div class="card-body bg-light">
+								<br /> 
+								<div class="form-row justify-content-md-center" > 
+									<div class="form-group h6">
+						    			<p><%= Information.LoginTitle1%></p>
+									</div>
+								</div>	
+
+								<div class="form-row"> 
+									<div class="form-group col-sm-2 offset-sm-2">
+										<label for="inputLogin" ><%= Information.loginId%></label>
+									</div>
+									<div class="form-group col-sm-6 offset-sm-0">
 				 				 		<input class="form-control input-sm" type ="text" id="login" name="login" placeholder=<%= Information.loginId%> autocomplete="off" title="Enter Emailid [Example@yahoo.com]" data-toggle="tooltip">
 									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-2 col-form-label"></label>
-									<label for="inputPassword" class="col-sm-2 col-form-label"><%= Information.loginPwd%></label>
-									<div class="col-sm-4">
+								</div>	
+
+								<div class="form-row"> 
+									<div class="form-group col-sm-2 offset-sm-2">
+										<label for="inputPassword" ><%= Information.loginPwd%></label>
+									</div>
+									<div class="form-group col-sm-6 offset-sm-0">
 							    		<input class="form-control" type="password" id="passwd" name ="passwd" placeholder=<%= Information.loginPwd%>>
 									</div>
 							     	<span class="input-group-btn">
@@ -77,33 +81,42 @@
 							       		</button>
 							        </span>
 
-						        </div>
-								<div class="form-group row">
-									<label class="col-sm-2 col-form-label"></label>
-						 			<label class="control-label col-sm-2 col-form-label" for="txtCaptcha"><%= Information.loginCaptcha%></label>
-									<div class="col-sm-4">
+								</div>	
+								<br />
+								<div class="form-row"> 
+									<div class="form-group col-sm-2 offset-sm-2">
+						 			<label for="txtCaptcha"><%= Information.loginCaptcha%></label>
+									</div>
+									<div class="form-group col-sm-6 offset-sm-0">
 					 			 		<input class="form-control input-sm" type ="text" id="txtCaptcha" name="txtCaptcha" placeholder=<%= Information.loginCaptcha%> autocomplete="off" >
-					 			 		<span class=" form-control-feedback"></span>
 									</div>
-								</div>
-								<div class="form-group row">
-				 				 	<label class="control-label col-sm-6 " ></label>
-									<div class="col-sm-2">
-				 				 		<input class="form-control input-sm btn btn-warning" type ="submit" value="BLOCKlogin"  >
+								</div>	
 
-    					            <ul >
-	                					<li ><a class="text-light test-dark" href="RwaHomePage.jsp"> Login </a> </li>
-									</ul>	
+								<div class="form-row"> 
+									<div class="form-group col-sm-2 offset-sm-2">
+						 			<label for="txtCaptcha"><%= Information.loginCaptcha%></label>
 									</div>
-								</div>
-								<div class="form-group row ">
-				 				 	<label class="control-label col-sm-4 " ></label>
-									<div class="col-sm-5">
+									<div class="form-group col-sm-6 offset-sm-0">
+					 			 		<input class="form-control input-sm" type ="text" id="txtCaptcha" name="txtCaptcha" <%=  session.getAttribute("Captcha")%>;   autocomplete="off" >
+									</div>
+								</div>	
+
+								<br />
+
+								<div class="form-row"> 
+									<div class="form-group col-sm-2 offset-sm-6">
+				 				 		<input class="form-control input-sm btn btn-warning" type ="submit" value="BLOCKlogin"  >
+									</div>
+    					            <ul ><li ><a class="text-light test-dark" href="RwaHomePage.jsp"> Login </a> </li></ul>	
+								</div>	
+
+								<div class="form-row"> 
+									<div class="form-group col-sm-6 offset-sm-4">
 										<p>	<a href="forgetpwd.jsp" data-toggle="tooltip" title="click to Reset Password"><%= Information.forgetpwd%></span></a></p>						
-										<p>	<%=Information.FirstTimeUser %><a href="UserRegistration.jsp" data-toggle="tooltip" title="click for Registertion"><span class ="h6 col-xs-5"><%= Information.RegisterNow%></span></a>						
-										</p>
+										<p>	<%=Information.FirstTimeUser %><a href="UserRegistration.jsp" data-toggle="tooltip" title="click for Registertion"><span class ="h6 col-xs-5"><%= Information.RegisterNow%></span></a> </p>						
 									</div>
-								</div>
+								</div>	
+
 				 			</div>	
 						</div>
 		       		</div>
