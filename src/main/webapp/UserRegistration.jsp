@@ -66,12 +66,12 @@
  									</div>
    									<div class="form-row">
  										<div class="form-group col-lg-4 offset-sm-1">
-    										<label for="inputPassword4"><%=Information.mobile%></label>
-     									 	<input type="password" class="form-control " id="inputMobile" name="inputMobile" placeholder="" required>
+    										<label for="inputMobile"><%=Information.mobile%></label>
+     									 	<input type="text" class="form-control " id="inputMobile" name="inputMobile" placeholder="" required>
  										</div>
    										<div class="form-group col-lg-4 offset-sm-0">
-   											<label for="inputEmail4"><%=Information.email%></label>
-    										<input type="email" class="form-control " id="inputEmail4" name="inputEmail4" placeholder="email@example.com" data-toggle="tooltip"  data-placement="bottom" title="We'll never share your email with anyone else."required>
+   											<label for="inputEmail"><%=Information.email%></label>
+    										<input type="email" class="form-control " id="inputEmail" name="inputEmail" placeholder="email@example.com" data-toggle="tooltip"  data-placement="bottom" title="We'll never share your email with anyone else."required>
   										</div>
   											
  									</div>
@@ -104,11 +104,11 @@
   										
 										</div>
  									</div>
-  									<div class="collapse" id="collapseExample">
+  									<div class="collapse " id="collapseExample">
  										<div class="form-row">
   									 		<div class="form-group col-lg-5 offset-sm-1">
    										 		<label for="inputAddress"><%= Information.Address%></label>
-   										 		<input type="text" class="form-control " id="inputAddress" placeholder="flat No/floor no / appartment name" name="inputAddress">
+   										 		<input type="text" class="form-control " id="inputAddress" name="inputAddress" placeholder="flat No/floor no / appartment name" >
   											</div>
   							
  											<div class="form-group col-lg-2 offset-sm-1">
@@ -122,12 +122,12 @@
   											</div>
 	  									</div>
 	  									<div class="form-row">
-    										<div class="form-group col-lg offset-sm-1">
+    										<div class="form-group col-lg-5 offset-sm-1">
       											<label for="inputCity"><%= Information.city%></label>
       											<input type="text" class="form-control " id="inputCity" name="inputCity">
     										</div>
 
-    										<div class="form-group col-lg-3 offset-sm-2">
+    										<div class="form-group col-lg-4 offset-sm-1">
 	      										<label for="inputState"><%= Information.state%></label>
 	      										<select id="inputState" name="inputState"class="form-control">
 	        										<option selected>Choose...</option>

@@ -15,7 +15,10 @@
    		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>	
   		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
 	   	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-	<body>
+<!-- <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>	   	
+ -->
+ 	<body>
 		<div class="container-flucid">
 			<div class="row">
 				<div class="col-lg-12 btn-dark text-right  margin-left:0  margin-right:0px">
@@ -37,13 +40,13 @@
 		</div>
 
 		<div class="container" > 
-			<form id="login" name="login" action="getLoginChecking" method="post" class="form-horizontal needs-validation" autocomplete="off"  novalidate>
+			<form id="HoseMaid" name="HoseMaid" action="getHouseMaidCheck" method="post" class="form-horizontal needs-validation" autocomplete="off"  novalidate>
 				<div class="row justify-content-md-center" >
 					<div class="col-sm-12">
 						<div class="accordion" id="accordionExample">
 
 							<div class="card">
-    							<div class="card-header bg-primary "  id="headingOne">
+    							<div class="card-header bg-primary "  id="headingOne" style="max-height:60px">
       								<h2 >
         								<button class="btn btn-link text-light" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           									<%= Information.HouseMaidPerInfo%>[+]
@@ -52,7 +55,7 @@
     							</div>
 
 							    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-     							 	<div class="card-body">
+     							 	<div class="card-body alert-secondary">
 										<div class="form-row">
 								       		<label class="col-sm-1"></label>
 									   		<div class="col-sm-4 ">
@@ -60,14 +63,14 @@
 										   		<input type="text" class="form-control form-control-sm " id="validationCustom01"  name="Fname" required>
 								    		</div>
  									    	<div class="col-sm-2">
-												<label for="lname" class="form-control-sm "><%= Information.lname%></label>
+												<label for="Lname" class="form-control-sm "><%= Information.lname%></label>
 												<div class="input-group">
-										       		<input type="text" class="form-control form-control-sm " id="lname" aria-describedby="inputGroupPrepend" required>
+										       		<input type="text" class="form-control form-control-sm " id="Lname" name = "Lname" aria-describedby="inputGroupPrepend" required>
 												</div>
 									    	</div>
 									    	<div class="col-sm-3 offset-sm-1">
 									      		<label for="Gender" class="form-control-sm"><%= Information.gender%></label>
-									      		<select class="custom-select" id="Gender" required>
+									      		<select class="custom-select" id="Gender" name="Gender" required>
 									        		<option  selected disabled value="">Choose...</option>
 									        		<option>Male</option>
 									        		<option>Female</option>
@@ -126,129 +129,139 @@
 									        		Please select a valid Gender.
 									      		</div>
 									   		</div>
-
 									  	</div>
 	
 										<div class="form-row">
-									       	<label class="col-sm-1"></label>
-									    	<div class="col-sm-3">
+									    	<div class="col-sm-3 offset-sm-1">
 									      		<label for="hfMobile" class="form-control-sm"><%=Information.Mobile%></label>
 											      <input type="Text" class="form-control form-control-sm" id="hfMobile" name="hfMobile" placeholder=<%= Information.Mobile%> >
 									   		</div>
-		
 										    <div class="col-sm-2 offset-sm-1">
 										    	<label for="hfAadhar" class="form-control-sm"><%=Information.aadhar%></label>
 										      	<input type="text" class="form-control form-control-sm" id="hfAadhar" name = "hfAadhar"  >
 										    </div>
 									  	</div>
+										<br />
+										<div class="form-row ">
+									    	<div class="col-sm-3 offset-sm-8">
+										      	<button type="button" class="form-control bg-warning" id="cont01" name = "cont01" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" >Continue... </button>
+										    </div>
+									  	</div>
+
       								</div>
     							</div>
   							</div>
 
 
-						<div class="card">
-    							<div class="card-header bg-primary " style="max-height:45px" id="headingTwo">
+							<div class="card" id="hd2">
+    							<div class="card-header bg-primary" style="max-height:60px" id="headingTwo">
       								<h2 class="mb-0">
-        								<button class="btn btn-link text-light" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        								<button class="btn btn-link text-light  " type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" >
           									<%= Information.Address%>[+]
         								</button>
       								</h2>
     							</div>
 
 							    <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
-									<div class="card-body">
-						        		<p class=""><%= Information.PAddress%> </p>
+									<div class="card-body  alert-secondary">
 										<div class="form-row">
-									       <label class="col-sm-1"></label>
-										    <div class="col-sm-4 ">
-											      <label for="paddress" class="form-control-sm"><%=Information.Address%></label>
-											      <input type="text" class="form-control form-control-sm " id="paddress" name="paddress" required>
+										    <div class="col-sm-4 offset-sm-1">
+											      <label for="paddress" ><%=Information.PAddress%></label>
+											      <input type="text" class="form-control " id="paddress" name="paddress" required>
 									    	</div>
 										    <div class="col-sm-3 offset-sm-0">
-										    	<label for="validationCustom02" class="form-control-sm " ><%=Information.Block%></label>
-										      	<input type="text" class="form-control form-control-sm " id="validationCustom02"  required>
+										    	<label for="pblock"  ><%=Information.Block%></label>
+										      	<input type="text" class="form-control" id="pblock"  name="pblock" required>
 										    </div>
-										    <div class="col-sm-2 offset-sm-0">
-												<label for="psector" class="form-control-sm "><%=Information.Sector%></label>
+										    <div class="col-sm-3 offset-sm-0">
+												<label for="psector" ><%=Information.Sector%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control form-control-sm " id="psector" name="psector"  required>
+											        <input type="text" class="form-control" id="psector" name="psector"  required>
 												</div>
 										    </div>
 									  	</div>
 										<div class="form-row">
-									       <label class="col-sm-1"></label>
-										    <div class="col-sm-3 ">
-											      <label for="pcity" class="form-control-sm"><%=Information.City%></label>
-											      <input type="text" class="form-control form-control-sm " id="pcity" name="pcity" required>
+										    <div class="col-sm-3 offset-sm-1">
+											      <label for="pcity" ><%=Information.City%></label>
+											      <input type="text" class="form-control" id="pcity" name="pcity" required>
 									    	</div>
-										    <div class="col-sm-2 offset-sm-1">
-										    	<label for="pstate" class="form-control-sm " ><%=Information.State%></label>
-										      	<input type="text" class="form-control form-control-sm " id="pstate" name ="pstate" required>
+										    <div class="col-sm-3 offset-sm-1">
+										    	<label for="pstate"  ><%=Information.State%></label>
+										      	<input type="text" class="form-control" id="pstate" name ="pstate" required>
 										    </div>
-										    <div class="col-sm-2 offset-sm-1">
-												<label for="pcountry" class="form-control-sm "><%=Information.country%></label>
+										    <div class="col-sm-2 offset-sm-0">
+												<label for="pcountry" ><%=Information.country%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control form-control-sm " id="pcountry" name="pcountry"  >
+											        <input type="text" class="form-control " id="pcountry" name="pcountry"  >
 												</div>
 										    </div>
 										    <div class="col-sm-1">
-												<label for="ppincode" class="form-control-sm "><%=Information.pinCode%></label>
+												<label for="ppincode" ><%=Information.pinCode%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control form-control-sm " id="ppincode" name="ppincode" >
+											        <input type="text" class="form-control" id="ppincode" name="ppincode" >
 												</div>
 										    </div>
 									  	</div>
-										
-						        		<p class=""><%= Information.CAddress%></p>
-										<div class="form-row">
-									       <label class="col-sm-1"></label>
-										    <div class="col-sm-4 ">
-											      <label for="caddress" class="form-control-sm"><%=Information.Address%></label>
-											      <input type="text" class="form-control form-control-sm " id="caddress" name="caddress" required>
+										<br/>
+										<div class="form-row ">
+							        		<div class="col-sm-6 offset-sm-1 text-warning ">
+							        			<%= Information.AddressCheckBox%> <input type="checkbox" id ="SameAddress"  value ="">
+							        		</div>	
+										</div>
+										<div class="form-row ">
+										    <div class="col-sm-4 offset-sm-1">
+											      <label for="caddress"><%=Information.CAddress%></label>
+											      <input type="text" class="form-control " id="caddress" name="caddress" required>
 									    	</div>
 										    <div class="col-sm-3 offset-sm-0">
-										    	<label for="cblock" class="form-control-sm " ><%=Information.Block%></label>
-										      	<input type="text" class="form-control form-control-sm " id="cblock"  name = "cblock" required>
+										    	<label for="cblock" ><%=Information.Block%></label>
+										      	<input type="text" class="form-control" id="cblock"  name = "cblock" required>
 										    </div>
-										    <div class="col-sm-2 offset-sm-0">
-												<label for="csector" class="form-control-sm "><%=Information.Sector%></label>
+										    <div class="col-sm-3 offset-sm-0">
+												<label for="csector" ><%=Information.Sector%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control form-control-sm " id="csector" name="csector"  required>
+											        <input type="text" class="form-control " id="csector" name="csector"  required>
 												</div>
 										    </div>
 									  	</div>
 										<div class="form-row">
-									       <label class="col-sm-1"></label>
-										    <div class="col-sm-3 ">
-											      <label for="ccity" class="form-control-sm"><%=Information.City%></label>
-											      <input type="text" class="form-control form-control-sm " id="ccity" name="ccity" required>
+										    <div class="col-sm-3 offset-sm-1">
+											      <label for="ccity" ><%=Information.City%></label>
+											      <input type="text" class="form-control " id="ccity" name="ccity" required>
 									    	</div>
-										    <div class="col-sm-2 offset-sm-1">
-										    	<label for="cstate" class="form-control-sm " ><%=Information.State%></label>
-										      	<input type="text" class="form-control form-control-sm " id="cstate" name ="cstate" required>
+										    <div class="col-sm-3 offset-sm-1">
+										    	<label for="cstate" ><%=Information.State%></label>
+										      	<input type="text" class="form-control " id="cstate" name ="cstate" required>
 										    </div>
-										    <div class="col-sm-2 offset-sm-1">
-												<label for="ccountry" class="form-control-sm "><%=Information.country%></label>
+										    <div class="col-sm-2 offset-sm-0">
+												<label for="ccountry" ><%=Information.country%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control form-control-sm " id="ccountry" name="ccountry"  >
+											        <input type="text" class="form-control" id="ccountry" name="ccountry"  >
 												</div>
 										    </div>
 										    <div class="col-sm-1">
-												<label for="cpincode" class="form-control-sm "><%=Information.pinCode%></label>
+												<label for="cpincode" ><%=Information.pinCode%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control form-control-sm " id="cpincode" name="cpincode" >
+											        <input type="text" class="form-control" id="cpincode" name="cpincode" >
 												</div>
 										    </div>
 									  	</div>
+										<br />
+										<div class="form-row ">
+									    	<div class="col-sm-3 offset-sm-8">
+										      	<button type="button" class="form-control bg-warning" id="cont02" name = "cont02" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" >Continue... </button>
+										    </div>
+									  	</div>
+
 
 						      		</div>
 						    	</div>
 							</div>
  	
- 							<div class="card">
-    							<div class="card-header bg-primary " style="max-height:45px" id="headingThree">
+ 							<div class="card" id="hd3">
+    							<div class="card-header bg-primary " style="max-height:60px" id="headingThree">
       								<h2 class="mb-0">
-        								<button class="btn btn-link text-light" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        								<button class="btn btn-link text-light " type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
           									<%= Information.UploadDocs%>[+]
         								</button>
       								</h2>
@@ -285,6 +298,14 @@
 												</div>
 										    </div>
 									  	</div>
+
+
+										<div class="form-row" id="hd4">
+									    	<div class="col-sm-3 offset-sm-8">
+										      	<button type="submit" class="form-control bg-warning" id="submit01" name = "submit01"  ><%=Information.Submit %> </button>
+										    </div>
+									  	</div>
+
 
  									</div>
  								</div>
@@ -357,9 +378,108 @@
 			$('#btnCollapseAll').click(function(){
 				$('.panel-collapse.collapse').collapse('hide');	
 			});
-			
 
-			 $('form[id="Husemaid01"]').validate({
+			$('#hd2').hide(function(){});
+			$('#hd3').hide(function(){});
+			$('#cont01').click(function(){
+				$('#hd2').show(function(){});
+			});
+			$('#cont02').click(function(){
+				$('#hd3').show(function(){});
+			});
+
+/* 		         $("#SameAddress").change(function () {
+		            if ($(this).is(":checked")) {
+			            $('#caddress').attr("readonly", "readonly"); 
+			            $('#cblock').attr("readonly", "readonly"); 
+			            $('#csector').attr("readonly", "readonly"); 
+			            $('#ccity').attr("readonly", "readonly"); 
+			            $('#cstate').attr("readonly", "readonly"); 
+			            $('#ccountry').attr("readonly", "readonly"); 
+			            $('#cpincode').attr("readonly", "readonly"); 
+		            } else {
+			            $('#caddress').removeAttr("readonly"); 
+			            $('#cblock').removeAttr("readonly"); 
+			            $('#csector').removeAttr("readonly"); 
+			            $('#ccity').removeAttr("readonly"); 
+			            $('#cstate').removeAttr("readonly"); 
+			            $('#ccountry').removeAttr("readonly"); 
+			            $('#cpincode').removeAttr("readonly"); 
+		 	           $('#caddress').focus(); 
+
+			            $('#caddress').val(""); 
+			            $('#cblock').val(""); 
+			            $('#csector').val(""); 
+			            $('#ccity').val(""); 
+			            $('#cstate').val(""); 
+			            $('#ccountry').val(""); 
+			            $('#cpincode').val($(""); 
+		 	           
+		            }
+		        });     			
+			
+ */			
+			
+ 			
+			$('#SameAddress').click(function(event){
+	            $('#caddress').val($('#paddress').val()); 
+	            $('#cblock').val($('#pblock').val()); 
+	            $('#csector').val($('#psector').val()); 
+	            $('#ccity').val($('#pcity').val()); 
+	            $('#cstate').val($('#pstate').val()); 
+	            $('#ccountry').val($('#pcountry').val()); 
+	            $('#cpincode').val($('#ppincode').val()); 
+				
+	            $('#caddress').attr("readonly", "readonly"); 
+	            $('#cblock').attr("readonly", "readonly"); 
+	            $('#csector').attr("readonly", "readonly"); 
+	            $('#ccity').attr("readonly", "readonly"); 
+	            $('#cstate').attr("readonly", "readonly"); 
+	            $('#ccountry').attr("readonly", "readonly"); 
+	            $('#cpincode').attr("readonly", "readonly"); 
+			});
+ 
+ 
+ 
+/* 			$("#SameAddress").click(function () {
+	            if ($(this).is(":checked")) {
+		            $('#caddress').val($('#paddress').val()); 
+		            $('#cblock').val($('#pblock').val()); 
+		            $('#csector').val($('#psector').val()); 
+		            $('#ccity').val($('#pcity').val()); 
+		            $('#cstate').val($('#pstate').val()); 
+		            $('#ccountry').val($('#pcountry').val()); 
+		            $('#cpincode').val($('#ppincode').val()); 
+
+		            $('#caddress').attr("readonly", "readonly"); 
+		            $('#cblock').attr("readonly", "readonly"); 
+		            $('#csector').attr("readonly", "readonly"); 
+		            $('#ccity').attr("readonly", "readonly"); 
+		            $('#cstate').attr("readonly", "readonly"); 
+		            $('#ccountry').attr("readonly", "readonly"); 
+		            $('#cpincode').attr("readonly", "readonly"); 
+	            } else {
+		            $('#caddress').val(""); 
+		            $('#cblock').val(""); 
+		            $('#csector').val(""); 
+		            $('#ccity').val(""); 
+		            $('#cstate').val(""); 
+		            $('#ccountry').val(""); 
+		            $('#cpincode').val($(""); 
+
+		            $('#caddress').removeAttr("readonly"); 
+		            $('#cblock').removeAttr("readonly"); 
+		            $('#csector').removeAttr("readonly"); 
+		            $('#ccity').removeAttr("readonly"); 
+		            $('#cstate').removeAttr("readonly"); 
+		            $('#ccountry').removeAttr("readonly"); 
+		            $('#cpincode').removeAttr("readonly"); 
+	 	           $('#caddress').focus(); 
+	            }
+		
+			});
+ */			
+			 $('form[id="HoseMaid"]').validate({
 				    rules: {
 				      FName: {
 					        required: true,
@@ -369,9 +489,6 @@
 					        required: true,
 					        minlength: 3,
 					        },
-				      Initial: {
-				           required: true,
-				           },
 					  EmailId: {
 				           required: true,
 				           email: true,

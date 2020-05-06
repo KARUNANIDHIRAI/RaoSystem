@@ -43,7 +43,7 @@
 		<br />
 
 		<div class="container" > 
-		   	<form id="login" name="login" action="CaptchServlet" method="post" class="form-signin form-horizontal" autocomplete="off">
+		   	<form id="login" name="login" action="LoginCheck" method="post" class="form-signin form-horizontal" autocomplete="off">
 				<div class="row justify-content-md-center " >
 	 				<div class="col-sm-8">
 
@@ -51,11 +51,13 @@
 							<div class="card-header bg-primary text-white text-center" style="max-height: 60px; padding-top:0px; padding-bottom:0px;" >
 				    			<h5 class="card-title"><%= Information.LoginTitle%></h5>
 						  	</div>
-						  	<div class="card-body bg-light">
-								<br /> 
+ 						  	<div class="card-body bg-light">
 								<div class="form-row justify-content-md-center" > 
-									<div class="form-group h6">
-						    			<p><%= Information.LoginTitle1%></p>
+									<div class="form-group col-sm-8 h6">
+						    			<p class="text-danger "><%= session.getAttribute("InvalidLoginMsg")== null?"":session.getAttribute("InvalidLoginMsg") %></p>
+																<%session.removeAttribute("InvalidLoginMsg");%>
+						    			<p class="text-info"><%= Information.LoginTitle1%></p>
+										<hr class="bg-warning"/>
 									</div>
 								</div>	
 
@@ -64,7 +66,7 @@
 										<label for="inputLogin" ><%= Information.loginId%></label>
 									</div>
 									<div class="form-group col-sm-6 offset-sm-0">
-				 				 		<input class="form-control input-sm" type ="text" id="login" name="login" placeholder=<%= Information.loginId%> autocomplete="off" title="Enter Emailid [Example@yahoo.com]" data-toggle="tooltip">
+				 				 		<input class="form-control input-sm" type ="text" id="inputLogin" name="inputLogin" placeholder=<%= Information.loginId%> autocomplete="off" title="Enter Emailid [Example@yahoo.com]" data-toggle="tooltip" required>
 									</div>
 								</div>	
 
@@ -73,11 +75,11 @@
 										<label for="inputPassword" ><%= Information.loginPwd%></label>
 									</div>
 									<div class="form-group col-sm-6 offset-sm-0">
-							    		<input class="form-control" type="password" id="passwd" name ="passwd" placeholder=<%= Information.loginPwd%>>
+							    		<input class="form-control" type="password" id="inputPassword" name ="inputPassword" placeholder=<%= Information.loginPwd%> required>
 									</div>
 							     	<span class="input-group-btn">
 										<button id= "showPasswd" class="btn btn-secondary" type="button" >?	
-											<span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="click to view Password" ></span>
+											<span data-toggle="tooltip" title="click to view Password" ></span>
 							       		</button>
 							        </span>
 
@@ -85,34 +87,34 @@
 								<br />
 								<div class="form-row"> 
 									<div class="form-group col-sm-2 offset-sm-2">
-						 			<label for="txtCaptcha"><%= Information.loginCaptcha%></label>
+							 			<label for="txtCaptcha"></label>
 									</div>
-									<div class="form-group col-sm-6 offset-sm-0">
-					 			 		<input class="form-control input-sm" type ="text" id="txtCaptcha" name="txtCaptcha" placeholder=<%= Information.loginCaptcha%> autocomplete="off" >
+									<div class="form-group col-sm-2 offset-sm-0  text-center h4">
+						 				<img class="text-light" alt="captcha" src="http://localhost:8085/RAOSystem/LoginCheck">
+						 			<!-- <img class="text-light" alt="captcha" src="http://localhost:8085/RAOSystem/CaptchServlet"> -->
 									</div>
+									<div class="form-group col-sm-3 offset-sm-1  text-right text-danger">
+						    			<p class="text-danger "><%= session.getAttribute("CaptchaErrMsg")== null?"":session.getAttribute("CaptchaErrMsg") %></p>
+																<%session.removeAttribute("CaptchaErrMsg");%>
+	 								</div>
 								</div>	
-
 								<div class="form-row"> 
 									<div class="form-group col-sm-2 offset-sm-2">
 						 			<label for="txtCaptcha"><%= Information.loginCaptcha%></label>
 									</div>
 									<div class="form-group col-sm-6 offset-sm-0">
-					 			 		<input class="form-control input-sm" type ="text" id="txtCaptcha" name="txtCaptcha" <%=  session.getAttribute("Captcha")%>;   autocomplete="off" >
+					 			 		<input class="form-control input-sm" type ="text" id="txtCaptcha" name="txtCaptcha" placeholder=<%= Information.loginCaptcha%> autocomplete="off" >
 									</div>
+									
 								</div>	
-
-								<br />
-
 								<div class="form-row"> 
 									<div class="form-group col-sm-2 offset-sm-6">
-				 				 		<input class="form-control input-sm btn btn-warning" type ="submit" value="BLOCKlogin"  >
+				 				 		<input class="form-control input-sm btn btn-warning" type ="submit" value="Submit"  >
 									</div>
-    					            <ul ><li ><a class="text-light test-dark" href="RwaHomePage.jsp"> Login </a> </li></ul>	
 								</div>	
-
 								<div class="form-row"> 
 									<div class="form-group col-sm-6 offset-sm-4">
-										<p>	<a href="forgetpwd.jsp" data-toggle="tooltip" title="click to Reset Password"><%= Information.forgetpwd%></span></a></p>						
+										<p>	<a href="forgetpwd.jsp" data-toggle="tooltip" title="click to Reset Password"><%= Information.forgetpwd%></a></p>						
 										<p>	<%=Information.FirstTimeUser %><a href="UserRegistration.jsp" data-toggle="tooltip" title="click for Registertion"><span class ="h6 col-xs-5"><%= Information.RegisterNow%></span></a> </p>						
 									</div>
 								</div>	
@@ -174,13 +176,13 @@
 		$(document).ready(function() {
 			$("#showPasswd").hover(
 				function functionName() {
-			    	$("#passwd").attr("type", "text");
+			    	$("#inputPassword").attr("type", "text");
 			    	$(".glyphicon").$(this)
 			      	.removeClass("glyphicon-eye-open")
 			      	.addClass("glyphicon-eye-close");
 			  	},
 			  	function() {
-				    $("#passwd").attr("type", "password");
+				    $("#inputPassword").attr("type", "password");
 				    $(".glyphicon").$(this)
 				     .removeClass("glyphicon-eye-close")
 				    .addClass("glyphicon-eye-open");

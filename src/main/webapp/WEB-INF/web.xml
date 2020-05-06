@@ -10,8 +10,48 @@
   	<description></description>
   	<servlet-class>com.raoSystem.captcha.CaptchServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>LoginCheck</servlet-name>
+  	<display-name>LoginCheck</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.login.LoginCheck</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>userRegCheck</servlet-name>
+  	<display-name>userRegCheck</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.userRegistration.userRegCheck</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>getEmailVerify</servlet-name>
+  	<display-name>getEmailVerify</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.password.getEmailVerify</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>verifyUserLoginID</servlet-name>
+  	<display-name>verifyUserLoginID</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.password.verifyUserLoginID</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginCheck</servlet-name>
+  	<url-pattern>/LoginCheck</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>userRegCheck</servlet-name>
+  	<url-pattern>/userRegCheck</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>getEmailVerify</servlet-name>
+  	<url-pattern>/getEmailVerify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>verifyUserLoginID</servlet-name>
+  	<url-pattern>/verifyUserLoginID</url-pattern>
   </servlet-mapping>
 </web-app>

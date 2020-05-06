@@ -14,20 +14,16 @@
    		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
    		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>	
   		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>	
-    <style type="text/css"> 
-        .dropdown:hover .dropdown-menu { 
-            display: block; 
-        }    
-        #dropdn:hover .dropdown-menu { 
-            display: block; 
-        } 
-    </style> 
-
+	    <style type="text/css"> 
+	        .dropdown:hover .dropdown-menu { 
+	            display: block; 
+	        }    
+	        #dropdn:hover .dropdown-menu { 
+	            display: block; 
+	        } 
+	    </style> 
 	</head>
- 
-
 	<body>
-	
 		<div class="container-flucid" data-spy="affix" data-offset-top="50"> 
 			<div class="row  header_for_fix" >
  				<div class="col-lg-12 btn-dark text-right  margin-left:0  margin-right:0px"> 
@@ -39,7 +35,6 @@
 	        	</div>
 			</div>
 		</div>
-
 		<div class="container" > 
 			<div class="row "> 
                 <div class="col-lg-7 " > 
@@ -47,14 +42,16 @@
 				</div>
 				<div class="col-lg-5 text-right text-white"> 
 	                <br />  
-	                <h6> <span class ="glyphicon glyphicon-user" ></span>
+	                <h6> <span class ="" ></span>
 	 					<img src="images/rwa/loginUser.png" class="img-responsive "/>
-						<a href="LoginPage.jsp" class="h6"> <%= Information.signout%> </a> 
 	                </h6>
 	        	</div>
  			</div>
-
-	
+			<div class="row" Style="padding-top:0; padding-bottom:0">
+				<div class="col-lg-2 offset-sm-10 text-right disable:false" Style="padding-top:0; padding-bottom:0" >
+		  			<a class="text-warning" href="#"><%= session.getAttribute("currentUser")== null?"":session.getAttribute("currentUser") %></a>
+				</div>
+			</div>
 			<div class="row" >
 				<div class="col-lg-12 btn-group flex-wrap " role="group" aria-label="Button group with nested dropdown"  >
 					<div class="dropdown" > 
@@ -80,7 +77,7 @@
 					    	<a class="dropdown-item" href="AddNewTenant.jsp">Tenant Information</a>
 					    	<a class="dropdown-item" href="Supplier.jsp">Supplier Master </a>
 					    	<a class="dropdown-item" href="#">Maintenance Staff</a>
-					    </div>
+			  	    	</div>
 					</div>
 					<div class="dropdown" > 
 						<button type="button" class="btn btn-light dropdown-toggle " data-toggle="dropdown"><%= Information.rwaHomePageTransaction%></button>
@@ -127,7 +124,6 @@
 					    	<a class="dropdown-item" href="#">Dropdown link</a>
 					    </div>
 					</div>
-					  
 				</div>
 			</div>	
 			<br />	

@@ -158,6 +158,7 @@ public class Information {
 	public static final String UploadAadhar="Upload Aadhar Card";
 	public static final String UploadDocs="Upload Documents";
 	public static final String HouseMaidPerInfo ="House Maid Personal Information";
+	public static final String AddressCheckBox="Click Check box Correspondence address same";
 
 // reach to us
 		public static final String Emailmsg = "We'll never share your email with anyone else.";
@@ -233,6 +234,19 @@ public class Information {
 		public static final String UploadAadharCard ="Upload Aadhar Card";
 		public static final String FatherFName ="Father First Name";
 		public static final String OrgAddress ="Organisation Address";
+		
+//Forgot Password or User ID
+		public static final String FortgetPWDPageTitle="Forgot Password or User ID";
+		public static final String ForgotPWDorUserID="Verify your Credentials";
+		public static final String EnterEmailIDorMobileno="Enter EmailID or mobile number";
+		public static final String Next="Next";
+		public static final String EnterOTP="Enter OTP";
+		public static final String NewPassword="New Password";
+		public static final String ComfirmPassword="Comfirm Password";	
+// password message page
+		public static final String GotoLoginPage="Go to Login Page";
+		public static final String GotoHomePage="Go to Home Page";	
+		
 
 }
 
