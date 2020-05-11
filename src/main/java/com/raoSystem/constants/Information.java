@@ -49,7 +49,7 @@ public class Information {
 	public static final String smedia = "Social Media";
 	public static final String userRegistration = " User Registration";
 	public static final String loginConfPwd="Confirm Password";
-	public static final String RWA="GANGA";
+	public static final String RwaRegNO="RWA Registration No.";
 	public static final String Address="Address";
 	public static final String PAddress="Permanent Address";
 	public static final String CAddress="Correspondance Address";
@@ -246,6 +246,10 @@ public class Information {
 // password message page
 		public static final String GotoLoginPage="Go to Login Page";
 		public static final String GotoHomePage="Go to Home Page";	
+// user Registration
+		public static final String UserType="User Type";
+		public static final String userLogin="Create User Login ID and Password";
+		public static final String UserLoinID="User Login ID";
 		
 
 }

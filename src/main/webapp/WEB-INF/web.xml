@@ -34,6 +34,60 @@
   	<description></description>
   	<servlet-class>com.raoSystem.password.verifyUserLoginID</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UpdatePassword</servlet-name>
+  	<display-name>UpdatePassword</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.password.UpdatePassword</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdatePWD</servlet-name>
+  	<display-name>UpdatePWD</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.password.UpdatePWD</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>GenerateOTPmailOTP</servlet-name>
+  	<display-name>GenerateOTPmailOTP</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.password.GenerateOTPmailOTP</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>GenOTPmailOTP</servlet-name>
+  	<display-name>GenOTPmailOTP</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.password.GenOTPmailOTP</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ProcessNewPassword</servlet-name>
+  	<display-name>ProcessNewPassword</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.password.ProcessNewPassword</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserRole</servlet-name>
+  	<display-name>UserRole</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.userLoginRegistration.UserRole</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserCreate</servlet-name>
+  	<display-name>UserCreate</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.createUser.UserCreate</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserRegCheck</servlet-name>
+  	<display-name>UserRegCheck</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.userRegistration.UserRegCheck</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TestServlet</servlet-name>
+  	<display-name>TestServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.createUser.TestServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -53,5 +107,41 @@
   <servlet-mapping>
   	<servlet-name>verifyUserLoginID</servlet-name>
   	<url-pattern>/verifyUserLoginID</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdatePassword</servlet-name>
+  	<url-pattern>/UpdatePassword</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdatePWD</servlet-name>
+  	<url-pattern>/UpdatePWD</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GenerateOTPmailOTP</servlet-name>
+  	<url-pattern>/GenerateOTPmailOTP</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GenOTPmailOTP</servlet-name>
+  	<url-pattern>/GenOTPmailOTP</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ProcessNewPassword</servlet-name>
+  	<url-pattern>/ProcessNewPassword</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserRole</servlet-name>
+  	<url-pattern>/UserRole</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserCreate</servlet-name>
+  	<url-pattern>/UserCreate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserRegCheck</servlet-name>
+  	<url-pattern>/UserRegCheck</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TestServlet</servlet-name>
+  	<url-pattern>/TestServlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,23 +1,24 @@
-package com.raoSystem.userRegistration;
+package com.raoSystem.userLoginRegistration;
 
-public class UserRegistrationInitialization {
+public class UserLoginRegModel {
 	String Fname ;
 	String Lname;
-	String Gender;
-	String MobileNO;
 	String EmailId;
+	String MobileNO;
+	String rwaRegNo;
+	String userRtype;
+	String UserID;
+	String Password;
+	String SecurityCode;
 	String Address;
-	String BlockNO;
+	String Block;
 	String Sector;
 	String city;
 	String State;
 	String Country;
 	String ZipCode;
-	String UserID;
-	String Password;
-	String SecurityCode;
-	String RWARegNo;
-	
+	String LoginId;
+
 	public String getFname() {
 		return Fname;
 	}
@@ -30,11 +31,11 @@ public class UserRegistrationInitialization {
 	public void setLname(String lname) {
 		Lname = lname;
 	}
-	public String getGender() {
-		return Gender;
+	public String getEmailId() {
+		return EmailId;
 	}
-	public void setGender(String gender) {
-		Gender = gender;
+	public void setEmailId(String emailId) {
+		EmailId = emailId;
 	}
 	public String getMobileNO() {
 		return MobileNO;
@@ -42,11 +43,35 @@ public class UserRegistrationInitialization {
 	public void setMobileNO(String mobileNO) {
 		MobileNO = mobileNO;
 	}
-	public String getEmailId() {
-		return EmailId;
+	public String getRwaRegNo() {
+		return rwaRegNo;
 	}
-	public void setEmailId(String emailId) {
-		EmailId = emailId;
+	public void setRwaRegNo(String rwaRegNo) {
+		this.rwaRegNo = rwaRegNo;
+	}
+	public String getUserRtype() {
+		return userRtype;
+	}
+	public void setUserRtype(String userRtype) {
+		this.userRtype = userRtype;
+	}
+	public String getUserID() {
+		return UserID;
+	}
+	public void setUserID(String userID) {
+		UserID = userID;
+	}
+	public String getPassword() {
+		return Password;
+	}
+	public void setPassword(String password) {
+		Password = password;
+	}
+	public String getSecurityCode() {
+		return SecurityCode;
+	}
+	public void setSecurityCode(String securityCode) {
+		SecurityCode = securityCode;
 	}
 	public String getAddress() {
 		return Address;
@@ -54,11 +79,11 @@ public class UserRegistrationInitialization {
 	public void setAddress(String address) {
 		Address = address;
 	}
-	public String getBlockNO() {
-		return BlockNO;
+	public String getBlock() {
+		return Block;
 	}
-	public void setBlockNO(String blockNO) {
-		BlockNO = blockNO;
+	public void setBlock(String block) {
+		Block = block;
 	}
 	public String getSector() {
 		return Sector;
@@ -90,30 +115,10 @@ public class UserRegistrationInitialization {
 	public void setZipCode(String zipCode) {
 		ZipCode = zipCode;
 	}
-	public String getUserID() {
-		return UserID;
+	public String getLoginId() {
+		return LoginId;
 	}
-	public void setUserID(String userID) {
-		UserID = userID;
+	public void setLoginId(String loginId) {
+		LoginId = loginId;
 	}
-	public String getPassword() {
-		return Password;
-	}
-	public void setPassword(String password) {
-		Password = password;
-	}
-	public String getSecurityCode() {
-		return SecurityCode;
-	}
-	public void setSecurityCode(String securityCode) {
-		SecurityCode = securityCode;
-	}
-	public String getRWARegNo() {
-		return RWARegNo;
-	}
-	public void setRWARegNo(String rWARegNo) {
-		RWARegNo = rWARegNo;
-	}
-
-
 }

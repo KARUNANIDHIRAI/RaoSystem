@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.raoSystem.constants.Information"%>
+<!-- header 
+	1.  ForgetPwdPartA.jsp : [Servelet]GenOTPmailOTP 
+	2.  OTPReceipt.jsp 
+	3.  NewPassword.jsp : [Servelet] ProcessNewPassword 
+	4.  Passwordmsg.jsp 
+-->
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +46,7 @@
 <!--boody  -->
 
 		<div class="container" > 
-			<form id="PWDreset" name="PWDreset" action="UpdatePassword" method="post" class="form-signin form-horizontal" autocomplete="off" >
+			<form id="PWDreset" name="PWDreset" action="ForgetPwdPartB.jsp" method="post" class="form-signin form-horizontal" autocomplete="off" >
 				<div class="row justify-content-md-center ">
 					<div class="col-sm-12">
 						<div class="form-row" >
@@ -61,30 +67,6 @@
 								<p class="h5"> <%=Information.ForgotPWDorUserID%></p> 									
 							</div>
 						</div>
- 						<div id="email0" >
-							<div class="form-row" id="email1">
- 								 <div class="form-group col-sm-4 offset-sm-4  ">
-								 	 <label  for="inputEmailID"><%=Information.email%></label>
-     								<input type="text" class="form-control " id="inputEmailID" name="inputEmailID" placeholder="" required>
- 								</div>
-							</div>
-							<div class="form-row" id="email1">
- 								 <div class="form-group col-sm-4 offset-sm-4  ">
-								 	 <label  for="inputRwaRegNo"><%=Information.RAORegNo%></label>
-     								<input type="text" class="form-control " id="inputRwaRegNo" name="inputRwaRegNo" placeholder="" required>
- 								</div>
-							</div>
-							<br />
-  							<div class="form-row" id="email2">
-								<div class=" col-sm-1 offset-sm-5 ">
-					        		<p>	<a href="LoginPage.jsp" class="form-control bg-light text-dark  text-center h6 ">Cancel</a> </p>
-								</div>
-								<div class=" col-sm-1 offset-sm-0">
-									<button id= "cont01" type="button" class="form-control bg-primary text-white h6 "><%=Information.Next%></button> 									
-<!-- 				 				 	<input id="" type ="submit" class="form-control input-sm btn btn-primary text-white h6" value="Submit" > -->
-								</div>
-							</div>
-						</div>
  						<div  id="otp0">
  							<div class="form-row" id="otp1">
   								<div class="form-group col-sm-4 offset-sm-4  ">
@@ -98,38 +80,12 @@
 					        		<p>	<a href="LoginPages.jsp" class="form-control bg-light text-dark  text-center h6 ">Cancel</a> </p>
 								</div>
 								<div class=" form-group col-sm-1 offset-sm-0 ">
-									<button id= "cont02" type="button" class="form-control bg-primary text-white h6 "><%=Information.Next%></button> 									
+					 				 	<input id="" type ="submit" class="form-control input-sm btn btn-primary text-white h6" value=<%=Information.Submit%> >
 								</div>
 							</div>
 						</div>
-
-
-						<div  id="resetPWD">
-							<div class="form-row">
-  								<div class="form-group col-sm-4 offset-sm-4 ">
-    								 <label for="inputPassword"><%=Information.NewPassword%></label>
-     								 <input type="password" class="form-control  form-control-sm" id="inputPassword" name="inputPassword" placeholder="" required>
- 								</div>
- 							</div>
- 							<div class="form-row">
- 								<div class="form-group col-sm-4 offset-sm-4 ">
-    								 <label for="inputconfPassword"><%=Information.ComfirmPassword%></label>
-     								 <input type="password" class="form-control  form-control-sm" id="inputconfPassword" name="inputconfPassword" placeholder="" required>
- 								</div>
- 							</div>
- 							<br />
- 							<div class="form-row">
-								<div class=" col-sm-1 offset-sm-5 ">
-					        		<p>	<a href="LoginPages.jsp" class="form-control bg-light text-dark  text-center h6 ">Cancel</a> </p>
-								</div>
- 								<div class="form-group col-sm-1 offset-sm-0 ">
-				 				 	<input id="" type ="submit" class="form-control input-sm btn btn-primary text-white h6" value="Submit" >
- 								</div>
-							</div>
- 
-  						</div>
-
-					</div>
+ 						<br /> <br />
+ 					</div>
 				</div>	
 			</form>
 		</div>	
@@ -182,27 +138,10 @@
 		
 		<script type="text/javascript">
 		$(document).ready(function() {
-			$('#prog1').hide(function(){});
-			$('#prog2').hide(function(){});
-			$('#Prog3').hide(function(){});
-			$('#Prog4').hide(function(){});
-
-			$('#otp0').hide(function(){});
-			$('#resetPWD').hide(function(){});
+			$('#otp0').show(function(){});
 			$('#cont01').click(function(){
-				$('#prog1').show();
-			    $("#email0").hide();
-			   	$("#otp0").show();
-			});
-			$('#cont02').click(function(){
-				$('#prog2').show();
-				$('#email0').hide();
-			   	$('#otp0').hide();
 			   	$('#resetPWD').show();
-			});
-			$('#resetPWD').click(function(){
-				$('#prog3').show();
-				
+			   	$("#otp0").hide();
 			});
 
 		});

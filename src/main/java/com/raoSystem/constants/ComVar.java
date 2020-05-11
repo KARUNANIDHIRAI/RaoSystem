@@ -10,5 +10,7 @@ public class ComVar {
 	public static ResultSet prst = null;
 	public static String sqlpstmt= "";
     public static Statement pstmt = null;
- 	public static CallableStatement myStat = null;	
+ 	public static CallableStatement myStat = null;
+ 	public static CallableStatement callableStat = null;
+ 	
 }

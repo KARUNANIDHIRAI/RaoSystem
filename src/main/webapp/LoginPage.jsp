@@ -114,7 +114,7 @@
 								</div>	
 								<div class="form-row"> 
 									<div class="form-group col-sm-6 offset-sm-4">
-										<p>	<a href="forgetpwd.jsp" data-toggle="tooltip" title="click to Reset Password"><%= Information.forgetpwd%></a></p>						
+										<p>	<a href="ForgetPwdPartA.jsp" data-toggle="tooltip" title="click to Reset Password"><%= Information.forgetpwd%></a></p>						
 										<p>	<%=Information.FirstTimeUser %><a href="UserRegistration.jsp" data-toggle="tooltip" title="click for Registertion"><span class ="h6 col-xs-5"><%= Information.RegisterNow%></span></a> </p>						
 									</div>
 								</div>	

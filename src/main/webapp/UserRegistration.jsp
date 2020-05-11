@@ -70,15 +70,23 @@
      									 	<input type="text" class="form-control " id="inputMobile" name="inputMobile" placeholder="" required>
  										</div>
    										<div class="form-group col-lg-4 offset-sm-0">
-   											<label for="inputEmail"><%=Information.email%></label>
-    										<input type="email" class="form-control " id="inputEmail" name="inputEmail" placeholder="email@example.com" data-toggle="tooltip"  data-placement="bottom" title="We'll never share your email with anyone else."required>
+   											<label for="inputRwaRegNo"><%=Information.RAORegNo%></label>
+    										<input type="text" class="form-control " id="inputRwaRegNo" name="inputRwaRegNo" placeholder="" data-toggle="tooltip"  data-placement="bottom" required>
   										</div>
+										<div class="form-group col-lg-2 offset-sm-0">
+      										<label for="inputUserType"><%=Information.UserType%></label>
+      										<select id="inputUserType" name="inputUserType" class="form-control  ">
+        										<option selected>Super User</option>
+        										<option>Admin User</option>
+        										<option>Site User</option>
+      										</select>
+		    							</div>
   											
  									</div>
 									<div class="form-row">
 										<div class="form-group col-lg-4 offset-sm-4">
      										<label for="inputUserID"><%=Information.UserID%></label>
-    										<input type="text" class="form-control " id="inputUserID" name="inputUserID" placeholder="UserID Should be your EmailID" required>
+    										<input type="email" class="form-control " id="inputUserID" name="inputUserID" placeholder="UserID would be your EmailID" title="We'll never share your email with anyone else." required>
   										</div>
  									</div>
 									<div class="form-row">

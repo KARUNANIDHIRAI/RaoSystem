@@ -68,7 +68,7 @@
 					<div class="dropdown" > 
 						<button type="button" class="btn btn-light dropdown-toggle " data-toggle="dropdown"><%= Information.rwaHomePageMaster%></button>
 						<div class="dropdown-menu " >
-					    	<a class="dropdown-item" href="UserRegistration.jsp">User Registration</a>
+					    	<a class="dropdown-item" href="userLoginRegistration.jsp">User Registration</a>
 					    	<a class="dropdown-item" href="RwaRegistration.jsp">RWA Information</a>
 					    	<a class="dropdown-item" href="FlatOnwer.jsp">Owner Information </a>
 					    	<a class="dropdown-item" href="HouseMaid.jsp">House Maid Information</a>

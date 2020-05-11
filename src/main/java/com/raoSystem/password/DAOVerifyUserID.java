@@ -6,7 +6,7 @@ import com.raoSystem.constants.ComVar;
 import com.raoSystem.daoConnection.ConnectionManager;
 
 public class DAOVerifyUserID {
-    public static VerifyUserID check(VerifyUserID user) {	
+    public static SetGetUserID check(SetGetUserID user) {	
 		  String emailID = user.getUserId(); 
 		  String rwaRegno = user.getRwaRegNo();
 		  String Pwd = user.getPwd();
@@ -31,14 +31,12 @@ public class DAOVerifyUserID {
 			}
 			System.out.println("Step 5 : Call : Store procedure Successfully Executed ");
 	        int SPStatus= ComVar.myStat.getInt(4);
-	        System.out.println("boolean spExecuteStatus" +spExecuteStatus + "SPStatus :" + SPStatus );
-//	    	ComVar.prst = ComVar.myStat.getResultSet();
-//	    	if (ComVar.prst.next()) { 
+	        System.out.println("boolean spExecuteStatus :" +spExecuteStatus + " SPStatus :" + SPStatus );
 	    	if(SPStatus==1) {	    		
 	    		user.setValid(true);
-	    		System.out.println("login verifiedd:");
+	    		System.out.println("login verified:");
 	    	} else {
-	    		System.out.println("login not verifiedd:");
+	    		System.out.println("login not verified:");
 	    	}
 		 }catch (Exception e) {
 		        System.out.println( "ERROR :" + e);

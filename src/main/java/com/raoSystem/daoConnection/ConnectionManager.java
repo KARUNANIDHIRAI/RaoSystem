@@ -11,8 +11,9 @@ public class ConnectionManager {
 	static String db2017url;
 	public static Connection getConnection() {
 		try {
-	        String Conurl= "jdbc:sqlserver://localhost;databaseName=GangaRWA;user=knsa;password=sakn12"; 
-	        db2017url= "jdbc:sqlserver://localhost:SQLEXPRESS01;Database=GangaRWA;user=sa;password=secret;";
+//	        String Conurl= "jdbc:sqlserver://localhost;databaseName=GangaRWA;user=knsa;password=sakn12"; 
+//	        db2017url= "jdbc:sqlserver://localhost:SQLEXPRESS01;Database=GangaRWA;user=sa;password=secret;";
+			//Connection conn = DriverManager.getConnection(dburl,uid,pwd)		
 	        dburl    = "jdbc:sqlserver://localhost;databaseName=raoSystem"; 
 	        uid = "sa";
 	        pwd = "knsa";

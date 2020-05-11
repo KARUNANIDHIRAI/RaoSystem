@@ -1,6 +1,6 @@
 package com.raoSystem.password;
 
-public class VerifyUserID {
+public class SetGetUserID {
 	private String userId="";
 	private String rwaRegNo="";
 	public boolean valid;

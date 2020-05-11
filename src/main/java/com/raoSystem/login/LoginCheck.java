@@ -52,6 +52,7 @@ public class LoginCheck extends HttpServlet {
 		try {
 			System.out.println("Step 1: UserLogin");
 			UserLogin user = new UserLogin();
+			
 			user.setLoginID(request.getParameter("inputLogin"));
 		    user.setPassword(request.getParameter("inputPassword"));
 			

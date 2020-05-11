@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.raoSystem.constants.Information"%>
+<!-- header 
+	1.  FPasswordPartA.jsp : [Servelet]GenOTPmailOTP 
+	2.  OTPReceipt.jsp 
+	3.  FPasswordPartB.jsp : [Servelet] ProcessNewPassword 
+	4.  Passwordmsg.jsp 
+-->
+
 
 <!DOCTYPE html>
 <html>
@@ -31,16 +38,16 @@
 			</div>
 		</div>
 		<div class="container">
-				<div class="row">
-					<div class="col-sm-7">
-						<img src="images/KSB.png" class="img-responsive " />
-					</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<img src="images/KSB.png" class="img-responsive " />
 				</div>
+			</div>
 		</div>
 <!--boody  -->
 
 		<div class="container" > 
-			<form id="PWDreset" name="PWDreset" action="UpdatePassword" method="post" class="form-signin form-horizontal" autocomplete="off" >
+			<form id="PWDreset" name="PWDreset" action="GenOTPmailOTP" method="post" class="form-signin form-horizontal" autocomplete="off" >
 				<div class="row justify-content-md-center ">
 					<div class="col-sm-12">
 						<div class="form-row" >
@@ -80,55 +87,12 @@
 					        		<p>	<a href="LoginPage.jsp" class="form-control bg-light text-dark  text-center h6 ">Cancel</a> </p>
 								</div>
 								<div class=" col-sm-1 offset-sm-0">
-									<button id= "cont01" type="button" class="form-control bg-primary text-white h6 "><%=Information.Next%></button> 									
-<!-- 				 				 	<input id="" type ="submit" class="form-control input-sm btn btn-primary text-white h6" value="Submit" > -->
-								</div>
-							</div>
-						</div>
- 						<div  id="otp0">
- 							<div class="form-row" id="otp1">
-  								<div class="form-group col-sm-4 offset-sm-4  ">
-    								<label for="EnterOTP"><%=Information.EnterOTP%></label>
-     								<input type="text" class="form-control  form-control-sm" id="EnterOTP" name="EnterOTP" placeholder="" required>
- 								</div>
-							</div>
-							<br />
-  							<div class="form-row" id="otp2">
-								<div class=" col-sm-1 offset-sm-5 ">
-					        		<p>	<a href="LoginPages.jsp" class="form-control bg-light text-dark  text-center h6 ">Cancel</a> </p>
-								</div>
-								<div class=" form-group col-sm-1 offset-sm-0 ">
-									<button id= "cont02" type="button" class="form-control bg-primary text-white h6 "><%=Information.Next%></button> 									
-								</div>
-							</div>
-						</div>
-
-
-						<div  id="resetPWD">
-							<div class="form-row">
-  								<div class="form-group col-sm-4 offset-sm-4 ">
-    								 <label for="inputPassword"><%=Information.NewPassword%></label>
-     								 <input type="password" class="form-control  form-control-sm" id="inputPassword" name="inputPassword" placeholder="" required>
- 								</div>
- 							</div>
- 							<div class="form-row">
- 								<div class="form-group col-sm-4 offset-sm-4 ">
-    								 <label for="inputconfPassword"><%=Information.ComfirmPassword%></label>
-     								 <input type="password" class="form-control  form-control-sm" id="inputconfPassword" name="inputconfPassword" placeholder="" required>
- 								</div>
- 							</div>
- 							<br />
- 							<div class="form-row">
-								<div class=" col-sm-1 offset-sm-5 ">
-					        		<p>	<a href="LoginPages.jsp" class="form-control bg-light text-dark  text-center h6 ">Cancel</a> </p>
-								</div>
- 								<div class="form-group col-sm-1 offset-sm-0 ">
+<%-- 									<button id= "cont01" type="button" class="form-control bg-primary text-white h6 "><%=Information.Next%></button> 									 --%>
 				 				 	<input id="" type ="submit" class="form-control input-sm btn btn-primary text-white h6" value="Submit" >
- 								</div>
+								</div>
 							</div>
+						</div>
  
-  						</div>
-
 					</div>
 				</div>	
 			</form>
