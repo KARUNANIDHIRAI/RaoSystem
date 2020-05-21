@@ -27,7 +27,7 @@ public class DaoUserLoginRole {
 		        
 		        ComVar.prst = ComVar.callableStat.getResultSet();
 
-
+		        
 		        while (ComVar.prst.next()) {
 	                String UserName = ComVar.prst.getString("roleName");
 	                userRoleType userCategory = new userRoleType(UserName);

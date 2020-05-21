@@ -18,14 +18,14 @@ public class UserCreate extends HttpServlet {
 	}
 
     private void listCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DaoUserRole UserRoleDao = new DaoUserRole();
+		HttpSession session = request.getSession(true);
+		DaoUserRole UserRoleDao = new DaoUserRole();
         try {
             request.setAttribute("karuna","hello Karuna Nidhi");
 
         	ArrayList<UserModel>  listCatagory = UserRoleDao.userRoleCheck();
-            request.setAttribute("listCategory", listCatagory);
- 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("Test.jsp");
-			requestDispatcher.forward(request, response);
+            session.setAttribute("listCategory", listCatagory);
+ 			response.sendRedirect("Test.jsp");
   
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class UserCreate extends HttpServlet {
     }
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(true);
 		listCategory(request, response);
 	}
 

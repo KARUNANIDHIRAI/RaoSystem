@@ -17,14 +17,32 @@ public class UserRegInit {
 	String Password;
 	String SecurityCode;
 	String RWARegNo;
-	
+	int SPstatus;
+	Boolean valid;
+	String TranType;
 	int userType;
-	Boolean Valid;
-	public Boolean getValid() {
-		return Valid;
+	public String getTranType() {
+		return TranType;
 	}
-	public void setValid(Boolean valid) {
-		Valid = valid;
+
+	public void setTranType(String tranType) {
+		TranType = tranType;
+	}
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	
+	
+	public int getUserType() {
+		return userType;
+	}
+	public void setUserType(int userType) {
+		this.userType = userType;
 	}
 	public String getFname() {
 		return Fname;
@@ -122,11 +140,14 @@ public class UserRegInit {
 	public void setRWARegNo(String rWARegNo) {
 		RWARegNo = rWARegNo;
 	}
-	public int getUserType() {
-		return userType;
+
+	public int getSPstatus() {
+		return SPstatus;
 	}
-	public void setUserType(int userType) {
-		this.userType = userType;
+
+	public void setSPstatus(int sPstatus) {
+		SPstatus = sPstatus;
 	}
+
 
 }

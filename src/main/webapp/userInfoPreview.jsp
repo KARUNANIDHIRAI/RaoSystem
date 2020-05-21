@@ -2,11 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.raoSystem.constants.Information"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- https://www.codejava.net/java-ee/jsp/how-to-create-dynamic-drop-down-list-in-jsp-from-database -->
-<!-- https://www.codejava.net/coding/how-to-implement-forgot-password-feature-for-java-web-application -->
-<!-- https://docs.oracle.com/cd/A97339_01/doc/jsp.106/whitepapers/jsp-oow99-paper.pdf -->
-<!-- https://www.tutorialspoint.com/springmvc/springmvc_dropdown.htm -->
-<!-- C:\Program Files\Apache Software Foundation\Tomcat 8.5 -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -42,8 +37,8 @@
 		</div>
 
 		<div class="container" > 
-			<form id="userRole" name="userRole" action="UserRegCheck" method="post" class="form-horizontal needs-validation" autocomplete="off"  novalidate>
-				<div class="row justify-content-md-center" >
+			<form id="EditLoginUser" name="EditLoginUser" action="EditLoginUser" method="post" class="form-horizontal needs-validation" autocomplete="off"  >
+				<div class="row justify-content-md-center" >  
 					<div class="col-sm-12">
 						<div class="accordion" id="accordionExample">
 
@@ -57,39 +52,39 @@
     							</div>
 
 							    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-     							 	<div class="card-body alert-secondary text-dark">
+     							 	<div class="card-body alert-secondary text-dark ">
 										<div class="form-row">
 									   		<div class="col-sm-4 offset-sm-1">
-										   		<label for="Fname" ><%= Information.fname%></label>
-										   		<input type="text" class="form-control " id="Fname"  name="Fname" required>
+										   		<label for="Fname"  class ="h6" ><%= Information.fname%></label>
+										   		<input type="text" class="form-control is-invalid" id="Fname"  name="Fname" value=<%=session.getAttribute("Fname") %>required disabled>
 								    		</div>
  									    	<div class="col-sm-3">
-												<label for="Lname" ><%= Information.lname%></label>
+												<label for="Lname"  class ="h6" ><%= Information.lname%></label>
 												<div class="input-group">
-										       		<input type="text" class="form-control " id="Lname" name = "Lname" aria-describedby="inputGroupPrepend" required>
+										       		<input type="text" class="form-control is-invalid " id="Lname" name = "Lname" value=<%=session.getAttribute("Lname") %> required disabled>
 												</div>
 									    	</div>
 								  		</div>
 										<div class="form-row">
 										    <div class="col-sm-4 offset-sm-1">
-										    	<label for="email" ><%= Information.email%></label>
-										      	<input type="text" class="form-control " id="email" name="email" required>
+										    	<label for="email"  class ="h6" ><%= Information.email%></label>
+										      	<input type="text" class="form-control is-invalid" id="email" name="email" value=<%=session.getAttribute("EmailID") %> required readonly>
 										    </div>
 									    	<div class="col-sm-3 offset-sm-0">
-									      		<label for="Mobile" ><%= Information.Mobile%></label>
-											      <input type="Text" class="form-control " id="Mobile" name="Mobile"  required>
+									      		<label for="Mobile"  class ="h6" ><%= Information.Mobile%></label>
+											      <input type="Text" class="form-control is-invalid " id="Mobile" name="Mobile" value=<%=session.getAttribute("Mobile") %>  required readonly>
 									   		</div>
 										    <div class="col-sm-3">
-											      <label for="rwaRegNo"  ><%= Information.RAORegNo%></label>
-											      <input type="text" class="form-control " id="rwaRegNo" name="rwaRegNo" placeholder=<%= Information.RwaRegNO%> required>
+											      <label for="rwaRegNo"  class ="h6"  ><%= Information.RAORegNo%></label>
+											      <input type="text" class="form-control is-invalid " id="rwaRegNo" name="rwaRegNo" value=<%=session.getAttribute("RwaRegNo") %> required readonly>
 									    	</div>
 									  	</div>
 			
 										<div class="form-row">
 										    <div class="col-sm-3 offset-sm-1">
-											      <label for="UserType" ><%= Information.UserType%></label>
+											      <label for="UserType form-control " class="h6"><%= Information.UserType%></label>
 
-											    <select id ="UserType" name="UserType">
+											    <select id ="UserType" name="UserType" class="form-control is-invalid " disabled>
 													<option selected value="1">Supper Admin </option>
 													<option value="2">Admin </option>
 													<option value="3">Site User </option>
@@ -104,19 +99,19 @@
 									  	</div>
 
 										<div class="form-row">
-										    <div class="col-sm-3 offset-sm-1">
-											      <label for="userLogInId"><%= Information.UserID%></label>
-											      <input type="Text" class="form-control" id="userLogInId" name="userLogInId" placeholder=<%= Information.UserLoinID%> >
+										    <div class="col-sm-4 offset-sm-1">
+											      <label for="userLogInId" class ="h6"><%= Information.UserID%></label>
+											      <input type="Text" class="form-control is-invalid" id="userLogInId" name="userLogInId" value=<%=session.getAttribute("EmailID") %> required disabled>
 									    	</div>
 										    <div class="col-sm-3 offset-sm-0">
-    										 <label for="UserLoginPassword"><%=Information.Password%></label>
-      										 <input type="password" class="form-control " id="UserLoginPassword" name="UserLoginPassword" placeholder="" 
+    										 <label for="UserLoginPassword" class ="h6"><%=Information.Password%></label>
+      										 <input type="password" class="form-control is-invalid" id="UserLoginPassword" name="UserLoginPassword" placeholder="" 
  	     										  data-toggle="tooltip" data-placement="top" 
-    	  										  title="Must contain at least one number and one uppercase and lowercase letter,  and at least 8 and max 15 characters" required>
+    	  										  title="Must contain at least one number and one uppercase and lowercase letter,  and at least 8 and max 15 characters" required disabled>
  									    	</div>
-										    <div class="col-sm-4">
-	     										 <label for="LoginSecurityCode"><%=Information.SecCode%></label>
-    	  										 <input type="text" class="form-control " id="LoginSecurityCode" name="LoginSecurityCode" placeholder="Any 4-5digit no." required>
+										    <div class="col-sm-3">
+	     										 <label for="LoginSecurityCode" class ="h6"><%=Information.SecCode%></label>
+    	  										 <input type="text" class="form-control is-invalid" id="LoginSecurityCode" name="LoginSecurityCode" placeholder="" required disabled>
 									    	</div>
 									  	</div>
 										<br />
@@ -144,39 +139,40 @@
 									<div class="card-body  alert-secondary">
 										<div class="form-row">
 										    <div class="col-sm-4 offset-sm-1">
-											      <label for="paddress" ><%=Information.PAddress%></label>
-											      <input type="text" class="form-control " id="paddress" name="paddress" required>
+											      <label class ="h6" for="paddress" ><%=Information.PAddress%></label>
+											      <input type="text" class="form-control is-invalid" id="paddress" name="paddress" value=<%=session.getAttribute("Address") %> required >
 									    	</div>
 										    <div class="col-sm-3 offset-sm-0">
-										    	<label for="pblock"  ><%=Information.Block%></label>
-										      	<input type="text" class="form-control" id="pblock"  name="pblock" >
+										    	<label for="pblock"   class ="h6"  ><%=Information.Block%></label>
+										      	<input type="text" class="form-control " id="pblock"  name="pblock" value=<%=session.getAttribute("Block") %> >
 										    </div>
 										    <div class="col-sm-3 offset-sm-0">
-												<label for="psector" ><%=Information.Sector%></label>
+												<label for="psector"  class ="h6" ><%=Information.Sector%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control" id="psector" name="psector"  >
+											        <input type="text" class="form-control" id="psector" name="psector" value=<%=session.getAttribute("Sector") %>  >
 												</div>
 										    </div>
 									  	</div>
+									  	<br />
 										<div class="form-row">
 										    <div class="col-sm-3 offset-sm-1">
-											      <label for="pcity" ><%=Information.City%></label>
-											      <input type="text" class="form-control" id="pcity" name="pcity" required>
+											      <label for="pcity"  class ="h6" ><%=Information.City%></label>
+											      <input type="text" class="form-control is-invalid" id="pcity" name="pcity" value=<%=session.getAttribute("City") %> required >
 									    	</div>
 										    <div class="col-sm-3 offset-sm-1">
-										    	<label for="pstate"  ><%=Information.State%></label>
-										      	<input type="text" class="form-control" id="pstate" name ="pstate" required>
+										    	<label for="pstate"  class ="h6"  ><%=Information.State%></label>
+										      	<input type="text" class="form-control is-invalid" id="pstate" name ="pstate" value=<%=session.getAttribute("State") %> required >
 										    </div>
 										    <div class="col-sm-2 offset-sm-0">
-												<label for="pcountry" ><%=Information.country%></label>
+												<label for="pcountry"  class ="h6"  ><%=Information.country%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control " id="pcountry" name="pcountry" required >
+											        <input type="text" class="form-control is-invalid " id="pcountry" name="pcountry" value=<%=session.getAttribute("Country") %> required >
 												</div>
 										    </div>
-										    <div class="col-sm-1">
-												<label for="ppincode" ><%=Information.pinCode%></label>
+										    <div class="col-sm-2">
+												<label for="ppincode"  class ="h6" ><%=Information.pinCode%></label>
 												<div class="input-group">
-											        <input type="text" class="form-control" id="ppincode" name="ppincode" required>
+											        <input type="text" class="form-control is-invalid" id="ppincode" name="ppincode" value=<%=session.getAttribute("PinCode") %> required>
 												</div>
 										    </div>
 									  	</div>
@@ -184,7 +180,7 @@
 						      		</div>
 									<div class="form-row" id="hd4">
 								    	<div class="col-sm-3 offset-sm-8">
-									      	<button type="submit" class="form-control bg-warning" id="submit01" name = "submit01"  ><%=Information.Submit %> </button>
+									      	<button type="submit" class="form-control bg-warning h6" id="submit01" name = "submit01"  ><%=Information.Submit %> </button>
 									    </div>
 								  	</div>
 						    	</div>
@@ -333,7 +329,63 @@
 		});
 </script>
 		
-		
+<!-- <form name="form" action="RegisterServlet" method="post" onsubmit="return validate()"> -->
+<script> 
+function validate()
+{ 
+     var fullname = document.form.fullname.value;
+     var email = document.form.email.value;
+     var username = document.form.username.value; 
+     var password = document.form.password.value;
+     var conpassword= document.form.conpassword.value;
+     
+     if (fullname==null || fullname=="")
+     { 
+     alert("Full Name can't be blank"); 
+     return false; 
+     }
+     else if (email==null || email=="")
+     { 
+     alert("Email can't be blank"); 
+     return false; 
+     }
+     else if (username==null || username=="")
+     { 
+     alert("Username can't be blank"); 
+     return false; 
+     }
+     else if(password.length<6)
+     { 
+     alert("Password must be at least 6 characters long."); 
+     return false; 
+     } 
+     else if (password!=conpassword)
+     { 
+     alert("Confirm Password should match with the Password"); 
+     return false; 
+     } 
+ } 
+</script> 		
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 		
 	</body>
 </html>

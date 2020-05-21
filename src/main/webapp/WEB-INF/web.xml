@@ -88,6 +88,48 @@
   	<description></description>
   	<servlet-class>com.raoSystem.createUser.TestServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SearchUser</servlet-name>
+  	<display-name>SearchUser</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.userRegistration.SearchUser</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditLoginUser</servlet-name>
+  	<display-name>EditLoginUser</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.userRegistration.EditLoginUser</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SSPInformation</servlet-name>
+  	<display-name>SSPInformation</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.SSP.SSPInformation</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SSPInfoCheck</servlet-name>
+  	<display-name>SSPInfoCheck</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.SSP.SSPInfoCheck</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SSPInfoEdit</servlet-name>
+  	<display-name>SSPInfoEdit</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.SSP.SSPInfoEdit</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateSSPInfo</servlet-name>
+  	<display-name>UpdateSSPInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.SSP.DaoUpdateSSPInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SSPInfoUpdate</servlet-name>
+  	<display-name>SSPInfoUpdate</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.SSP.SSPInfoUpdate</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -143,5 +185,33 @@
   <servlet-mapping>
   	<servlet-name>TestServlet</servlet-name>
   	<url-pattern>/TestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SearchUser</servlet-name>
+  	<url-pattern>/SearchUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditLoginUser</servlet-name>
+  	<url-pattern>/EditLoginUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SSPInformation</servlet-name>
+  	<url-pattern>/SSPInformation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SSPInfoCheck</servlet-name>
+  	<url-pattern>/SSPInfoCheck</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SSPInfoEdit</servlet-name>
+  	<url-pattern>/SSPInfoEdit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateSSPInfo</servlet-name>
+  	<url-pattern>/UpdateSSPInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SSPInfoUpdate</servlet-name>
+  	<url-pattern>/SSPInfoUpdate</url-pattern>
   </servlet-mapping>
 </web-app>

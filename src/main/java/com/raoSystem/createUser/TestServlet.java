@@ -15,26 +15,17 @@ public class TestServlet extends HttpServlet {
  
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-    	session.setAttribute("karunanidhirai", "my name is karuna nidhi rai");
-        session.setAttribute("name1", "Hussein Terek");
-        
-        response.sendRedirect("testing.jsp");
-		session.setAttribute("CaptchaErrMsg", "Enter Valid Captcha");
-		response.sendRedirect("LoginPage.jsp");
-      
-        
+	    
         
  	
 	}
-    @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);   
+    @Override 
+ 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
+		session.setAttribute("raju", "Enter Valid Captcha");
+		session.setAttribute("name", "Enter Valid Captcha");
+		response.sendRedirect("testing.jsp");
 
-    	session.setAttribute("karunanidhirai", "my name is karuna nidhi rai");
-        session.setAttribute("name1", "Hussein Terek");
-        
-        response.sendRedirect("testing.jsp");
-    }
+	}
 
 }

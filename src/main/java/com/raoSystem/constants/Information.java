@@ -234,7 +234,7 @@ public class Information {
 		public static final String UploadAadharCard ="Upload Aadhar Card";
 		public static final String FatherFName ="Father First Name";
 		public static final String OrgAddress ="Organisation Address";
-		
+		public static final String TransactionType="Action Perform";
 //Forgot Password or User ID
 		public static final String FortgetPWDPageTitle="Forgot Password or User ID";
 		public static final String ForgotPWDorUserID="Verify your Credentials";
@@ -250,6 +250,9 @@ public class Information {
 		public static final String UserType="User Type";
 		public static final String userLogin="Create User Login ID and Password";
 		public static final String UserLoinID="User Login ID";
+// user 
+		public static final String Cancel="Cancel";
+		public static final String Continue="Continue";
 		
 
 }

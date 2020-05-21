@@ -7,24 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class UserRegCheck extends HttpServlet {
+public class EditLoginUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
-	@Override
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession(true);
+		System.out.println("Step1: model creating ");
+
 		UserRegInit user = new UserRegInit();
 		
-		user.setFname(request.getParameter("Fname"));
-		user.setLname(request.getParameter("Lname"));
 		user.setEmailId(request.getParameter("email"));
-		user.setMobileNO(request.getParameter("Mobile"));
 		user.setRWARegNo(request.getParameter("rwaRegNo"));
-		user.setUserType(Integer.parseInt(request.getParameter("UserType")));
-		user.setUserID(request.getParameter("userLogInId"));
-		user.setPassword(request.getParameter("UserLoginPassword"));
-		user.setSecurityCode(request.getParameter("LoginSecurityCode"));
 		user.setAddress(request.getParameter("paddress"));
 		user.setBlockNO(request.getParameter("pblock"));
 		user.setSector(request.getParameter("psector"));
@@ -32,36 +29,43 @@ public class UserRegCheck extends HttpServlet {
 		user.setState(request.getParameter("pstate"));
 		user.setCountry(request.getParameter("pcountry"));
 		user.setZipCode(request.getParameter("ppincode"));
-		System.out.println("Step1: model create successfully");
+		
+		user.setTranType("EDIT");
 		try {
-			user = DaoUserRegistration.UserCheck(user);
+			user = DaoSearchUser.UserCheck(user);
+			System.out.println("check 1");	
 			if (user.isValid()) {
+				System.out.println("check 2");	
 			    switch(user.getSPstatus()){  
+			    case 0:   
+			    	session.setAttribute("Message"," User Information Not Exist. ");
+			    	response.sendRedirect("SuccessMsg.jsp");
+			    	break;  
 			    case 1:   
-			    	session.setAttribute("InvalidFPWDMsg"," User Create Successfully");
-		            System.out.println("User Create Successfully") ;
+			    	session.setAttribute("Message"," User Information Updated Successfully");
+			    	response.sendRedirect("SuccessMsg.jsp");
 			    	break;  
 			    case 2:   
-			    	session.setAttribute("InvalidFPWDMsg"," User Already Exist ! Dupliate User Not Allow ");
-		            System.out.println("User Already Exist ! Dupliate User Not Allow") ;
+			    	session.setAttribute("Message"," Invalid Email Id  / RWA Registraion No.");
+			    	response.sendRedirect("WebPages/SuccessMsg.jsp");
 			    	break;  
 			    default:  
-			    	session.setAttribute("InvalidFPWDMsg"," Technical Issue ! Please contact to System Admin ");
+			    	session.setAttribute("Message"," Technical Issue ! Please contact to System Admin ");
+			    	response.sendRedirect("WebPages/SuccessMsg.jsp");
 			    	break;  
 				}
 			} else {
+				System.out.println("check 3");	
 				if (user.getSPstatus()==2){
-			    	session.setAttribute("InvalidFPWDMsg"," User Already Exist ! Dupliate User Not Allow ");
-		            System.out.println("User Already Exist ! Dupliate User Not Allow") ;
 				} else {
-			    	session.setAttribute("InvalidFPWDMsg"," Technical Issue (User Not Created)! Please contact to System Admin ");
-		            System.out.println("Technical Issue (User Not Created)! Please contact to System Admin ") ;
 				}
 			}
-			response.sendRedirect("PasswordMsg.jsp");
 		}catch (Exception e){
+			System.out.println("knrai 3 return from DaoSearchUser");
             System.out.println("Technical Issue ! Please contact to System Admin ") ;
 	    	session.setAttribute("InvalidFPWDMsg"," Catch Technical Issue (User Not Created)! Please contact to System Admin ");
 		}
+	
 	}
+
 }

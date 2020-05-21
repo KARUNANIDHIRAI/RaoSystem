@@ -20,7 +20,6 @@ public class ConnectionManager {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			try	{            	
 				con = DriverManager.getConnection(dburl,uid,pwd); 
-				System.out.println("\n Successfull connection created");
 			}
 			catch (SQLException ex)	{
 				System.out.println("Error in create database connection:");
