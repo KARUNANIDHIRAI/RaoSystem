@@ -21,7 +21,7 @@
 	<!-- Page Header -->
 	<div class="container-flucid">
 		<div class="row">
-			<div class="col-lg-12 btn-dark text-right  margin-left:0  margin-right:0px">
+			<div class="col-lg-12 text-right  margin-left:0  margin-right:0px" style="background-color:#000080">
 				<ul class="list-inline">
 					<li class="list-inline-item "><a class="text-light"
 						href="RwaHomePage.jsp"> <%=Information.raoHome%>
@@ -52,25 +52,20 @@
 	<!-- Page Body -->
 
 	<div class="container">
-		<form id="SSPInfo" name="SSPInfo" action="../SSPInformation" method="post"
-			class="form-horizontal needs-validation" autocomplete="off" novalidate>
+		<form id="HMKInfo" name="HMKInfo" action="../HKMInformation" method="post"
+			class="form-horizontal needs-validation" autocomplete="off" >
 			<div class="row justify-content-md-center">
 				<div class="col-sm-12">
 					<div class="accordion" id="accordionDriver">
 
 						<div class="card">
-							<div class="card-header bg-primary" id="headingOne">
+							<div class="card-header text-white" id="headingOne" style="background-color:#38ACEC">
 
 								<ul class="nav nav-tabs card-header-tabs">
-									<li class="nav-item " id="ViewUser"> 
-										<a	class="nav-link active text-dark " href="#">View SSP Information</a></li>
+									<li class="nav-item " id="ViewUser" > 
+										<a	class="nav-link active text-white " style="background-color:#000080" href="#"><%= Information.HKMPageTitle%></a></li>
 									<li class="nav-item " id="SSPNEW">
-										<a class="nav-link text-light" href="../SSPInformation/NewSSPInfo.jsp">New SSP Details</a></li>
-									<li class="nav-item "  id="SSPEDIT"><a
-										class="nav-link text-light" href="#">Edit SSP Information</a></li> 
-<!-- 										userInfoPreview.jsp -->
-									<li class="nav-item " >
-										<a	class="nav-link text-light" href="RwaHomePage.jsp">Home Page</a></li>
+										<a class="nav-link text-light" href="../HKMInformation/NewHKMInfo.jsp"><%= Information.HKMNewInfo%></a></li>
 								</ul>
 							</div>
 
@@ -101,9 +96,9 @@
 									<br />
 									<div class="form-row ">
 										<div class="col-sm-4 offset-sm-2">
-											<label for="DLNO" ><%=Information.DlNo%></label>
+											<label for="MobileNo" ><%=Information.Mobile%></label>
 											<div class="input-group">
-												<input type="text" class="form-control is-valid"	id="DLNO" name="DLNO" required>
+												<input type="text" class="form-control is-valid"	id="MobileNo" name="MobileNo" required>
 											</div>
 										</div>
 									    <div class="col-sm-4 offset-sm-0">
@@ -123,10 +118,10 @@
 									
 									<div class="form-row">
 										<div class="col-sm-2 offset-sm-4 ">
-											<p>	<a href="rwaHomePage.jsp" class="form-control btn-secondary text-white text-center h5"><%=Information.Cancel%></a></p>
+											<p>	<a href="rwaHomePage.jsp" class="form-control text-white text-center h5" style="background-color:#000080"><%=Information.Cancel%></a></p>
 										</div>
 								    	<div class="col-sm-2 offset-sm-0 ">
-									      	<button type="submit" class="form-control bg-primary h5 text-white text-center " id="submit01" name = "submit01"  ><%=Information.Submit %> </button>
+									      	<button type="submit" class="form-control h5 text-white text-center " style="background-color:#38ACEC" id="submit01" name = "submit01"  ><%=Information.Submit %> </button>
 									    </div>
 									</div>
 
@@ -151,7 +146,7 @@
 						<p class="card-text">
 							<%=Information.GloablfooterLeft%>
 						<p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+							<a href="#" class="btn text-white" style="background-color:#000080">Go somewhere</a>
 						</p>
 					</div>
 				</div>
@@ -161,7 +156,7 @@
 						<p class="card-text">
 							<%=Information.GloablfooterRight%>
 						<p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+							<a href="#" class="btn text-white" style="background-color:#000080" >Go somewhere</a>
 						</p>
 					</div>
 				</div>
@@ -196,46 +191,12 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
 			$( "#ViewUserIfon" ).click(function() {
 		    	$("#EmailId").focus();
 			});	
 			$( "#EditUserIfon" ).click(function() {
 		    	$("#EmailId").focus();
 			});	
-			$( "#SSPNEW" ).click(function() {
-		    	<%session.setAttribute("XPRT","XPRT");%>;
-		    	<%session.setAttribute("ACT","XPRTa");%>;
-			});
-			$( "#SSPEDIT" ).click(function() {
-		    	<%session.setAttribute("XPRT","XPRTe");%>;
-		    	<%session.setAttribute("ACT","XPRTb");%>;
-			});
-
-			// Function to change form action.
-			$("#ActionType").change(function() {
-				// Get option value :
-				 //var e = document.getElementById("country");
-				//var selected = e.options[e.selectedIndex].value;
-				/*Get option TEXT :
-				var result = e.options[e.selectedIndex].text;
-				*/
-				  var selected = $("#ActionType option:selected");
-				System.out.print("test selected value::="+selected.val());
-				switch (selected.val()) {
-				case 1:
-					$("#SSPInfo").attr('action', '../ViewSSSPInfo.html');
-					break;
-				case 2:
-					$("#SSPInfo").attr('action', '../EditSSPInfo.jsp');
-					break;
-				case 3:
-					$("#SSPInfo").attr('action', '../removeSSPInfo.jsp');
-					break;
-				default:
-					$("#SSPInfo").attr('action', '#');
-				}
-			});		
 		});
 
 </script>

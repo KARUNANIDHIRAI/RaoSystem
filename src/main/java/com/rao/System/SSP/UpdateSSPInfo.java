@@ -101,7 +101,7 @@ public class UpdateSSPInfo extends HttpServlet {
 					break;
 				case 1: // Record Exist [DB]
 					session.setAttribute("Message", " Secuirty Staff Personal Infromation Updated Successfully");
-					response.sendRedirect("../SuccessMsg.jsp");
+					response.sendRedirect("SuccessMsg.jsp");
 					break;
 				case 2:
 					session.setAttribute("Message", " Invalid Email Id / RWA NO. Record already exist");
@@ -110,12 +110,12 @@ public class UpdateSSPInfo extends HttpServlet {
 					break;
 				default:
 					session.setAttribute("Message", " Technical Issue ! Unable to Update SSP Info. Please contact to System Admin ");
-					response.sendRedirect("../SuccessMsg.jsp");
+					response.sendRedirect("SuccessMsg.jsp");
 					break;
 				}
 			} else {
 				session.setAttribute("Message", " Technical Issue ! SSP Info not updated . Please contact to System Admin ");
-				response.sendRedirect("../SuccessMsg.jsp");
+				response.sendRedirect("SuccessMsg.jsp");
 			}
 		} catch (Exception e) {
 			System.out.println("Technical Issue ! Please contact to System Admin " + e);

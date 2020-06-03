@@ -72,7 +72,7 @@ public class SSPInformation extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("Technical Issue ! Please contact to System Admin ");
 				session.setAttribute("Message", " Technical Issue !(Unable to update SSPInfo). Please contact to System Admin ");
-				response.sendRedirect("../SuccessMsg.jsp");
+				response.sendRedirect("SuccessMsg.jsp");
 			}
 
 			break;
@@ -181,7 +181,7 @@ public class SSPInformation extends HttpServlet {
 						break;
 					default:
 						session.setAttribute("Message", " Technical Issue ! Please contact to System Admin ");
-						response.sendRedirect("../Success.jsp");
+						response.sendRedirect("Success.jsp");
 						break;
 					}
 				} else {
@@ -191,7 +191,7 @@ public class SSPInformation extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("Technical Issue ! Please contact to System Admin ");
 				session.setAttribute("Message", " Technical Issue !(Unable to update SSPInfo). Please contact to System Admin ");
-				response.sendRedirect("../SuccessMsg.jsp");
+				response.sendRedirect("SuccessMsg.jsp");
 			}
 
 			break;

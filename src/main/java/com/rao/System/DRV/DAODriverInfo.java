@@ -1,24 +1,20 @@
-package com.rao.System.SSP;
+package com.rao.System.DRV;
 
 import java.sql.Types;
-
 import com.raoSystem.constants.ComVar;
 import com.raoSystem.daoConnection.ConnectionManager;
 
-public class DaoNewSSP {
-	public static SSPModel CreateNewSSPInfo(SSPModel user) {
+public class DAODriverInfo {
+	public static DRVModel CreateNewDRVInfo(DRVModel user) {
 		System.out.println("Step2 Start DAO ACTION");
-
 		try {
-	
 			user.setValid(false);
 			user.setSPstatus(0);	
 			ComVar.Conn = ConnectionManager.getConnection();
 			System.out.println("Step 3 : create Connection successfully");
-			System.out.println("Step 4 : Store procedure Patameter setting ");
 	
+			ComVar.myStat = ComVar.Conn.prepareCall("{call [CreateDRVInfo](?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 			System.out.println("Step 4 : Store procedure Patameter setting ");
-			ComVar.myStat = ComVar.Conn.prepareCall("{call [CreateSSPInfo](?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 					
 				ComVar.myStat.setString(1, (String) user.getEmailId());
 				ComVar.myStat.setString(2, (String) user.getRwaRegNo());
@@ -36,6 +32,7 @@ public class DaoNewSSP {
 		        ComVar.myStat.setString(14, (String) user.getFMobileNO());
 		        ComVar.myStat.setString(15, (String) user.getFEmailId());
 		        ComVar.myStat.setString(16, (String) user.getFAadharNO());
+				System.out.println("Step A : Store procedure Patameter setting ");
 	
 		        ComVar.myStat.setString(17, (String) user.getPAddress());
 		    	ComVar.myStat.setString(18, (String) user.getBlockNO());
@@ -52,50 +49,46 @@ public class DaoNewSSP {
 		        ComVar.myStat.setString(28, (String) user.getCState());
 		        ComVar.myStat.setString(29, (String) user.getCCountry());
 		        ComVar.myStat.setString(30, (String) user.getCZipCode()); 
+				System.out.println("Step B : Store procedure Patameter setting ");
 	
-		    	ComVar.myStat.setString(31, (String) user.getArmsNo()); 
-		    	ComVar.myStat.setString(32, (String) user.getArmsType()); 
-		    	ComVar.myStat.setString(33, (String) user.getArmsMadeFromCity()); 
-		    	ComVar.myStat.setString(34, (String) user.getArmsPurchaseFrom()); 
-		    	ComVar.myStat.setString(35, (String) user.getArmsPurchaseYear()); 
-		    	ComVar.myStat.setString(36, (String) user.getArmsIssuedInName()); 	
-		    	
-		        ComVar.myStat.setString(37, (String) user.getDLNO());
-		        ComVar.myStat.setString(38, (String) user.getDLIssuefromCity());
-		        ComVar.myStat.setString(39, (String) user.getDLIssueDate());
-		        ComVar.myStat.setString(40, (String) user.getDLExpiryDate());
-	
-				ComVar.myStat.setString(41, (String) user.getOrgName());
-				ComVar.myStat.setString(42, (String) user.getEmployeeNo());
-				ComVar.myStat.setString(43, (String) user.getDesignation());
-				ComVar.myStat.setString(44, (String) user.getDOJ());
-				ComVar.myStat.setString(45, (String) user.getDOR());
-				ComVar.myStat.setString(46, (String) user.getReportingOfficer());
-				ComVar.myStat.setString(47, (String) user.getOEmailID());
-				ComVar.myStat.setString(48, (String) user.getOAdress());
-				ComVar.myStat.setString(49, (String) user.getOBlock());
-				ComVar.myStat.setString(50, (String) user.getOSector());
-				ComVar.myStat.setString(51, (String) user.getOCity());
-				ComVar.myStat.setString(52, (String) user.getOState());
-				ComVar.myStat.setString(53, (String) user.getOcountry());
-				ComVar.myStat.setString(54, (String) user.getOPinCode());		        
-				ComVar.myStat.registerOutParameter(55, Types.INTEGER);			
+		        ComVar.myStat.setString(31, (String) user.getDLNO());
+		        ComVar.myStat.setString(32, (String) user.getDLIssuefromCity());
+		        ComVar.myStat.setString(33, (String) user.getDLIssueDate());
+		        ComVar.myStat.setString(34, (String) user.getDLExpiryDate());
 
-				/*
-				 * ComVar.myStat.setString(56, (String) user.getDLIRTOAddress());
-				 * ComVar.myStat.setString(57, (String) user.getDLBlockNO());
-				 * ComVar.myStat.setString(58, (String) user.getDLSector());
-				 * ComVar.myStat.setString(59, (String) user.getDLCity());
-				 * ComVar.myStat.setString(60, (String) user.getDLState());
-				 * ComVar.myStat.setString(61, (String) user.getDLCountry());
-				 * ComVar.myStat.setString(62, (String) user.getDLZipCode());
-				 */
+		        ComVar.myStat.setString(35, (String) user.getDLIRTOAddress());
+				ComVar.myStat.setString(36, (String) user.getDLBlockNO());
+				ComVar.myStat.setString(37, (String) user.getDLSector());
+				ComVar.myStat.setString(38, (String) user.getDLCity());
+				ComVar.myStat.setString(39, (String) user.getDLState());
+				ComVar.myStat.setString(40, (String) user.getDLCountry());
+				ComVar.myStat.setString(41, (String) user.getDLZipCode());
 				
-				DaoNewSSP.ShowSSPUserInputInfo(user);
+				ComVar.myStat.setString(42, (String) user.getOrgName());
+				ComVar.myStat.setString(43, (String) user.getEmployeeNo());
+				ComVar.myStat.setString(44, (String) user.getDesignation());
+				ComVar.myStat.setString(45, (String) user.getDOJ());
+				ComVar.myStat.setString(46, (String) user.getDOR());
 
+				ComVar.myStat.setString(47, (String) user.getReportingOfficer());
+				ComVar.myStat.setString(48, (String) user.getOEmailID());
+				ComVar.myStat.setString(49, (String) user.getOAdress());
+				ComVar.myStat.setString(50, (String) user.getOBlock());
+
+				ComVar.myStat.setString(51, (String) user.getOSector());
+				ComVar.myStat.setString(52, (String) user.getOCity());
+				ComVar.myStat.setString(53, (String) user.getOState());
+				ComVar.myStat.setString(54, (String) user.getOcountry());
+				ComVar.myStat.setString(55, (String) user.getOPinCode());		        
+				ComVar.myStat.registerOutParameter(56, Types.INTEGER);
+				ComVar.myStat.registerOutParameter(57, Types.INTEGER);
+
+				DAODriverInfo.ShowDRVUserInputInfo(user);
 				boolean spExecuteStatus=ComVar.myStat.execute();
-		        user.setSPstatus(ComVar.myStat.getInt(55));// store proceure status after sp execution
-		        System.out.print("Step 6.: SP Execute Status Code:(1.Success 2.Duplicate User 3.Technical Issues. SP STATUS CODE : "+user.getSPstatus());
+		        user.setSPstatus(ComVar.myStat.getInt(56));// SP status after sp execution
+		        user.setSPInnerStatus(ComVar.myStat.getInt(57));// SP Inner status during execution 
+		        
+		        System.out.print("Step 6.: SP Execute Status Code:(1.Success 2.Duplicate User 3.Technical Issues. SP STATUS CODE : "+user.getSPstatus() +" SP INNER Staus:"+user.getSPInnerStatus());
 		        user.setValid(true);
 	
 		} catch (Exception e) {
@@ -128,15 +121,14 @@ public class DaoNewSSP {
 	return user;
 	}	
 
-	public static SSPModel UpdateSSPInfo(SSPModel user) {
-		System.out.println("Step 6.Start UpdateSSPInfo DAO ACTION");
+	public static DRVModel UpdateDRVInfo(DRVModel user) {
+		System.out.println("Step 6.Start UpdateDRVInfo DAO ACTION");
 		try {
 			user.setValid(false);
 			user.setSPstatus(0);	
 			ComVar.Conn = ConnectionManager.getConnection();
 			System.out.println("Step 7 : create Connection successfully to update data");
-			ComVar.myStat = ComVar.Conn.prepareCall("{call [UpdateSSPInfo](?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-
+			ComVar.myStat = ComVar.Conn.prepareCall("{call [UpdateDRVInfo](?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 			System.out.println("Step 8 : Store procedure Patameter setting ");
 					
 			ComVar.myStat.setString(1, (String) user.getEmailId());
@@ -172,51 +164,43 @@ public class DaoNewSSP {
 	        ComVar.myStat.setString(29, (String) user.getCCountry());
 	        ComVar.myStat.setString(30, (String) user.getCZipCode()); 
 
-	    	ComVar.myStat.setString(31, (String) user.getArmsNo()); 
-	    	ComVar.myStat.setString(32, (String) user.getArmsType()); 
-	    	ComVar.myStat.setString(33, (String) user.getArmsMadeFromCity()); 
-	    	ComVar.myStat.setString(34, (String) user.getArmsPurchaseFrom()); 
-	    	ComVar.myStat.setString(35, (String) user.getArmsPurchaseYear()); 
-	    	ComVar.myStat.setString(36, (String) user.getArmsIssuedInName()); 	
+	        ComVar.myStat.setString(31, (String) user.getDLNO());
+	        ComVar.myStat.setString(32, (String) user.getDLIssuefromCity());
+	        ComVar.myStat.setString(33, (String) user.getDLIssueDate());
+	        ComVar.myStat.setString(34, (String) user.getDLExpiryDate());
 
-	        ComVar.myStat.setString(37, (String) user.getDLNO());
-	        ComVar.myStat.setString(38, (String) user.getDLIssuefromCity());
-	        ComVar.myStat.setString(39, (String) user.getDLIssueDate());
-	        ComVar.myStat.setString(40, (String) user.getDLExpiryDate());
-
-			ComVar.myStat.setString(41, (String) user.getOrgName());
-			ComVar.myStat.setString(42, (String) user.getEmployeeNo());
-			ComVar.myStat.setString(43, (String) user.getDesignation());
-			ComVar.myStat.setString(44, (String) user.getDOJ());
-			ComVar.myStat.setString(45, (String) user.getDOR());
-			ComVar.myStat.setString(46, (String) user.getReportingOfficer());
-			ComVar.myStat.setString(47, (String) user.getOEmailID());
-			ComVar.myStat.setString(48, (String) user.getOAdress());
-			ComVar.myStat.setString(49, (String) user.getOBlock());
-			ComVar.myStat.setString(50, (String) user.getOSector());
-			ComVar.myStat.setString(51, (String) user.getOCity());
-			ComVar.myStat.setString(52, (String) user.getOState());
-			ComVar.myStat.setString(53, (String) user.getOcountry());
-			ComVar.myStat.setString(54, (String) user.getOPinCode());		        
-			ComVar.myStat.registerOutParameter(55, Types.INTEGER);
+	        ComVar.myStat.setString(35, (String) user.getDLIRTOAddress());
+			ComVar.myStat.setString(36, (String) user.getDLBlockNO());
+			ComVar.myStat.setString(37, (String) user.getDLSector());
+			ComVar.myStat.setString(38, (String) user.getDLCity());
+			ComVar.myStat.setString(39, (String) user.getDLState());
+			ComVar.myStat.setString(40, (String) user.getDLCountry());
+			ComVar.myStat.setString(41, (String) user.getDLZipCode());
+			
+			ComVar.myStat.setString(42, (String) user.getOrgName());
+			ComVar.myStat.setString(43, (String) user.getEmployeeNo());
+			ComVar.myStat.setString(44, (String) user.getDesignation());
+			ComVar.myStat.setString(45, (String) user.getDOJ());
+			ComVar.myStat.setString(46, (String) user.getDOR());
+			ComVar.myStat.setString(47, (String) user.getReportingOfficer());
+			ComVar.myStat.setString(48, (String) user.getOEmailID());
+			ComVar.myStat.setString(49, (String) user.getOAdress());
+			ComVar.myStat.setString(50, (String) user.getOBlock());
+			ComVar.myStat.setString(51, (String) user.getOSector());
+			ComVar.myStat.setString(52, (String) user.getOCity());
+			ComVar.myStat.setString(53, (String) user.getOState());
+			ComVar.myStat.setString(54, (String) user.getOcountry());
+			ComVar.myStat.setString(55, (String) user.getOPinCode());		        
 			ComVar.myStat.registerOutParameter(56, Types.INTEGER);
+			ComVar.myStat.registerOutParameter(57, Types.INTEGER);
 			
 			
-			/*
-			 * ComVar.myStat.setString(56, (String) user.getDLIRTOAddress());
-			 * ComVar.myStat.setString(57, (String) user.getDLBlockNO());
-			 * ComVar.myStat.setString(58, (String) user.getDLSector());
-			 * ComVar.myStat.setString(59, (String) user.getDLCity());
-			 * ComVar.myStat.setString(60, (String) user.getDLState());
-			 * ComVar.myStat.setString(61, (String) user.getDLCountry());
-			 * ComVar.myStat.setString(62, (String) user.getDLZipCode());
-			 */
 			System.out.println("Step 9 : Data sent for update :");
-			DaoNewSSP.ShowSSPUserInputInfo(user);
+			ShowDRVUserInputInfo(user);
 
 			boolean spExecuteStatus=ComVar.myStat.execute();
-	        user.setSPstatus(ComVar.myStat.getInt(55));// store proceure status after sp execution
-	        System.out.print("Step 10.: SP Execute Status Code:(1.Success 2.Duplicate User 3.Technical Issues. SP STATUS CODE : "+user.getSPstatus() +" SP INNER :"+ComVar.myStat.getInt(56));
+	        user.setSPstatus(ComVar.myStat.getInt(56));// store proceure status after sp execution
+	        System.out.print("Step 10.: SP Execute Status Code:(1.Success 2.Duplicate User 3.Technical Issues. SP STATUS CODE : "+user.getSPstatus() +" SP INNER Staus:"+ComVar.myStat.getInt(57));
 	        user.setValid(true);
 
 		} catch (Exception e) {
@@ -249,7 +233,7 @@ public class DaoNewSSP {
 	return user;
 	}	
 
-	public static SSPModel SSPInfoRetriev(SSPModel user) {
+	public static DRVModel DRVInfoRetriev(DRVModel user) {
 		System.out.println("STEP 2 Start DAO ACTION");
 		try {
 			user.setValid(false);
@@ -260,20 +244,19 @@ public class DaoNewSSP {
 			switch(user.getTranType()){
 			case "VIEW" :
 	
-				ComVar.myStat = ComVar.Conn.prepareCall("{call [SearchSSPInfo](?,?)}");
+				ComVar.myStat = ComVar.Conn.prepareCall("{call [SearchDRVInfo](?,?,?)}");
 	
 				ComVar.myStat.setString(1, (String)user.getEmailId());
 				ComVar.myStat.setString(2, (String)user.getRwaRegNo());
-				
-				//System.out.println("STEP 4. Parameter Valuse pass to SP -->"+user.getEmailId()+" : " +user.getRwaRegNo() + ": " +user.getDLNO());
+				ComVar.myStat.setString(3, (String)user.getDLNO());			
 				
 				ComVar.myStat.execute();
-		        System.out.print("SP Execute Status Code:(1.Success 2.Duplicate User 3.Technical Issues. SP STATUS CODE : "+user.getSPstatus());
+		        System.out.print("SP Status Code:(1.Success 2.Duplicate  3.Technical Issues. SP STATUS CODE : "+user.getSPstatus());
 		        user.setValid(true);
 		        ComVar.prst = ComVar.myStat.getResultSet();
 		    	
 		        while(ComVar.prst.next()){
-			        user.setUserID(ComVar.prst.getString("UserID"));
+		        	//user.setUserID(ComVar.prst.getString("UserID"));
 			        user.setFname(ComVar.prst.getString("Fname"));
 			        user.setLname(ComVar.prst.getString("Lname"));
 			        user.setGender(ComVar.prst.getString("Gender"));
@@ -304,15 +287,6 @@ public class DaoNewSSP {
 			        user.setCState(ComVar.prst.getString("CState"));
 			        user.setCCountry(ComVar.prst.getString("CCountry"));
 			        user.setCZipCode(ComVar.prst.getString("CZipCode")); 
-			        //ssp Arm Details 
-	
-			    	user.setArmsNo(ComVar.prst.getString("ArmsNo")); 
-			    	user.setArmsType(ComVar.prst.getString("ArmsType")); 
-			    	user.setArmsMadeFromCity(ComVar.prst.getString("ArmsMadeFromCity")); 
-			    	user.setArmsPurchaseFrom(ComVar.prst.getString("ArmsPurchaseFrom")); 
-			    	user.setArmsPurchaseYear(ComVar.prst.getString("ArmsPurchaseYear")); 
-			    	user.setArmsIssuedInName(ComVar.prst.getString("ArmsIssuedInName")); 	
-			    	
 			    	// ssp dl details
 			    	
 			        user.setDLNO(ComVar.prst.getString("DLNO"));
@@ -342,6 +316,7 @@ public class DaoNewSSP {
 					user.setOcountry(ComVar.prst.getString("Ocountry"));
 					user.setOPinCode(ComVar.prst.getString("OPinCode"));		        
 		        	user.setSPstatus(1);
+		        	System.out.println("\nSP Status: inner loop "+user.getSPstatus() );
 			    } 
 		        break;
 			case "xp":
@@ -381,7 +356,7 @@ public class DaoNewSSP {
 	}
 	
 	
-	public static void ShowSSPUserInputInfo(SSPModel user) {
+	public static void ShowDRVUserInputInfo(DRVModel user) {
 		
 		  System.out.println("Personal Information -RWA :" +user.getRwaRegNo()+ ", UID:" +user.getUserID() +
 		  ", FNAME :" +user.getFname()+ ", LAST NAME:" +user.getLname() + ", GENDER:" +user.getGender()); System.out.println("DOB :"+user.getDOB()
@@ -396,17 +371,17 @@ public class DaoNewSSP {
 			System.out.println("Correspondance Address -"+user.getCAddress()+ " :" +user.getCBlock()+ " :" +user.getCSector()+ " :" +user.getCCity()+ " :" +user.getCState()+ " :" 
 			+user.getCCountry()	+ " :" +user.getCZipCode());
 		
-	    	System.out.println("Arams Details - ARMS No.-"+ user.getArmsNo()+ ", Type - " +user.getArmsType()+ ", Made in -" +user.getArmsMadeFromCity()+ ", Puchase From -" 
-			+user.getArmsPurchaseFrom()	+ ", purchase Year -" +user.getArmsPurchaseYear()+ " Issue In Name -" +user.getArmsIssuedInName());
+			System.out.println(" License Details - DL No.-"+user.getDLNO() + ", DL Issue from -" + user.getDLIssuefromCity()+ ", Issue Date -" 
+			+user.getDLIssueDate() + " Expiray Date - " +user.getDLExpiryDate());
+	    	System.out.println(" DL Address "+user.getDLIRTOAddress()+ ", Block - " +user.getDLBlockNO()+ ", Sector -" +user.getDLSector()
+	    	+" City "+ user.getDLCity()+", State - "+user.getDLState()+ ", Country -" +user.getDLCountry()+ " PinCode" +user.getDLZipCode());
 
-			System.out.println(" License Details - DL No.-"+user.getDLNO() + ", DL Issue from -" + user.getDLIssuefromCity()+ ", Issue Date -" +user.getDLIssueDate() + " Expiray Date - " +user.getDLExpiryDate());
-			
 
 			System.out.println("Organization Detiails -  Name -" + user.getOrgName()+ ", EmpNO -" +user.getEmployeeNo() + ", Designation -" +user.getDesignation()
 			+ ", joining Dt.-" +user.getDOJ() + ", Releaving Dt.- :" +user.getDOR()	+ ", Reporting to -:" +user.getReportingOfficer()+ ", Email - " 
 			+user.getOEmailID() + " Address -" 	+user.getOAdress()    + ", Block :" +user.getOBlock()+ ", Sector -"	+user.getOSector()+ ", City-" 
 			+user.getOCity()+ ",  State -" +user.getOState() + ",Country -" +user.getOcountry()+ ", Pin code-" +user.getOPinCode());
 
-	};
+	}
 
 }

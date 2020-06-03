@@ -50,7 +50,7 @@
 							<div class="card">
     							<div class="card-header bg-primary"  id="headingOne">
     							
-						    		<ul class="nav nav-tabs card-header-tabs">
+						    		<ul class="nav nav-tabs card-header-tabs nav nav-pills nav-fill">
 					      				<li class="nav-item " data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <a class="nav-link active text-dark " href="#">Driver Personal Info.</a> </li>
 					      				<li class="nav-item " data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> <a class="nav-link text-light" href="#">Communication Info.</a> </li>
 					      				<li class="nav-item " data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree"> <a class="nav-link text-light" href="#">License Information</a> </li>

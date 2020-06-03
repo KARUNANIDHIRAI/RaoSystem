@@ -36,9 +36,6 @@ public class SSPInfoCheck extends HttpServlet {
 
 			  user.setRwaRegNo("MK107");
 			  user.setUserID("KNRAI");
-				DaoNewSSP.ShowSSPUserInputInfo(user);
-			  
-			  
 			  user.setFname(request.getParameter("inputFName"));
 			  user.setLname(request.getParameter("inputLName"));
 			  user.setGender(request.getParameter("inputGender"));

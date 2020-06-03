@@ -159,6 +159,15 @@ public class Information {
 	public static final String UploadDocs="Upload Documents";
 	public static final String HouseMaidPerInfo ="House Maid Personal Information";
 	public static final String AddressCheckBox="Click Check box Correspondence address same";
+	public static final String AddressSame="Click Check box if Address Same";
+	public static final String HKMPageTitle="View House Keeping Information";
+	public static final String HKMNewInfo="New House Keeping Details";
+	public static final String HKMInfo="House Keeping Information";
+	public static final String HKMPersonalInfo="Personal Information";
+	
+	public static final String HKMAddress="Address Details";
+	public static final String HKMEmpolyment="Employment";
+	
 
 // reach to us
 		public static final String Emailmsg = "We'll never share your email with anyone else.";
@@ -208,11 +217,7 @@ public class Information {
 		public static final String TenantDriver= "Driver";		
 		public static final String TenantMaid= "Maid";		
 		public static final String PreviewInfo= "Preview Info.";		
-		public static final String VehicleType ="Vehicle Type";
-		public static final String VehicleNo="Vehicle Number";
-		public static final String VehicleName=" Manufacture Name";
-		public static final String VehicleColor=" Vechicle Color";
-//Security Staff Information
+	//Security Staff Information
 		public static final String SecurityStaffInfo ="Security Staff Information";
 		public static final String PersonalDetail ="PersonalDetail";
 		public static final String EXOrgaDetail ="Ex Organisation Details";
@@ -253,6 +258,42 @@ public class Information {
 // user 
 		public static final String Cancel="Cancel";
 		public static final String Continue="Continue";
+// driver
+		public static final String ViewInfo="View Driver Information";
+		public static final String NewInfo="New Driver Details";
+		public static final String PageTitle="Driver Personal Information";
+		
+// FlatOwner
+		public static final String OwnViewInfo="View Owner Information";
+		public static final String OwnNewInfo="New Owner Details";
+		public static final String OwnPageTitle="Owner Personal Information";
+		public static final String MobileNo="Mobile No";
+		public static final String AadharNo="Aadhar No";
+		public static final String OwnInfo="Owner Information";
+		public static final String OwnPersonalInfo="Personal Information";
+		public static final String OwnFLTnfo="House Details";
+		public static final String OwnVehicleInfo="Vehicle Details";
+		public static final String OwnMaidInfo="Maid ";
+		public static final String OwnDriverInfo="Driver Details ";
+		public static final String OwnSecurityInfo="Security ";
+		public static final String VehicleManufacturer=" Manufacture ";
+		public static final String VehicleModel="Model ";
+		public static final String VehicleType ="Type";
+		public static final String VehicleNo="Number";
+		public static final String VehicleName=" Manufacture Name";
+		public static final String VehicleColor=" Color";
+		public static final String OwnerInfo="Owner ";
+		
+		
+		
+		public static final String TNTViewInfo="View Dweller Information";
+		public static final String TNTNewInfo="New Dweller Details";
+		public static final String TNTPageTitle="Dweller Personal Information";
+		public static final String TNTInfo="Dweller Information";
+		public static final String TNTCurInfo="Dweller Current Address";
+		public static final String ShiftIn="Shifted On";
+		public static final String ShiftOut="Shifting Out";
+		
 		
 
 }

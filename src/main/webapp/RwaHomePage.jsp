@@ -71,10 +71,10 @@
 					    	<a class="dropdown-item" href="userLoginRegistration.jsp">User Registration</a>
 					    	<a class="dropdown-item" href="RwaRegistration.jsp">RWA Information</a>
 					    	<a class="dropdown-item" href="FlatOnwer.jsp">Owner Information </a>
-					    	<a class="dropdown-item" href="HouseMaid.jsp">House Maid Information</a>
-					    	<a class="dropdown-item" href="DriverInformation.jsp">Driver Information </a>
-					    	<a class="dropdown-item" href="SecurityStaff.jsp">Security Staff Information</a>
-					    	<a class="dropdown-item" href="AddNewTenant.jsp">Tenant Information</a>
+					    	<a class="dropdown-item" href="HKMInformation/HKMMainPage.jsp">House Maid Information</a>
+					    	<a class="dropdown-item" href="DRVInformation/DRVMainPage.jsp">Driver Information </a>
+					    	<a class="dropdown-item" href="SSPInformation/SSPMainPage.jsp">Security Staff Information</a>
+					    	<a class="dropdown-item" href="DwellerInformation/NewDwellerInfo.jsp">Tenant Information</a>
 					    	<a class="dropdown-item" href="Supplier.jsp">Supplier Master </a>
 					    	<a class="dropdown-item" href="#">Maintenance Staff</a>
 			  	    	</div>
