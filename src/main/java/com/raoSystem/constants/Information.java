@@ -167,6 +167,7 @@ public class Information {
 	
 	public static final String HKMAddress="Address Details";
 	public static final String HKMEmpolyment="Employment";
+	public static final String SizeOfFlat="Size of Flat/Apartment";
 	
 
 // reach to us
@@ -237,7 +238,7 @@ public class Information {
 		public static final String UploadPanCard ="Upload PanCard";
 		public static final String UploadDL ="Upload Driving License";
 		public static final String UploadAadharCard ="Upload Aadhar Card";
-		public static final String FatherFName ="Father First Name";
+		public static final String FatherFName ="Father / Mother 's Name";
 		public static final String OrgAddress ="Organisation Address";
 		public static final String TransactionType="Action Perform";
 //Forgot Password or User ID
@@ -285,7 +286,7 @@ public class Information {
 		public static final String OwnerInfo="Owner ";
 		
 		
-		
+// Tenant Info		
 		public static final String TNTViewInfo="View Dweller Information";
 		public static final String TNTNewInfo="New Dweller Details";
 		public static final String TNTPageTitle="Dweller Personal Information";
@@ -294,6 +295,36 @@ public class Information {
 		public static final String ShiftIn="Shifted On";
 		public static final String ShiftOut="Shifting Out";
 		
+// Web Page Nevigation
+		public static final String GoToBack="Go to Preivous Page";
+		public static final String GoToNext="Go to Next Page";
+		public static final String Employment="Employment Details";
+		public static final String EmployeeNo="Employee No";
+		public static final String EmployerName="Employer Name";
+		public static final String EmployerAddress="Employer Address";
+		public static final String Name="Name";
+// Apartment Inventory
+		public static final String ViewAPTInfo="View Apartment Inventory";
+		public static final String NewAPTInfo="Create Apartment Inventory";
+		public static final String ViewCommonInfo="View Information";
+		public static final String AptTowerNo="Apartment / Tower No";
+		public static final String FlatCategoryNo="Flat Category";
+		public static final String TotlFlatNoInCategory="Number of Flats ";
+		public static final String Create="Create";
+		public static final String Remove="Remove";
+		
+		public static final String RwaMonthlyPlan="RWA Monthly Subscription Type";
+		public static final String FlatCharge="Flat Fixed charge";
+		public static final String AmcCharge="AMC Charges";
+		public static final String GymCharges="Gym Charges";
+		public static final String SwimmingPoolCharge="Swimming Pool charge";
+		public static final String MiscCharge="Miscellaneous Charge";
+		
+		public static final String FlatStartingNo="Flat Starting No";
+		public static final String FlatEndingNo="Flat Ending No";
+		public static final String ValidFrom="Charges Applicable From";
+		public static final String ValidTo="Charges Applicable To";
+		public static final String AuditCharge = "Audit Charges";
 		
 
 }

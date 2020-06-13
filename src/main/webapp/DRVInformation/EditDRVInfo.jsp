@@ -56,7 +56,7 @@
 					      			<li class="nav-item " data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive"> 
 					      			<a class="nav-link text-light" href="#">KYC Dcos.</a> </li>
 					      			<li class="nav-item " data-toggle="collapse " data-target=".multi-collapse" aria-expanded="true" aria-controls="collapseOne collapseTwo collapseThree collapseFour collapseFive"> 
-					      			<a class="nav-link text-light" href="#">Preview Information</a> </li>
+					      			<a class="nav-link text-light" href="PreviewDRVInfo.jsp">Preview Information</a> </li>
 	    						</ul>
  
     						</div>

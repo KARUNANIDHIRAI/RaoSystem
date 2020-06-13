@@ -64,7 +64,7 @@
 						      			<a class="nav-link text-light" href="#"><%= Information.OwnMaidInfo%></a> </li>
 	
 					      			<li class="nav-item " data-toggle="collapse " data-target=".multi-collapse" aria-expanded="true" aria-controls="collapseOne collapseTwo collapseThree collapseFour "> 
-					      			<a class="nav-link text-light" href="#">Preview </a> </li>
+					      			<a class="nav-link text-light" href="PreviewOwnerInfo.jsp"">Preview </a> </li>
 	    						</ul>
  
     						</div>

@@ -126,6 +126,29 @@
 		    <artifactId>commons-email</artifactId>
 		    <version>1.3.1</version>
 		</dependency>    
+
+		<!-- https://mvnrepository.com/artifact/org.webjars/datatables -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>datatables</artifactId>
+		    <version>1.10.19</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/datatables-buttons -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>datatables-buttons</artifactId>
+		    <version>1.6.1</version>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/org.webjars/datatables-tools -->
+
+<!-- <dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>datatables-tools</artifactId>
+    <version>2.1.5</version>
+</dependency>
+ -->
+
+
 	</dependencies>
 	<build>
     	<finalName>RAOSystem</finalName>

@@ -226,6 +226,30 @@
   	<description></description>
   	<servlet-class>com.raoSystem.Dweller.DwellerUpdateInformation</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>viewInfosrvl</servlet-name>
+  	<display-name>viewInfosrvl</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.MIS.viewInfosrvl</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ShowIndividualInfo</servlet-name>
+  	<display-name>ShowIndividualInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.MIS.ShowIndividualInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ApartmentInformation</servlet-name>
+  	<display-name>ApartmentInformation</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.Apartment.ApartmentInformation</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>APTNewInfo</servlet-name>
+  	<display-name>APTNewInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.Apartment.APTNewInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -373,5 +397,21 @@
   <servlet-mapping>
   	<servlet-name>DwellerUpdateInformation</servlet-name>
   	<url-pattern>/DwellerUpdateInformation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>viewInfosrvl</servlet-name>
+  	<url-pattern>/viewInfosrvl</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ShowIndividualInfo</servlet-name>
+  	<url-pattern>/ShowIndividualInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ApartmentInformation</servlet-name>
+  	<url-pattern>/ApartmentInformation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>APTNewInfo</servlet-name>
+  	<url-pattern>/APTNewInfo</url-pattern>
   </servlet-mapping>
 </web-app>

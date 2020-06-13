@@ -59,7 +59,7 @@
 						<div class="dropdown-menu " >
 					    	<ul>
 						    	<li><a  href="home.jsp">Dropdown link</a> </li>
-						    	<li><a  href="DriverINfo.jsp">Dropdown lin</a> </li>
+						    	<li><a  href="DriverINfo.jsp">Dropdown linK</a> </li>
 						    	<li><a  href="#">Dropdown link</a> </li>
 						    	<li><a  href="#">Dropdown link</a> </li>
 						    </ul>	
@@ -70,7 +70,8 @@
 						<div class="dropdown-menu " >
 					    	<a class="dropdown-item" href="userLoginRegistration.jsp">User Registration</a>
 					    	<a class="dropdown-item" href="RwaRegistration.jsp">RWA Information</a>
-					    	<a class="dropdown-item" href="FlatOnwer.jsp">Owner Information </a>
+					    	<a class="dropdown-item" href="Inventory/ApartmentInventoryMainPage.jsp">Apartment Inventory </a>
+					    	<a class="dropdown-item" href="OwnerInformation/OwnerMain.jsp">Owner Information </a>
 					    	<a class="dropdown-item" href="HKMInformation/HKMMainPage.jsp">House Maid Information</a>
 					    	<a class="dropdown-item" href="DRVInformation/DRVMainPage.jsp">Driver Information </a>
 					    	<a class="dropdown-item" href="SSPInformation/SSPMainPage.jsp">Security Staff Information</a>
@@ -89,7 +90,14 @@
 					<div class="dropdown" > 
 						<button type="button" class="btn btn-light dropdown-toggle " data-toggle="dropdown"><%= Information.rwaHomePageMIS%></button>
 						<div class="dropdown-menu " >
-					    	<a class="dropdown-item" href="#">Dropdown link</a>
+					    	<a class="dropdown-item" href="ViewReports/ViewInfo.jsp">View Information</a>
+					    	<a class="dropdown-item" href="OwnerInformation/PreviewOwnerInfo.jsp">List of Flat Owners</a>
+					    	<a class="dropdown-item" href="DwellerInformation/PreviewDwellerInfo.jsp">List of Dwellers</a>
+					    	<a class="dropdown-item" href="DRVInformation/PreviewDRVInfo.jsp">List of Personal Drivers</a>
+					    	<a class="dropdown-item" href="HKMInformation/PreviewHKMInfo.jsp">List of Personal House Maid</a>
+					    	<a class="dropdown-item" href="SSPInformation/PreviewSSPInfo.jsp">List of Security Staff</a>
+					    	<a class="dropdown-item" href="DRVInformation/PreviewDRVInfo.jsp">List of Drivers</a>
+					    	<a class="dropdown-item" href="HKMInformation/PreviewHKMInfo.jsp">List of House Maid</a>
 					    	<a class="dropdown-item" href="#">Dropdown link</a>
 					    </div>
 					</div>

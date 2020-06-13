@@ -65,20 +65,18 @@ public class DRVInformation extends HttpServlet {
 					break;
 				default:
 					session.setAttribute("Message", " Technical Issue ! Please contact to System Admin ");
-					response.sendRedirect("Success.jsp");
+					response.sendRedirect("SuccessMsg.jsp");
 					break;
 				}
 			} else {
 				session.setAttribute("Message",
 						" Technical Issue !Unable to Process Driver Information. Please contact to System Admin ");
-				response.sendRedirect("Success.jsp");
-			}
+				response.sendRedirect("SuccessMsg.jsp");			}
 
 		} catch (Exception e) {
 			session.setAttribute("Message",
 					" Technical Issue !Unable to update Driver Information. Please contact to System Admin ");
-			response.sendRedirect("Success.jsp");
-
+			response.sendRedirect("SuccessMsg.jsp");
 			
 		}
 

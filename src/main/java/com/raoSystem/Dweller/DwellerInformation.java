@@ -57,7 +57,7 @@ public class DwellerInformation extends HttpServlet {
 					break;
 				case 1:
 					System.out.println("Step 3. page forward to  Dweller Information/ViewOwnInfo.jsp");
-					response.sendRedirect("DwellerInformation/ViewOwnerInfo.jsp");
+					response.sendRedirect("DwellerInformation/PreviewDwellerInfo.jsp");
 					break;
 				case 2: // Edit Information
 					System.out.println("Step 3. page forward to Dweller Information/EditDWLInfo.jsp");
@@ -84,7 +84,7 @@ public class DwellerInformation extends HttpServlet {
 	
 	}
 	
-	private DwellerModel SetValueToSessionVar(DwellerModel user, HttpSession session) {
+	public static DwellerModel SetValueToSessionVar(DwellerModel user, HttpSession session) {
 		session.setAttribute("EmailID", user.getEmailId());
 		session.setAttribute("RwaRegNo", user.getRwaRegNo());
 		session.setAttribute("UserID ", user.getUserID());

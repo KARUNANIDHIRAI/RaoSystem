@@ -47,7 +47,7 @@ public class HKMInformation extends HttpServlet {
 						break;
 					case 1:
 						System.out.println("Step 3. page forward to HKMInformation/ViewHKMInfo.jsp");
-						response.sendRedirect("HKMInformation/ViewDRVInfo.jsp");
+						response.sendRedirect("HKMInformation/PreviewHKMInfo.jsp");
 						break;
 					case 2: // Edit Information
 						System.out.println("Step 3. page forward to HKMInformation/EditHKMInfo.jsp");
@@ -81,7 +81,7 @@ public class HKMInformation extends HttpServlet {
 	
 	}
 	
-	private HKMModel SetValueToSessionVar(HKMModel user, HttpSession session) {
+	public static HKMModel SetValueToSessionVar(HKMModel user, HttpSession session) {
 		session.setAttribute("EmailID", user.getEmailId());
 		session.setAttribute("RwaRegNo", user.getRwaRegNo());
 	

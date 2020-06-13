@@ -71,12 +71,12 @@
 					      			<li class="nav-item " id="Maid" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix"> 
 						      			<a class="nav-link text-light" href="#"><%= Information.OwnMaidInfo%></a> </li>
 	
-					      			<li class="nav-item " data-toggle="collapse " data-target=".multi-collapse" aria-expanded="true" aria-controls="collapseOne collapseTwo collapseThree collapseFour "> 
-					      			<a class="nav-link text-light" href="#">Preview </a> </li>
+					      			<li class="nav-item " data-toggle="collapse " data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseOne collapseTwo "> 
+					      			<a class="nav-link text-light" href="PreviewDwellerInfo.jsp">Preview </a> </li>
 	    						</ul>
  
     						</div>
-     						<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+     						<div id="collapseOne" class="collapse multi-collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       							<div class="card-body " style="background-color: #FAF7F5 ;" >
 									
 									<div class="form-row ">
@@ -146,7 +146,7 @@
   							</div>
   						</div> 
   						<div class="card" id="Address">
-  							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+  							<div id="collapseTwo" class="collapse multi-collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       							<div class="card-body " style="background-color:#FAF7F5  ;">
     								<br />
 	       							<div class="form-row">
@@ -259,7 +259,7 @@
    							</div>
   						</div>
   						<div class="card" id="Employer">
-    						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    						<div id="collapseThree" class="collapse multi-collapse" aria-labelledby="headingThree" data-parent="#accordion">
       							<div class="card-body " style="background-color:#FAF7F5  ;">
 									<div class="form-row">
   									 	<div class="form-group col-md-4 offset-sm-1 h6">
@@ -333,7 +333,7 @@
 							</div>
   						</div>
    	  					<div class="card" id="Vehicle">
-    						<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+    						<div id="collapseFour" class="collapse multi-collapse" aria-labelledby="headingFour" data-parent="#accordion">
       							<div class="card-body " style="background-color:#FAF7F5  ;">
       								<br />	
      								<div class="form-row">
@@ -405,7 +405,7 @@
   							</div>
   						</div>
    	  					<div class="card" id="Driver">
-    						<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+    						<div id="collapseFive" class="collapse multi-collapse" aria-labelledby="headingFive" data-parent="#accordion">
       							<div class="card-body " style="background-color:#FAF7F5  ;">
 									<br />
 									<div class="form-row ">
@@ -464,7 +464,7 @@
   							</div>
   						</div>
    	  					<div class="card" id="Maid">
-    						<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+    						<div id="collapseSix" class="collapse multi-collapse" aria-labelledby="headingSix" data-parent="#accordion">
       							<div class="card-body " style="background-color:#FAF7F5  ;">
       								<br />
 									<div class="form-row ">
@@ -519,7 +519,7 @@
   								</div>
   							</div>
   						</div>
-   						<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+   						<div id="collapseSeven" class="collapse multi-collapse" aria-labelledby="headingSeven " data-parent="#accordion">
     						<div class="card-body " style="background-color: #FAF7F5 ;" >
 								<div class="form-row">
 									<br /> <br />

@@ -33,7 +33,7 @@
 	<!-- Body -->
 	<div class="container"> 
 
-		   	<form id="HKMNEW" name="HKMNEW" action="../HKMInfoUpdate" method="post" class="form-signin form-horizontal needs-validation" autocomplete="off">		
+	   	<form id="HKMNEW" name="HKMNEW" action="../HKMInfoUpdate" method="post" class="form-signin form-horizontal needs-validation" autocomplete="off">		
 			<div class="row">
 			    <div class="col-xs-12">
 			    	<div class="card" style="width:72rem;">
@@ -54,7 +54,7 @@
 					      			<li class="nav-item " data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour"> 
 					      			<a class="nav-link text-light" href="#"><%= Information.KYCDetails%></a> </li>
 					      			<li class="nav-item " data-toggle="collapse " data-target=".multi-collapse" aria-expanded="true" aria-controls="collapseOne collapseTwo collapseThree collapseFour "> 
-					      			<a class="nav-link text-light" href="#">Preview Information</a> </li>
+					      			<a class="nav-link text-light" href="PreviewHKMInfo.jsp">Preview</a> </li>
 	    						</ul>
     						</div>
      						<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
