@@ -1,21 +1,17 @@
 package com.rao.System.Apartment;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class APTNewInfo extends HttpServlet {
+public class NewRwaSubscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -30,7 +26,7 @@ public class APTNewInfo extends HttpServlet {
 			user = UpdateFormValueToUserObj(user, request);
 			System.out.println("Step2: set user input in DwellerModel creating ");
 			System.out.println(user);
-			user = DAOAPTInventory.CreateNewAPTInfo(user);
+			user = DAOAPTInventory.CreateNewRWASubscription(user);
 			
 			  if (user.isValid()) { 
 				  switch (user.getSPstatus())   { 
@@ -63,7 +59,7 @@ public class APTNewInfo extends HttpServlet {
 		}
 	}
 
-	public  AptModel  UpdateFormValueToUserObj(AptModel user , HttpServletRequest request) {
+	public static AptModel  UpdateFormValueToUserObj(AptModel user , HttpServletRequest request) {
 		user.setRwaRegNo("MK108");
 		user.setUserID("KNRAI");
 	
@@ -88,14 +84,6 @@ public class APTNewInfo extends HttpServlet {
 			user.setSwmPoolCharge(request.getParameter("inputSwmPoolFloatCharge"));
 	
 		}
-		/*
-		 * user.setTowerNo(request.getParameter("inputTowerNo"));
-		 * user.setFlatCategory(request.getParameter("inputFlatCategoryNo"));
-		 * user.setFlatSize(request.getParameter("inputSizeOfFlat"));
-		 * user.setFlatNoFrom(request.getParameter("inputFltStartNo"));
-		 * user.setFlatNoTo(request.getParameter("inputFltEndNo"));
-		 */	
 		return user;
 	}
-
 }

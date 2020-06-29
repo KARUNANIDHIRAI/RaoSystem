@@ -45,7 +45,7 @@
 	<!-- Page Body -->
 
 	<div class="container">
-		<form id="IndvidualInfo" name="IndvidualInfo" action="../ApartmentInformation" method="post"
+		<form id="IndvidualInfo" name="IndvidualInfo" action="../RwaSubscriptionReport" method="post"
 			class="form-horizontal needs-validation" autocomplete="off" >
 			<div class="row justify-content-md-center">
 				<div class="col-sm-12">
@@ -56,9 +56,9 @@
 
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item " id="ViewUser" > 
-										<a	class="nav-link active text-white " style="background-color:#000080" href="#"><%= Information.ViewAPTInfo%></a></li>
+										<a	class="nav-link active text-white " style="background-color:#000080" href="#"><%= Information.RWA%><%= Information.RwaSubscriptionType%></a></li>
 									<li class="nav-item " id="SSPNEW">
-										<a class="nav-link text-light" href="../Inventory/APTNewInventory.jsp"><%= Information.NewAPTInfo%></a></li>
+										<a class="nav-link text-light" href="../Inventory/NewRWASubscription.jsp"><%= Information.NewAPTInfo%></a></li>
  								</ul>
 							</div>
 
@@ -75,32 +75,42 @@
 									<br />
 									<div class="form-row ">
 									    <div class="col-sm-4 offset-sm-2">
-									      	<label for="RwaRegNo" ><%= Information.RwaRegNO%></label>
-											<input type="text" class="form-control is-invalid"	id="RwaRegNo" name="RwaRegNo" required>
-								    	</div>
-									    <div class="col-sm-4 offset-sm-0">
 									      	<label for="ActionType" ><%= Information.TransactionType%></label>
 										    <select id ="ActionType" name="ActionType" class="form-control  is-invalid " 
+										    data-toggle="tooltip" data-placement="top" title="For Individual Apartment Please Enter Apartment / Tower No."  >
+												<option value="0">Select Action to Perform</option>
+												<option value="1">RWA Subscription </option>
+												<option value="2">RWA Subscription Summary</option>
+										    </select>
+								    	</div>
+										<div class="col-sm-4 offset-sm-0">
+											<label for="SubscriptionType" ><%=Information.RwaSubscriptionType%></label>
+										    <select id ="SubscriptionType" name="SubscriptionType" class="form-control  is-invalid " 
 										    data-toggle="tooltip" data-placement="top" title=""  >
 												<option value="0">Select Action to Perform</option>
-												<option value="1">View Apartment / Tower Inventory </option>
-												<option value="2">Edit Apartment Inventory </option>
-												<option value="3">Delete Apartment Inventory</option>
+												<option value="1">Floating Monthly Subscription Charges</option>
+												<option value="2">Fixed Monthly Subscription Charges </option>
 										    </select>
+										</div>
+									</div>
+									<br />
+
+ 									<div class="form-row " id = "validDate">
+									    <div class="col-sm-4 offset-sm-2" >
+									      	<label for="ValidDateFrom" ><%= Information.ValidDateFrom%></label>
+											<div class="input-group">
+												<input type="date" class="form-control is-invalid"	id="ValidDateFrom" name="ValidDateFrom" >
+											</div>
+								    	</div>
+									    <div class="col-sm-4 offset-sm-0">
+									      	<label for="ValidDateTo" ><%= Information.ValidDateTo%></label>
+											<div class="input-group">
+												<input type="date" class="form-control is-invalid"	id="ValidDateTo" name="ValidDateTo" >
+											</div>
 								    	</div>
 									</div>
 									<br />
-									<div class="form-row">
-									    <div class="col-sm-4 offset-sm-2">
-									      	<label for="TowerNo" ><%= Information.AptTowerNo%></label>
-											<input type="text" class="form-control is-invalid"	id="TowerNo" name="TowerNo" required>
-								    	</div>
-									    <div class="col-sm-4 offset-sm-0">
-									      	<label for="FltCategory" ><%= Information.FlatCategoryNo%></label>
-											<input type="text" class="form-control is-invalid"	id="FltCategory" name="FltCategory" required>
-								    	</div>
-									</div>
-									<br /> <br/>
+									<br />
 									<br /> 
 									
 									<div class="form-row">
@@ -183,7 +193,25 @@
 			});	
 		});
 
+		$("#ActionType").change(function(){
+	        var selectedinputRwaPlan = parseInt($(this).children("option:selected").val());
+	        switch (selectedinputRwaPlan){
+			case 1:	
+				$("#validDate").show();
+				break;
+			case 2:	
+				$("#validDate").hide();
+				break;
+			default:
+				break;
+			}
+	
+	   
+	   });		
+		
 </script>
+
+
 -- in case of edit -> 1)SSPINFORMATIONN.JAVA-
 
 </body>

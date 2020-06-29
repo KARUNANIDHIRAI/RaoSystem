@@ -24,24 +24,35 @@
 	    </style> 
 	</head>
 	<body>
-		<div class="container-flucid" data-spy="affix" data-offset-top="50"> 
-			<div class="row  header_for_fix" >
- 				<div class="col-lg-12 btn-dark text-right  margin-left:0  margin-right:0px"> 
-	                <ul class="list-inline">
-	                	<li class="list-inline-item "><a class="text-light" href="LoginPage.jsp"> <%= Information.signout%>/ </a> </li>
-	                	<li class="list-inline-item "><a class="text-light" href="#"> <%= Information.joinPartner%>/ </a> </li>
-	                	<li class="list-inline-item "><a class="text-light" href="#"> <%= Information.reachus%> </a> </li>
-	                </ul>
-	        	</div>
+		<div class="container-flucid" > 
+			<div class="row" >
+ 				<div class="col-lg-12 "> 
+					<nav class="navbar navbar-expand-sm navbar-light fixed-top"  
+					style=" background: linear-gradient(90deg, rgba(2,0,36,1) 3%, rgba(9,83,121,1) 57%, rgba(0,160,255,1) 100%);
+							height:50px">
+						<a class="navbar-brand text-light" href="#" >KBS</a>
+						<button class="navbar-toggler " data-toggle="collapse" data-target="#navmenubar">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse " id ="navmenubar"> 
+							<ul class="navbar-nav ml-auto">
+								<li class="active nav-item "><a href="LoginPage.jsp" class="nav-link text-light"	> <%= Information.signout%> </a> </li> 
+								<li class="nav-item"><a href="#" class="nav-link text-light"><%= Information.joinPartner%> </a> </li> 
+								<li class="nav-item"><a href="#" class="nav-link text-light"> <%= Information.reachus%> </a> </li> 
+							</ul>
+						</div>
+					</nav>
+
+				</div>
 			</div>
-		</div>
+		</div>		
+        <br /><br />
 		<div class="container" > 
 			<div class="row "> 
                 <div class="col-lg-7 " > 
  					<img src="images/KSB.png" class="img-responsive "/>
 				</div>
 				<div class="col-lg-5 text-right text-white"> 
-	                <br />  
 	                <h6> <span class ="" ></span>
 	 					<img src="images/rwa/loginUser.png" class="img-responsive "/>
 	                </h6>
@@ -71,6 +82,7 @@
 					    	<a class="dropdown-item" href="userLoginRegistration.jsp">User Registration</a>
 					    	<a class="dropdown-item" href="RwaRegistration.jsp">RWA Information</a>
 					    	<a class="dropdown-item" href="Inventory/ApartmentInventoryMainPage.jsp">Apartment Inventory </a>
+					    	<a class="dropdown-item" href="Inventory/RWASubscriptionMainPage.jsp">RWA Subscription </a>
 					    	<a class="dropdown-item" href="OwnerInformation/OwnerMain.jsp">Owner Information </a>
 					    	<a class="dropdown-item" href="HKMInformation/HKMMainPage.jsp">House Maid Information</a>
 					    	<a class="dropdown-item" href="DRVInformation/DRVMainPage.jsp">Driver Information </a>
@@ -83,14 +95,18 @@
 					<div class="dropdown" > 
 						<button type="button" class="btn btn-light dropdown-toggle " data-toggle="dropdown"><%= Information.rwaHomePageTransaction%></button>
 						<div class="dropdown-menu " >
-					    	<a class="dropdown-item" href="#">Dropdown link</a>
-					    	<a class="dropdown-item" href="#">Dropdown link</a>
+					    	<a class="dropdown-item" href="WaterSupplierInfo/WaterSupplierMainPage.jsp">Water Tanker </a>
+					    	<a class="dropdown-item" href="#">Issue Visitor/Guest Gate Pass</a>
 					    </div>
 					</div>
 					<div class="dropdown" > 
 						<button type="button" class="btn btn-light dropdown-toggle " data-toggle="dropdown"><%= Information.rwaHomePageMIS%></button>
 						<div class="dropdown-menu " >
+					    	<a class="dropdown-item" href="MIS/SubscriptionSummaryMainPage.jsp">RWA Subscription</a>
+					    	<a class="dropdown-item" href="MIS/WaterSupplierMainPage.jsp">Water Tanker Summary</a>
+					    	<a class="dropdown-item" href="MIS/WaterSupplySumSearch.jsp">Water Tanker Summary</a>
 					    	<a class="dropdown-item" href="ViewReports/ViewInfo.jsp">View Information</a>
+					    	<a class="dropdown-item" href="Inventory/SubscriptionList.jsp">RWA Subscription</a>
 					    	<a class="dropdown-item" href="OwnerInformation/PreviewOwnerInfo.jsp">List of Flat Owners</a>
 					    	<a class="dropdown-item" href="DwellerInformation/PreviewDwellerInfo.jsp">List of Dwellers</a>
 					    	<a class="dropdown-item" href="DRVInformation/PreviewDRVInfo.jsp">List of Personal Drivers</a>

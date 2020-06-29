@@ -23,12 +23,19 @@
 		<div class="row">
 			<div class="col-lg-12 text-right  margin-left:0  margin-right:0px" style="background-color:#000080">
 				<ul class="list-inline">
-					<li class="list-inline-item "><a class="text-light" href="../RwaHomePage.jsp"> <%=Information.raoHome%>	</a></li>
-					<li class="list-inline-item "><a class="text-light" href="../LoginPage.jsp"> <%=Information.LogoutTitle%>	</a></li>
-					<li class="list-inline-item "><a class="text-light" href="#"><%=Information.joinPartner%></a></li>
-					<li class="list-inline-item "><a class="text-light" href="#"><%=Information.reachus%>	</a></li>
+					<li class="list-inline-item "><a class="text-light"
+						href="RwaHomePage.jsp"> <%=Information.raoHome%>
+					</a></li>
+					<li class="list-inline-item "><a class="text-light"
+						href="LoginPage.jsp"> <%=Information.LogoutTitle%>
+					</a></li>
+					<li class="list-inline-item "><a class="text-light" href="#">
+							<%=Information.joinPartner%>
+					</a></li>
+					<li class="list-inline-item "><a class="text-light" href="#">
+							<%=Information.reachus%>
+					</a></li>
 				</ul>
-
 			</div>
 		</div>
 	</div>
@@ -45,7 +52,7 @@
 	<!-- Page Body -->
 
 	<div class="container">
-		<form id="IndvidualInfo" name="IndvidualInfo" action="../ApartmentInformation" method="post"
+		<form id="WTSearchSum" name="WTSearchSum" action="../SummaryWaterTanker" method="post"
 			class="form-horizontal needs-validation" autocomplete="off" >
 			<div class="row justify-content-md-center">
 				<div class="col-sm-12">
@@ -56,16 +63,24 @@
 
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item " id="ViewUser" > 
-										<a	class="nav-link active text-white " style="background-color:#000080" href="#"><%= Information.ViewAPTInfo%></a></li>
-									<li class="nav-item " id="SSPNEW">
-										<a class="nav-link text-light" href="../Inventory/APTNewInventory.jsp"><%= Information.NewAPTInfo%></a></li>
- 								</ul>
+										<a	class="nav-link active text-white " style="background-color:#000080" href="#">
+										<%= Information.WaterTankViewInfo%></a></li>
+								</ul>
+
 							</div>
 
 							<div id="collapseOne" class="collapse show"
 								aria-labelledby="headingOne" data-parent="#accordionDriver">
 								<div class="card-body text-dark h6" >
 									<br /> 
+									<div class="form-row ">
+										<div class="col-sm-4 offset-sm-2">
+											<label for="RwaRegNo" ><%=Information.RwaRegNO%></label>
+											<div class="input-group">
+												<input type="text" class="form-control "	id="RwaRegNo" name="RwaRegNo" readonly>
+											</div>
+										</div>
+									</div>
 									<div class= "form-row">
 										<div class="col-sm-9 offset-sm-3">
 						    			<p class="text-danger h6"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
@@ -74,35 +89,37 @@
 									</div>
 									<br />
 									<div class="form-row ">
-									    <div class="col-sm-4 offset-sm-2">
-									      	<label for="RwaRegNo" ><%= Information.RwaRegNO%></label>
-											<input type="text" class="form-control is-invalid"	id="RwaRegNo" name="RwaRegNo" required>
-								    	</div>
+										<div class="col-sm-4 offset-sm-2">
+											<label for="DateFrom" ><%=Information.DateFrom%></label>
+											<div class="input-group">
+												<input type="date" class="form-control "	id="DateFrom" name="DateFrom" required>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label for="DateTO" ><%=Information.DateTO%></label>
+											<div class="input-group">
+												<input type="date" class="form-control "	id="DateTO" name="DateTO" required>
+											</div>
+										</div>
+									</div>
+									<br />
+									<div class="form-row ">
+										<div class="col-sm-4 offset-sm-2">
+											<label for="TankerNo" ><%=Information.TankerNo%></label>
+											<div class="input-group">
+												<input type="text" class="form-control is-invalid"	id="TankerNo" name="TankerNo" required>
+											</div>
+										</div>
 									    <div class="col-sm-4 offset-sm-0">
-									      	<label for="ActionType" ><%= Information.TransactionType%></label>
-										    <select id ="ActionType" name="ActionType" class="form-control  is-invalid " 
-										    data-toggle="tooltip" data-placement="top" title=""  >
-												<option value="0">Select Action to Perform</option>
-												<option value="1">View Apartment / Tower Inventory </option>
-												<option value="2">Edit Apartment Inventory </option>
-												<option value="3">Delete Apartment Inventory</option>
+									      	<label for="ActionType" ><%= Information.ActionType%></label>
+										    <select id ="ActionType" name="ActionType" class="form-control is-invalid">
+												<option selected value="0">Select Action Type </option>
+												<option selected value="1">View Info </option>
+												<option value="2">Remove Information </option>
 										    </select>
 								    	</div>
 									</div>
-									<br />
-									<div class="form-row">
-									    <div class="col-sm-4 offset-sm-2">
-									      	<label for="TowerNo" ><%= Information.AptTowerNo%></label>
-											<input type="text" class="form-control is-invalid"	id="TowerNo" name="TowerNo" required>
-								    	</div>
-									    <div class="col-sm-4 offset-sm-0">
-									      	<label for="FltCategory" ><%= Information.FlatCategoryNo%></label>
-											<input type="text" class="form-control is-invalid"	id="FltCategory" name="FltCategory" required>
-								    	</div>
-									</div>
-									<br /> <br/>
-									<br /> 
-									
+									<br /><br /><br /><br />
 									<div class="form-row">
 										<div class="col-sm-2 offset-sm-4 ">
 											<p>	<a href="rwaHomePage.jsp" class="form-control text-white text-center h5" style="background-color:#000080"><%=Information.Cancel%></a></p>
@@ -178,7 +195,10 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$( "#ActionType" ).click(function() {
+			$( "#ViewUserIfon" ).click(function() {
+		    	$("#EmailId").focus();
+			});	
+			$( "#EditUserIfon" ).click(function() {
 		    	$("#EmailId").focus();
 			});	
 		});

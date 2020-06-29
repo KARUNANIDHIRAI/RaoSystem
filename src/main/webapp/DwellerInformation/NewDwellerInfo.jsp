@@ -22,7 +22,7 @@
   		<script type="text/javascript" src="../webjars/popper.js/1.14.3/popper.min.js"></script>
   		<script type="text/javascript" src="../webjars/popper.js/1.14.3/popper.js"></script>
   		
-  		
+  	</head>	
 	<body>
 	<div class="container-flucid">
 		<div class="row">

@@ -115,7 +115,7 @@
 	</div>
 
 	<div class="container" >
-		<form id="AptInfo" name="AptInfo" action="../NewRwaSubscription" method="post" class="form-horizontal needs-validation" autocomplete="off">
+		<form id="AptEditInfo" name="AptEditInfo" action="../EditRwaSubscriptions" method="post" class="form-horizontal needs-validation" autocomplete="off">
 			<div class="row justify-content-md-center" >
 				<div class="col-sm-12">
 					<div class="accordion" id="accordionDriver">
@@ -139,9 +139,9 @@
 										<div class="card-body">
 											<div class="form-row">
 												<div class="col-sm-4 offset-sm-1">
-													<label for="inputRwaPlan"><%=Information.RwaMonthlyPlan%></label>
+													<label for="inputTowerNo"><%=Information.RwaMonthlyPlan%></label>
 				      								<select id="inputRwaPlan" name="inputRwaPlan" class="form-control is-invalid">
-				        								<option value=0 selected>Select Subscription Type</option>
+				        								<option value=0 >Select Subscription Type</option>
 				        								<option value = 1>Apartment Size basis Charges</option>
 				        								<option value=2>Fixed Charges</option>
 				      								</select>
@@ -149,13 +149,15 @@
 												<div class="col-sm-3 offset-sm-0">
 													<label for="inputValidFrom"><%=Information.ValidFrom%></label>
 													<div class="input-group">
-														<input type="date" class="form-control is-invalid" 	id="inputValidFrom" name="inputValidFrom">
+														<input type="date" class="form-control is-invalid" 	id="inputValidFrom" name="inputValidFrom"
+														   value = <%=session.getAttribute("ValidDateFrom") %>>
 													</div>
 												</div>
 												<div class="col-sm-3 offset-sm-1">
 													<label for="inputValidTo"><%=Information.ValidTo%></label>
 													<div class="input-group">
-														<input type="date" class="form-control is-invalid" id="inputValidTo" name="inputValidTo">
+														<input type="date" class="form-control is-invalid" id="inputValidTo" name="inputValidTo"
+														 value = <%=session.getAttribute("ValidDateTo") %>>
 													</div>
 												</div>
 
@@ -170,7 +172,7 @@
 														        <div class="input-group-text">&#8377</div>
 														    </div>
 	 														<input type="text" class="form-control is-invalid" id="inputFlatCharge" 
-															name="inputFlatCharge" >
+															name="inputFlatCharge" value = <%=session.getAttribute("Fixcharge") %>>
 	 													</div>
 													</div>
 													<div class="col-sm-3 offset-sm-1">
@@ -179,16 +181,18 @@
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" 	id="inputAMCCharge" name="inputAMCCharge">
+															<input type="text" class="form-control is-valid" 	id="inputAMCCharge" name="inputAMCCharge"
+															value = <%=session.getAttribute("AmcCharge") %>>
 	 													</div>
 													</div>
 													<div class="col-sm-3 offset-sm-1">
-														<label for="inputSwmPoolCharge"><%=Information.SwimmingPoolCharge%></label>
+														<label for="inputAuditCharge"><%=Information.AuditCharge%></label>
 														<div class="input-group">
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" id="inputSwmPoolCharge" name="inputSwmPoolCharge">
+															<input type="text" class="form-control is-valid" id="inputAuditCharge" name="inputAuditCharge"
+															value = <%=session.getAttribute("AuditCharge") %>>
 														</div>
 													</div>
 												</div>
@@ -199,16 +203,18 @@
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" 	id="inputGymCharge" name="inputGymCharge">
+															<input type="text" class="form-control is-valid" 	id="inputGymCharge" name="inputGymCharge"
+															value = <%=session.getAttribute("GymCharge") %>>
 														</div>
 													</div>
 													<div class="col-sm-3 offset-sm-1">
-														<label for="inputAuditCharge"><%=Information.AuditCharge%></label>
+														<label for="inputSwmPoolCharge"><%=Information.SwimmingPoolCharge%></label>
 														<div class="input-group">
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" id="inputAuditCharge" name="inputAuditCharge">
+															<input type="text" class="form-control is-valid" id="inputSwmPoolCharge" name="inputSwmPoolCharge"
+															value = <%=session.getAttribute("SwimmingPoolCharge") %>>
 														</div>
 													</div>
 													<div class="col-sm-3 offset-sm-1">
@@ -217,7 +223,8 @@
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" 	id="inputMiscCharge" name="inputMiscCharge">
+															<input type="text" class="form-control is-valid" 	id="inputMiscCharge" name="inputMiscCharge"
+															value = <%=session.getAttribute("MiscCharge") %>>
 	 													</div>
 													</div>
 												</div>
@@ -231,7 +238,7 @@
 														        <div class="input-group-text">&#8377</div>
 														    </div>
 	 														<input type="text" class="form-control is-invalid" id="inputFloatCharge" 
-															name="inputFloatCharge" >
+															name="inputFloatCharge" value = <%=session.getAttribute("Fixcharge") %>>
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text"><sub >FT</sub> 2</div>
 														    </div>
@@ -243,7 +250,8 @@
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" id="inputAMCFloatCharge" name="inputAMCFloatCharge">
+															<input type="text" class="form-control is-valid" id="inputAMCFloatCharge" name="inputAMCFloatCharge"
+															value = <%=session.getAttribute("AmcCharge") %>>
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text"><sub >FT</sub> 2</div>
 														    </div>
@@ -255,7 +263,8 @@
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" id="inputAuditCharge" name="inputAuditCharge">
+															<input type="text" class="form-control is-valid" id="inputAuditCharge" name="inputAuditCharge"
+															value = <%=session.getAttribute("AuditCharge") %>>
 														</div>
 													</div>
 							
@@ -267,7 +276,8 @@
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" 	id="inputGymFloatCharge" name="inputGymFloatCharge">
+															<input type="text" class="form-control is-valid" 	id="inputGymFloatCharge" name="inputGymFloatCharge"
+															value = <%=session.getAttribute("GymCharge") %>>
 														</div>
 													</div>
 													<div class="col-sm-3 offset-sm-1">
@@ -276,7 +286,8 @@
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" id="inputSwmPoolFloatCharge" name="inputSwmPoolFloatCharge">
+															<input type="text" class="form-control is-valid" id="inputSwmPoolFloatCharge" name="inputSwmPoolFloatCharge"
+															value = <%=session.getAttribute("SwimmingPoolCharge") %>>
 														</div>
 													</div>
 													<div class="col-sm-3 offset-sm-1">
@@ -286,7 +297,8 @@
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text">&#8377</div>
 														    </div>
-															<input type="text" class="form-control is-valid" 	id="inputMiscFloatCharge" name="inputMiscFloatCharge">
+															<input type="text" class="form-control is-valid" 	id="inputMiscFloatCharge" name="inputMiscFloatCharge" 
+															value = <%=session.getAttribute("MiscCharge") %>>
 	 												    	<div class="input-group-prepend">
 														        <div class="input-group-text"> <sub >FT</sub> 2</div>
 														    </div>
@@ -294,13 +306,30 @@
 													</div>
 												</div>
 											</div> <!-- end of floating div -->
+											<br /> <br />  
+		
+											<div class="form-row">
+												<div class="col-sm-2 offset-sm-4 ">
+													<p>
+														<a href="rwaHomePage.jsp"
+															class="form-control text-white text-center h5"
+															style="background-color: #000080"><%=Information.Cancel%></a>
+													</p>
+												</div>
+												<div class="col-sm-2 offset-sm-0 ">
+													<button type="submit" 	class="form-control h5 text-white text-center "
+														style="background-color: #38ACEC" id="submit01"
+														name="submit01"><%=Information.Submit%>
+													</button>
+												</div>
+											</div>
 										</div> <!-- end of card body -->
 									</div><!-- end of card -->
 								</div>
 							</div>
 	
 	
-							<div id="collapseOne" class="collapse show"
+<%-- 							<div id="collapseOne" class="collapse show"
 								aria-labelledby="headingOne" data-parent="#accordionDriver">
 								<div class="card-body text-dark ">
 									<div class="form-row">
@@ -309,111 +338,10 @@
 											<%session.removeAttribute("Message");%>
 										</div>
 									</div>
-<%-- 									<div class="form-row ">
-										<div class="col-sm-12 offset-sm-0">
-											<div class="card" id ="AptDetails">
-												<div class="card-header">
-													Apartment / Tower Details
-												</div>
-												<div class="card-body">
-													<div class="form-row">
-														<div class="col-sm-3 offset-sm-1">
-															<label for="inputTowerNo"><%=Information.AptTowerNo%></label>
-															
-															<div class="input-group">
-																<input type="text" class="form-control is-invalid"
-																	id="inputTowerNo" name="inputTowerNo" >
-															</div>
-														</div>
-														<div class="col-sm-3 offset-sm-1">
-															<label for="inputFlatCategoryNo"><%=Information.FlatCategoryNo%></label>
-															<div class="input-group">
-																<input type="text" class="form-control is-invalid"
-																	id="inputFlatCategoryNo" name="inputFlatCategoryNo"
-																	data-toggle="tooltip" data-placement="top"
-																	title="Enter Flat Type Number" >
-															</div>
-														</div>
-														<div class="col-sm-3 offset-sm-1">
-															<label for="inputSizeOfFlat" class="col-form-label"><%=Information.SizeOfFlat%></label>
-															<div class="input-group">
-																<input type="text" class="form-control is-invalid"	id="inputSizeOfFlat"
-																	name="inputSizeOfFlat" data-toggle="tooltip" data-placement="top"
-																	title="Enter Total Numbsers of Flat in Flat Type" 	>
-															</div>
-														</div>
-
-													</div>
-													<div class="form-row">
-														<div class="col-sm-3 offset-sm-1">
-															<label for="inputFltStartNo"><%=Information.FlatStartingNo%></label>
-															<div class="input-group">
-																<input type="text" class="form-control is-invalid"
-																	id="inputFltStartNo"
-																	name="inputFltStartNo" data-toggle="tooltip"
-																	data-placement="top"
-																	title="Enter Total Numbsers of Flat in Flat Type">
-															</div>
-														</div>
-														<div class="col-sm-3 offset-sm-1">
-															<label for="inputFltEndNo" class="col-form-label"><%=Information.FlatEndingNo%></label>
-															<div class="input-group">
-																<input type="text" class="form-control is-invalid"	id="inputFltEndNo"
-																	name="inputFltEndNo" data-toggle="tooltip" data-placement="top"
-																	title="Enter Total Numbsers of Flat in Flat Type" 	>
-															</div>
-														</div>
-														
-													</div>	
-													<div class="form-row">
-														<div class="col-sm-6 offset-sm-1">
-															<p> *All Fields Are Mandatory</p>
-														</div>
-													</div>	
- 												</div>
-											</div>
-										</div>
-										<div class="col-sm-6 offset-sm-0" >
-											<div class="card" id="flatDetails">
-												<div class="card-header">Apartment / Flat's Details
-												</div>
-												<br />
-												<div class="card-body">
-													<div class="form-row ">
-														<div class="col-sm-4 offset-sm-1 " id="fltype1"></div>
-														<div class="col-sm-4 offset-sm-2 " id="fltSize1"></div>
-				
-													</div>
-
-												</div>
-											</div>
-										</div>
-
- 									</div>	<!--end of ROW  -->
- --%>
-
-									<br /> <br />  
-
-									<div class="form-row">
-										<div class="col-sm-2 offset-sm-4 ">
-											<p>
-												<a href="rwaHomePage.jsp"
-													class="form-control text-white text-center h5"
-													style="background-color: #000080"><%=Information.Cancel%></a>
-											</p>
-										</div>
-										<div class="col-sm-2 offset-sm-0 ">
-											<button type="submit" 	class="form-control h5 text-white text-center "
-												style="background-color: #38ACEC" id="submit01"
-												name="submit01"><%=Information.Submit%>
-											</button>
-										</div>
-									</div>
-
 								</div>  <!--end of card BODY -->
 							</div>
+ --%>
 						</div>
-
 					</div>
 				</div>
 			</div>

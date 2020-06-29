@@ -1,35 +1,29 @@
 package com.rao.System.Apartment;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class APTNewInfo extends HttpServlet {
+public class NewAPTInventory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
- 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		System.out.println("Step1: KNRAI model creating ");
+		System.out.println("Step1: model creating ");
 		AptModel user = new AptModel();
 	
 //		HashMap<String, String> user = new HashMap<>(); 
 		try {
 			user = UpdateFormValueToUserObj(user, request);
-			System.out.println("Step2: set user input in DwellerModel creating ");
-			System.out.println(user);
+			System.out.println("Step2: Update form value to  APT Model  ");
+			ShowAPTDataForUpdate( user);
 			user = DAOAPTInventory.CreateNewAPTInfo(user);
 			
 			  if (user.isValid()) { 
@@ -44,9 +38,9 @@ public class APTNewInfo extends HttpServlet {
 					response.sendRedirect("SuccessMsg.jsp");
 					break;
 				case 2:
-					session.setAttribute("Message",  " Invalid Email Id / RWA NO. Record already exist");
-					System.out.println("Invalid Email Id  / RWA Registraion No.");
-					response.sendRedirect("Inventory/NewAPTInventory.jsp"); 
+					session.setAttribute("Message",  " For this Tower and Category, Record already exist");
+					System.out.println("For this Tower and Category, Record already exist");
+					response.sendRedirect("Inventory/ApartmentNewInventory.jsp"); 
 					break;
 				default: session.setAttribute("Message",  " Technical Issue ! Please contact to System Admin ");
 					response.sendRedirect("SuccessMsg.jsp");
@@ -64,38 +58,24 @@ public class APTNewInfo extends HttpServlet {
 	}
 
 	public  AptModel  UpdateFormValueToUserObj(AptModel user , HttpServletRequest request) {
-		user.setRwaRegNo("MK108");
-		user.setUserID("KNRAI");
-	
-		user.setSubscriptionType( request.getParameter("inputRwaPlan"));
-		user.setValidFrom(request.getParameter("inputValidFrom"));
-		user.setValidTo(request.getParameter("inputValidTo"));
-		user.setAuditCharge(request.getParameter("inputAuditCharge"));
-	
-		if (request.getParameter("inputRwaPlan").equals("2")) {
-			user.setFlatFixCharge(request.getParameter("inputFlatCharge"));
-			user.setAmcCharge(request.getParameter("inputAMCCharge"));
-			user.setMiscCharge(request.getParameter("inputMiscCharge"));
-			user.setGymCharge(request.getParameter("inputGymCharge"));
-			user.setSwmPoolCharge(request.getParameter("inputSwmPoolCharge"));
-	
-		}
-		else {
-			user.setFlatFixCharge(request.getParameter("inputFloatCharge"));
-			user.setAmcCharge(request.getParameter("inputAMCFloatCharge"));
-			user.setMiscCharge(request.getParameter("inputMiscFloatCharge"));
-			user.setGymCharge(request.getParameter("inputGymFloatCharge"));
-			user.setSwmPoolCharge(request.getParameter("inputSwmPoolFloatCharge"));
-	
-		}
-		/*
-		 * user.setTowerNo(request.getParameter("inputTowerNo"));
-		 * user.setFlatCategory(request.getParameter("inputFlatCategoryNo"));
-		 * user.setFlatSize(request.getParameter("inputSizeOfFlat"));
-		 * user.setFlatNoFrom(request.getParameter("inputFltStartNo"));
-		 * user.setFlatNoTo(request.getParameter("inputFltEndNo"));
-		 */	
+		  user.setRwaRegNo("MK106");
+		  user.setUserID("KNRAI");
+		  user.setTowerNo(request.getParameter("inputTowerNo"));
+		  user.setFlatCategory(request.getParameter("inputFlatCategoryNo"));
+		  user.setFlatSize(request.getParameter("inputSizeOfFlat"));
+		  user.setFlatNoFrom(request.getParameter("inputFltStartNo"));
+		  user.setFlatNoTo(request.getParameter("inputFltEndNo"));
+		 	
 		return user;
 	}
+	public  static void  ShowAPTDataForUpdate(AptModel user) {
+
+	System.out.println( "\n Rwa Reg No. :" + user.getRwaRegNo() + " Tower No.: "+ user.getTowerNo());
+	System.out.println("Flat Category No :" + user.getFlatCategory() + " Size Of Flat :" + user.getFlatSize() 
+	 + " Flat Starting No from :" + user.getFlatNoFrom() + " Flat ending No : " + user.getFlatNoTo());
+		
+		return ;
+	}
+
 
 }

@@ -49,7 +49,7 @@ public class Information {
 	public static final String smedia = "Social Media";
 	public static final String userRegistration = " User Registration";
 	public static final String loginConfPwd="Confirm Password";
-	public static final String RwaRegNO="RWA Registration No.";
+	public static final String STRING="RWA Registration No.";
 	public static final String Address="Address";
 	public static final String PAddress="Permanent Address";
 	public static final String CAddress="Correspondance Address";
@@ -257,8 +257,6 @@ public class Information {
 		public static final String userLogin="Create User Login ID and Password";
 		public static final String UserLoinID="User Login ID";
 // user 
-		public static final String Cancel="Cancel";
-		public static final String Continue="Continue";
 // driver
 		public static final String ViewInfo="View Driver Information";
 		public static final String NewInfo="New Driver Details";
@@ -303,7 +301,7 @@ public class Information {
 		public static final String EmployerName="Employer Name";
 		public static final String EmployerAddress="Employer Address";
 		public static final String Name="Name";
-// Apartment Inventory
+// Apartment monthly subscription
 		public static final String ViewAPTInfo="View Apartment Inventory";
 		public static final String NewAPTInfo="Create Apartment Inventory";
 		public static final String ViewCommonInfo="View Information";
@@ -312,8 +310,11 @@ public class Information {
 		public static final String TotlFlatNoInCategory="Number of Flats ";
 		public static final String Create="Create";
 		public static final String Remove="Remove";
+		public static final String Edit="Edit ";
+		public static final String Cancel="Cancel";
+		public static final String Continue="Continue";
 		
-		public static final String RwaMonthlyPlan="RWA Monthly Subscription Type";
+		public static final String RwaMonthlyPlan="Monthly Subscription Type";
 		public static final String FlatCharge="Flat Fixed charge";
 		public static final String AmcCharge="AMC Charges";
 		public static final String GymCharges="Gym Charges";
@@ -325,8 +326,42 @@ public class Information {
 		public static final String ValidFrom="Charges Applicable From";
 		public static final String ValidTo="Charges Applicable To";
 		public static final String AuditCharge = "Audit Charges";
+		public static final String ValidDateFrom="Valid Date From";
+		public static final String ValidDateTo="Valid Date To";
+		public static final String RwaSubscriptionType="Monthly Subscription";
+		public static final String MiscCharges="Misc.Charges";
+		public static final String SwmPoolCharges="Swim.Pool Charge";
+		public static final String APTFaltInventory="Apartment / Flat Inventory";
+		public static final String RWA="RWA ";
+		public static final String SNo="SNo. ";
 		
+	
+		
+		
+// apartment inventory
+		
+// Water Supplier Information
+		
+		public static final String WaterTankViewInfo="View Water Tanker Information";
+		public static final String WaterTankNewInfo="Create Water Tanker Details";
+		public static final String WaterTankSuplrPageTitle="Water Tanker Information";
 
+		public static final String DateFrom=" Date From";
+		public static final String DateTO=" Date To";
+		public static final String TankerNo=" Water Tanker No";
+		public static final String ActionType="Select Option";
+		public static final String WtrSuplrNum=" Supplier Name";
+		public static final String TankCapcity=" Tanker Capacity";
+		public static final String DriverName="Driver Name";
+		public static final String TankerArrivalOn="Date";
+		public static final String VerifiedByTankerIn="Verified By Tanker In";
+		public static final String TankerInTime="In time";
+		public static final String VerifiedByTankerOut="Verified By Tanker Out";
+		public static final String WaterLevelIn="Tanker Water Level In";
+		public static final String WaterLevelOut="Tanker Water Level Out";
+		public static final String WaterTankNo="Water Tank No";
+
+		
 }
 
 
