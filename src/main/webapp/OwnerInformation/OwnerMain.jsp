@@ -87,7 +87,7 @@
 												id="EmailId" name="EmailId" placeholder=<%=Information.EmailId%> required>
 										</div>
 										<div class="col-sm-4">
-											<label for="inputRwaRegNo" ><%=Information.RwaRegNO%></label>
+											<label for="inputRwaRegNo" ><%=Information.RWARegNo%></label>
 											<div class="input-group">
 												<input type="text" class="form-control "	id="inputRwaRegNo" name="inputRwaRegNo" readonly>
 											</div>

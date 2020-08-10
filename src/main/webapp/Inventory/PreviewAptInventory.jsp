@@ -61,9 +61,9 @@
 					
 						<div class="col-sm-12 offset-sm-0">
 							<table id="datatable" class="hover display nowrap" style="width: 100%">
-								<thead style="background:linear-gradient(to right, #00008B, #6ebce2); color:white"" >
+								<thead style="background:linear-gradient(to right, #00008B, #6ebce2); color:white" >
 									<tr> 
-	                                	<th><%=Information.RwaRegNO %> </th>
+										<th><%=Information.RWARegNo %> </th>
 	                                	<th><%=Information.towerNo %> </th>
 	                                   	<th><%=Information.FlatCategoryNo %> </th>
 	                                   	<th> <%=Information.SizeOfFlat%>  </th>

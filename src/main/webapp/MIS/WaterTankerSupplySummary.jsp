@@ -189,7 +189,7 @@
 	$(document).ready(function() {
 		
 			var table = $('#datatable').dataTable({
-		        "scrollY": 300,
+		        "scrollY": 200,
 		        "scrollX": true,
 		        dom: 'Bfrtip',
 		        buttons: ['copyHtml5', 'excelHtml5','csvHtml5','pdfHtml5','print'],

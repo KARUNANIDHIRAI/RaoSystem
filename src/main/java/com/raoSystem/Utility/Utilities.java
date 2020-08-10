@@ -2,6 +2,8 @@ package com.raoSystem.Utility;
 
 import java.util.Random;
 
+import com.raoSystem.constants.ComVar;
+
 
 public class Utilities {
 	public String GetOTP(int otpength) {

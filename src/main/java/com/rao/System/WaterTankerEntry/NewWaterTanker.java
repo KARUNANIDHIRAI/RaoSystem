@@ -51,7 +51,7 @@ public class NewWaterTanker extends HttpServlet {
 				response.sendRedirect("SuccessMsg.jsp");
 		}
 	}
-	public  TankerModel  UpdateFormValueToUserObj(TankerModel user , HttpServletRequest request) {
+	public static TankerModel  UpdateFormValueToUserObj(TankerModel user , HttpServletRequest request) {
 		  user.setRwaRegNo("MK106");
 		  user.setUserId("Prashant Rai");
 		  user.setWaterTankNo(request.getParameter("WaterTankNo"));
@@ -67,10 +67,11 @@ public class NewWaterTanker extends HttpServlet {
 		  user.setTankerInTime(request.getParameter("TankerInTime"));
 		  user.setVerifiedByTankerOut(request.getParameter("VerifiedByTankerOutTime"));
 		  user.setWaterLevelOut(request.getParameter("WaterLevelOut"));
+		  
 		return user;
 	}
 	public  static void  ShowWaterTankerDataForUpdate(TankerModel user) {
-	System.out.println( "\nRWA No. :" + user.getRwaRegNo() + "  Water Tanker No.: "+ user.getWaterTankNo() +" Supplier :" + user.getWaterSupplier()
+	System.out.println( "\n IDNO:" + user.getTankerId()+ " RWA No. :" + user.getRwaRegNo() + "  Water Tanker No.: "+ user.getWaterTankNo() +" Supplier :" + user.getWaterSupplier()
 	+ " Tanker No :" + user.getTankerNo() + ", Tanker Capacity :" + user.getTankerCapacity() + " Driver Name : " + user.getDriverName());
 	System.out.println("\n DLNO:"+ user.getDLNO()+ "Mobile No :"+ user.getDrvMobilNo() +", Arrival Date:" +user.getTankerArrivalDateFrom()
 	+ ", Verified By :"+ user.getVerifiedByTankerIn() + ", Water Level In :" + user.getWaterLevelIn() + "Tanker In Time :" + user.getTankerInTime()

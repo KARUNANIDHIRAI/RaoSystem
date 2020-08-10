@@ -70,7 +70,7 @@
 						 style="width: 100%">
 						
 							<caption>Striped Table Layout</caption>
-							<thead style="background:linear-gradient(to right, #00008B, #6ebce2); color:white"" >
+							<thead style="background:linear-gradient(to right, #00008B, #6ebce2); color:white" >
 <%-- 								<tr >
 								<th rowspan="2"><%=Information.RwaRegNO %></th>
 								<th rowspan="2"><%=Information.towerNo %></th>
@@ -79,16 +79,16 @@
 								 </tr>
  --%> 
  								<tr class="text-center"> 
-                                 	<th  class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 107px;" aria-sort="ascending" aria-label="Name: activate to sort column descending"><%=Information.RwaRegNO %> </th>
+									<th  class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 107px;" aria-sort="ascending" aria-label="Name: activate to sort column descending"><%=Information.RWARegNo %> </th>
                                 	<th><%=Information.towerNo %> </th>
                                    	<th><%=Information.RwaSubscriptionType %> </th> 
                                    	<th> <%=Information.FlatCharge%>  </th>
    
                                    	<th><%=Information.AmcCharge %> </th>
                                    	<th><%=Information.AuditCharge %> </th>
-                                   	<th > <%=Information.GymCharges%>  </th>
-                                   	<th ><%=Information.SwimmingPoolCharge %> </th>
-                                   	<th "><%=Information.MiscCharges %> </th>
+                                   	<th> <%=Information.GymCharges%>  </th>
+                                   	<th><%=Information.SwimmingPoolCharge %> </th>
+                                   	<th><%=Information.MiscCharges %> </th>
 
 								</tr>
  							</thead>

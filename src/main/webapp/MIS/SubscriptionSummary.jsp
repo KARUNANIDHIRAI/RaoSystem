@@ -71,17 +71,15 @@
 							<caption>RWA Monthly Subscription Details</caption>
 							<thead style="background:linear-gradient(to right, #00008B, #6ebce2); color:white"" >
 								<tr class="text-center"> 
-                                	<th><%=Information.RwaRegNO %> </th>
+									<th><%=Information.RWARegNo %> </th>
                                 	<th><%=Information.towerNo %> </th>
                                    	<th><%=Information.RwaMonthlyPlan %> </th>
                                    	<th> <%=Information.FlatCharge%>  </th>
-   
                                    	<th><%=Information.AmcCharge %> </th>
                                    	<th><%=Information.AuditCharge %> </th>
                                    	<th> <%=Information.GymCharges%>  </th>
                                    	<th><%=Information.SwimmingPoolCharge %> </th>
                                    	<th><%=Information.MiscCharges %> </th>
-
 								</tr>
  							</thead>
 							<tbody>

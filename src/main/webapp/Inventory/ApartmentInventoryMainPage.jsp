@@ -75,7 +75,7 @@
 									<br />
 									<div class="form-row ">
 									    <div class="col-sm-4 offset-sm-2">
-									      	<label for="RwaRegNo" ><%= Information.RwaRegNO%></label>
+											<label for="RwaRegNo" ><%= Information.RWARegNo%> </label>
 											<input type="text" class="form-control is-invalid"	id="RwaRegNo" name="RwaRegNo" required>
 								    	</div>
 									    <div class="col-sm-4 offset-sm-0">

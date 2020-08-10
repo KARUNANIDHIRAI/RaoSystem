@@ -361,6 +361,72 @@
   	<description></description>
   	<servlet-class>com.rao.System.WaterTankerEntry.SummaryWaterTanker</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>EditWaterTanker</servlet-name>
+  	<display-name>EditWaterTanker</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.WaterTankerEntry.EditWaterTanker</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>PurMatInfo</servlet-name>
+  	<display-name>PurMatInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PurchaseMaterial.PurMatInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>PurMatMainPage</servlet-name>
+  	<display-name>PurMatMainPage</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PurchaseMaterial.PurMatMainPage</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>NewPurMaterial</servlet-name>
+  	<display-name>NewPurMaterial</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PurchaseMaterial.NewPurMaterial</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditPurMaterial</servlet-name>
+  	<display-name>EditPurMaterial</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PurchaseMaterial.EditPurMaterial</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ViewPurMaterial</servlet-name>
+  	<display-name>ViewPurMaterial</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PurchaseMaterial.ViewPurMaterial</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>test</servlet-name>
+  	<display-name>test</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PurchaseMaterial.test</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TempPOInfo</servlet-name>
+  	<display-name>TempPOInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PO.TempPOInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>NewPO</servlet-name>
+  	<display-name>NewPO</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PO.NewPO</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>POSummary</servlet-name>
+  	<display-name>POSummary</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PO.POSummary</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditPO</servlet-name>
+  	<display-name>EditPO</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.PO.EditPO</servlet-class>
+  </servlet>
  
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
@@ -599,6 +665,50 @@
   <servlet-mapping>
   	<servlet-name>SummaryWaterTanker</servlet-name>
   	<url-pattern>/SummaryWaterTanker</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditWaterTanker</servlet-name>
+  	<url-pattern>/EditWaterTanker</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>PurMatInfo</servlet-name>
+  	<url-pattern>/PurMatInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>PurMatMainPage</servlet-name>
+  	<url-pattern>/PurMatMainPage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>NewPurMaterial</servlet-name>
+  	<url-pattern>/NewPurMaterial</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditPurMaterial</servlet-name>
+  	<url-pattern>/EditPurMaterial</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ViewPurMaterial</servlet-name>
+  	<url-pattern>/ViewPurMaterial</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>test</servlet-name>
+  	<url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TempPOInfo</servlet-name>
+  	<url-pattern>/TempPOInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>NewPO</servlet-name>
+  	<url-pattern>/NewPO</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>POSummary</servlet-name>
+  	<url-pattern>/POSummary</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditPO</servlet-name>
+  	<url-pattern>/EditPO</url-pattern>
   </servlet-mapping>
  
  </web-app>

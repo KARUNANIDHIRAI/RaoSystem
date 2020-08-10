@@ -15,12 +15,8 @@
    		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>	
   		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>	
 	    <style type="text/css"> 
-	        .dropdown:hover .dropdown-menu { 
-	            display: block; 
-	        }    
-	        #dropdn:hover .dropdown-menu { 
-	            display: block; 
-	        } 
+	        .dropdown:hover .dropdown-menu { display: block;}    
+	        #dropdn:hover .dropdown-menu {  display: block; } 
 	    </style> 
 	</head>
 	<body>
@@ -63,6 +59,195 @@
 		  			<a class="text-warning" href="#"><%= session.getAttribute("currentUser")== null?"":session.getAttribute("currentUser") %></a>
 				</div>
 			</div>
+			<div class="row">
+				<nav class="navbar navbar-expand-lg navbar-light col-sm-12">
+
+				  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				    	<span class="navbar-toggler-icon"></span>
+				  	</button>
+					<div class="collapse navbar-collapse col-sm-12 bg-light" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+					    	<li class="nav-item active">
+					        	<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= Information.rwaHomePageMaster%></a>
+								<div class="dropdown-menu " id="megha_menu" style ="width:500px;padding-left:20px; " aria-labelledby="navbarDropdown" >
+									<div class="row">
+										<div class="col-sm-4">
+									    	<a class="text-dark" href = "RwaRegistration.jsp">RWA Information</a>
+									    	<a class="text-dark" href = "Inventory/ApartmentInventoryMainPage.jsp">Apartment Inventory </a>
+									    	<a class="text-dark" href = "Inventory/RWASubscriptionMainPage.jsp">RWA Subscription </a>
+									    	<a class="text-dark" href = "OwnerInformation/OwnerMain.jsp">Owner Information </a>
+									    	<a class="text-dark" href = "HKMInformation/HKMMainPage.jsp">House Maid Information</a>
+									    	<a class="text-dark" href = "DRVInformation/DRVMainPage.jsp">Driver Information </a>
+									    	<a class="text-dark" href = "SSPInformation/SSPMainPage.jsp">Security Staff Information</a>
+									    	<a class="text-dark" href = "DwellerInformation/NewDwellerInfo.jsp">Tenant Information</a>
+									    	<a class="text-dark" href = "Supplier.jsp">Supplier Master </a>
+									    	<a class="text-dark" href = "#">Maintenance Staff</a>
+										</div>
+										<div class="col-sm-4">
+										    <P>	<a class="text-dark" href="#">Item </a> </P>
+										</div>
+								    </div>
+								</div>
+					        	
+					      	</li>
+					      	<li class="nav-item dropdown">
+					      		<a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          		<%= Information.rwaHomePageTransaction%>
+					        	</a>
+								<div class="dropdown-menu " id="megha_menu" style ="width:600px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
+									<div class="row">
+										<div class="col-sm-4">
+										    <P>	<a class="text-dark" href="WaterSupplierInfo/WaterSupplierMainPage.jsp">Water Tanker </a> </P>
+										    <P>	<a class="text-dark" href="#">Issue Visitor/Guest Gate Pass</a> </P>
+										    <P>	<a class="text-dark" href="PO/MainPO.jsp"> Purchase Order[PO]</a> </P>
+										    <P>	<a class="text-dark" href="MaterialPurchase/MaterialPurchaseHomePage.jsp"> Material Received[PO]</a> </P>
+										    <P>	<a class="text-dark" href="#"> Material Rejected[PO]</a> </P>
+										    <P>	<a class="text-dark"href="#"> Material Pending[PO]</a> </P>
+										</div>
+										<div class="col-sm-4">
+										    <P>	<a class="text-dark" href="#">Water Tanker </a> </P>
+										    <P>	<a class="text-dark" href="#">Issue Visitor Gate Pass</a> </P>
+										    <P>	<a class="text-dark" href="#"> Purchase Order[PO]</a> </P>
+										    <P>	<a class="text-dark" href="#"> Material Received[PO]</a></P>
+										    <P>	<a class="text-dark" href="#"> Material Rejected[PO]</a> </P>
+										    <P>	<a class="text-dark" href="#"> Material Pending[PO]</a> </P>
+										</div>
+								    </div>
+								</div>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" 
+					        	aria-expanded="false"><%= Information.rwaHomePageMIS%></a>
+								<div class="dropdown-menu " id="megha_menu" style ="width:600px;padding-left:20px; margin-bottom:.60em;" aria-labelledby="navbarDropdown" >
+									<div class="row">
+										<div class="col-sm-4 " Style="">
+									    	 <P><a class="text-dark"  href="MIS/SubscriptionSummaryMainPage.jsp">RWA Subscription</a></P>
+									    	 <P><a class="text-dark"  href="MIS/WaterSupplierMainPage.jsp">Water Tanker Summary</a></P>
+									    	 <P><a class="text-dark"  href="MIS/WaterSupplySumSearch.jsp">Water Tanker Summary</a></P>
+									    	 <P><a class="text-dark"  href="ViewReports/ViewInfo.jsp">View Information</a></P>
+									    	 <P><a class="text-dark"  href="Inventory/SubscriptionList.jsp">RWA Subscription</a></P>
+									    	 <P><a class="text-dark"  href="OwnerInformation/PreviewOwnerInfo.jsp">List of Flat Owners</a></P>
+									    	 <P><a class="text-dark"  href="DwellerInformation/PreviewDwellerInfo.jsp">List of Dwellers</a></P>
+									    	 <P><a class="text-dark" href="DRVInformation/PreviewDRVInfo.jsp">Personal Drivers</a></P>
+									    	 <P><a class="text-dark"  href="HKMInformation/PreviewHKMInfo.jsp">Personal House Maid</a></P>
+										</div>
+										<div class="col-sm-4">
+									    	 <P><a class="text-dark" href="SSPInformation/PreviewSSPInfo.jsp">List of Security Staff</a></P>
+									    	 <P><a class="text-dark" href="DRVInformation/PreviewDRVInfo.jsp">List of Drivers</a></P>
+									    	 <P><a class="text-dark" href="HKMInformation/PreviewHKMInfo.jsp">List of House Maid</a></P>
+										    <P>	<a class="text-dark" href="#">Item </a> </P>
+										    <P>	<a class="text-dark" href="#">Issue VisitorGate Pass</a> </P>
+										    <P>	<a class="text-dark" href="PO/MainPage.jsp"> Purchase Order[PO]</a> </P>
+										    <P>	<a class="text-dark" href="#"> Material Received[PO]</a></P>
+										    <P>	<a class="text-dark" href="#"> Material Rejected[PO]</a> </P>
+										    <P>	<a class="text-dark" href="#"> Material Pending[PO]</a> </P>
+										</div>
+								    </div>
+								</div>
+					        	
+					      	</li>
+
+		
+					      	<li class="nav-item dropdown">
+					      		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          		Careers
+					        	</a>
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						        	<a class="dropdown-item" href="#">Action</a>
+						        	<a class="dropdown-item" href="#">Another action</a>
+						          	<div class="dropdown-divider"></div>
+						          	<a class="dropdown-item" href="#">Something else here</a>
+						        </div>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					      		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          		Contact
+					        	</a>
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						        	<a class="dropdown-item" href="#">Action</a>
+						        	<a class="dropdown-item" href="#">Another action</a>
+						          	<div class="dropdown-divider"></div>
+						          	<a class="dropdown-item" href="#">Something else here</a>
+						        </div>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					      		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          		Help
+					        	</a>
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						        	<a class="dropdown-item" href="#">Action</a>
+						        	<a class="dropdown-item" href="#">Another action</a>
+						          	<div class="dropdown-divider"></div>
+						          	<a class="dropdown-item" href="#">Something else here</a>
+						        </div>
+					      	</li>
+					    </ul>
+					    <form class="form-inline my-3 my-lg-0">
+					      <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
+					      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					    </form>
+					</div>
+				</nav>			
+			</div>
+			<div class="row" data-spy="scroll" data-target="#navbar-example2" data-offset="0" >
+				<div class="col-lg-12 "> 
+					<div id="rwaHomePageCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+						<ol class="carousel-indicators">
+					    	<li data-target="#rwaHomePageCaptions" data-slide-to="0" class="active"></li>
+					    	<li data-target="#rwaHomePageCaptions" data-slide-to="1"></li>
+					    	<li data-target="#rwaHomePageCaptions" data-slide-to="2"></li>
+					    	<li data-target="#rwaHomePageCaptions" data-slide-to="4"></li>
+					    	<li data-target="#rwaHomePageCaptions" data-slide-to="5"></li>
+					    	<li data-target="#rwaHomePageCaptions" data-slide-to="6"></li>
+					  	</ol>
+					  	<div class="carousel-inner">
+					    	<div class="carousel-item active" style="height: 500px">
+					      		<img src="images/rwa/rwaImage1.jpg" class="img-fluid d-block w-100 " alt="Responsive image"  >
+					      		<div class="carousel-caption d-none d-md-block">
+					        		<h5 class= "text-light"><%=Information.rwaHomePageResImg %></h5>
+					      		</div>
+					    	</div>
+					    	<div class="carousel-item " style="height: 500px">
+					      		<img src="images/rwa/rwaImage2.jpg" class="img-fluid d-block w-100" alt="Responsive image" >
+					      		<div class="carousel-caption d-none d-md-block">
+					        		<h5 class= "text-light"><%=Information.rwaHomePagePGImg %></h5>
+					      		</div>
+					    	</div>
+					    	<div class="carousel-item" style="height: 500px">
+					      		<img src="images/rwa/rwaImage3.jpg" class="img-fluid d-block w-100" alt="Responsive image" >
+					      		<div class="carousel-caption d-none d-md-block">
+					        		<h5 class= "text-ligth"><%=Information.rwaHomePageResImg %></h5>
+					      		</div>
+					    	</div>
+					    	<div class="carousel-item" style="height: 500px">
+					      		<img src="images/rwa/rwaImage4.jpg" class="img-fluid d-block w-100" alt="Responsive image">
+					      		<div class="carousel-caption d-none d-md-block">
+					        		<h5 class= "text-light"><%=Information.rwaHomePagePGImg %></h5>
+					      		</div>
+					    	</div>
+					    	<div class="carousel-item" style="height: 500px">
+					      		<img src="images/rwa/rwaImage5.jpg" class="img-fluid d-block w-100" alt="Responsive image">
+					      		<div class="carousel-caption d-none d-md-block">
+					        		<h5 class= "text-light"><%=Information.rwaHomePageResImg %></h5>
+					      		</div>
+					    	</div>
+					  </div>
+					  <a class="carousel-control-prev" href="#rwaHomePageCaptions" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#rwaHomePageCaptions" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>			
+				</div>			
+			</div>			
+			<br />
+<%-- 			
 			<div class="row" >
 				<div class="col-lg-12 btn-group flex-wrap " role="group" aria-label="Button group with nested dropdown"  >
 					<div class="dropdown" > 
@@ -94,10 +279,18 @@
 					</div>
 					<div class="dropdown" > 
 						<button type="button" class="btn btn-light dropdown-toggle " data-toggle="dropdown"><%= Information.rwaHomePageTransaction%></button>
-						<div class="dropdown-menu " >
-					    	<a class="dropdown-item" href="WaterSupplierInfo/WaterSupplierMainPage.jsp">Water Tanker </a>
-					    	<a class="dropdown-item" href="#">Issue Visitor/Guest Gate Pass</a>
-					    </div>
+						<div class="dropdown-menu col-sm-5" >
+							<div class="row">
+								<div class="col-sm-4">
+							    	<a class="dropdown-item" href="WaterSupplierInfo/WaterSupplierMainPage.jsp">Water Tanker </a>
+							    	<a class="dropdown-item" href="#">Issue Visitor/Guest Gate Pass</a>
+							    	<a class="dropdown-item" href="PO/MainPO.jsp"> Purchase Order[PO]</a>
+							    	<a class="dropdown-item" href="MaterialPurchase/MaterialPurchaseHomePage.jsp"> Material Received[PO]</a>
+							    	<a class="dropdown-item" href="#"> Material Rejected[PO]</a>
+							    	<a class="dropdown-item" href="#"> Material Pending[PO]</a>
+								</div>
+						    </div>
+						</div>
 					</div>
 					<div class="dropdown" > 
 						<button type="button" class="btn btn-light dropdown-toggle " data-toggle="dropdown"><%= Information.rwaHomePageMIS%></button>
@@ -205,7 +398,7 @@
 					</div>			
 				</div>			
 			</div>
-
+ --%>
 			<br /> 
 
 			<div class="row">

@@ -81,7 +81,8 @@
 									   		</div>
 										    <div class="col-sm-3">
 											      <label for="rwaRegNo"  ><%= Information.RAORegNo%></label>
-											      <input type="text" class="form-control " id="rwaRegNo" name="rwaRegNo" placeholder=<%= Information.RwaRegNO%> required>
+											      <input type="text" class="form-control " id="rwaRegNo" 
+													="rwaRegNo" placeholder=<%= Information.RAORegNo%> required>
 									    	</div>
 									  	</div>
 			

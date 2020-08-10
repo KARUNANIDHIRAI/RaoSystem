@@ -154,12 +154,12 @@
 							<div class="form-row ">
 								<div class="col-sm-12 offset-sm-0">
 									<%	if (request.getAttribute("WaterTanker") != null) { %>
-									<table id="datatable" class="hover display nowrap" style="width: 100%">
+									<table id="WtrTanker" class="hover display nowrap" style="width: 100%">
 										<thead style="background-color: #38ACEC; color: white">
 											<tr class="text-center">
-												<th><%=Information.SNo%></th>
+												<%--<th><%=Information.SNo%></th> --%>
 												<th><%=Information.RwaCode%></th>
-												<th><%=Information.WtrSuplrNum%></th>
+												<%--<th><%=Information.WtrSuplrNum%></th>--%>
 												<th><%=Information.TankerNo%></th>
 												<th><%=Information.TankerArrivalOn%></th>
 												<th><%=Information.VerifiedByTankerIn%></th>
@@ -170,25 +170,27 @@
 										</thead>
 										<tbody>
 											<%if (request.getAttribute("WaterTanker") != null) {
-												request.setAttribute("TankerSupplierList", WaterTankerList);
+												session.setAttribute("TankerInfo", WaterTankerList);
+												
 												Iterator<TankerModel> iterators = WaterTankerList.iterator();
 												while (iterators.hasNext()) {
 													TankerModel WTList = iterators.next();
-											%>
-											<tr>
-											<td><%=WTList.getTankerId()%></td>
-											<td><%=WTList.getRwaRegNo()%></td>
-											<td><%=WTList.getWaterSupplier()%></td>
-											<td><%=WTList.getTankerNo()%></td>
-											<td><%=WTList.getTankerArrivalDateFrom()%></td>
-											<td><%=WTList.getVerifiedByTankerIn()%></td>
-											<td><%=WTList.getTankerInTime()%></td>
-											<td><%=WTList.getDriverName()%></td>
-											<td id="Edit"><a href="WaterSupplierInfo/EditWaterTankerInfo.jsp? id=<%=WTList.getTankerId()%>"><%=Information.Edit%></a></td>
-<%-- 											<td><a href="<%=request.getContextPath()%>/WaterTankerMainInfo?type=getDetails"><%=Information.Edit%></a></td> --%>
-							
-											</tr>
-											<%	}
+												%>
+												<tr>
+<%-- 												<td><%=WTList.getTankerId()%></td> --%>
+												<td><%=WTList.getRwaRegNo()%></td>
+												<%-- <td><%=WTList.getWaterSupplier()%></td>--%>
+												<td><%=WTList.getTankerNo()%></td>
+												<td><%=WTList.getTankerArrivalDateFrom()%></td>
+												<td><%=WTList.getVerifiedByTankerIn()%></td>
+												<td><%=WTList.getTankerInTime()%></td>
+												<td><%=WTList.getDriverName()%></td>
+	 											<td><a href="WaterSupplierInfo/EditWaterTankerInfo.jsp?Id=	<%=WTList.getTankerId()%> 
+	 											"><%=Information.Edit%></a></td>
+	 <%-- 											<td><a href="<%=request.getContextPath()%>/WaterTankerMainInfo?type=getDetails"><%=Information.Edit%></a></td> --%>
+	<%-- 											<td><a href="<%=request.getContextPath()%>/RwaSubscriptionReport?id=<%=WTList.getTankerId()%>"><%=Information.Edit%></a></td>--%>
+												</tr>
+												<%	}
 											}%>
 										</tbody>
 										<%}	%>
@@ -259,8 +261,68 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 	    var events = $('#events');
+	    var table = $('#WtrTanker').DataTable( {
+	        "scrollY": 275,
+	        "scrollX": true,
+	        dom: 'Bfrtip',
+	        select: true,
+	        buttons: ['copyHtml5', 'excelHtml5','pdfHtml5','print'],
+	        "order": [],
+	        "ordering": false, 
+	        "pageLength": 15
+	    });
+	    $('#WtrTanker tbody').on( 'click', 'tr', function () {
+	        if ( $(this).hasClass('selected') ) {
+//		        	var data = $('#example').DataTable().row(this).data();
+	        	var data = table.row(this).data();
+	        	alert(data[0]); 
+	        	alert(data[1]);
+	        	alert(table.row( this ).data());
+	        	var x=data[0];
+	        	session.setAttribute('sno',data[0]);
+	        	alert(session.getAttribute('sno'))
+	        	$(this).removeClass('selected');
+	        }
+	        else {
+	            table.$('tr.selected').removeClass('selected');
+	            $(this).addClass('selected');
+	        }
+	    });
+	    
+	
+	
+	
+	
+	
+	
+/* 	$(document).ready(function() {
+	    var events = $('#events');
 	    alert(events);
-
+	    var table = $('#example').DataTable( {
+	        dom: 'Bfrtip',
+	        select: true,
+	        buttons: []
+	    } );
+	    $('#example tbody').on( 'click', 'tr', function () {
+	        if ( $(this).hasClass('selected') ) {
+	        	var data = table.row(this).data();
+	        	alert(data[0]); 
+	        	alert(data[1]);
+	        	alert(table.row( this ).data());
+	        	$(this).removeClass('selected');
+	        	session.setAttribute('sno',data[0]);
+	        	alert('sno : '+ session.getAttribute('sno'))
+	        }
+	        else {
+	            table.$('tr.selected').removeClass('selected');
+	            $(this).addClass('selected');
+	        }
+	    } );
+	    
+ */	    
+	    
+	    
+/* 	    
 			var table = $('#datatable').dataTable({
 		        "scrollY": 300,
 		        "scrollX": true,
@@ -299,21 +361,8 @@
 		        }
 		    } );			
 			
-/* 		    $('#datatable tbody').on( 'click', 'tr', function () {
-		        if ( $(this).hasClass('selected') ) {
-		        	alert(table.row( this ).data());
-		        	var data = table.row(this).data();
-		        	alert(data[0] +',' +data[1] +',' +data[2] +',' +data[3] +',' +data[4] +',' +data[5] ); 
-		        	alert(table.row( this ).data());
-		        	$(this).removeClass('selected');
-		        }
-		        else {
-		            table.$('tr.selected').removeClass('selected');
-		            $(this).addClass('selected');
-		        }
-		    } );
- */			
-	});
+ */
+ 	});
 	</script>
 </body>
 </html>

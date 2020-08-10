@@ -25,7 +25,7 @@ public class TankerModel {
 		String TranType;
 		String ActionType;
 		String UserId;
-		int TankerId;
+		String TankerId;
 		
 		public String getRwaRegNo() {
 			return RwaRegNo;
@@ -159,11 +159,11 @@ public class TankerModel {
 		public void setUserId(String userId) {
 			UserId = userId;
 		}
-		public int getTankerId() {
+		public String getTankerId() {
 			return TankerId;
 		}
-		public void setTankerId(int tankerid) {
-			TankerId = tankerid;
+		public void setTankerId(String tankerId) {
+			TankerId = tankerId;
 		}
 
 		

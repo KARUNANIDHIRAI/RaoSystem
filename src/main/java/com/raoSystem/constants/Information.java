@@ -334,10 +334,7 @@ public class Information {
 		public static final String APTFaltInventory="Apartment / Flat Inventory";
 		public static final String RWA="RWA ";
 		public static final String SNo="SNo. ";
-		
-	
-		
-		
+
 // apartment inventory
 		
 // Water Supplier Information
@@ -353,13 +350,56 @@ public class Information {
 		public static final String WtrSuplrNum=" Supplier Name";
 		public static final String TankCapcity=" Tanker Capacity";
 		public static final String DriverName="Driver Name";
-		public static final String TankerArrivalOn="Date";
+		public static final String TankerArrivalOn="Tanker Arrival Date";
 		public static final String VerifiedByTankerIn="Verified By Tanker In";
 		public static final String TankerInTime="In time";
 		public static final String VerifiedByTankerOut="Verified By Tanker Out";
 		public static final String WaterLevelIn="Tanker Water Level In";
 		public static final String WaterLevelOut="Tanker Water Level Out";
 		public static final String WaterTankNo="Water Tank No";
+		
+//	Material Purchase Information
+		public static final String MaterialPurchase="Material Purchase";
+		public static final String New="New";
+		public static final String View="View";
+		public static final String Summary="Summary";
+		public static final String Date="Date";
+		public static final String InvoiceNo="Invoice Number";
+		public static final String SNO="SNO";
+		public static final String ItemName="Item Name";
+		public static final String Quantity="Quantity";
+		public static final String Unit="Unit";
+		public static final String Price="Price";
+		public static final String TaxRate="Tax Rate";
+		public static final String TaxAmount="Tax Amt";
+		public static final String Discount="Discount";
+		public static final String NetAmount="Net Amt";
+		public static final String Amount="Amount";
+		
+		public static final String VendorName="Vendor Name";
+		public static final String TinNo="Tin No";
+		public static final String CustomerName="Customer Name";
+		public static final String CMobileNo="CMobileNo";
+		public static final String InvoiceDate="Invoice Date";
+		public static final String OrderNO="Order No";
+		public static final String PaymentMode="Payment Mode";
+		public static final String PayID="PayID";
+		public static final String Bill="Bill";
+		public static final String Tax="Tax";
+		public static final String Dis="Disc.";
+		public static final String GST="GST ";
+		public static final String GSTAmt="Amt.";
+		public static final String Total="Total";
+		public static final String Net="Net ";
+		public static final String Add="Add ";
+		public static final String Action="Add ";
+		public static final String Percentage="(%)";
+		public static final String Customer="Customer";
+		public static final String Vendor="Vendor";
+		public static final String Info="Information";
+		
+		
+		
 
 		
 }

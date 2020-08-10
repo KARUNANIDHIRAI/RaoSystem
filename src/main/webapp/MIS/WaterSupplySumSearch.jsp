@@ -56,84 +56,77 @@
 			class="form-horizontal needs-validation" autocomplete="off" >
 			<div class="row justify-content-md-center">
 				<div class="col-sm-12">
-					<div class="accordion" id="accordionDriver">
+					<div class="card">
+						<div class="card-header text-white" id="headingOne" style="background-color:#38ACEC">
 
-						<div class="card">
-							<div class="card-header text-white" id="headingOne" style="background-color:#38ACEC">
+							<ul class="nav nav-tabs card-header-tabs">
+								<li class="nav-item " id="ViewUser" > 
+									<a	class="nav-link active text-white " style="background-color:#000080" href="#">
+									<%= Information.WaterTankViewInfo%></a></li>
+							</ul>
 
-								<ul class="nav nav-tabs card-header-tabs">
-									<li class="nav-item " id="ViewUser" > 
-										<a	class="nav-link active text-white " style="background-color:#000080" href="#">
-										<%= Information.WaterTankViewInfo%></a></li>
-								</ul>
-
-							</div>
-
-							<div id="collapseOne" class="collapse show"
-								aria-labelledby="headingOne" data-parent="#accordionDriver">
-								<div class="card-body text-dark h6" >
-									<br /> 
-									<div class="form-row ">
-										<div class="col-sm-4 offset-sm-2">
-											<label for="RwaRegNo" ><%=Information.RwaRegNO%></label>
-											<div class="input-group">
-												<input type="text" class="form-control "	id="RwaRegNo" name="RwaRegNo" readonly>
-											</div>
-										</div>
-									</div>
-									<div class= "form-row">
-										<div class="col-sm-9 offset-sm-3">
-						    			<p class="text-danger h6"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
-																<%session.removeAttribute("Message");%>
-										</div>
-									</div>
-									<br />
-									<div class="form-row ">
-										<div class="col-sm-4 offset-sm-2">
-											<label for="DateFrom" ><%=Information.DateFrom%></label>
-											<div class="input-group">
-												<input type="date" class="form-control "	id="DateFrom" name="DateFrom" required>
-											</div>
-										</div>
-										<div class="col-sm-4">
-											<label for="DateTO" ><%=Information.DateTO%></label>
-											<div class="input-group">
-												<input type="date" class="form-control "	id="DateTO" name="DateTO" required>
-											</div>
-										</div>
-									</div>
-									<br />
-									<div class="form-row ">
-										<div class="col-sm-4 offset-sm-2">
-											<label for="TankerNo" ><%=Information.TankerNo%></label>
-											<div class="input-group">
-												<input type="text" class="form-control is-invalid"	id="TankerNo" name="TankerNo" required>
-											</div>
-										</div>
-									    <div class="col-sm-4 offset-sm-0">
-									      	<label for="ActionType" ><%= Information.ActionType%></label>
-										    <select id ="ActionType" name="ActionType" class="form-control is-invalid">
-												<option selected value="0">Select Action Type </option>
-												<option selected value="1">View Info </option>
-												<option value="2">Remove Information </option>
-										    </select>
-								    	</div>
-									</div>
-									<br /><br /><br /><br />
-									<div class="form-row">
-										<div class="col-sm-2 offset-sm-4 ">
-											<p>	<a href="rwaHomePage.jsp" class="form-control text-white text-center h5" style="background-color:#000080"><%=Information.Cancel%></a></p>
-										</div>
-								    	<div class="col-sm-2 offset-sm-0 ">
-									      	<button type="submit" class="form-control h5 text-white text-center " style="background-color:#38ACEC" id="submit01" name = "submit01"  ><%=Information.Submit %> </button>
-									    </div>
-									</div>
-
-								</div>
-							</div>
 						</div>
 
+						<div class="card-body text-dark h6" >
+							<br /> 
+							<div class="form-row ">
+								<div class="col-sm-4 offset-sm-2">
+									<label for="RwaRegNo" ><%=Information.RAORegNo%></label>
+									<div class="input-group">
+										<input type="text" class="form-control "	id="RwaRegNo" name="RwaRegNo" readonly>
+									</div>
+								</div>
+							</div>
+							<div class= "form-row">
+								<div class="col-sm-9 offset-sm-3">
+				    			<p class="text-danger h6"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
+														<%session.removeAttribute("Message");%>
+								</div>
+							</div>
+							<br />
+							<div class="form-row ">
+								<div class="col-sm-4 offset-sm-2">
+									<label for="DateFrom" ><%=Information.DateFrom%></label>
+									<div class="input-group">
+										<input type="date" class="form-control "	id="DateFrom" name="DateFrom" required>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label for="DateTO" ><%=Information.DateTO%></label>
+									<div class="input-group">
+										<input type="date" class="form-control "	id="DateTO" name="DateTO" required>
+									</div>
+								</div>
+							</div>
+							<br />
+							<div class="form-row ">
+								<div class="col-sm-4 offset-sm-2">
+									<label for="TankerNo" ><%=Information.TankerNo%></label>
+									<div class="input-group">
+										<input type="text" class="form-control is-invalid"	id="TankerNo" name="TankerNo" required>
+									</div>
+								</div>
+							    <div class="col-sm-4 offset-sm-0">
+							      	<label for="ActionType" ><%= Information.ActionType%></label>
+								    <select id ="ActionType" name="ActionType" class="form-control is-invalid">
+										<option selected value="0">Select Action Type </option>
+										<option selected value="1">View Info </option>
+										<option value="2">Remove Information </option>
+								    </select>
+						    	</div>
+							</div>
+							<br /><br /><br /><br />
+							<div class="form-row">
+								<div class="col-sm-2 offset-sm-4 ">
+									<p>	<a href="rwaHomePage.jsp" class="form-control text-white text-center h5" style="background-color:#000080"><%=Information.Cancel%></a></p>
+								</div>
+						    	<div class="col-sm-2 offset-sm-0 ">
+							      	<button type="submit" class="form-control h5 text-white text-center " style="background-color:#38ACEC" id="submit01" name = "submit01"  ><%=Information.Submit %> </button>
+							    </div>
+							</div>
+						</div>
 					</div>
+
 				</div>
 			</div>
 		</form>

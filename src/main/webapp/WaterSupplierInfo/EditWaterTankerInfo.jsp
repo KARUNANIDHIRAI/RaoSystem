@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.raoSystem.constants.Information"%>
-<% ArrayList<TankerModel> WaterTankerUpdate = (ArrayList) request.getAttribute("WaterTanker"); %> 
+
+<%-- <% ArrayList<TankerModel> WaterTankerUpdate = (ArrayList) request.getAttribute("WaterTanker"); %> 
+ --%>
 	<%@page import="com.rao.System.WaterTankerEntry.TankerModel"%>
 	<%@page import="java.util.ArrayList"%> 
 	<%@page import="java.util.Iterator"%> 
@@ -46,154 +48,145 @@
 			</div>
 		</div>
 	</div>
-		<%if (request.getAttribute("WaterTankerUpdate") != null) {
-				Iterator<TankerModel> iterators = WaterTankerUpdate.iterator();
-			while (iterators.hasNext()) {
-				TankerModel WTList = iterators.next();
-			}
-		        out.println(WaterTankerUpdate.size());
-		        out.println(session.getAttribute("WaterTankerUpdate"));			
-		}%>
-
+<%-- 	<%ArrayList<TankerModel> TankerList =  (ArrayList) session.getAttribute("TankerSupplierList");%> --%>
 	<div class="container" >
 		<form id="WaterTanker" name="WaterTanker" action="../EditWaterTanker" method="post" class="form-horizontal needs-validation" autocomplete="off">
 			<div class="row justify-content-md-center" >
 				<div class="col-sm-12">
-					<div class="card" style="background-color:#FFFFFF">
-						<div class="form-row ">
-							<div class="col-sm-12  offset-sm-0" style="padding-left:20px; padding-right:20px">
-				    			<p class="text-danger text-center"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
-																<%session.removeAttribute("Message");%>
-							</div>
-						</div>
-   	
-						<div class="card-header text-white" id="headingOne"	style="background-color: #38ACEC ;
-						    padding-right:-1px; ">
-
+					<div class="card" style="background-color:#FFFFFF; Padding-top:0px">
+						<div class="card-header text-white" id="headingOne"	style="background-color: #38ACEC ;  padding-right:-1px; ">
 							<ul class="nav nav-tabs card-header-tabs">
 								<li class="nav-item " id="ViewUser"><a 	class="nav-link active text-white "
 									style="background-color: #000080" href="#"><%=Information.Edit%> <%=Information.WaterTankSuplrPageTitle%></a></li>
 							</ul>
 						</div>
-						<br /> <br />
-						
-						
-						
- 						<div class="form-row ">
-							<div class="col-sm-3 offset-sm-1">
-							<label for="RwaRegNo" ><%=Information.RWARegNo%> </label>
-								<div class="input-group">
-	 								<input type="text" class="form-control "	id="RwaRegNo" name="RwaRegNo" 
-	 								readonly value=<%=session.getAttribute("1")%>>
-								</div>
+  						<div class="form-row ">
+							<div class="col-sm-12  offset-sm-0" style="padding-left:20px; padding-right:20px">
+								<p class="text-danger text-center"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
+																<%session.removeAttribute("Message");%>
 							</div>
-							<div class="col-sm-3 offset-sm-1">
-								<label for="WaterTankNo" class="col-form-label"><%=Information.TankerNo%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="WaterTankNo" name="WaterTankNo" 
-	 								readonly value=<%=session.getAttribute("2")%>>
+						</div>
+						<br /> 
+							<% ArrayList<TankerModel> wTanker = (ArrayList)session.getAttribute("TankerInfo");%>
+							<%if (wTanker.size()>0) {
+								Iterator<TankerModel> iterators = wTanker.iterator();
+								while (iterators.hasNext()) {
+									TankerModel WTList = iterators.next();
+									if(!request.getParameter("Id").equals(WTList.getTankerId())){
+										continue;
+									}
+								%>	
+								<div class="card" Style="Padding-top:0px" >
+									<div class="card-header" style="padding-right:-1px;padding-top:0px ">
+										<input type="hidden" id="IDNO" name="IDNO" value=<%=WTList.getTankerId() %>> 
+										<div class="form-group row" >
+											<label class ="col-sm-2 offset-sm-1 h6 col-form-label" for="RwaRegNo"><%=Information.RWARegNo%></label>
+										    <div class="col-sm-2 offset-sm-0 h6">
+				 								<input type="text" class="form-control-plaintext  is-valid"	id="RwaRegNo" name="RwaRegNo" 
+				 								readonly value= ShowWaterTankerDataForUpdate>
+										    </div>
+											<label for="WaterTankNo" class="col-sm-2 offset-sm-0 h6 col-form-label"><%=Information.WaterTankNo%></label>
+											<div class="col-sm-1 offset-sm-0 h6">
+												<input type="text" class="form-control-plaintext is-valid"	id="WaterTankNo" name="WaterTankNo" 
+				 								readonly value=<%=WTList.getTankerId()%>>
+											</div>
+											<label for="TankerNo" class="col-sm-2 offset-sm-0 h6 col-form-label"><%=Information.TankerNo%></label>
+											<div class="col-sm-2 offset-sm-0 h6">
+												<input type="text" readonly class="form-control-plaintext is-valid" 	id="TankerNo" name="TankerNo" 
+												value=<%=WTList.getTankerNo() %> >
+											</div>
+										</div>
+		
+										<div class="form-group row" >
+											<label class ="col-sm-2 offset-sm-1 h6 col-form-label" for="TankerArrivalOn"><%=Information.TankerArrivalOn%></label>
+										    <div class="col-sm-2 offset-sm-0 h6">
+												<input type="date" readonly class="form-control-plaintext"	id="TankerArrivalOn"name="TankerArrivalOn" 
+													value=<%=WTList.getTankerArrivalDateFrom() %> readonly>
+										    </div>
+											<label class ="col-sm-2 offset-sm-0 h6 col-form-label" for="WtrSuplrNum"><%=Information.WtrSuplrNum %></label>
+										    <div class="col-sm-3 offset-sm-0 h6">
+				 								<input type="text" class="form-control-plaintext  is-valid"	id="WtrSuplrNum" name="WtrSuplrNum" 
+				 								readonly value= <%=WTList.getWaterSupplier() %>>
+										    </div>
+										</div>
+									</div>
+									<div class="card-body" >
+										<div class="form-row">
+											<div class="col-sm-3 offset-sm-1">
+												<label for="VerifiedBy" class="col-form-label"><%=Information.VerifiedByTankerIn%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid"	id="VerifiedBy"	name="VerifiedBy" 
+													value=<%=WTList.getVerifiedByTankerIn() %>>
+												</div>
+											</div>
+											<div class="col-sm-3 offset-sm-1">
+												<label for="TankerInTime"><%=Information.TankerInTime%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid" 	id="TankerInTime"name="TankerInTime" 
+													value=<%=WTList.getTankerInTime() %>>
+												</div>
+											</div>
+			
+											<div class="col-sm-2 offset-sm-1">
+												<label for="WaterLevelIn" class="col-form-label"><%=Information.WaterLevelIn%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid"	id="WaterLevelIn" name= "WaterLevelIn"
+													value=<%=WTList.getWaterLevelIn() %>>
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col-sm-3 offset-sm-1">
+												<label for="VerifiedByTankerOutTime" class="col-form-label"><%=Information.VerifiedByTankerOut%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid"	id="VerifiedByTankerOutTime" 
+													value=<%=WTList.getVerifiedByTankerOut() %>>
+												</div>
+											</div>
+											<div class="col-sm-3 offset-sm-1">
+												<label for="WaterLevelOut" class="col-form-label"><%=Information.WaterLevelOut%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid"	id="WaterLevelOut" name ="WaterLevelOut"
+													value=<%=WTList.getWaterLevelOut() %>>
+												</div>
+											</div>
+											<div class="col-sm-2 offset-sm-1">
+												<label for="TankCapcity"><%=Information.TankCapcity%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid"	id="TankCapcity" name="TankCapcity"	
+													value=<%=WTList.getTankerCapacity() %>  >
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col-sm-3 offset-sm-1">
+												<label for="DriverName"><%=Information.DriverName%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid"		id="DriverName"name="DriverName" 
+													value=<%=WTList.getDriverName() %>>
+												</div>
+											</div>
+											<div class="col-sm-3 offset-sm-1">
+												<label for="DlNo" class="col-form-label"><%=Information.DlNo%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid"	id="DlNo"	name="DlNo" 
+													value=<%=WTList.getDLNO() %>>
+												</div>
+											</div>
+											<div class="col-sm-2 offset-sm-1">
+												<label for="MobileNo" class="col-form-label"><%=Information.MobileNo%></label>
+												<div class="input-group">
+													<input type="text" class="form-control is-invalid"	id="MobileNo" name="MobileNo"
+													value=<%=WTList.getDrvMobilNo() %>>
+												</div>
+											</div>
+										</div>
+									</div> <!-- closing of inner card body -->
+								</div> <!-- closing of inner card -->
 
-								</div>
-							</div>
-						</div>	
-<%--
-						 <div class="form-row">
-							<div class="col-sm-3 offset-sm-1">
-								<label for="WtrSuplrNum"><%=Information.WtrSuplrNum %>></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="WtrSuplrNum" name="WtrSuplrNum" 
-									value=<%=WTList.getWaterSupplier() %>>
-								</div>
-							</div>
-							<div class="col-sm-3 offset-sm-1">
-								<label for="TankerNo"><%=Information.TankerNo%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid" 	id="TankerNo" name="TankerNo" 
-									value=id readonly>
-								</div>
-							</div>
-							<div class="col-sm-2 offset-sm-1">
-								<label for="TankCapcity"><%=Information.TankCapcity%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="TankCapcity" name="TankCapcity"	
-									value=<%=WTList.getTankerCapacity() %>  >
-								</div>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-sm-3 offset-sm-1">
-								<label for="DriverName"><%=Information.DriverName%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"		id="DriverName"name="DriverName" 
-									value=<%=WTList.getDriverName() %>>
-								</div>
-							</div>
-							<div class="col-sm-3 offset-sm-1">
-								<label for="DlNo" class="col-form-label"><%=Information.DlNo%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="DlNo"	name="DlNo" 
-									value=<%=WTList.getDLNO() %>>
-								</div>
-							</div>
-							<div class="col-sm-2 offset-sm-1">
-								<label for="MobileNo" class="col-form-label"><%=Information.MobileNo%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="MobileNo" name="MobileNo"
-									value=<%=WTList.getDrvMobilNo() %>>
-								</div>
-							</div>
-							
-						</div>
-						<div class="form-row">
-							<div class="col-sm-3 offset-sm-1">
-								<label for="TankerArrivalOn"><%=Information.TankerArrivalOn%></label>
-								<div class="input-group">
-									<input type="date" class="form-control is-invalid"	id="TankerArrivalOn"name="TankerArrivalOn" 
-									value=<%=WTList.getTankerArrivalDateFrom() %> readonly>
-								</div>
-							</div>
-							<div class="col-sm-3 offset-sm-1">
-								<label for="VerifiedBy" class="col-form-label"><%=Information.VerifiedByTankerIn%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="VerifiedBy"	name="VerifiedBy" 
-									value=<%=WTList.getVerifiedByTankerIn() %>>
-								</div>
-							</div>
-							<div class="col-sm-2 offset-sm-1">
-								<label for="WaterLevelIn" class="col-form-label"><%=Information.WaterLevelIn%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="WaterLevelIn" name= "WaterLevelIn"
-									value=<%=WTList.getWaterLevelIn() %>>
-								</div>
-							</div>
-							
-						</div>
-						<div class="form-row">
-							<div class="col-sm-3 offset-sm-1">
-								<label for="TankerInTime"><%=Information.TankerInTime%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid" 	id="TankerInTime"name="TankerInTime" 
-									value=<%=WTList.getTankerInTime() %>>
-								</div>
-							</div>
-							<div class="col-sm-3 offset-sm-1">
-								<label for="VerifiedByTankerOutTime" class="col-form-label"><%=Information.VerifiedByTankerOut%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="VerifiedByTankerOutTime" 
-									value=<%=WTList.getVerifiedByTankerOut() %>>
-								</div>
-							</div>
-							<div class="col-sm-2 offset-sm-1">
-								<label for="WaterLevelOut" class="col-form-label"><%=Information.WaterLevelOut%></label>
-								<div class="input-group">
-									<input type="text" class="form-control is-invalid"	id="WaterLevelOut" name ="WaterLevelOut"
-									value=<%=WTList.getWaterLevelOut() %>>
-								</div>
-							</div>
-						</div>
-
- --%>
- 						<br /> <br />  
+								<% }   /* closing of while loop  */
+							}%>   <!--  closing of if statement --> 
+ 						<br />   
 						<div class="form-row">
 							<div class="col-sm-2 offset-sm-4 ">
 								<p>
@@ -209,7 +202,6 @@
 								</button>
 							</div>
 						</div>
-						<br />
 					</div><!-- col -->
 				</div> <!-- rwo -->
 			</div>  <!--end of card BODY -->
@@ -248,7 +240,6 @@
 		</div>
 	</div>
 	<br />
-
 	<div class="container-flucid">
 		<div class="row  header_for_fix">
 			<div class="col-lg-12 bg-dark" Style="padding-bottom: 0px">

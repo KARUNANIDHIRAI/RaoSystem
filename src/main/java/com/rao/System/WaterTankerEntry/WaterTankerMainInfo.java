@@ -73,14 +73,17 @@ public class WaterTankerMainInfo extends HttpServlet {
 		System.out.println("Step 1: Information Model Creating ");
 		try {
 			TankerModel user = new TankerModel();
+
 			user.setRwaRegNo("MK106");
 			user.setActionType(request.getParameter("ActionType"));
 			user.setTankerNo(request.getParameter("TankerNo"));
 			user.setTankerArrivalDateFrom(request.getParameter("DateFrom"));
+
 			ArrayList<TankerModel> TankerList = new ArrayList<>();
+
 			System.out.println("User Search Parameter :"+ user.RwaRegNo + "," +user.ActionType + "," +user.TankerNo + "," +user.TankerArrivalDateFrom);
 			user.setTranType("VIEW");
-			TankerList = DAOWaterTankerDetails.WaterTankerTInfoRetriev(user);
+			TankerList = DAOWaterTankerDetails.WaterTankerInfoRetriev(user);
 			if (TankerList.size()==0) {
 				session.setAttribute("Message", " No Data Found. Please Enter Valid Search Criteria. ");
 				System.out.println("\nNo Data Found. Please Enter Valid Search Criteria.");
@@ -101,7 +104,7 @@ public class WaterTankerMainInfo extends HttpServlet {
 				System.out.println("End of  process WaterSummaryList");
 				break;
 			case 2:
-				System.out.println("Step 4.Servlet outout case-2");
+				System.out.println("Step 4.Servlet output case-2");
 				request.setAttribute("WaterTanker", TankerList);
 				request.getRequestDispatcher("WaterSupplierInfo/WaterSupplierMainPage.jsp").forward(request, response);
 				System.out.println("End of  process WaterSummaryList");

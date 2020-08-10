@@ -67,7 +67,7 @@
 						
 						<div class="form-row ">
 							<div class="col-sm-3 offset-sm-1">
-							<label for="RwaRegNo" ><%=Information.RwaRegNO%></label>
+							<label for="RwaRegNo" ><%=Information.RWARegNo%></label>
 								<div class="input-group">
 	 								<input type="text" class="form-control "	id="RwaRegNo" name="RwaRegNo" readonly>
 								</div>
