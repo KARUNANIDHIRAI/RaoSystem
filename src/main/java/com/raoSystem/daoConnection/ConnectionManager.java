@@ -2,6 +2,14 @@ package com.raoSystem.daoConnection;
 
 import java.sql.*;
 import java.util.*;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+import com.raoSystem.constants.ComVar;
 public class ConnectionManager {
 	static Connection con;
 	static String dburl;
@@ -33,8 +41,6 @@ public class ConnectionManager {
 		return con;
 	}
 }
-
-
 
 /*
  * import java.sql.Connection; import java.sql.DriverManager; import

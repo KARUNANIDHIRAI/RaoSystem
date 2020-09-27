@@ -18,6 +18,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" 	href='webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
 <link rel="stylesheet" href='webjars/bootstrap/4.3.1/css/bootstrap.css'>
+<link rel="stylesheet" href='webjars/jquery-ui/1.12.1/jquery-ui.css'>
+
 <link rel="stylesheet" href="css/Custom.css" type="text/css">
 <script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" 	src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -31,6 +33,7 @@
 <script type="text/javascript"	src="webjars/datatables-buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 	
 <script type="text/javascript"	src="webjars/datatables.net-select/1.3.1/js/dataTables.select.min.js"></script>
+<script type="text/javascript" src="webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
 	<body>
 		<div class="container-flucid" > 
 			<div class="row" >
@@ -59,10 +62,11 @@
 				</div>
 			</div>
 		</div>
-	<form id="abc" name="knrai" action="" method="post" 	class="form-horizontal needs-validation" autocomplete="off" novalidate>
+	<form id="abc" name="knrai" action="RwaInfo?Action=GenEnquiry" method="post" 	class="form-horizontal needs-validation" autocomplete="off" novalidate>
 		<div class="row justify-content-md-center">
 			<div class="col-sm-12">
 				<div class="form-row">
+				
 					<table id="example" class="display" style="width:100%">
 				        <thead>
 				            <tr>
@@ -90,30 +94,6 @@
 				                <td>63</td>
 				                <td>2011/07/25</td>
 				                <td>$170,750</td>
-				            </tr>
-				            <tr>
-				                <td>Ashton Cox</td>
-				                <td>Junior Technical Author</td>
-				                <td>San Francisco</td>
-				                <td>66</td>
-				                <td>2009/01/12</td>
-				                <td>$86,000</td>
-				            </tr>
-				            <tr>
-				                <td>Cedric Kelly</td>
-				                <td>Senior Javascript Developer</td>
-				                <td>Edinburgh</td>
-				                <td>22</td>
-				                <td>2012/03/29</td>
-				                <td>$433,060</td>
-				            </tr>
-				            <tr>
-				                <td>Airi Satou</td>
-				                <td>Accountant</td>
-				                <td>Tokyo</td>
-				                <td>33</td>
-				                <td>2008/11/28</td>
-				                <td>$162,700</td>
 				            </tr>
 				            <tr>
 				                <td>Brielle Williamson</td>
@@ -177,10 +157,14 @@
 				    </table>
 				</div>
 				<div class="form-row">
-					<button type="submit" 	class="form-control h5 text-white text-center "
-						style="background-color: #38ACEC" id="submit01" name="submit01"><%=Information.Submit%>
-					</button>
-
+					<div class="col-sm-5">
+						<input type ="text" id = "datepicker" name="sdt" class ="form-control">
+					</div>
+					<div class="col-sm-5">
+						<button type="submit" 	class="form-control h5 text-white text-center "
+							style="background-color: #38ACEC" id="submit01" name="submit01"><%=Information.Submit%>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -212,7 +196,7 @@
 		            $(this).addClass('selected');
 		        }
 		    } );
-		    
+		   $("#datepicker").datepicker(); 
 		} );
 	</script>
 

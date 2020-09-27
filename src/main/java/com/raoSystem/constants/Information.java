@@ -173,6 +173,7 @@ public class Information {
 // reach to us
 		public static final String Emailmsg = "We'll never share your email with anyone else.";
 		public static final String Submit ="Submit";
+		public static final String Reset ="Reset";
 		public static final String Password ="Password";
 		public static final String SecCode ="Security Code";
 		public static final String UserID ="UserID";
@@ -397,6 +398,7 @@ public class Information {
 		public static final String Customer="Customer";
 		public static final String Vendor="Vendor";
 		public static final String Info="Information";
+		public static final String Registration="Registration";
 		
 		
 		

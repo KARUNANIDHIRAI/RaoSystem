@@ -49,19 +49,19 @@
 							<br /> 
 							<div class="row">
 						   		<div class="col-sm-8 text-center offset-sm-2">
-						    			<p class="text-dark h5"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
-																<%session.removeAttribute("Message");%>
+						    		<p class="text-dark h5"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
+										<%session.removeAttribute("Message");%>
 					    		</div>
 					  		</div>
 				    		<br/> <br/>
 							<div class="row">
 						   		<div class="col-sm-8 text-center offset-sm-2">
-									<p>	<a href="LoginPage.jsp" class="btn btn-primary h6"><%= Information.GotoLoginPage%></a> </p>					    		</div>
-					    		</div>
-					  		</div>
-						</div>
+									<p>	<a href="LoginPage.jsp" class="btn btn-primary h6"><%= Information.GotoLoginPage%></a> </p>
+								</div>
+					    	</div>
+					  	</div>
 					</div>
-			  	</div>
+				</div>
 			</div>
 		</div>
 		<br /> <br />
@@ -103,8 +103,6 @@
            		</div>
 			</div>
 		</div>
-		
-
 		
 	</body>
 </html>

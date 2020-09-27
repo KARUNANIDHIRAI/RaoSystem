@@ -427,6 +427,60 @@
   	<description></description>
   	<servlet-class>com.rao.System.PO.EditPO</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>newServWork</servlet-name>
+  	<display-name>newServWork</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.MaintWork.newServWork</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TempNewServWork</servlet-name>
+  	<display-name>TempNewServWork</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.MaintWork.TempNewServWork</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>NewMaintWork</servlet-name>
+  	<display-name>NewMaintWork</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.MaintWork.NewMaintWork</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>MainMWorkPage</servlet-name>
+  	<display-name>MainMWorkPage</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.MaintWork.MainMWorkPage</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ItemMainInfo</servlet-name>
+  	<display-name>ItemMainInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.MASItem.ItemMainInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ContactUsInfo</servlet-name>
+  	<display-name>ContactUsInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.ContactUs.ContactUsInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RwaInfo</servlet-name>
+  	<display-name>RwaInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.RwaReg.RwaInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ValidateUserLogin</servlet-name>
+  	<display-name>ValidateUserLogin</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.login.ValidateUserLogin</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserLoginInfo</servlet-name>
+  	<display-name>UserLoginInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.UserLogin.UserLoginInfo</servlet-class>
+  </servlet>
  
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
@@ -709,6 +763,42 @@
   <servlet-mapping>
   	<servlet-name>EditPO</servlet-name>
   	<url-pattern>/EditPO</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>newServWork</servlet-name>
+  	<url-pattern>/newServWork</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TempNewServWork</servlet-name>
+  	<url-pattern>/TempNewServWork</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>NewMaintWork</servlet-name>
+  	<url-pattern>/NewMaintWork</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>MainMWorkPage</servlet-name>
+  	<url-pattern>/MainMWorkPage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ItemMainInfo</servlet-name>
+  	<url-pattern>/ItemMainInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ContactUsInfo</servlet-name>
+  	<url-pattern>/ContactUsInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RwaInfo</servlet-name>
+  	<url-pattern>/RwaInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ValidateUserLogin</servlet-name>
+  	<url-pattern>/ValidateUserLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserLoginInfo</servlet-name>
+  	<url-pattern>/UserLoginInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

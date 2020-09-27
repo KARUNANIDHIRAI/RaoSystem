@@ -49,8 +49,8 @@
 
 	<script type="text/javascript" 	src="../webjars/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript" 	src="../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- 		<script type="text/javascript" src="../webjars/popper.js/1.14.3/popper.min.js"></script>
-  		<script type="text/javascript" src="../webjars/popper.js/1.14.3/popper.js"></script>
+	<script type="text/javascript" src="../webjars/popper.js/1.14.3/popper.min.js"></script>
+	<script type="text/javascript" src="../webjars/popper.js/1.14.3/popper.js"></script>
 
 	<link rel="stylesheet"  type="text/css" href="../webjars/datatables/1.10.19/css/jquery.dataTables.min.css">
 	<script type="text/javascript" src="../webjars/datatables/1.10.19/js/jquery.dataTables.min.js"></script>

@@ -12,12 +12,12 @@
 	<body>
 		<div class="container-flucid">
 			<div class="row">
-				<div class="col-lg-12 text-right  margin-left:0  margin-right:0px" style="background-color:#000080">
+				<div class="col-lg-12 text-right  margin-left:0px  margin-right:0px" style="background-color:#000080">
 					<ul class="list-inline">
 	                	<li class="list-inline-item "><a class="text-light" href="RwaHomePage.jsp"> <%= Information.raoHome%> </a> </li>
 	                	<li class="list-inline-item "><a class="text-light" href="LoginPage.jsp"> <%= Information.LogoutTitle%> </a> </li>
 	                	<li class="list-inline-item "><a class="text-light" href="#"> <%= Information.joinPartner%> </a> </li>
-	                	<li class="list-inline-item "><a class="text-light" href="#"> <%= Information.reachus%> </a> </li>
+	                	<li class="list-inline-item "><a class="text-light" href="../ContactUs/ContactUsMainPage.jsp"> <%= Information.reachus%> </a> </li>
 					</ul>
 				</div>
 			</div>

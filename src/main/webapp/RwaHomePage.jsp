@@ -71,8 +71,10 @@
 					        	<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 					      	</li>
 					      	<li class="nav-item dropdown">
-					        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= Information.rwaHomePageMaster%></a>
-								<div class="dropdown-menu " id="megha_menu" style ="width:500px;padding-left:20px; " aria-labelledby="navbarDropdown" >
+					        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					        		<%= Information.rwaHomePageMaster%>
+					        	</a>
+								<div class="dropdown-menu "  style ="width:500px;padding-left:20px; margin-bottom:1em" aria-labelledby="navbarDropdown" >
 									<div class="row">
 										<div class="col-sm-4">
 									    	<a class="text-dark" href = "RwaRegistration.jsp">RWA Information</a>
@@ -83,11 +85,11 @@
 									    	<a class="text-dark" href = "DRVInformation/DRVMainPage.jsp">Driver Information </a>
 									    	<a class="text-dark" href = "SSPInformation/SSPMainPage.jsp">Security Staff Information</a>
 									    	<a class="text-dark" href = "DwellerInformation/NewDwellerInfo.jsp">Tenant Information</a>
-									    	<a class="text-dark" href = "Supplier.jsp">Supplier Master </a>
 									    	<a class="text-dark" href = "#">Maintenance Staff</a>
 										</div>
 										<div class="col-sm-4">
-										    <P>	<a class="text-dark" href="#">Item </a> </P>
+									    	<a class="text-dark" href = "Supplier.jsp">Supplier Master </a>
+										    <a class="text-dark" href="MasterItem/MainItemPage.jsp">Item Information</a>
 										</div>
 								    </div>
 								</div>
@@ -101,14 +103,14 @@
 									<div class="row">
 										<div class="col-sm-4">
 										    <P>	<a class="text-dark" href="WaterSupplierInfo/WaterSupplierMainPage.jsp">Water Tanker </a> </P>
-										    <P>	<a class="text-dark" href="#">Issue Visitor/Guest Gate Pass</a> </P>
+										    <P>	<a class="text-dark" href="#">Issue Visitor Gate Pass</a> </P>
 										    <P>	<a class="text-dark" href="PO/MainPO.jsp"> Purchase Order[PO]</a> </P>
 										    <P>	<a class="text-dark" href="MaterialPurchase/MaterialPurchaseHomePage.jsp"> Material Received[PO]</a> </P>
 										    <P>	<a class="text-dark" href="#"> Material Rejected[PO]</a> </P>
 										    <P>	<a class="text-dark"href="#"> Material Pending[PO]</a> </P>
 										</div>
 										<div class="col-sm-4">
-										    <P>	<a class="text-dark" href="#">Water Tanker </a> </P>
+										    <P>	<a class="text-dark" href="Service/MainServicePage.jsp">Maintenance Work </a> </P>
 										    <P>	<a class="text-dark" href="#">Issue Visitor Gate Pass</a> </P>
 										    <P>	<a class="text-dark" href="#"> Purchase Order[PO]</a> </P>
 										    <P>	<a class="text-dark" href="#"> Material Received[PO]</a></P>
@@ -173,6 +175,21 @@
 						          	<a class="dropdown-item" href="#">Something else here</a>
 						        </div>
 					      	</li>
+					      	<li class="nav-item dropdown">
+					      		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          		Utility
+					        	</a>
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						        	<a class="dropdown-item" href="RwaRegistration/RwaRegMainPage.jsp">RWA Registration</a>
+						        	<a class="dropdown-item" href="UserLogin/UserLoginMainPage.jsp">Create Users</a>
+						        	<a class="dropdown-item" href="UserLogin/UserLoginMainPage.jsp">SetUp Configuration Parameter</a>
+						          	<div class="dropdown-divider"></div>
+						          	<a class="dropdown-item" href="#">Reset Password</a>
+						          	<a class="dropdown-item" href="#">Forget Password</a>
+						        </div>
+					      	</li>
+
+
 					      	<li class="nav-item dropdown">
 					      		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					          		Help
@@ -283,7 +300,7 @@
 							<div class="row">
 								<div class="col-sm-4">
 							    	<a class="dropdown-item" href="WaterSupplierInfo/WaterSupplierMainPage.jsp">Water Tanker </a>
-							    	<a class="dropdown-item" href="#">Issue Visitor/Guest Gate Pass</a>
+							    	<a class="dropdown-item" href="#">Issue Visitor Gate Pass</a>
 							    	<a class="dropdown-item" href="PO/MainPO.jsp"> Purchase Order[PO]</a>
 							    	<a class="dropdown-item" href="MaterialPurchase/MaterialPurchaseHomePage.jsp"> Material Received[PO]</a>
 							    	<a class="dropdown-item" href="#"> Material Rejected[PO]</a>
@@ -400,7 +417,6 @@
 			</div>
  --%>
 			<br /> 
-
 			<div class="row">
 				<div class="col-sm-3">
 			    	<div class="card text-center">

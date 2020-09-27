@@ -128,6 +128,12 @@
 		    <artifactId>jquery-validation</artifactId>
 		    <version>1.19.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/bootstrap-maxlength -->
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>bootstrap-maxlength</artifactId>
+		    <version>1.10.0</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
@@ -168,17 +174,53 @@
 		    <version>2.1.2</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/datatables-tabletools -->
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>datatables-tabletools</artifactId>
+		    <version>2.2.4</version>
+		</dependency>
 
-<!-- https://mvnrepository.com/artifact/org.webjars/datatables-tools -->
-
-<!-- <dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>datatables-tools</artifactId>
-    <version>2.1.5</version>
-</dependency>
- -->
-
-
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>5.4.21.Final</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-ehcache</artifactId>
+		    <version>5.4.21.Final</version>
+		</dependency>
+		 
+		<!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->
+		<dependency>
+		    <groupId>net.sf.ehcache</groupId>
+		    <artifactId>ehcache</artifactId>
+		    <version>2.10.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/datatables-tools -->
+		
+		<!-- <dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>datatables-tools</artifactId>
+		    <version>2.1.5</version>
+		</dependency>
+		 -->
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery-ui -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery-ui</artifactId>
+		    <version>1.12.1</version>
+		</dependency>
 	</dependencies>
 	<build>
     	<finalName>RAOSystem</finalName>

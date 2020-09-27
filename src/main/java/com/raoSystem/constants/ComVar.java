@@ -4,6 +4,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 public class ComVar {
 	public static String conn="";
 	public static String sqlpstmt= "";
@@ -12,7 +15,9 @@ public class ComVar {
     public static Statement pstmt = null;
  	public static CallableStatement myStat = null;
  	public static CallableStatement callableStat = null;
- 	
+    public static Session sessionObj;
+	public static SessionFactory sessionFactoryObj;
+	
 	public static void disposeConnection(Connection Conn,CallableStatement myStat, ResultSet prst) {
 		if (ComVar.prst != null) {
 			try {

@@ -89,6 +89,7 @@ public class CaptchServlet extends HttpServlet {
 			Random random = new Random();
 			while (captchBuffer.length()<captchalength) {
 				int index = (int) (random.nextFloat()*captcha.length());
+				System.out.println("random.nextFloat(): " + random.nextFloat()+ " captcha.length(): "+random.nextFloat()*captcha.length() );
 				captchBuffer.append(captcha.substring(index,index+1));
 			}
 			return captchBuffer.toString();
