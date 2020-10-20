@@ -46,7 +46,7 @@
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item " id="ViewUser"><a class="nav-link active text-white "
 										style="background-color: #000080" href="#"><%=ItemConstant.Item%> <%=ItemConstant.Master%> <%=ItemConstant.Info%></a></li>
-									<li class="nav-item " id="NEWPO"><a class="nav-link text-light" href="NewPO.jsp">
+									<li class="nav-item " id="NEWPO"><a class="nav-link text-light" href="../MasterItem/NewItem.jsp">
 										<%=ItemConstant.New%> <%=ItemConstant.Item%> <%=ItemConstant.Info%></a></li>
 									<li class="nav-item " id="WtrTankInfoSummary"><a class="nav-link text-light"
 										href="../MIS/WaterSupplySumSearch.jsp"><%=ItemConstant.Item%> <%=ItemConstant.Master%> <%=ItemConstant.Summary%></a></li>

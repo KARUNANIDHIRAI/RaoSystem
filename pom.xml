@@ -113,7 +113,12 @@
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.3.1</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap-datetimepicker -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>bootstrap-datetimepicker</artifactId>
+		    <version>2.4.4</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
 		<dependency>
@@ -128,12 +133,21 @@
 		    <artifactId>jquery-validation</artifactId>
 		    <version>1.19.0</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.webjars.bower/bootstrap-maxlength -->
 		<dependency>
 		    <groupId>org.webjars.bower</groupId>
 		    <artifactId>bootstrap-maxlength</artifactId>
 		    <version>1.10.0</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars/datetimepicker -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>datetimepicker</artifactId>
+		    <version>2.5.1</version>
+		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
@@ -207,20 +221,27 @@
 		    <artifactId>ehcache</artifactId>
 		    <version>2.10.5</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.webjars/datatables-tools -->
-		
-		<!-- <dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>datatables-tools</artifactId>
-		    <version>2.1.5</version>
-		</dependency>
-		 -->
 		<!-- https://mvnrepository.com/artifact/org.webjars/jquery-ui -->
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>jquery-ui</artifactId>
 		    <version>1.12.1</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <version>2.13.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
+		    <version>2.13.0</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
     	<finalName>RAOSystem</finalName>
@@ -233,11 +254,6 @@
 		        	<source>1.8</source>
 		          	<target>1.8</target>
 		        </configuration>
-
-<!-- 		        <groupId>org.springframwork.boot</groupId>
-		        <artifactId>spring-boot-maven-plugin</artifactId>
- -->
-
 		    </plugin>
 	    </plugins>
 	</build>

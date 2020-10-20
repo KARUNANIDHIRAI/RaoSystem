@@ -278,10 +278,115 @@ $(document).ready(function(){
 		}
 		
 	}
-	
 
+	$("#subsDate").datepicker();
 	
-});
+	$("#ViewSubscription").click(function(){
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"subView"},
+		 	dataType: 'Json',
+			url:'../SubscriptionInfo',
+			success:function(result){
+				subsList(result);
+			}	
+		});	 // eof AJAX
+	});
+
+	$(document).on('click', "Button[name='DelSubsInventory']", function(){ 
+		var con = confirm("Do you really want to delete? ");
+		alert("checking");
+		if(con){
+			var subsDelID  = $(this).val();
+			alert("checking del id:" +subsDelID);
+			var request =$.ajax({
+				type:'POST',
+				data:{ subsdel : subsDelID, Action:"subscriptionDel"},
+			 	dataType: 'json',
+				url:'../SubscriptionInfo',
+				success:function(result){
+					subsList(result);
+				}	
+			});	 // eof AJAX
+		}
+	});
+			
+	function subsList(result){
+		$('#nwItm').dataTable({
+		    destroy: true,
+			"data":result,
+			 columnDefs: [
+				 {	targets: -1, className: 'dt-body-right'	},
+			 ],
+		    "columns": [
+				 { title:	'SNO'	            ,data:"SNO"},
+				 { title:	'RWA Reg No'        ,data:"rwaNo"},
+				 { title:	'Subscription Type'  ,data:"subType"},  
+				 { title:	'Eff Date'          ,data:"efDate"},
+				 { title:	'Scription'	        ,data:"subscription"}, 
+				 { title:	'Amount'			,data:"amount"}, 
+				 { title:	'Type'	            ,data:"expType"}, 
+	    		 { title:	'Del'		  ,data:"iDNO",
+			     	"render": function(data,type,row,meta){
+			       	 	return	'<button type="button" name="DelSubsInventory"  value="'+data+'" class="btn btn-danger btn-sm"	data-toggle="tooltip" data-placement="right" title="Click to remove item" onclick="RemoveItem('+data+')"><span>&#9988;</span></button>'; 
+		        	},
+		        }
+			]
+		}); // EOF table
+	}// EOF table FUNCTION	
+	$("#subsAdd").click(function(){
+		var subscriptionType  = $("#SubscriptionType").val();
+		var subsDate = $("#subsDate").val();
+		var subscription  = $("#subscription").val();
+		var subAmt = $("#subAmt").val();
+		var fixFloat  = $("#fixFloat").val();
+		if(subsValid(subscriptionType, subsDate , subscription,subAmt, fixFloat )){
+			addSubs(subscriptionType, subsDate , subscription,subAmt, fixFloat);
+		}
+	});
+	function subsValid(subscriptionType, subsDate , subscription,subAmt, fixFloat){
+		if(subscriptionType==0){
+			$("#SubscriptionType").focusin();
+			$("#SubscriptionType").val("Subscription Type can't be blank");
+			return false;
+		}else if(subsDate==0){
+			$("#subsDate").focusin();
+			$("#subsDate").val("subscription Date can't be blank");
+			return false;
+		}else if(subscription==0){
+			$("#subscription").focusin();
+			$("#subscription").val("subscription can't be blank");
+			return false;
+		}else if(subAmt==0){
+			$("#subAmt").focusin();
+			$("#subAmt").val("sub Amt can't be blank");
+			return false;
+		}else if(fixFloat==0){
+			$("#fixFloat").focusin();
+			$("#fixFloat").val("fixFloat can't be blank");
+			return false;
+		}
+    	$("#SubscriptionType option[value='0']").attr('selected', 'selected');				    	
+		$("#subsDate").val("");
+    	$("#Subscription option[value='0']").attr('selected', 'selected');				    	
+		$("#subAmt").val("");
+    	$("#fixFloat option[value='0']").attr('selected', 'selected');				    	
+		return true;
+	}
+	function addSubs(subscriptionType, subsDate , subscription,subAmt, fixFloat){
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"NewSubscription", "SubscriptionType" : subscriptionType, "subsDate" : subsDate,
+				 "subscription" :subscription, "subAmt" :subAmt ,"fixFloat" :fixFloat},
+		 	dataType: 'Json',
+			url:'../SubscriptionInfo',
+			success:function(result){
+				subsList(result);
+			}	
+		});	 // eof AJAX
+	}// eof ValidateUserEmail()	
+	
+}); // end of documen ready function
 function ulInfo() {
 	countryList();
 	var request =$.ajax({

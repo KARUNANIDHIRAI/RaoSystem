@@ -1,5 +1,4 @@
-package com.raoSystem.login;
-
+package com.rao.System.UserLogin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,16 +15,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.mail.EmailException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.rao.System.UserLogin.HDAOUserLogin;
 import com.raoSystem.password.SendOTP;
 
-
-public class ValidateUserLogin extends HttpServlet {
+public class UserLoginInfoValidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
- 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//processRequest( request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,102 +68,132 @@ public class ValidateUserLogin extends HttpServlet {
 				showLoginPageVal(loginObj);
 				
 				erMsg += "Step 2 Show value OK: ,";
-				String Captcha1 = loginObj.get("Captcha");//(String) loginObj.get("Captcha");	
-				
+				String Captcha1 = loginObj.get("LblCaptcha");//(String) loginObj.get("Captcha");	
+				String valpwd="Invalid";
 				if(!Captcha1.equals(loginObj.get("LblCaptcha"))) {
-					String hDAOMessage= "Invalid Captcha entered !";
-					session.setAttribute("Message",hDAOMessage );
-					response.sendRedirect("UserLogin/OTPValidate.jsp");
-				}else {
 					boolean valEmail = HDAOUserLogin.validEmail(loginObj.get("email"), erMsg);
 					if(valEmail) {
 						SendOTP mail = new SendOTP();	
-						String otp=mail.emailsend(loginObj.get("email"));
-						erMsg += "OTP sent";
+						String otp=mail.emailsend(loginObj.get("email")); // call method to send OTP
 						if(otp.length()>=4){  
-//					        RequestDispatcher rd=request.getRequestDispatcher("UserLogin/OTPValidate.jsp");  
-					        RequestDispatcher rd=request.getRequestDispatcher("UserLogin/Watchword.jsp");  
-					        rd.forward(request, response);  
-						}else{  
-							out.print("Sorry UserName or Password Error!");  
-						    RequestDispatcher rd=request.getRequestDispatcher("UserLogin/UserLoginPwdReset.jsp");  
-						    rd.include(request, response);  
-				        }  
-					}else {
-						erMsg += "Error in sending OTP! Check email/Mobile";
-						out.print("Sorry UserName or Password Error!");  
-					    RequestDispatcher rd=request.getRequestDispatcher("UserLogin/UserLoginPwdReset.jsp");  
-					    rd.include(request, response);  
+							erMsg += "OTP sent ";
+							loginObj.put("OTP", otp);
+							boolean valOTP = HDAOUserLogin.UpdateULOTP(loginObj, erMsg); //updage OPT in loginUser for validate OTP
+							if(valOTP) {
+								valpwd="Valid";
+							}
+						}  
 					}
 				}
+				out.print(valpwd);
+				out.flush();
 				erMsg += "Step 4. HDOA OK:,";
 				break;
 			case "chkOT":
-				System.out.println("checking opt");
-				String OTP = request.getParameter("optNo");
-				String email = "prashantrai1208@gmail.com";
-				String rwaNo = "MK103";
-				erMsg += "Step 1.1 chk otp Form value Get OK: ,";
-				boolean valEmail = HDAOUserLogin.UpdateOTP(OTP, email,rwaNo, erMsg);
-				if(valEmail) {
-					erMsg += "Step 4. Update OTP OK:" +valEmail + " , ";
-			        RequestDispatcher rd=request.getRequestDispatcher("UserLogin/Watchword.jsp");  
-			        rd.forward(request, response);  
-				}else {
-					erMsg += "Step 4. Error in Update OTP:";
-					out.print("Invalid OTP ! Please Enter Valid OTP ");  
-			        RequestDispatcher rd=request.getRequestDispatcher("UserLogin/OTPValidate.jsp");  
-			        rd.forward(request, response);  
-				}
+				erMsg += "Step 1.1 Validate OTP Start: ,";
+				UserLoginModel ULOTP = new UserLoginModel(request.getParameter("email"),request.getParameter("otpNo") , "");
+				System.out.println(" pkotpval: " + ULOTP.getOtp()+ " , email : " + ULOTP.getEmail());
+				boolean valOTP = HDAOUserLogin.ValidateOTP(ULOTP, erMsg);
+			    System.out.println("valOTP: "+ valOTP);
+				erMsg += "Step 4 HDAO OK: ,";
+				String OPTValid = valOTP?"Valid OTP" :"Invalid OTP" ;	
+				erMsg += " 4.1 " +OPTValid + " OK:,";
+				out.print(OPTValid);
+				out.flush();
 				break;
-			case "chkP":
+			case "chkValidity":
+				System.out.println("Step 1.1 : chkValidity start");
 				HashMap<String, String> pwdObj = new HashMap<>();
 				pwdObj = UpdatePWDObj(pwdObj, request, session);
-				erMsg += "Step 1.1 chk passwrod update JSP Value OK: ,";
+				erMsg += "Step 1.2 update form Value OK: ,";
 				showPwdObj(pwdObj);
-		    	String hDAOMessage= "Thanks! password reset Successfully.";
-		    	String misMatchPwd = "Tehnical Problem ! Passwoed Security Mismatch.";
-		    	String password = pwdObj.get("password");
 				erMsg += "Step 2. Show Object value OK: ,";
+		    	String pwdMessage = "Tehnical Problem ! Passwoed Security Mismatch.";
+		    	String password = pwdObj.get("password");
 				if(password.equals(pwdObj.get("cPassword"))) {
 					BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder(); 
 				    String pwdBcrypt = pwdEncoder.encode(pwdObj.get("password"));
 				    if(pwdEncoder.matches(pwdObj.get("password"),pwdBcrypt) ) {
 				    	pwdObj.put("password",pwdBcrypt);
 						erMsg += "Step 2.1 PWD Encrption OK: ,";
-
 						boolean validEmail = HDAOUserLogin.UpdatePassword(pwdObj, erMsg);
-						erMsg += "Step 4. Update PWD OK:" +validEmail + " , ";
+						
+						erMsg += "Step 4. execute HDOA PWD OK:" +validEmail + " , ";
 						if(validEmail) {
-							session.setAttribute("Message",hDAOMessage );
-					        RequestDispatcher rd=request.getRequestDispatcher("SuccessMsg.jsp");  
-					        rd.forward(request, response);  
-						}else {
-							out.print(misMatchPwd);  
-					        RequestDispatcher rd=request.getRequestDispatcher("UserLogin/Watchword.jsp");  
-					        rd.forward(request, response);  
+					    	pwdMessage = "Thanks! password reset Successfully.";
 						}
-				    }else {
-						erMsg += "Step 2.1 PWD Encrption Issue: ,";
-						out.print(misMatchPwd);  
-				        RequestDispatcher rd=request.getRequestDispatcher("UserLogin/Watchword.jsp");  
-				        rd.forward(request, response);  
 				    }
-				}else{
-					erMsg += "Step 2.1 PWD Mistach: ,";
-					out.print(misMatchPwd);  
-			        RequestDispatcher rd=request.getRequestDispatcher("UserLogin/Watchword.jsp");  
-			        rd.forward(request, response);  
-			    }
+				}    
+				session.setAttribute("Message",pwdMessage);
+		        RequestDispatcher rd=request.getRequestDispatcher("SuccessMsg.jsp");  
+		        rd.forward(request, response);  
+
 				break;
+			case "uLRD" :
+				erMsg += "; 1.1 Validation Start: ";
+				String UIDR = request.getParameter("userID");
+				HashMap<String, String> uRIDObj = new HashMap<>();  
+				uRIDObj.put("email", UIDR);
+				erMsg +=  UIDR+ " ," ;
+				String uStatus = "Invalid";
+				String otpSent = "Otp Sent Fail";
+				String valEmail = HDAOUserLogin.ValidateUIDR(UIDR, erMsg);
+				
+				erMsg += " HDAO OK " + valEmail ;
+				if(valEmail!= null) { // email not null
+					uRIDObj.put("email", valEmail);
+					System.out.println("pkrEmail: " + uRIDObj.get("email"));
+					SendOTP mail = new SendOTP();	
+					String otp=mail.emailsend(valEmail); // call method to send OTP
+					
+					if(otp.length()>=1){  // opt not null
+						otpSent = "OTP sent ";
+						uRIDObj.put("OTP", otp);
+						System.out.println("pk Otp: " + uRIDObj.get("OTP"));
+						boolean uIRDOTP = HDAOUserLogin.UpdateULOTP(uRIDObj, erMsg); //updage OPT in loginUser for validate OTP
+						if(uIRDOTP) {
+							uStatus = "Valid";
+						}
+			        } 
+				}
+				erMsg += otpSent + "OTP Update" +uStatus ;
+				out.print(uStatus);
+				out.flush();
+ 				break; 
+			case "VUIRD" :
+				erMsg += "; 1.1 Validation Start: ";
+				boolean uidstat = false;
+			    UserLoginModel uIRDObj = new UserLoginModel();
+			    uIRDObj = updateUidValue(uIRDObj, request);
+				erMsg +=  " pkotpval: " + uIRDObj.getOtp()+ " , email : " + uIRDObj.getEmail()+ " ,";
+				UserLoginModel valOTP1 = HDAOUserLogin.sentUIRD(uIRDObj, erMsg);
+				System.out.println("pkotp: "+ valOTP1.getEmail());
+				if(valOTP1.getEmail().length()>=5) {
+					SendOTP mail = new SendOTP();	
+						uidstat=mail.uidSend((String)valOTP1.getEmail(),(String)valOTP1.getEmail()); // call method to send OTP
+				}
+				String uirdMessage =uidstat?"Thanks your user login ID sent to your registered email Successfully.":
+					                "Technical Error: User Login fail to recover, contact Technical Team";
+				erMsg += " UIRD sent Status : " + uidstat;
+				session.setAttribute("Message",uirdMessage);
+		        RequestDispatcher rd1=request.getRequestDispatcher("SuccessMsg.jsp");  
+		        rd1.forward(request, response);  
+ 				break;     
 			}
 		} catch (IOException e) {
 			System.out.println("Technical Error: \n"+ e);
 		} catch (EmailException e) {
 			System.out.println("Email Exception: \n"+ e);
 		}finally {
+			session.setAttribute("Message","Technical Error");
 			System.out.println(erMsg);
 		}
+	}
+
+	private UserLoginModel updateUidValue(UserLoginModel uIRDObj, HttpServletRequest request) {
+		uIRDObj.setEmail(request.getParameter("ulRID"));
+		uIRDObj.setOtp(request.getParameter("uoptNo"));
+		return uIRDObj;
 	}
 
 	private void showPwdObj(HashMap<String, String> pwdObj) {
@@ -178,8 +203,8 @@ public class ValidateUserLogin extends HttpServlet {
 	private HashMap<String, String> UpdatePWDObj(HashMap<String, String> pwdObj, HttpServletRequest request,HttpSession session) {
 		pwdObj.put("password" , request.getParameter("Pwd"));
 		pwdObj.put("cPassword", request.getParameter("CPwd"));
-		pwdObj.put("RWA"      , "MK103");
-		pwdObj.put("UID"      , "RAMA@GMAIL.COM");
+		pwdObj.put("UID"      , request.getParameter("email"));
+		pwdObj.put("OTP"      , request.getParameter("optNo"));
 		return pwdObj;
 	}
 
@@ -223,4 +248,5 @@ public class ValidateUserLogin extends HttpServlet {
 		}
 		return captchBuffer.toString();
 	}
+	
 }

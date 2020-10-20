@@ -250,6 +250,8 @@ public class Information {
 		public static final String EnterOTP="Enter OTP";
 		public static final String NewPassword="New Password";
 		public static final String ComfirmPassword="Comfirm Password";	
+
+		public static final String ForgetUserID="Forget Login User ID ";	
 // password message page
 		public static final String GotoLoginPage="Go to Login Page";
 		public static final String GotoHomePage="Go to Home Page";	
@@ -332,7 +334,7 @@ public class Information {
 		public static final String RwaSubscriptionType="Monthly Subscription";
 		public static final String MiscCharges="Misc.Charges";
 		public static final String SwmPoolCharges="Swim.Pool Charge";
-		public static final String APTFaltInventory="Apartment / Flat Inventory";
+		public static final String APTFaltInventory="Apartment Inventory";
 		public static final String RWA="RWA ";
 		public static final String SNo="SNo. ";
 
@@ -399,6 +401,9 @@ public class Information {
 		public static final String Vendor="Vendor";
 		public static final String Info="Information";
 		public static final String Registration="Registration";
+		public static final String Config="Configuration";
+		public static final String Item="Item";
+
 		
 		
 		

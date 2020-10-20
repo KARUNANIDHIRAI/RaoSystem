@@ -1,9 +1,12 @@
 package com.rao.System.UserLogin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.NoResultException;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,6 +14,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.mail.EmailException;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -21,6 +26,7 @@ import org.json.simple.JsonObject;
 import com.rao.System.RwaReg.RwaRegModel;
 import com.raoSystem.createUser.UserModel;
 import com.raoSystem.daoConnection.HibernateDAO;
+import com.raoSystem.password.SendOTP;
 
 public class HDAOUserLogin {
 	
@@ -107,7 +113,7 @@ public class HDAOUserLogin {
 //	        root.join("UAdd");
 	        root.fetch("UAdd");
 	        creteriaQuery.where(builder.equal(root.get("regNo"), "MK103"),
-		            builder.equal(root.get("status"), "A"));
+		                        builder.equal(root.get("status"), "A"));
 	        
 	        Query<UserLoginModel> query = sessionObj.createQuery(creteriaQuery);
 		       ArrayList <UserLoginModel> rows =  (ArrayList<UserLoginModel>) query.getResultList();
@@ -236,4 +242,286 @@ public class HDAOUserLogin {
 		return spStatus;
 	}
 
+	public static HashMap<String, String> validPassword(HashMap<String, String> loginObj, String erMsg) {
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+			erMsg += "Step 3: validPassword ";
+			
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
+	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        
+	        Path<Object> rwaNo = root.get("regNo");
+	        Path<Object> lgpwd = root.get("LPassword");
+	        Path<Object> FirstName = root.get("FirstName");
+			erMsg += "Step 3.1: Parameter OK ";
+	        creteriaQuery.multiselect(rwaNo, lgpwd,FirstName);
+			erMsg += "Step 3.1.1: query Select OK ";
+	        creteriaQuery.where(builder.equal(root.get("email"),loginObj.get("UID")), builder.equal(root.get("status"), "A"));
+			erMsg += "Step 3.2: where OK ";
+	        
+	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
+			erMsg += "Step 3.3: execute OK ";
+	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
+	       
+	       System.out.println("\n uLarray length: "+ rows.size());
+	       for(Object[] row :rows ) {
+	    	   loginObj.put("RwaNo",   (String) row[0]);
+	    	   loginObj.put("password", (String)row[1]);
+	    	   loginObj.put("fName",    (String)row[2]);
+	       }
+//	       for (HashMap.Entry<String, String> e : loginObj.entrySet()) {
+//	            System.out.println(e.getKey() + " " + e.getValue()); 
+//	       }     
+		}catch(HibernateException hibernateEx) {
+			
+		}catch(Exception e) {
+				
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return loginObj;
+	}
+	public static boolean validEmail(String emailID, String erMsg) {
+		erMsg += "Step 3: validPassword ";
+		boolean valEmail=false;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
+	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        
+	        Path<Object> uid = root.get("email");
+	        Path<Object> mobile = root.get("Mobile");
+			erMsg += "Step 3.1: Parameter OK ";
+	        creteriaQuery.multiselect(uid,mobile );
+			erMsg += "Step 3.1.1: query Select OK ";
+	        creteriaQuery.where(builder.equal(root.get("email"),emailID), builder.equal(root.get("status"), "A"));
+			erMsg += "Step 3.2: where OK ";
+	        
+	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
+			erMsg += "Step 3.3: execute OK ";
+	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
+	       valEmail = rows.size()>=1?true:false;
+	       for(Object[] row: rows) {
+	    	   System.out.println("Rows: "+ row[0]+ " : "+row[1]);
+	       }
+			erMsg += "Step 3.4: Row Size OK "+ rows.size();
+			       
+		}catch(HibernateException hibernateEx) {
+			
+		}catch(Exception e) {
+				
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return valEmail;
+	}
+	public static boolean UpdateOTP(String otp, String  email, String rwaNo, String erMsg) {
+        erMsg += " 2.1: Began Update OTP . " ;
+        boolean OTPUpdStatus = false;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        StoredProcedureQuery sPQuery = sessionObj.createStoredProcedureQuery("UserLoginOTPUpdate");
+	        sPQuery.registerStoredProcedureParameter("Emailid", String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("RwaRegNo", String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("OTP", String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("OTPStatus", Integer.class, ParameterMode.OUT);
+	        sPQuery.setParameter("Emailid", email);
+	        sPQuery.setParameter("RwaRegNo", rwaNo);
+	        sPQuery.setParameter("OTP", otp);
+	        erMsg += " 2.1: set Parameter OK. " ;
+	        sPQuery.execute();
+	        erMsg += " 2.1: Execute Query OK. " ;
+	        int OTPStatus = (int) sPQuery.getOutputParameterValue("OTPStatus");
+	        System.out.println("Out msg= " + OTPStatus);	        
+	        OTPUpdStatus= OTPStatus==1?true:false;
+	        erMsg += " 2.1: OTPUpdStatus : " + OTPUpdStatus +" , " ;
+		}catch(HibernateException hibernateEx) {
+	    	erMsg += "HibernateException: \n"+ hibernateEx;
+			return OTPUpdStatus;
+		}catch(Exception e) {
+	    	  erMsg += "Catch Exception: \n"+ e;
+	  		return OTPUpdStatus;
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return OTPUpdStatus;
+	}
+	public static boolean UpdatePassword(HashMap<String, String> pwdObj, String erMsg) {
+        erMsg += " 2.1: Began Update password . " ;
+        boolean OTPUpdStatus = false;
+        int PWDStatus=0;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        StoredProcedureQuery sPQuery = sessionObj.createStoredProcedureQuery("UserLoginPWDUpdate");
+
+	        sPQuery.registerStoredProcedureParameter("Emailid", String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("PWD", String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("OTP", String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("PWDStatus", Integer.class, ParameterMode.OUT);
+
+	        sPQuery.setParameter("Emailid"  , pwdObj.get("UID"));
+	        sPQuery.setParameter("PWD"      , pwdObj.get("password"));
+	        sPQuery.setParameter("OTP"      , pwdObj.get("OTP"));
+	        
+	        erMsg += " 2.1: set Parameter OK. " ;
+	        sPQuery.execute();
+	        erMsg += " 2.1: Execute Query OK. " ;
+	        PWDStatus = (int) sPQuery.getOutputParameterValue("PWDStatus");
+	        System.out.println("Out msg= " + PWDStatus);	        
+	        OTPUpdStatus= PWDStatus==1?true:false;
+	        erMsg += " 2.1: OTPUpdStatus : " + OTPUpdStatus +" , " ;
+		}catch(HibernateException hibernateEx) {
+	    	erMsg += "HibernateException: \n"+ hibernateEx;
+			return OTPUpdStatus;
+		}catch(Exception e) {
+	    	  erMsg += "Catch Exception: \n"+ e;
+	  		return OTPUpdStatus;
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return OTPUpdStatus;
+	}
+
+	public static boolean UpdateULOTP(HashMap<String, String> otpObj, String erMsg) {
+	    erMsg += " 2.1: Began Update OTP . " ;
+        boolean OTPUpdStatus = false;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        StoredProcedureQuery sPQuery = sessionObj.createStoredProcedureQuery("UserLoginOTPUpdate");
+	        sPQuery.registerStoredProcedureParameter("Emailid", String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("OTP", String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("OTPStatus", Integer.class, ParameterMode.OUT);
+	        sPQuery.setParameter("Emailid", otpObj.get("email"));
+	        sPQuery.setParameter("OTP", otpObj.get("OTP"));
+	        
+	        erMsg += " 2.1 set Parameter OK. " ;
+	        sPQuery.execute();
+	        erMsg += " 2.2: Execute Query OK. " ;
+	        int OTPStatus = (int) sPQuery.getOutputParameterValue("OTPStatus");
+	        System.out.println("Out msg= " + OTPStatus);	        
+	        OTPUpdStatus= OTPStatus==1?true:false;
+	        erMsg += " 2.3: OTPUpdStatus : " + OTPUpdStatus +" , " ;
+		}catch(HibernateException hibernateEx) {
+	    	erMsg += "HibernateException: \n"+ hibernateEx;
+			return OTPUpdStatus;
+		}catch(Exception e) {
+	    	  erMsg += "Catch Exception: \n"+ e;
+	  		return OTPUpdStatus;
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+			return OTPUpdStatus;
+	}
+
+	public static boolean ValidateOTP(UserLoginModel uLOTP, String erMsg) {
+		erMsg += "Step 3: validate OTP ";
+		boolean valOTPStatus=false;
+		String dbOTP=null;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
+	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        
+	        Path<Object> otp = root.get("otp");
+	        creteriaQuery.multiselect(otp );
+	        creteriaQuery.where(builder.equal(root.get("email"),uLOTP.getEmail()), 
+	        		            builder.equal(root.get("otp"),uLOTP.getOtp()),
+	        		            builder.equal(root.get("status"), "A"));
+	        
+	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
+			erMsg += "Step 3.3: execute OK ";
+	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
+	       valOTPStatus = rows.size()>=1?true:false;
+			erMsg += "Step 3.4: Row Size OK "+ rows.size();	
+			
+		}catch(HibernateException hibernateEx) {
+			System.out.println("\n HibernateException: " + hibernateEx);
+			
+		}catch(Exception e) {
+			System.out.println("\n Catch Exception:"  + e);
+				
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return valOTPStatus;		
+	}
+
+	public static String ValidateUIDR(String emailID, String erMsg) {
+		System.out.println("email id hdao :" + emailID);
+		erMsg += "Step 3:  ";
+		String valEmail=null;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
+	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        
+	        Path<Object> uid = root.get("email");
+	        Path<Object> mobile = root.get("Mobile");
+			erMsg += "Step 3.1: Parameter OK ";
+	        creteriaQuery.multiselect(uid,mobile );
+			erMsg += "Step 3.2: query Select OK ";
+
+			creteriaQuery.where(
+	        		builder.or(builder.equal(root.get("email"), emailID), 
+	        				    builder.equal(root.get("Mobile"), emailID)),
+	        		builder.and(builder.equal(root.get("status"), "A"))
+        	);	        
+	        erMsg += "Step 3.3: where OK ";
+	        
+	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
+			erMsg += "Step 3.4: execute OK ";
+	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
+//	       valEmail = rows.size()>=1?true:false;
+	       for(Object[] row: rows) {
+	    	   System.out.println("Rows: "+ row[0]+ " : "+row[1]);
+	    	   valEmail = (String) row[0];
+	       }
+			erMsg += "Step 3.4: Row Size OK "+ rows.size();
+		}catch(HibernateException hibernateEx) {
+	          System.out.println("\n"+hibernateEx );
+			
+		}catch(Exception e) { 
+	          System.out.println("\n"+e );
+				
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return valEmail;
+	}
+	public static UserLoginModel sentUIRD(UserLoginModel uIRDObj, String erMsg) {
+		erMsg += "Step 3: validPassword ";
+//		boolean valEmail=false;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
+	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        Path<Object> uid = root.get("email");
+	        Path<Object> Name = root.get("FirstName");
+	        
+			erMsg += " 3.1: Parameter OK ";
+	        creteriaQuery.multiselect(uid, Name);
+			erMsg += "Step 3.1.1: query Select OK ";
+			creteriaQuery.where(
+	        		builder.or(builder.equal(root.get("email"), uIRDObj.getEmail()), 
+	        				    builder.equal(root.get("Mobile"), uIRDObj.getEmail())),
+	        		builder.and(builder.equal(root.get("otp"), uIRDObj.getOtp()),
+	        				    builder.equal(root.get("status"), "A"))
+        	);	        
+			erMsg += " 3.2: where OK ";
+			erMsg += " para :" + uIRDObj.getEmail() + " , " + uIRDObj.getOtp();
+	        
+	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
+			erMsg += "Step 3.3: execute OK ";
+	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
+//	       valEmail = rows.size()>=1?true:false;
+	       for(Object[] row: rows) {
+	    	   uIRDObj.setEmail((String)row[0]);
+	       }
+			erMsg += "Step 3.4: Row Size: " + rows.size();
+		}catch(HibernateException hibernateEx) {
+			
+		}catch(Exception e) {
+				
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return uIRDObj;
+	}
 }

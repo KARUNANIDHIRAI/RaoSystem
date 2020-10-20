@@ -481,7 +481,55 @@
   	<description></description>
   	<servlet-class>com.rao.System.UserLogin.UserLoginInfo</servlet-class>
   </servlet>
- 
+  <servlet>
+  	<servlet-name>UserLoginValidate</servlet-name>
+  	<display-name>UserLoginValidate</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.UserLogin.UserLoginValidate</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ValidateULPasswordOTP</servlet-name>
+  	<display-name>ValidateULPasswordOTP</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.UserLogin.ValidateULPasswordOTP</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserLoginInfoValidate</servlet-name>
+  	<display-name>UserLoginInfoValidate</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.UserLogin.UserLoginInfoValidate</servlet-class>
+  </servlet>
+
+  <servlet>
+  	<servlet-name>ConfigInfo</servlet-name>
+  	<display-name>ConfigInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.ConfigSetting.ConfigInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SettingConfig</servlet-name>
+  	<display-name>SettingConfig</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.ConfigSetting.SettingConfig</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AptInfo</servlet-name>
+  	<display-name>AptInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.AptInventory.AptInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SubscriptionInfo</servlet-name>
+  	<display-name>SubscriptionInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.AptInventory.SubscriptionInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>VisitorInfo</servlet-name>
+  	<display-name>VisitorInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.Visitor.VisitorInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -799,6 +847,43 @@
   <servlet-mapping>
   	<servlet-name>UserLoginInfo</servlet-name>
   	<url-pattern>/UserLoginInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserLoginValidate</servlet-name>
+  	<url-pattern>/UserLoginValidate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ValidateULPasswordOTP</servlet-name>
+  	<url-pattern>/ValidateULPasswordOTP</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserLoginInfoValidate</servlet-name>
+  	<url-pattern>/UserLoginInfoValidate</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>ConfigInfo</servlet-name>
+  	<url-pattern>/ConfigInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SettingConfig</servlet-name>
+  	<url-pattern>/SettingConfig</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AptInfo</servlet-name>
+  	<url-pattern>/AptInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SubscriptionInfo</servlet-name>
+  	<url-pattern>/SubscriptionInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VisitorInfo</servlet-name>
+  	<url-pattern>/VisitorInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VisitorGPInfo</servlet-name>
+  	<url-pattern>/VisitorGPInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

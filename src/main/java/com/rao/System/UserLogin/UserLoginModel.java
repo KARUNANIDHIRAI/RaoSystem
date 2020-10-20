@@ -44,10 +44,11 @@ public class UserLoginModel {
 	
 	@Column(name ="securityCode", nullable= false, updatable = true, columnDefinition = "nvarchar(255)")
 	private String Security;
-
+	
 	@Column(name ="loginPassword", nullable= false, updatable = true, columnDefinition = "nvarchar(255)")
 	private String LPassword;
 	
+
 	@Column(name= "Status", nullable= false, columnDefinition = "nvarchar(255)")
 	private String status;
 
@@ -64,7 +65,26 @@ public class UserLoginModel {
 	@Column(name= "UpdatedOn", nullable= false, columnDefinition = "date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date UpdatedOn;
+	@Column(name= "OTP", nullable= true, columnDefinition = "nvarchar(255)")
+	private String otp;
+
 	
+	
+	
+	/**
+	 * @param email
+	 * @param regNo
+	 * @param otp
+	 */
+	public UserLoginModel(String email, String otpNo, String regNo ) {
+		super();
+		this.email = email;
+		this.otp = otpNo;
+		this.regNo = regNo;
+	}
+	public UserLoginModel() {
+		super();
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -176,13 +196,23 @@ public class UserLoginModel {
 		UAdd = uAdd;
 	}
 
+	public String getOtp() {
+		return otp;
+	}
+
+	public void setOtp(String otpNo) {
+		this.otp = otpNo;
+	}
+
 	@Override
 	public String toString() {
 		return "UserLoginModel [email=" + email + ", UAdd=" + UAdd + ", regNo=" + regNo + ", lUType=" + lUType
 				+ ", FirstName=" + FirstName + ", LastName=" + LastName + ", Mobile=" + Mobile + ", Security="
 				+ Security + ", LPassword=" + LPassword + ", status=" + status + ", createdBy=" + createdBy
-				+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", UpdatedOn=" + UpdatedOn + "]";
+				+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", UpdatedOn=" + UpdatedOn + ", otp=" + otp
+				+ "]";
 	}
+
 
 	
 }

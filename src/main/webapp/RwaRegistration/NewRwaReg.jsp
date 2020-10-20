@@ -59,7 +59,7 @@
 					<div class="row">
 				   		<div class="col-sm-8 text-center offset-sm-2">
 				    		<p class="text-danger"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
-<%-- 								<%session.removeAttribute("Message");%> --%>
+ 								<%session.removeAttribute("Message");%> 
 			    		</div>
 			  		</div>
 					<div class="row">		

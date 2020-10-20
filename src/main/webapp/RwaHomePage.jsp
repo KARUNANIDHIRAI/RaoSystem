@@ -32,7 +32,7 @@
 						</button>
 						<div class="collapse navbar-collapse " id ="navmenubar"> 
 							<ul class="navbar-nav ml-auto">
-								<li class="active nav-item "><a href="LoginPage.jsp" class="nav-link text-light"	> <%= Information.signout%> </a> </li> 
+								<li class="active nav-item "><a href="UserLogin/UserLogin.jsp" class="nav-link text-light"	> <%= Information.signout%> </a> </li> 
 								<li class="nav-item"><a href="#" class="nav-link text-light"><%= Information.joinPartner%> </a> </li> 
 								<li class="nav-item"><a href="#" class="nav-link text-light"> <%= Information.reachus%> </a> </li> 
 							</ul>
@@ -74,26 +74,26 @@
 					        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					        		<%= Information.rwaHomePageMaster%>
 					        	</a>
-								<div class="dropdown-menu "  style ="width:500px;padding-left:20px; margin-bottom:1em" aria-labelledby="navbarDropdown" >
+<!-- 								<div class="dropdown-menu "  style ="width:600px;padding-left:20px; margin-bottom:90rem" aria-labelledby="navbarDropdown" > -->
+								<div class="dropdown-menu " id="megha_menu" style ="width:500px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
 									<div class="row">
-										<div class="col-sm-4">
-									    	<a class="text-dark" href = "RwaRegistration.jsp">RWA Information</a>
-									    	<a class="text-dark" href = "Inventory/ApartmentInventoryMainPage.jsp">Apartment Inventory </a>
-									    	<a class="text-dark" href = "Inventory/RWASubscriptionMainPage.jsp">RWA Subscription </a>
-									    	<a class="text-dark" href = "OwnerInformation/OwnerMain.jsp">Owner Information </a>
-									    	<a class="text-dark" href = "HKMInformation/HKMMainPage.jsp">House Maid Information</a>
-									    	<a class="text-dark" href = "DRVInformation/DRVMainPage.jsp">Driver Information </a>
-									    	<a class="text-dark" href = "SSPInformation/SSPMainPage.jsp">Security Staff Information</a>
-									    	<a class="text-dark" href = "DwellerInformation/NewDwellerInfo.jsp">Tenant Information</a>
-									    	<a class="text-dark" href = "#">Maintenance Staff</a>
+										<div class="col-sm-5">
+									    	<p> <a class="text-dark" href = "RwaRegistration.jsp">RWA Information</a> </p>
+									    	<p> <a class="text-dark" href = "AppartmentInventory/CreateAptInventory.jsp">Apartment Inventory</a> </p>
+									    	<p> <a class="text-dark" href = "Inventory/RWASubscriptionMainPage.jsp">RWA Subscription</a> </p>
+									    	<p> <a class="text-dark" href = "OwnerInformation/OwnerMain.jsp">Owner Information </a> </p>
+									    	<p> <a class="text-dark" href = "HKMInformation/HKMMainPage.jsp">House Maid Information</a> </p>
+									    	<p> <a class="text-dark" href = "DRVInformation/DRVMainPage.jsp">Driver Information </a> </p>
+									    	<p> <a class="text-dark" href = "SSPInformation/SSPMainPage.jsp">Security Staff Information</a> </p>
+									    	<p> <a class="text-dark" href = "DwellerInformation/NewDwellerInfo.jsp">Tenant Information </a> </p>
+									    	<p> <a class="text-dark" href = "#">Maintenance Staff</a> </p>
 										</div>
 										<div class="col-sm-4">
-									    	<a class="text-dark" href = "Supplier.jsp">Supplier Master </a>
-										    <a class="text-dark" href="MasterItem/MainItemPage.jsp">Item Information</a>
+									    	<p><a class="text-dark" href = "Supplier.jsp">Supplier Master </a> </p>
+										    <p><a class="text-dark" href="MasterItem/ItemMasterPage.jsp">Item Information</a> </p>
 										</div>
 								    </div>
 								</div>
-					        	
 					      	</li>
 					      	<li class="nav-item dropdown">
 					      		<a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -182,14 +182,13 @@
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						        	<a class="dropdown-item" href="RwaRegistration/RwaRegMainPage.jsp">RWA Registration</a>
 						        	<a class="dropdown-item" href="UserLogin/UserLoginMainPage.jsp">Create Users</a>
-						        	<a class="dropdown-item" href="UserLogin/UserLoginMainPage.jsp">SetUp Configuration Parameter</a>
+						        	<a class="dropdown-item" href="Configuration/RwaConfig.jsp">SetUp Configuration Parameter</a>
 						          	<div class="dropdown-divider"></div>
-						          	<a class="dropdown-item" href="#">Reset Password</a>
-						          	<a class="dropdown-item" href="#">Forget Password</a>
+						          	<a class="dropdown-item" href="UserLogin/UserLoginPwdReset.jsp">Reset Password</a>
+						          	<a class="dropdown-item" href="UserLogin/UserLoginPwdForget.jsp">Forget Password</a>
+						          	<a class="dropdown-item" href="UserLogin/UserLoginPwdForget.jsp">Retrieve  User Login</a>
 						        </div>
 					      	</li>
-
-
 					      	<li class="nav-item dropdown">
 					      		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					          		Help

@@ -10,8 +10,8 @@ import org.apache.commons.mail.SimpleEmail;
 
 public class SendOTP {
 
-	public String  emailsend(String emailid) throws EmailException {
-		String otpcode=OTPGeneratet(4);
+	public boolean  uidSend(String emailid, String UID) throws EmailException {
+		boolean uid = false;
 		Email email = new SimpleEmail();
 		email.setHostName("smtp.googlemail.com");
 		email.setSmtpPort(465);
@@ -23,18 +23,19 @@ public class SendOTP {
 		email.setMsg(""
 				+ "Hi, \n"
 				+""
-				+ "please find enclosed here with your Password reset security Confirmation OTP Code "
-				+ otpcode
+				+ "please find enclosed here with your Login ID: "+ UID + " to access the Application using password"
 				+ ""
-				+ ""
-				+ " Thanks & Regards"
-				+ ""
-				+ "KN RAIi \n"
-				+ "mobile no: 9811557160")
+				+ "\n"
+				+ "\n Thanks & Regards"
+				+ "\n"
+				+ "\n KBS TECHNOLOGY "
+				+ "\n Mobile No: 9811557160")
 				;
 
 		email.send();
-		return otpcode;
+		uid = true;
+		System.out.println("UID Sent" +UID + " mail sent to " +emailid);
+		return uid;
 	}
 	
 	 static String OTPGeneratet(int otpength) {
@@ -48,4 +49,31 @@ public class SendOTP {
 		return captchBuffer.toString();
 	}
 	
+		public String  emailsend(String emailid) throws EmailException {
+			String otpcode=OTPGeneratet(4);
+			Email email = new SimpleEmail();
+			email.setHostName("smtp.googlemail.com");
+			email.setSmtpPort(465);
+			email.setAuthenticator(new DefaultAuthenticator(" KARUNANIDHIRAIG@GMAIL.COM", "$Iasofficer2016$"));
+			email.setSSLOnConnect(true);
+			email.setSubject("OTP");
+			email.setFrom("KARUNANIDHIRAIG@GMAIL.COM");
+			email.addTo(emailid );
+			email.setMsg(""
+					+ "Hi, \n"
+					+""
+					+ "please find enclosed here with your Password reset security Confirmation OTP Code "
+					+ otpcode
+					+ ""
+					+ "\n"
+					+ "\n Thanks & Regards"
+					+ "\n"
+					+ "\n KBS TECHNOLOGY  \n"
+					+ "\n Mobile No: 9811557160")
+					;
+
+			email.send();
+			System.out.println("otp Sent" +otpcode + " mail sent to " +emailid);
+			return otpcode;
+		}	 
 }

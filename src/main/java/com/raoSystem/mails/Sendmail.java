@@ -1,4 +1,6 @@
 package com.raoSystem.mails;
+import javax.servlet.RequestDispatcher;
+
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
@@ -12,28 +14,35 @@ public class Sendmail {
 //			email.sendMimeMessage();
 			System.out.println("============end of sending email=============== :" );
 	}
-	public static void emailsend() throws EmailException {
+	public static boolean emailsend() throws EmailException {
 		Email email = new SimpleEmail();
-		email.setHostName("smtp.googlemail.com");
-		email.setSmtpPort(465);
-		email.setAuthenticator(new DefaultAuthenticator(" KARUNANIDHIRAIG@GMAIL.COM", "$Iasofficer2016$"));
-		email.setSSLOnConnect(true);
-		email.setSubject("KNRAI JAVA AUTO MAIL THROUGH METHOD");
-		email.setFrom("KARUNANIDHIRAIG@GMAIL.COM");
-		email.addTo("KARUNANIDHIRAIG@GMAIL.COM", "KARUNANIDHIRAI@YAHOO.COM" );
-		email.addBcc("karunanidhirai@yahoo.com", "shikharai24022@gmail.com");
-		email.addCc("karunanidhirai@yahoo.com", "shikharai24022@gmail.com");
-		email.setMsg(""
-				+ "Hi, \n"
-				+""
-				+ "please find enclosed here with my updated cv for your reference "
-				+" Thanks & Regards"
-				+ ""
-				+ "Knrai \n"
-				+ "mobile no: 9811557160");
+		boolean emailStatus=false;
+		try {
+			email.setHostName("smtp.googlemail.com");
+			email.setSmtpPort(465);
+			email.setAuthenticator(new DefaultAuthenticator(" KARUNANIDHIRAIG@GMAIL.COM", "$Iasofficer2016$"));
+			email.setSSLOnConnect(true);
+			email.setSubject("KNRAI JAVA AUTO MAIL THROUGH METHOD");
+			email.setFrom("KARUNANIDHIRAIG@GMAIL.COM");
+			email.addTo("KARUNANIDHIRAIG@GMAIL.COM", "KARUNANIDHIRAI@YAHOO.COM" );
+			email.addBcc("karunanidhirai@yahoo.com", "shikharai24022@gmail.com");
+			email.addCc("karunanidhirai@yahoo.com", "shikharai24022@gmail.com");
+			email.setMsg(""
+					+ "Hi, \n"
+					+""
+					+ "please find enclosed here with my updated cv for your reference "
+					+" Thanks & Regards"
+					+ ""
+					+ "Knrai \n"
+					+ "mobile no: 9811557160");
 
-		email.send();
-		
+			email.send();
+			emailStatus= true;
+		}catch (EmailException e) {
+			System.out.println("Technical Error: Fail to sent email");
+			return emailStatus;
+		}
+		return emailStatus;
 	}
 }
 /*

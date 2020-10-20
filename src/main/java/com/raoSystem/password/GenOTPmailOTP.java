@@ -26,7 +26,7 @@ public class GenOTPmailOTP extends HttpServlet {
 		System.out.println("========start sending email===========");
 		try {
 			SendOTP mail = new SendOTP();	
-			System.out.println(emailid);
+			System.out.println("EMAIL ID TO SEND EMAIL :" +emailid);
 			String otp=mail.emailsend(emailid);
 			request.getSession(false).setAttribute("OTP", otp);
 			System.out.println("OTP Generated Successfully and page forward to OTPReceipt.jsp");

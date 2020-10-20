@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JsonArray;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.rao.System.RwaReg.HDAORwa;
 
@@ -46,11 +47,18 @@ public class UserLoginInfo extends HttpServlet {
 						session.setAttribute("Message",valMsg );
 						response.sendRedirect("UserLogin/UserLoginNew.jsp");
 				}else {
-					String uLStatus= HDAOUserLogin.newUser(uLModel, erMsg);
-					String hDAOMessage= uLStatus.length()<=1?"THANKS! User Registerd Submit SUCCESSFULLY.": "TECHNICAL ERROR! User Info not submitted. Pls try after sometime.";
+					BCryptPasswordEncoder PasswordEncoder = new BCryptPasswordEncoder(); 
+				    String Password = PasswordEncoder.encode(uLModel.getLPassword());
+					String hDAOMessage= "THANKS! User Registerd Submit SUCCESSFULLY.";
+				    if(PasswordEncoder.matches(uLModel.getLPassword(),Password)) {
+				    	uLModel.setLPassword(Password);
+						String uLStatus= HDAOUserLogin.newUser(uLModel, erMsg);
+				    }else  {
+						 hDAOMessage=  "TECHNICAL ERROR! User Info not submitted. Pls try after sometime.";
+				    }
 					session.setAttribute("Message",hDAOMessage );
 					response.sendRedirect("SuccessMsg.jsp");
-				}
+				}   
 				break;
 			case "EditUser" :
 				uLModel = UpdateUserModel(uLModel,request, uLAdd);
@@ -60,7 +68,6 @@ public class UserLoginInfo extends HttpServlet {
 				 valMsg=ValidateRwaReg(uLModel, valMsg);
 				 System.out.println("Valsmsg: "+ valMsg+ "Errmsg: "+ erMsg);
 				if(valMsg.length()>1) {
-					//	creatSessionVal(uLModel,session);
 						System.out.println("\n error: "+ "ERROR IN :" +valMsg);
 						session.setAttribute("Message",valMsg );
 						response.sendRedirect("UserLogin/UserLoginNew.jsp");

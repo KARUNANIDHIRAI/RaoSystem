@@ -86,6 +86,10 @@ p{
 	 border-bottom: 1px solid blue;
 	 border-left: 1px solid blue;
 }
+.blineTl{
+	 border-top: 1px solid blue;
+	 border-right: 1px solid blue;
+}
 .blineb{
 	 border-bottom: 1px solid green;
 	 border-left: 1px solid green;

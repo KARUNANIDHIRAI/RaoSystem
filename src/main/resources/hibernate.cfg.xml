@@ -10,7 +10,7 @@
         <property name="hibernate.connection.password">knsa</property>
 		 <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
-		<property name="hibernate.connection.pool_size">5</property>
+		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
 
@@ -19,13 +19,23 @@
 		<mapping class="com.rao.System.ContactUs.ClbEnqModel"/>
 		<mapping class="com.rao.System.ContactUs.PDEnqModel"/>
 		<mapping class="com.rao.System.RwaReg.RwaRegModel"/>
+		<mapping class="com.rao.System.MASItem.ItemModel"/>
+		<mapping class="com.rao.System.AptInventory.AptInventoryModel"/>
+		<mapping class="com.rao.System.AptInventory.RwaSubscriptionModel"/>
+
+		<mapping class="com.rao.System.Visitor.VisitorGPModel"/>
+		<mapping class="com.rao.System.Visitor.VisitorAddressModel"/>
+		
+		
 		<mapping class="com.raoSystem.Utility.CountryList"/>
 		<mapping class="com.raoSystem.Utility.Collaboration"/>
 		<mapping class="com.raoSystem.Utility.ProductDemo"/>
 		<mapping class="com.raoSystem.Utility.ValidRwaNo"/>
 		<mapping class="com.raoSystem.Utility.ValidEmail"/>
+		<mapping class="com.raoSystem.Utility.InitialValueModel"/>
 		<mapping class="com.rao.System.UserLogin.UserLoginModel"/>
 		<mapping class="com.rao.System.UserLogin.UserAddress"/>
+		<mapping class="com.rao.System.ConfigSetting.ConfigSettingModel"/>
 		
     </session-factory>
 </hibernate-configuration>

@@ -7,26 +7,26 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateDAO {
-	private static StandardServiceRegistry SSR;
-	private static SessionFactory SF;
+	private static StandardServiceRegistry standardServiceRegistory;
+	private static SessionFactory sessionFactory;
 	static {
-		if(SF==null) {
+		if(sessionFactory==null) {
 			try {
-				SSR = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-				MetadataSources MDS = new MetadataSources(SSR);
-				Metadata MD = MDS.getMetadataBuilder().build();
-				SF=MD.getSessionFactoryBuilder().build();
+				standardServiceRegistory = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+				MetadataSources metaDataSource = new MetadataSources(standardServiceRegistory);
+				Metadata metaData = metaDataSource.getMetadataBuilder().build();
+				sessionFactory=metaData.getSessionFactoryBuilder().build();
 			} catch (Exception e) {
 				e.printStackTrace();
-				if(SSR!=null) {
-					StandardServiceRegistryBuilder.destroy(SSR);
+				if(standardServiceRegistory!=null) {
+					StandardServiceRegistryBuilder.destroy(standardServiceRegistory);
 				}
 			}
 		}
 	}
 	
 	public static SessionFactory getSessionFactory() {
-		return SF;
+		return sessionFactory;
 	}
 
 
