@@ -3,6 +3,10 @@
  */
 var countryOptions=" ";
 var rcOptions= " ";
+var apartmentOptions=" ";
+var flatOption=" ";
+var VehileOption=" ";
+alert('Apartment');
 $(document).ready(function(){
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
 		getRefreshCaptcha();
@@ -89,5 +93,82 @@ $(document).ready(function(){
 		    }				
 		});	 // eof AJAX
 	}
+
+	$("#apartment").click(function(){
+		if (apartmentOptions!=" "){
+			retrun;
+		}
+		getAPTList();
+	});
+
+	function getAPTList(){ 
+		$.ajax({
+			type:'POST',
+			data:{Action:"getAPTList"},
+		 	dataType: 'json',
+			url:'../AptInfo',
+			success:function(result){
+				apartmentOptions = " <option value= 0>Select Apartment*</option>";
+				$.each(result, function(id, name){
+					apartmentOptions += " <option value='"+name.TowerNo +"'>"+ name.TowerNo + "</option>";
+				});
+				$("#apartment").html(apartmentOptions);
+				
+			},	
+		    error: function () {
+				$("#apartment").val("Sorry, Technical Issue");
+		    }				
+		});	 // eof AJAX
+	}
+	
+ 	$("#flatInfo").click(function(){
+		if (flatOption!=" "){
+			retrun;
+		}
+		var apartmentList = $("#apartment").val();
+		getFlatList(apartmentList);
+	});
+
+	function getFlatList(apartmentList){ 
+		$.ajax({
+			type:'POST',
+			data:{Action:"getFlatList","inputTowerNo" : apartmentList},
+		 	dataType: 'json',
+			url:'../AptInfo',
+			success:function(result){
+				flatOption = " <option value= 0>Select Flat No.*</option>";
+				$.each(result, function(id, name){
+					flatOption += " <option value='"+name.FlatNo +"'>"+ name.FlatNo + "</option>";
+				});
+				$("#flatInfo").html(flatOption);
+			},	
+		    error: function () {
+				$("#flatInfo").val("Sorry, Technical Issue");
+		    }				
+		});	 // eof AJAX
+	}
+	// function to generate vehicle list 
+	$("#VehType").click(function(){
+		if (VehileOption!=" "){
+			retrun;
+		}
+		$.ajax({
+			type:'POST',
+			data:{Action:"VehTypeList"},
+		 	dataType: 'json',
+			url:'../VehicleInfo',
+			success:function(result){
+				VehileOption = " <option value= 0>Select Vehicle Type*</option>";
+				$.each(result, function(id, name){
+					VehileOption += " <option value='"+name.VehicleType +"'>"+ name.VehicleType + "</option>";
+				});
+				$("#VehType").html(VehileOption);
+			},	
+		    error: function () {
+				$("#VehType").val("Sorry, Technical Issue");
+		    }				
+		});	 // eof AJAX
+	});
+
 	
 });

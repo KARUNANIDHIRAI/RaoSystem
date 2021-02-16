@@ -85,17 +85,23 @@ public class AptInfo extends HttpServlet {
 					System.out.println("Technical Error : " + erMsg);
 				}
  				break; 
-
-			/*
-			 * case "ivEDIT" : // edit erMsg += "step 2: " + request.getParameter("Name");
-			 * // aptInvt=HDAOAptInventory.getRCIvItem(request.getParameter("Name"),
-			 * "MK107",erMsg); erMsg += "step 3: HDAO getRCIvItem OK."; break; case "ivView"
-			 * : ConfigSettingModel rcModel = new ConfigSettingModel();
-			 * rcModel.setRwaNo("MK107"); aptInvt =
-			 * HDAOAptInventory.aptInventoryList(aptInvModel, erMsg); erMsg
-			 * +=" Step 3 : HDOA  Ok"; break;
-			 * 
-			 */	
+			case "getAPTList" : //view
+				erMsg +="Get Apartment list :";
+			    aptInvModel.setRwaRegNo("MK106");
+				aptInvt=HDAOAptInventory.apartmentList(aptInvModel, erMsg);
+				erMsg += "step 3: HDAO OK.";
+				out.print(aptInvt.toJson());
+				out.flush();
+ 				break; 
+			case "getFlatList" : //view
+				erMsg +="Get Flat list :";
+			    aptInvModel.setRwaRegNo("MK106");
+			    aptInvModel.setTowerNo(request.getParameter("inputTowerNo"));
+				aptInvt=HDAOAptInventory.flatList(aptInvModel, erMsg);
+				erMsg += "step 3: flatList HDAO OK.";
+				out.print(aptInvt.toJson());
+				out.flush();
+ 				break; 
  			}
 		} catch (HibernateException hibernate) {
 			System.out.println("Technical Error: \n"+ hibernate);

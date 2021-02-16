@@ -65,7 +65,10 @@
 									<li class="nav-item " id="ViewUser" > 
 										<a	class="nav-link active text-white " style="background-color:#000080" href="#"><%= Information.OwnViewInfo%></a></li>
 									<li class="nav-item " id="SSPNEW">
-										<a class="nav-link text-light" href="NewOwnerInfo.jsp"><%= Information.OwnNewInfo%></a></li>
+									
+<%-- 										<a class="nav-link text-light" href="NewOwnerInfo.jsp"><%= Information.OwnNewInfo%></a></li> --%>
+										<a class="nav-link text-light" href="OwnerInfoNew.jsp"><%= Information.OwnNewInfo%></a></li>
+
 								</ul>
 							</div>
 

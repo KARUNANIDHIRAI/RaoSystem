@@ -23,57 +23,80 @@ public class RwaRegModel implements Serializable{
 	
 	@Column(name="RegName", nullable= false, columnDefinition = "nvarchar(100)")
 	private String regName;
+	
 	@Column(name="RegDate", nullable= false, columnDefinition = "date")
 	private Date regDate;
+
 	@Column(name="RegExpDate", nullable= false,columnDefinition = "date")
 	private Date expDate;
+
 	@Column(name="EmailId", nullable= false, columnDefinition = "nvarchar(100)")
 	private String emailId;
+
 	@Column(name="MobileNo", nullable= false,columnDefinition = "nvarchar(100)")
 	private String mobileNo;
+
 	@Column(name="PhoneNo", nullable= true,columnDefinition = "nvarchar(100)")
 	private String phoneNo;
+
 	@Column(name= "Address", nullable= false,columnDefinition = "nvarchar(100)")
 	private String address;
+
 	@Column(name= "Sector", nullable= true, columnDefinition = "nvarchar(100)")
 	private String sector;
+
 	@Column(name= "City", nullable= false,columnDefinition = "nvarchar(100)")
 	private String city;
+
 	@Column(name= "State", nullable= false,columnDefinition = "nvarchar(100)")
 	private String state;
+
 	@Column(name= "Country", nullable= false,columnDefinition = "nvarchar(100)")
 	private String country;
+
 	@Column(name= "PinCode", nullable= true,columnDefinition = "nvarchar(100)")
 	private String pinCode;
+
 	@Column(name= "RWAUserId", nullable= false, columnDefinition = "nvarchar(100)")
 	private String rwaUserId;
+
 	@Column(name= "RWAPassword", nullable= false, columnDefinition = "nvarchar(100)")
 	private String rwaPassword;
 	
 	@Column(name= "RegnAuthority", nullable= false, columnDefinition = "nvarchar(100)")
 	private String regnAuthority;
+
 	@Column(name= "RegnAuthEmail", nullable= true, columnDefinition = "nvarchar(100)")
 	private String regnAuthEmail;
 
 	@Column(name= "AthAddress", nullable= false,columnDefinition = "nvarchar(100)")
 	private String athAddress;
+
 	@Column(name= "AthSector", nullable= true, columnDefinition = "nvarchar(100)")
 	private String athSector;
+
 	@Column(name= "AthCity", nullable= false,columnDefinition = "nvarchar(100)")
 	private String athCity;
+
 	@Column(name= "AthState", nullable= false,columnDefinition = "nvarchar(100)")
 	private String athState;
+
 	@Column(name= "AthCountry", nullable= false,columnDefinition = "nvarchar(100)")
 	private String athCountry;
+
 	@Column(name= "AthPinCode", nullable= true,columnDefinition = "nvarchar(100)")
 	private String athPinCode;
+
 	@Column(name= "CreatedBy", nullable= false,updatable = false, columnDefinition = "nvarchar(100)")
 	private String createdBy;
+
 	@Column(name= "CreatedOn", nullable= false,updatable = false, columnDefinition = "date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
+
 	@Column(name= "UpdatedBy", nullable= false,columnDefinition = "nvarchar(100)")
 	private String updatedBy;
+
 	@Column(name= "UpdatedOn", nullable= false,columnDefinition = "date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;

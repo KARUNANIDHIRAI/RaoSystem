@@ -78,7 +78,8 @@
 								<div class="dropdown-menu " id="megha_menu" style ="width:500px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
 									<div class="row">
 										<div class="col-sm-5">
-									    	<p> <a class="text-dark" href = "RwaRegistration.jsp">RWA Information</a> </p>
+<!-- 									    	<p> <a class="text-dark" href = "RwaRegistration.jsp">RWA Information</a> </p> -->
+									    	<p> <a class="text-dark" href = "RwaRegistration/RwaRegMainPage.jsp">RWA Information</a> </p>
 									    	<p> <a class="text-dark" href = "AppartmentInventory/CreateAptInventory.jsp">Apartment Inventory</a> </p>
 									    	<p> <a class="text-dark" href = "Inventory/RWASubscriptionMainPage.jsp">RWA Subscription</a> </p>
 									    	<p> <a class="text-dark" href = "OwnerInformation/OwnerMain.jsp">Owner Information </a> </p>
@@ -91,6 +92,8 @@
 										<div class="col-sm-4">
 									    	<p><a class="text-dark" href = "Supplier.jsp">Supplier Master </a> </p>
 										    <p><a class="text-dark" href="MasterItem/ItemMasterPage.jsp">Item Information</a> </p>
+
+										    <p><a class="text-dark" href="TenantInformation/TenantInfoMainPage.jsp">Dweller Information</a> </p>
 										</div>
 								    </div>
 								</div>
@@ -99,11 +102,11 @@
 					      		<a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					          		<%= Information.rwaHomePageTransaction%>
 					        	</a>
-								<div class="dropdown-menu " id="megha_menu" style ="width:600px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
+								<div class="dropdown-menu " id="megha_menu" style ="width:700px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
 									<div class="row">
 										<div class="col-sm-4">
 										    <P>	<a class="text-dark" href="WaterSupplierInfo/WaterSupplierMainPage.jsp">Water Tanker </a> </P>
-										    <P>	<a class="text-dark" href="#">Issue Visitor Gate Pass</a> </P>
+										    <P>	<a class="text-dark" href="Visitor/VisitorMainPage.jsp">Visitor Gate Pass</a> </P>
 										    <P>	<a class="text-dark" href="PO/MainPO.jsp"> Purchase Order[PO]</a> </P>
 										    <P>	<a class="text-dark" href="MaterialPurchase/MaterialPurchaseHomePage.jsp"> Material Received[PO]</a> </P>
 										    <P>	<a class="text-dark" href="#"> Material Rejected[PO]</a> </P>
@@ -111,7 +114,7 @@
 										</div>
 										<div class="col-sm-4">
 										    <P>	<a class="text-dark" href="Service/MainServicePage.jsp">Maintenance Work </a> </P>
-										    <P>	<a class="text-dark" href="#">Issue Visitor Gate Pass</a> </P>
+										    <P>	<a class="text-dark" href="OwnerInformation/VehicleInfo.jsp">Manage Vehicle Information</a> </P>
 										    <P>	<a class="text-dark" href="#"> Purchase Order[PO]</a> </P>
 										    <P>	<a class="text-dark" href="#"> Material Received[PO]</a></P>
 										    <P>	<a class="text-dark" href="#"> Material Rejected[PO]</a> </P>

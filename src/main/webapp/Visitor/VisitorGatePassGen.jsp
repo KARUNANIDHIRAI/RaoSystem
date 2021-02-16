@@ -55,6 +55,13 @@
 						</div>				
 					</div>
 				</div>
+				<br />
+				<div class="row">		
+					<div class="col-sm-8 offset-sm-0">
+						<p class ="h5 text-center">Visitor Authentication and Generate entry gate pass </p>
+						<p class ="text-center"> Please fill the form to Generate entry pass  </p>
+					</div>
+				</div>
 				<div class="col-sm-12 offset-sm-0">
 					<div class="row">
 				   		<div class="col-sm-8 text-center offset-sm-2">
@@ -62,10 +69,10 @@
  								<%session.removeAttribute("Message");%> 
 			    		</div>
 			  		</div>
-					<br />
 					<div class="row"> 
 						<div class="col-sm-5 offset-sm-0 bg-light ">
-							<br />
+
+<!-- 							<br />
 							<div class="row">		
 								<div class="col-sm-12 offset-sm-0">
 									<p class ="h5 text-center">Visitor Authentication  </p>
@@ -73,6 +80,7 @@
 								</div>
 							</div>
 							<br />
+ -->						<br />
 							<div class="row">	
 								<div class="col-sm-12 offset-sm-0">
 									<input type="text" class="form-control blinew " id="vFname" name="vFname"
@@ -118,7 +126,8 @@
 
 						</div>
 						<div class="col-sm-3 offset-sm-0 bg-light" >
-							<br />
+
+<!-- 							<br />
 							<div class="row">		
 								<div class="col-sm-12 offset-sm-0">
 									<p class ="h5 text-center">Visitor Authentication  </p>
@@ -126,7 +135,9 @@
 								</div>
 							</div>
 							<br />
-							<div class="row ">		
+-->
+							<br />
+ 							<div class="row ">		
 								<div class="col-sm-12 offset-sm-0">
 									<input type="text" class="form-control   blinew " id="vIdentityNo" 	name="vIdentityNo" required 
 								   pattern="[0-9A-Za-z\s]{}"	placeholder="Identity Proof*" >
@@ -161,20 +172,17 @@
 
 						<div class="col-sm-4 offset-sm-0"> 
 							<div class="col-sm-12 offset-sm-0 bg-light text-dark">
-								<br /> <br /> 
 								<div class="row">		
 									<div class="col-sm-12 offset-sm-0">
-										<p class ="h5 text-center">Person to Visitor Meet  </p>
+										<p class ="h6 text-center">Person to Visitor Meet  </p>
 										<p class ="">  </p>
 									</div>
 								</div>
-								<br />
 								<div class="row">	
 									<div class="col-sm-10 offset-sm-1">
 										<input type="text" class="form-control blinebl " id="resFname" name="resFname"
 										pattern="[A-Za-z\s]{3,40}" title="Enter character between a-z or A-Z Min 5 char" 
 										placeholder="First Name" required>
-			
 									</div>
 								</div>
 								<br />
@@ -200,10 +208,16 @@
 									</div>
 								</div>
 								<br />
-								<br />
+								<div class="row">		
+									<div class="col-sm-10 offset-sm-1 form-group form-check">
+										<input type="checkbox" class="form-check-input" id="confToRes"
+											   data-toggle="tooltip" data-placement="bottom"
+										       title="clik and call owner to get Confirmation">
+									    <label class="form-check-label text-danger" for="exampleCheck1">Confirm to residents</label>
+									</div>
+								</div>
 							</div>
 						</div>	<!--  end of Visitor to be meet -->
-						<br />
 					</div>
 					<br />
 					<div class="row ">					
@@ -246,13 +260,13 @@
 						</div>
 						<br />
 						<div class="col-sm-4">
-							<br /><br />
+							<br />
 							<div class="row">		
-								<div class="col-sm-4 offset-sm-2 ">
+								<div class="col-sm-5 offset-sm-1 ">
 									<button type="submit" id ="subRwa01" name="subRwa01" class="form-control  text-light 
 									text-center h5 btn" style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px"><%=MaintConstant.Reset%></button>
 								</div>
-								<div class="col-sm-4 offset-sm-0 ">
+								<div class="col-sm-5 offset-sm-0 ">
 									<button type="submit" id ="subRwa01" name="subRwa01" class="form-control  text-light 
 									text-center h5 btn " style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px"><%=MaintConstant.Submit %></button>
 								</div>

@@ -1,4 +1,4 @@
-/** knrai
+/** 
  *  coommon function used for all JSP PAGE.
  */
 var countryOptions = " ";
@@ -16,7 +16,6 @@ $(document).ready(function(){
 		countryList();
 	});
 	function countryList(){
-		alert("testig");
 		var request =$.ajax({
 			type:'POST',
 			data:{Action:"CountryList"},
@@ -153,7 +152,6 @@ $(document).ready(function(){
 	});
 	
 	function validEmail(emailId){
-		alert("India");
 		return IsEmail(emailId)?  true :  false;
 	}
 
@@ -385,7 +383,177 @@ $(document).ready(function(){
 			}	
 		});	 // eof AJAX
 	}// eof ValidateUserEmail()	
+	$(document).on('click', "Button[name='vehInfoDel']", function(){ 
+		var con = confirm("Do you really want to delete? ");
+		if(con){
+			var vehInfoDelID  = $(this).val();
+			var aptNo = $("#apartment").val();
+			var fltNo = $("#flatInfo").val();
+			alert (aptNo +" , " + fltNo );
+			if(vehVeiwInfoValid(aptNo, fltNo)){
+				var request =$.ajax({
+					type:'POST',
+					data:{"Action":"VehInfoDel",  "aptNo" : aptNo, "flatNo" : fltNo,"vehInoDelId":vehInfoDelID, },
+				 	dataType: 'Json',
+					url:'../VehicleInfo',
+					success:function(result){
+						vehicleList(result);
+					}	
+				});	 // eof AJAX
+			}	
+		}
+	});	
+	function vehicleList(result){
+		$('#vehOwnerList').dataTable({
+		    destroy: true,
+			"data":result,
+			 columnDefs: [
+				 {	targets: -1, className: 'dt-body-right'	},
+			 ],
+		    "columns": [
+				 { title:	'SNO'	       ,data:"SNO"},
+				 { title:	'RWA Reg.No.'  ,data:"RwaNo"},
+				 { title:	'Apt.No'       ,data:"AptartmentNo"},
+				 { title:	'Flat No.'     ,data:"FlatNo"},  
+				 { title:	'Vehicle Type' ,data:"VehicleType"},
+				 { title:	'Manufacturer' ,data:"Manufacturer"}, 
+				 { title:	'Vehicle Name' ,data:"VehicleName"}, 
+				 { title:	'Vehicel No'   ,data:"VehicleNo"}, 
+				 { title:	'Color'	       ,data:"VehicleColor"}, 
+	    		 { title:	'Del'		   ,data:"iDNO",
+			     	"render": function(data,type,row,meta){
+			       	 	return	'<button type="button" name="vehInfoDel"  value="'+data+'" class="btn btn-danger btn-sm"	data-toggle="tooltip" data-placement="right" title="Click to remove item" onclick="RemoveItem('+data+')"><span>&#9988;</span></button>'; 
+		        	},
+		        }
+			]
+		}); // EOF table
+	}// EOF table FUNCTION	
+	$("#vehlist01").click(function(){
+		var aptNo = $("#apartment").val();
+		var fltNo = $("#flatInfo").val();
+		if(vehVeiwInfoValid(aptNo, fltNo)){
+			alert("Validation is ok");
+			ViewVehInfo(aptNo, fltNo);
+		}
+	});
+
+	function vehVeiwInfoValid(aptNo, fltNo){
+		if(aptNo=="" || aptNo==0){
+			$("#apartment").focusin();
+			$("#apartment").val("Apt No can't be blank");
+			return false;
+		}else if(fltNo=="" || fltNo==0 ){
+			$("#flatInfo").focusin();
+			$("#flatInfo").val("Flat No can't be blank");
+			return false;
+		}
+		return true;
+	}
+	function ViewVehInfo(aptNo, fltNo){
+		var request =$.ajax({
+			type:'POST',
+			data:{"Action":"VehView", "aptNo" : aptNo, "flatNo" : fltNo},
+		 	dataType: 'Json',
+			url:'../VehicleInfo',
+			success:function(result){
+				vehicleList(result);
+			}	
+		});	 // eof AJAX
+	}// eof ViewVehInfo()	
+	/* create vehicle  ----------------------------------*/
+	$("#vehAdd01").click(function(){
+		var aptNo = $("#apartment").val();
+		var fltNo = $("#flatInfo").val();
+		var vtype = $("#VehType").val();
+		var manuf = $("#vehManfacturer").val();
+		var Model = $("#vehModel").val();
+		var vehNo = $("#vehNo").val();
+		var color  =$("#vehColor").val();
+		if(vehInfoValid(aptNo, fltNo , vtype, manuf, Model, vehNo, color )){
+			addVehInfo(aptNo, fltNo , vtype, manuf, Model, vehNo, color);
+		}
+	});
+	function addVehInfo(aptNo, fltNo , vtype,manuf, Model, vehNo, color){
+		var request =$.ajax({
+			type:'POST',
+			data:{"Action":"VehNew", "aptNo" : aptNo, "flatNo" : fltNo, "VehType" :vtype, "vehManfacturer" :manuf ,
+				  "vehModel" :Model, "vehNo":vehNo, "vehColor":color},
+		 	dataType: 'Json',
+			url:'../VehicleInfo',
+			success:function(result){
+				vehicleList(result);
+			}	
+		});	 // eof AJAX
+	}// eof ValidateUserEmail()	
+	function vehInfoValid(aptNo, fltNo , vtype,manuf, Model, vehNo, color ){
+		if(aptNo=="" || aptNo==0){
+			$("#apartment").focusin();
+			alert("Apartment No can't be blank");
+			return false;
+		}else if(fltNo=="" || fltNo==0){
+			$("#flatInfo").focusin();
+			alert("Flat No can't be blank");
+			return false;
+		}else if(vtype==0){
+			$("#VehType").focusin();
+			alert("Vehicle Type can't be blank");
+			return false;
+		}else if(manuf==0){
+			$("#vehManfacturer").focusin();
+			alert("Manfacturer can't be blank");
+			return false;
+		}else if(Model==0){
+			$("#vehModel").focusin();
+			alert("Vehicle Name can't be blank");
+			return false;
+		}else if(vehNo==0){
+			$("#vehNo").focusin();
+			alert("Vehicle No can't be blank");
+			return false;
+		}else if(color==0){
+			$("#vehColor").focusin();
+			alert("Vehicle color can't be blank");
+			return false;
+		}
+		$("#VehType").val("");
+		$("#vehManfacturer").val("");
+		$("#vehModel").val("");
+		$("#vehNo").val("");
+		$("#vehColor").val("");
+		return true;
+	}
+	$("#shiftInOn").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+		value:  visitTime(), //defaultTime
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
+	$("#shiftOutOn").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+//		value:  visitTime(), //defaultTime
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
+	function yearStart(){
+		var cdate = new Date();
+		return cdate.getFullYear();
+	}
+	var vTime = visitTime();
+	function visitTime(){
+		var vDate = new Date();
+		var vInTime = vDate.getHours()+":"+ vDate.getMinutes();
+		return 	vInTime;
+	}	
 	
+	/* -------------------------------------------------*/
 }); // end of documen ready function
 function ulInfo() {
 	countryList();

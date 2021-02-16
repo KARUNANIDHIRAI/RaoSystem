@@ -12,13 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import com.rao.System.RwaReg.RwaRegModel;
 import org.json.simple.JsonArray;
-
-import com.rao.System.ContactUs.HDAOGenEnquiry;
-
-
-
 public class RwaInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public RwaInfo() {
@@ -31,13 +26,15 @@ public class RwaInfo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		String erMsg= "Step1: Start";
+		String erMsg= "Step1: KNRAI Start";
 		String valMsg=""; 
 		RwaRegModel rModel = new RwaRegModel();
 		String Action = request.getParameter("Action");
+		System.out.println("progess 2" + Action);
 		JsonArray JsonArrayList = new JsonArray();
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter(); // using becaz of json in javascript
+		System.out.println("progess 2" + Action);
 		try {
 			switch (Action) {
 			case "ValidRwaNo":
@@ -71,6 +68,17 @@ public class RwaInfo extends HttpServlet {
 					response.sendRedirect("SuccessMsg.jsp");
 				}
 				break;
+			case "RWAInformation":	
+				rModel.setRegNo("MK103"); 
+				rModel.setStatus("A");
+				erMsg +=" Model Update Ok, ";
+				System.out.println("progress 2");
+				JsonArrayList = HDAORwa.RwaRegInformation(rModel, erMsg);
+			    erMsg +=  "step 3: HDAO OK."; 
+			    System.out.println("\n knrai :" + JsonArrayList.toJson());
+			    out.print(JsonArrayList.toJson());
+			    out.flush();
+				break; 
 			}
 		} catch (IOException e) {
 			System.out.println("Technical Error"+ e);

@@ -126,9 +126,9 @@ public class HDAOAptInventory {
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
 	        StoredProcedureQuery sPQuery = sessionObj.createStoredProcedureQuery("CreateAptInventory");
 
-	        sPQuery.registerStoredProcedureParameter("RwaRegNo",        	   String.class, ParameterMode.IN);
-	        sPQuery.registerStoredProcedureParameter("UserID",                   String.class, ParameterMode.IN);
-	        sPQuery.registerStoredProcedureParameter("TowerNo",    			   String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("RwaRegNo",        	  String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("UserID",                String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("TowerNo",    			  String.class, ParameterMode.IN);
 	        sPQuery.registerStoredProcedureParameter("FlatCategory",    	  String.class, ParameterMode.IN);
 	        sPQuery.registerStoredProcedureParameter("SizeOfFalt",            Integer.class, ParameterMode.IN);
 	        sPQuery.registerStoredProcedureParameter("FlatNoFrom",      	  String.class, ParameterMode.IN);
@@ -199,5 +199,92 @@ public class HDAOAptInventory {
 			}
 			return spStatus;
 	}
-
+	public static JsonArray apartmentList(AptInventoryModel aptInvModel, String erMsg) {
+        erMsg += " 2.1: APT Inventory List. " ;
+	    int ctr= 0;
+	    JsonArray aptInventory = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
+	        Root<AptInventoryModel> root = creteriaQuery.from(AptInventoryModel.class);
+	        erMsg += " 2.3: knRoot. " ;
+	        
+	        Path<Object> rwaNo       = root.get("rwaRegNo");
+	        Path<Object> TowerNo     = root.get("towerNo");
+	        Path<Object> iDNO        = root.get("iDNO");
+	        creteriaQuery.multiselect(rwaNo, TowerNo, iDNO);
+	        creteriaQuery.where(builder.equal(root.get("rwaRegNo"), aptInvModel.getRwaRegNo()),
+	        		            builder.equal(root.get("Status"), "A"));
+	        erMsg += " 2.4: Param & fetch Condition OK.:" ;
+	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
+        
+	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
+	        erMsg += " 2.5: Execute Query OK.:" ;
+	       for(Object[] row :rows ) {
+	    	   JsonObject rObj = new JsonObject();
+	    	   rObj.put("SNO",          ++ctr);
+	    	   rObj.put("RwaNo",     	row[0]);
+	    	   rObj.put("TowerNo",   	row[1]);
+	    	   rObj.put("iDNO",         row[2]);
+	    	   aptInventory.add(rObj);
+	       }
+	       sessionObj.close();
+	       System.out.println("Apartmetn List :" +aptInventory);
+		}catch(HibernateException hibernateEx) {
+	    	erMsg += "HibernateException: \n"+ hibernateEx;
+		}catch(Exception e) {
+	    	  erMsg += "Catch Exception: \n"+ e;
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return aptInventory;
+	}
+	public static JsonArray flatList(AptInventoryModel aptInvModel, String erMsg) {
+	    erMsg += " 2.1: APT Inventory List. " ;
+	    JsonArray flatList = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
+	        Root<AptInventoryModel> root = creteriaQuery.from(AptInventoryModel.class);
+	        erMsg += " 2.3: knRoot. " ;
+	        
+	        Path<Object> rwaNo       = root.get("rwaRegNo");
+	        Path<Object> TowerNo     = root.get("towerNo");
+	        Path<Object> flatNoFrom  = root.get("flatNoFrom");
+	        Path<Object> flatNoTo    = root.get("flatNoTo");
+	        creteriaQuery.multiselect(rwaNo, TowerNo, flatNoFrom, flatNoTo);
+	        creteriaQuery.where(builder.equal(root.get("rwaRegNo"), aptInvModel.getRwaRegNo()),
+	        		            builder.equal(root.get("towerNo"), aptInvModel.getTowerNo()),
+	        		            builder.equal(root.get("Status"), "A"));
+	        erMsg += " 2.4: Param & fetch Condition OK.:" ;
+	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
+	    
+	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
+	        erMsg += " 2.5: Execute Query OK.:" ;
+	       for(Object[] row :rows ) {
+	    	   int fNoFrom = Integer.parseInt((String)row[2]);
+	    	   int fNoTo = Integer.parseInt((String)row[3]);
+		   		while (fNoFrom <= fNoTo) {
+		   			fNoFrom += 1;
+		   			JsonObject rObj = new JsonObject();
+		   			rObj.put("FlatNo",    Integer.toString(fNoFrom));
+		    	   flatList.add(rObj);
+				}
+	       }
+	       sessionObj.close();
+	       System.out.println("Apartmetn List :" +flatList);
+		}catch(HibernateException hibernateEx) {
+	    	erMsg += "HibernateException: \n"+ hibernateEx;
+		}catch(Exception e) {
+	    	  erMsg += "Catch Exception: \n"+ e;
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return flatList;
+	}
 }
+
+
+ 
+	
+

@@ -108,7 +108,7 @@
 				</div>
 			</form>
 		</div>
-	
+		<br> 	
 		<!--Footer  -->
 		<jsp:include page="../FooterPage.jsp"></jsp:include>
 		<script type="text/javascript">

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>		 						
+	</head>
+	<body>
+		<div class="container" style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);">
+			<form id="LoginInfo" name="LoginInfo" action="#" method="post" class="form-horizontal needs-validation" autocomplete="off">
+				<br />	<br /><br />
+				<div class = "row" >
+					<div class="card col-sm-10 offset-sm-1" style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px">
+						<div class="card-body" >
+							<div class="row"><br />
+								<div class="col-sm-6">
+				      				<div class="card-body" >
+										<div class="row">		
+											<div class="col-sm-10 offset-sm-0">
+												<p class ="h5 text-left">Login Instruction </p>
+											</div>
+										</div>
+										<br />	<br />
+								        <p class="card-text">
+										To log on to this online account use your Web Interface -username and password as your login credentials</p><br />
+										<p class="h6">User Guide:</p> <br />
+										<p>Just log on to your account with the Registered EmailID as User Login ID
+										  and password </p>
+								        <br /> <br /><br /><br />
+							      	</div>
+								</div>
+			 					<div class="col-sm-6">
+		      						<div class="card-body" >
+										<div class="row">		
+											<div class="col-sm-10 offset-sm-1" >
+										        <h5 class="card-title text-center"  >User Login Authentication</h5>
+											</div>
+										</div>
+										<br />
+										<div class="row">		
+											<div class="col-sm-10 offset-sm-1">
+												<input type="text" class="form-control   blinebl " id="email" 	name="email" placeholder="User Login ID*" required>
+											</div>
+										</div>
+										<br />
+										<div class="row">		
+											<div class="col-sm-10 offset-sm-1">
+												<input type="password" class="form-control   blinebl " id="Pwd" 	name="Pwd" placeholder="Login Password*" required>
+											</div>
+										</div>
+										<br />
+										<div class="row">		
+											<div class="col-sm-4 offset-sm-4 ">
+												<button type="submit" id ="sub01" name="sub01" onclick= "sub()" class="form-control  text-light	text-center h5 btn " 
+													style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px">
+													Submit
+												</button>
+											</div>
+										</div>
+										<br />
+								     </div>
+								</div>
+							</div>				
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>					
+	</body>
+	<script>
+		function sub(){
+			alert("PrashantRai");
+			
+			console.log("Prashant");
+			console.log("Hello"+ $("#email").val());
+		}
+	</script>
+<!-- 	
+	<script type = "text/javascript">
+		$(document).ready(function(){
+ 			$("#sub01").click(function(){
+				console.log("Prashant");
+				console.log("Hello"+ $("#email").val());
+			});
+		});
+		
+ </script>
+ -->	
+</html>

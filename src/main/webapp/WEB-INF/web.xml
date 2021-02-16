@@ -530,6 +530,30 @@
   	<description></description>
   	<servlet-class>com.rao.System.Visitor.VisitorInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>VisitorGPInfo</servlet-name>
+  	<display-name>VisitorGPInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.rao.System.Visitor.VisitorInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>HFlatOwnerInfo</servlet-name>
+  	<display-name>HFlatOwnerInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.FLTOWN.HFlatOwnerInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>VehicleInfo</servlet-name>
+  	<display-name>VehicleInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.FLTOWN.VehicleInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TenantInfo</servlet-name>
+  	<display-name>TenantInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.raoSystem.Dweller.TenantInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -884,6 +908,18 @@
   <servlet-mapping>
   	<servlet-name>VisitorGPInfo</servlet-name>
   	<url-pattern>/VisitorGPInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HFlatOwnerInfo</servlet-name>
+  	<url-pattern>/HFlatOwnerInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VehicleInfo</servlet-name>
+  	<url-pattern>/VehicleInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TenantInfo</servlet-name>
+  	<url-pattern>/TenantInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

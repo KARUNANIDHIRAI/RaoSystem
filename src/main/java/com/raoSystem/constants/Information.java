@@ -295,6 +295,8 @@ public class Information {
 		public static final String TNTCurInfo="Dweller Current Address";
 		public static final String ShiftIn="Shifted On";
 		public static final String ShiftOut="Shifting Out";
+		public static final String Tenant="Tenant";
+		public static final String Inform="Information";
 		
 // Web Page Nevigation
 		public static final String GoToBack="Go to Preivous Page";
@@ -337,6 +339,7 @@ public class Information {
 		public static final String APTFaltInventory="Apartment Inventory";
 		public static final String RWA="RWA ";
 		public static final String SNo="SNo. ";
+		public static final String list="List";
 
 // apartment inventory
 		

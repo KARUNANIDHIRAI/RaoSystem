@@ -41,6 +41,8 @@ public class MaintConstant {
 	public static final String Reset="Reset";
 	
 	public static final String VisitorGP="Visitor Gate Pass";
+	public static final String Continu ="Continue";
+	public static final String Save ="Save";
 	
 	
 	

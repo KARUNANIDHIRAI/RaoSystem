@@ -13,6 +13,8 @@
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
+		
+		<property name="hibernate.proc.param_null_passing">true</property>		
 
 		<mapping class="com.rao.System.ContactUs.GenEnqModel"/>
 		<mapping class="com.rao.System.ContactUs.BusEnqModel"/>
@@ -25,7 +27,15 @@
 
 		<mapping class="com.rao.System.Visitor.VisitorGPModel"/>
 		<mapping class="com.rao.System.Visitor.VisitorAddressModel"/>
-		
+
+		<mapping class="com.raoSystem.FLTOWN.HFlatOwnerModel"/>
+		<mapping class="com.raoSystem.FLTOWN.HFlatOwnerAddress"/>
+		<mapping class="com.raoSystem.FLTOWN.HVehicleInfoModel"/>
+		<mapping class="com.raoSystem.FLTOWN.HVehicleTypeModel"/>
+
+		<mapping class="com.raoSystem.Dweller.TenantAddresInfoModel"/>
+		<mapping class="com.raoSystem.Dweller.TenantInfoModel"/>
+
 		
 		<mapping class="com.raoSystem.Utility.CountryList"/>
 		<mapping class="com.raoSystem.Utility.Collaboration"/>
