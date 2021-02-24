@@ -37,8 +37,7 @@
 		<!-- Page Header --><jsp:include page="../HeaderPage.jsp"></jsp:include><!-- Page Header -->
 <%-- 		<!-- Contact Us Header --><jsp:include page="../ContactUs/ContactUsHeader.jsp"></jsp:include><!-- Contact Us --> --%>
 		<div class="container">
-<!-- 			<form id="RWARegEdit01" name="RWARegEdit" action="../RwaInfo?Action=EditRwa" method="post" class="form-horizontal needs-validation" autocomplete="off"> -->
-			<form id="RWARegEdit01" name="RWARegEdit" action="../RwaInfo?Action=EditRwa" method="post" class="form-horizontal needs-validation" autocomplete="off">
+			<form id="rInformation" name="rInformation" action="../RwaInfo?Action=rInformation" method="post" class="form-horizontal needs-validation" autocomplete="off">
 				<br />
 				<div class="row">
 					<div class="col-sm-12 offset-sm-0">
@@ -241,28 +240,50 @@
 			</form>
 		</div>					
 		<!--Footer  --><jsp:include page="../FooterPage.jsp"></jsp:include>	<!--Footer  -->
-
 	</body>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$("#RegDate").datepicker();
 		$("#RegValidTo").datepicker();
-		
 		$("#RRWAInfo").click(function() {
-			alert("chal gaya re KNRAI");
+			//countryList();
+
 			var request =$.ajax({
 				type:'POST',
 				data:{Action:"RWAInformation"},
-		 		dataType: 'json',
+		 		dataType: 'Json',
 				url:'../RwaInfo',
 			    success:function(result){
-				    alert(result)
-					$.each(result, function(id, name){
-						alert("id : " +name.id  + " Name : " + name.name );
-					});
 
-				    //			    	ajaxResultValidate(result, '1')
-				},	
+					$.each(result, function(key,value) {
+						alert("result:" + value.Country + " :" + value.AthCountry);
+						$('#RwaNo').val(value.RegNO);
+ 						$('#RwaName').val(value.RegName);
+						$('#RegDate').val(value.RegDate);
+						$('#RegValidTo').val(value.RegExpDate);
+						$('#email').val(value.EmailId);
+				    	$("#mobileNo").val(value.MobileNo);
+				    	$("#phoneNo").val(value.PhoneNo);
+				    	
+				    	$("#RwaLoginId").val(value.RWAUserId);
+				    	$("#Password").val(value.RWAPassword);
+				    	$("#Address").val(value.Address);
+				    	$("#Sector").val(value.Sector);
+				    	$("#City").val(value.City) ;
+				    	$("#State").val(value.State);
+						$("#country").html(" <option value='"+value.CountryCode +"'>"+ value.CountryName + "</option>");
+				    	$("#postalCode").val(value.PinCode);
+				    	
+				    	$("#RwaRegAut").val(value.RegnAuthority);
+				    	$("#RtoEmail").val(value.RegnAuthEmail);
+				    	$("#athAddress").val(value.AthAddress);
+				    	$("#athSector").val(value.AthSector);
+				    	$("#athCity").val(value.AthCity) ;
+				    	$("#athState").val(value.AthState);
+						$("#athCountry").html(" <option value='"+value.AthCountryCode +"'>"+ value.AthCountryName + "</option>");
+				    	$("#athPostalCode").val(value.AthPinCode);
+					});
+			    },	
 			    error: function () {
 					$("#RwaNo").val("Sorry, There is an Error ");
 			    }				

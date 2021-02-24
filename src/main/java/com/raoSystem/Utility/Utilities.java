@@ -34,18 +34,30 @@ public class Utilities {
 		return captchBuffer.toString();
 	}
 	public static Date conDate(String DateString) {
-		DateFormat convDate = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		System.out.println("DateString: "+ DateString);
 		Date cDate = null;
 		try {
-			 cDate = convDate.parse(DateString);
-				System.out.println("DateString: "+ DateString);
-			 System.out.println("cDate  : " + cDate);
+			 cDate = df.parse(DateString);
 		} catch (ParseException e) {
 			System.out.println("ParseException: "+ e);
 		}  		
 		return cDate;
 	}
+	public static String ConvertDateToString(Date ConvDateToString) throws ParseException {
+		  DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		  String strDate = df.format(ConvDateToString);
+		  System.out.println("Date to String: " + strDate);  		
+	     return strDate;
+	}	
+
+	public static Date StringToDate(String StringDate) throws ParseException {
+		  DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		  Date strDate = df.parse(StringDate);
+		  System.out.println("String to Date: " + strDate);  		
+	     return strDate;
+	}	
+	
 	public static String SQLerMsg(String erMsg) {
 		return erMsg.length()>1?erMsg.substring(erMsg.indexOf("ErrMessage:")+12, erMsg.length()-2):"";
 	}

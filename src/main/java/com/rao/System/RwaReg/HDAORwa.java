@@ -1,8 +1,13 @@
 package com.rao.System.RwaReg;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
@@ -10,18 +15,14 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
-
-import com.raoSystem.FLTOWN.HVehicleInfoModel;
 import com.raoSystem.Utility.CountryList;
-import com.raoSystem.Utility.ValidEmail;
 import com.raoSystem.Utility.ValidRwaNo;
 import com.raoSystem.daoConnection.HibernateDAO;
+import com.raoSystem.Utility.Utilities;
 
 public class HDAORwa {
 
@@ -54,7 +55,7 @@ public class HDAORwa {
  	   }
 		return rwaStatus;
 	}
-	public static JsonArray RwaRegInformation(RwaRegModel rwaModel, String erMsg) {
+	public static JsonArray BAKUP_RwaRegInformation(RwaRegModel rwaModel, String erMsg) {
         erMsg += " 2.0: RwaRegInformation() " ;
 	    JsonArray rwaRegInfo = new JsonArray();
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
@@ -62,7 +63,6 @@ public class HDAORwa {
 	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
 	        Root<RwaRegModel> root = creteriaQuery.from(RwaRegModel.class);
 	        erMsg += " 2.1: Connection & Session Object Ok." ;
-	        
 	        Path<Object> rwaNo          = root.get("regNo")        ;
 	        Path<Object> regName        = root.get("regName")      ;
 	        Path<Object> regDate        = root.get("regDate")      ;
@@ -87,16 +87,15 @@ public class HDAORwa {
 	        Path<Object> athCountry     = root.get("athCountry")   ;
 	        Path<Object> athPinCode     = root.get("athPinCode")   ;
 	        Path<Object> status         = root.get("status")       ;
-	        erMsg += " 2.2: Connection & Session Object Ok." ;
+	        erMsg += " 2.2:path col set Ok." ;
 
 	        creteriaQuery.multiselect(rwaNo,regName,regDate,expDate,emailId,mobileNo,phoneNo,address,sector,city,state,
 	        		country,pinCode, rwaUserId, rwaPassword, regnAuthority, regnAuthEmail, athAddress, athSector, athCity,
 	        		athState,athCountry, athPinCode, status  );
 
-		        creteriaQuery.where(builder.equal(root.get("rwaRegNo"), rwaModel.getRegNo()),
-			            builder.equal(root.get("Status"), rwaModel.getStatus()));
-
-		    erMsg += " 2.2: Param & fetch Condition OK.:" ;
+		        creteriaQuery.where(builder.equal(root.get("regNo"), rwaModel.getRegNo()),
+			            builder.equal(root.get("status"), rwaModel.getStatus()));
+		        
 	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
         
 	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
@@ -106,8 +105,8 @@ public class HDAORwa {
               JsonObject rObj = new JsonObject();
 		      rObj.put("RegNO" ,        row[0])  ;
 		      rObj.put("RegName" ,      row[1])  ;
-		      rObj.put("RegDate" ,      row[2])  ;
-		      rObj.put("RegExpDate" ,   row[3])  ;
+//		      rObj.put("RegDate" ,      row[2])  ;
+//		      rObj.put("RegExpDate" ,   row[3])  ;
 		      rObj.put("EmailId" ,      row[4])  ;
 		      rObj.put("MobileNo" ,     row[5])  ;
 		      rObj.put("PhoneNo" ,      row[6])  ;
@@ -140,6 +139,67 @@ public class HDAORwa {
 		}
 		return rwaRegInfo;
 	}
+	
+	public static JsonArray RwaRegInformation(RwaRegModel rwaModel, String erMsg) {
+        erMsg += " 2.0: RwaRegInformation() " ;
+	    JsonArray rwaRegInfo = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+			String hQLQeuryString = "FROM RwaRegModel regInfo LEFT JOIN FETCH regInfo.countryList  where regInfo.regNo=:regNo";
+			Query<RwaRegModel> rsQuery = sessionObj.createQuery(hQLQeuryString, RwaRegModel.class);
+			rsQuery.setParameter("regNo", rwaModel.getRegNo());
+			
+	        erMsg += " 2.5: Execute Query OK.:" ;
+
+	       ArrayList <RwaRegModel> rows =  (ArrayList<RwaRegModel>) rsQuery.list();
+	       for(RwaRegModel row: rows) {
+	            JsonObject rObj = new JsonObject();
+			      rObj.put("RegNO"         ,row.getRegNo())        ;
+			      rObj.put("RegName"       ,row.getRegName())      ;
+			      rObj.put("RegDate"       ,Utilities.ConvertDateToString(row.getRegDate())); 
+				  rObj.put("RegExpDate"    ,Utilities.ConvertDateToString(row.getExpDate()));  
+			      rObj.put("EmailId"       ,row.getEmailId())      ;
+			      rObj.put("MobileNo"      ,row.getMobileNo())     ;
+			      rObj.put("PhoneNo" 	   ,row.getPhoneNo())      ;
+			      rObj.put("Address" 	   ,row.getAddress())      ;
+			      rObj.put("Sector"  	   ,row.getSector())       ;
+			      rObj.put("City"  	       ,row.getCity())         ;
+			      rObj.put("State"  	   ,row.getState())        ;
+			      rObj.put("PinCode"  	   ,row.getPinCode())      ;
+			      rObj.put("RWAUserId"     ,row.getRwaUserId())    ;
+			      rObj.put("RWAPassword"   ,row.getRwaPassword())  ;
+			      rObj.put("RegnAuthority" ,row.getRegnAuthority());
+			      rObj.put("RegnAuthEmail" ,row.getRegnAuthEmail());
+			      rObj.put("AthAddress"    ,row.getAthAddress())   ;
+			      rObj.put("AthSector"     ,row.getAthSector())    ;
+			      rObj.put("AthCity"  	   ,row.getAthCity())      ;
+			      rObj.put("AthState"  	   ,row.getAthState())     ;
+			      rObj.put("AthPinCode"    ,row.getPinCode())      ;		      
+			     
+			      CountryList data =           row.getCountryList();
+			      rObj.put("CountryName"  	     ,data.getName())  ;
+			      rObj.put("CountryCode"  	     ,data.getCode())  ;
+
+			      CountryList athcontry =      row.getAthCountry();
+			      rObj.put("AthCountryName"    ,athcontry.getName())  ;
+			      rObj.put("AthCountryCode"    ,athcontry.getCode())  ;
+
+			      rwaRegInfo.add(rObj);	
+	       }
+	       sessionObj.close();
+	       System.out.println("RWA Reg Information :" +rwaRegInfo);
+		}catch(HibernateException hibernateEx) {
+	    	erMsg += "HibernateException: \n"+ hibernateEx;
+		}catch(Exception e) {
+	    	erMsg += "Catch Exception: \n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+			return rwaRegInfo;
+	}	
+	
+	
+	
+	
 	
 	@SuppressWarnings("unused")
 	public static String validRwaNo(String rwaNo) {
@@ -246,6 +306,86 @@ public class HDAORwa {
 	          System.out.println("\n"+erMsg );
 		}
 		return emailStatus;
+	}
+	/*program to update RWA Information*/
+	public static int editRwa(RwaRegModel rModel, String erMsg) {
+        int spStatus = 0;
+		try (Session sessionObj = HibernateDAO.getSessionFactory().openSession()){
+	        StoredProcedureQuery sPQuery = sessionObj.createStoredProcedureQuery("rwaInfoEdit");
+
+	        sPQuery.registerStoredProcedureParameter("RegNo"        ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("RegName"      ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("RegDate"      ,Date.class  , ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("RegExpDate"   ,Date.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("EmailId"      ,String.class,ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("MobileNo"     ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("PhoneNo"      ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("Address"      ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("Sector"       ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("City"         ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("State"        ,String.class, ParameterMode.IN);
+		    sPQuery.registerStoredProcedureParameter("CountryCode"  ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("PinCode"      ,String.class, ParameterMode.IN);
+		    sPQuery.registerStoredProcedureParameter("RWAUserId"    ,String.class, ParameterMode.IN);   
+	        sPQuery.registerStoredProcedureParameter("RWAPassword"  ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("RegnAuthority",String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("RegnAuthEmail",String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("AthAddress"   ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("AthSector"    ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("AthCity"      ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("AthState"     ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("AthCountry"   ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("AthPinCode"   ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("UID"          ,String.class, ParameterMode.IN);
+	        sPQuery.registerStoredProcedureParameter("sPStatus"    ,Integer.class, ParameterMode.OUT);
+
+		    sPQuery.setParameter("RegNo"         ,rModel.getRegNo())        ;
+		    sPQuery.setParameter("RegName"       ,rModel.getRegName())      ;
+		    sPQuery.setParameter("RegDate"       ,rModel.getRegDate())      ; 
+			sPQuery.setParameter("RegExpDate"    ,rModel.getExpDate())      ;  
+		    sPQuery.setParameter("EmailId"       ,rModel.getEmailId())      ;
+		    sPQuery.setParameter("MobileNo"      ,rModel.getMobileNo())     ;
+		    sPQuery.setParameter("PhoneNo" 	     ,rModel.getPhoneNo())      ;
+		    sPQuery.setParameter("Address" 	     ,rModel.getAddress())      ;
+		    sPQuery.setParameter("Sector"  	     ,rModel.getSector())       ;
+		    sPQuery.setParameter("City"  	     ,rModel.getCity())         ;
+		    sPQuery.setParameter("State"  	     ,rModel.getState())        ;
+		    CountryList data =   rModel.getCountryList();
+		    sPQuery.setParameter("CountryCode"   ,data.getCode())  ;
+		    sPQuery.setParameter("PinCode"  	 ,rModel.getPinCode())      ;
+		    sPQuery.setParameter("RWAUserId"     ,rModel.getRwaUserId())    ;
+		    sPQuery.setParameter("RWAPassword"   ,rModel.getRwaPassword())  ;
+		    sPQuery.setParameter("RegnAuthority" ,rModel.getRegnAuthority());
+		    sPQuery.setParameter("RegnAuthEmail" ,rModel.getRegnAuthEmail());
+		    sPQuery.setParameter("AthAddress"    ,rModel.getAthAddress())   ;
+		    sPQuery.setParameter("AthSector"     ,rModel.getAthSector())    ;
+		    sPQuery.setParameter("AthCity"  	 ,rModel.getAthCity())      ;
+		    sPQuery.setParameter("AthState"  	 ,rModel.getAthState())     ;
+
+		    CountryList AthCountry =   rModel.getAthCountry();
+		    sPQuery.setParameter("AthCountry"   ,AthCountry.getCode())  ;
+		    
+		    sPQuery.setParameter("AthPinCode"    ,rModel.getPinCode())      ;		      
+	        sPQuery.setParameter("UID"           ,rModel.getUpdatedBy());
+	        
+	        sPQuery.execute();
+	        spStatus = (int) sPQuery.getOutputParameterValue("sPStatus"); 
+	        System.out.println("spStatus:" + spStatus);
+	        sessionObj.close();
+			
+			
+		}catch(HibernateException Hbe){
+			System.out.println("Hibernate Exception: "+ Hbe);
+			
+		}catch(Exception e) {
+			System.out.println("Error in HDAO"+ e);
+			
+		}finally {
+			System.out.println("Program Status : "+ erMsg);
+			
+		}
+		
+		return spStatus;
 	}
 	
 }

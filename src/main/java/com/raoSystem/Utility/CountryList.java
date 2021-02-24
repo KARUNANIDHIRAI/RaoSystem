@@ -14,6 +14,7 @@ public class CountryList {
 		@GeneratedValue
 		@Column(name = "Code")
 		private String Code;
+		
 		private String Name;
 		public String getCode() {
 			return Code;
@@ -31,5 +32,4 @@ public class CountryList {
 		public String toString() {
 			return "CountryList [Code=" + Code + ", Name=" + Name + "]";
 		}
-
 }

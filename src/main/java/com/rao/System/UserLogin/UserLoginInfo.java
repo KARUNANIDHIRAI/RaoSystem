@@ -28,7 +28,7 @@ public class UserLoginInfo extends HttpServlet {
 		String valMsg= " ";
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		System.out.println("Heloooo"+ erMsg );
+		System.out.println("Hello "+ erMsg );
 		try {
 			String ActType = request.getParameter("Action");
 			UserLoginModel uLModel = new  UserLoginModel();

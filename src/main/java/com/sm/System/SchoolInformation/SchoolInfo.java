@@ -1,8 +1,7 @@
-package com.rao.System.RwaReg;
+package com.sm.System.SchoolInformation;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,27 +12,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JsonArray;
 
+import com.rao.System.RwaReg.HDAORwa;
 import com.rao.System.RwaReg.RwaRegModel;
 import com.raoSystem.Utility.CountryList;
 import com.raoSystem.Utility.Utilities;
 
-import org.json.simple.JsonArray;
-public class RwaInfo extends HttpServlet {
+/**
+ * Servlet implementation class SchoolInfo
+ */
+public class SchoolInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public RwaInfo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		String erMsg= "Step1: KNRAI Start";
+		String erMsg= "Step1: S.Info Start";
 		String valMsg=""; 
 		RwaRegModel rModel = new RwaRegModel();
+		SchoolInfoModel SiModel = new SchoolInfoModel();
 		String Action = request.getParameter("Action");
 		JsonArray JsonArrayList = new JsonArray();
 		response.setContentType("text/plain");
@@ -54,13 +54,13 @@ public class RwaInfo extends HttpServlet {
 				out.print(emailValid);
 				out.flush();
 				break;
-			case "NewRwa":	
-				rModel = UpdFormValueToRModel(rModel,request);
+			case "SchoolInfo":	
+				SiModel = UpdFormValueToRModel(SiModel,request);
 				erMsg = "Step 1.1: Update Mpdel OK.";
 				ShowRegModel(rModel);
-				valMsg=ValidateRwaReg(rModel, valMsg);
+				//valMsg=ValidateRwaReg(SiModel, valMsg);
 				if(valMsg.length()>1) {
-						creatSessionVal(rModel,session);
+					//	creatSessionVal(SiModel,session);
 						System.out.println("\n error: "+ "ERROR IN :" +valMsg);
 						session.setAttribute("Message",valMsg );
 						response.sendRedirect("RwaRegistration/NewRwaReg.jsp");
@@ -83,7 +83,7 @@ public class RwaInfo extends HttpServlet {
 					// TODO Auto-generated catch block
 					System.out.println("error in date conversion");
 				}
-				rModel = UpdFormValueToRModel(rModel, request);
+				SiModel = UpdFormValueToRModel(SiModel, request);
 				ShowRegModel(rModel);
 				valMsg=ValidateRwaReg(rModel, valMsg);
 				if(valMsg.length()>1) {
@@ -190,17 +190,6 @@ public class RwaInfo extends HttpServlet {
 			}
 			System.out.println("Error Message: " +valMsg + "(Length)");
 			 return valMsg;
-		/*
-		 * return rModel.getRegNo().length()>=10 && rModel.getRegName().length()>=5 &&
-		 * rModel.getRegDate()!= null && rModel.getExpDate()!= null &&
-		 * rModel.getEmailId()!= null && rModel.getMobileNo().length()>=10 &&
-		 * rModel.getAddress()!= null && rModel.getSector()!= null && rModel.getCity()!=
-		 * null && rModel.getState()!= null && rModel.getCountry()!= null &&
-		 * rModel.getRwaUserId().length()>=8 && rModel.getRwaPassword().length()>=8 &&
-		 * rModel.getRegnAuthority()!= null && rModel.getAthAddress()!= null &&
-		 * rModel.getAthSector()!= null && rModel.getAthCity()!= null &&
-		 * rModel.getAthState()!= null && rModel.getAthCountry()!= null ? true: false;
-		 */	
 	}
 		
 
@@ -216,63 +205,60 @@ public class RwaInfo extends HttpServlet {
 		System.out.println("\nAddress:"+ rModel.getAthAddress( ) +" Sector :"+	rModel.getAthSector()+ ", City:" + rModel.getAthCity()
 		+ ", State : "+ rModel.getAthState() + ", Country :"+ rModel.getAthCountry() + ", PinCode:" +	rModel.getAthPinCode());
 	}
-	private RwaRegModel UpdFormValueToRModel(RwaRegModel rModel, HttpServletRequest request) {
+	private SchoolInfoModel UpdFormValueToRModel(SchoolInfoModel siModel, HttpServletRequest request) {
 		try {
-			rModel.setRegNo(request.getParameter("RwaNo"));
-			rModel.setRegName(request.getParameter("RwaName"));
-//			rModel.setRegDate(new SimpleDateFormat("dd-mm-yyyy").parse((String)request.getParameter("RegDate")));
-			rModel.setRegDate(Utilities.StringToDate(request.getParameter("RegDate")));
-			rModel.setExpDate(Utilities.StringToDate(request.getParameter("RegValidTo")));
-			System.out.println("Date :" + rModel.getRegDate() + " exp date :" + rModel.getExpDate());
-			rModel.setEmailId(request.getParameter("email"));
-			rModel.setMobileNo(request.getParameter("mobileNo"));
-			rModel.setPhoneNo(request.getParameter("phoneNo"));
-			rModel.setAddress(request.getParameter("Address"));
-			rModel.setSector(request.getParameter("Sector"));
-			rModel.setCity(request.getParameter("City"));
-			rModel.setState(request.getParameter("State"));
+			siModel.setRegNo(request.getParameter("RwaNo"));
+			siModel.setName(request.getParameter("RwaName"));
+			siModel.setRegDate(Utilities.StringToDate(request.getParameter("RegDate")));
+			System.out.println("Date :" + siModel.getRegDate() );
+			siModel.setEmailId(request.getParameter("email"));
+			siModel.setMobileNo(request.getParameter("mobileNo"));
+			siModel.setPhoneNo(request.getParameter("phoneNo"));
+			Address address = new Address();
+			address.setAddress(request.getParameter("Address"));
+			address.setSector(request.getParameter("Sector"));
+			address.setCity(request.getParameter("City"));
+			address.setState(request.getParameter("State"));
+			address.setPinCode(request.getParameter("postalCode"));
+			address.setCategory("School");
 
-			CountryList country = new CountryList();
+			CountryList country = address.getCountryList();
 			country.setName(request.getParameter("country"));
 			country.setCode(request.getParameter("country"));
+			address.setCountryList(country);
+			siModel.setAddress(address);
 			
-			rModel.setCountryList(country);
-			rModel.setPinCode(request.getParameter("postalCode"));
 			
-			rModel.setRwaUserId(request.getParameter("RwaLoginId"));
-			rModel.setRwaPassword(request.getParameter("Password"));
+			siModel.setLoginId(request.getParameter("RwaLoginId"));
+			siModel.setLoginPassword(request.getParameter("Password"));
 
-			rModel.setRegnAuthority(request.getParameter("RwaRegAut"));
-			rModel.setRegnAuthEmail(request.getParameter("RtoEmail"));
+/*			
+			siModel.setRegnAuthority(request.getParameter("RwaRegAut"));
+			siModel.setRegnAuthEmail(request.getParameter("RtoEmail"));
 
-			rModel.setAthAddress(request.getParameter("athAddress"));
-			rModel.setAthSector(request.getParameter("athSector"));
-			rModel.setAthCity(request.getParameter("athCity"));
-			rModel.setAthState(request.getParameter("athState"));
+			siModel.setAthAddress(request.getParameter("athAddress"));
+			siModel.setAthSector(request.getParameter("athSector"));
+			siModel.setAthCity(request.getParameter("athCity"));
+			siModel.setAthState(request.getParameter("athState"));
 
 			CountryList authcountry = new CountryList();
 			authcountry.setName(request.getParameter("athCountry"));
 			authcountry.setCode(request.getParameter("athCountry"));
-			rModel.setAthCountry(authcountry);
+			siModel.setAthCountry(authcountry);
 			
-			rModel.setAthPinCode(request.getParameter("athPostalCode"));
-			rModel.setStatus("A");
-			rModel.setCreatedBy("KNRAI");
-			rModel.setUpdatedBy("KNRAI");
-			rModel.setCreatedOn(new Date());
-			rModel.setUpdatedOn(new Date());
+			siModel.setAthPinCode(request.getParameter("athPostalCode"));
+*/
+			siModel.setStatus("A");
+			siModel.setCreatedBy("KNRAI");
+			siModel.setUpdatedBy("KNRAI");
+			siModel.setCreatedOn(new Date());
+			siModel.setUpdatedOn(new Date());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rModel;
+		return siModel;
 	}
-	/*
-	 * private static Date conDate(String convDate) {
-	 * System.out.println("form Date:" + convDate); DateFormat DF = new
-	 * SimpleDateFormat("dd/MM/yyyy"); Date cDate = null; try { cDate =
-	 * DF.parse(convDate); System.out.println("converted date  : " + cDate); } catch
-	 * (ParseException e) { e.printStackTrace(); } return cDate; }
-	 */	
+
 
 }

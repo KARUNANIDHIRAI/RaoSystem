@@ -169,10 +169,22 @@
 			</div>
 		</div>
 
+	<div> 
+        <p id="gfg">GeeksforGeeks courses:</p> 
+  
+        <select id="select">                                              
+            <option value="0">System Design</option> 
+            <option value="1">DSA-Online</option> 
+            <option value="2">Fork Python</option> 
+            <option value="3">Fork Java</option> 
+        </select>  
+    </div> 
+
 	</form>
 
 	<script>
 		$(document).ready(function() {
+			 $("#select option[value=1]").attr('selected', 'selected'); 
 		    var events = $('#events');
 		    alert(events);
 		    var table = $('#example').DataTable( {

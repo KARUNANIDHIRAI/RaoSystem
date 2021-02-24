@@ -554,6 +554,12 @@
   	<description></description>
   	<servlet-class>com.raoSystem.Dweller.TenantInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SchoolInfo</servlet-name>
+  	<display-name>SchoolInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.SchoolInformation.SchoolInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -920,6 +926,10 @@
   <servlet-mapping>
   	<servlet-name>TenantInfo</servlet-name>
   	<url-pattern>/TenantInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SchoolInfo</servlet-name>
+  	<url-pattern>/SchoolInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

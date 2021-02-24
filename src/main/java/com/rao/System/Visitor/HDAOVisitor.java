@@ -78,6 +78,7 @@ public class HDAOVisitor {
 	        Path<Object> vPurpose    = root.get("vPurpose")  ;
 	        creteriaQuery.multiselect(IDNO,rwaRegNo, vFName, vLname, vMobileNo, vInTime, vOutTime, visitDate, idProof,
 	        						  idDocName, vehicleNo, vehicleName, resFName, resLName, resAptNo, resFltNo, vPurpose);
+	        
 	        creteriaQuery.where(builder.equal(root.get("rwaRegNo"), vGPModel.getRwaRegNo()),
 	        		            builder.equal(root.get("vMobileNo"), vGPModel.getvMobileNo()),
 	        				    builder.equal(root.get("resAptNo"), vGPModel.getResAptNo()),	        				
