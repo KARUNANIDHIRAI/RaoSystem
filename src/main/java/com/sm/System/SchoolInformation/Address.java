@@ -1,8 +1,11 @@
 package com.sm.System.SchoolInformation;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -10,15 +13,23 @@ import javax.persistence.Table;
 
 import com.raoSystem.Utility.CountryList;
 
+	/**
+	 * @author KN RAI
+	 *
+	 */
 	@Entity 
-	@Table(name = "Address")
-	public class Address {
+	@Table(name = "SMAddress")
+	public class Address implements Serializable {
 			@Id
-			@GeneratedValue
+			@GeneratedValue(strategy = GenerationType.AUTO)
 			@Column(name = "IDNO")
-			private String idno;
+			private Integer idno;
 			
-			@Column(name= "Address", nullable= false,columnDefinition = "nvarchar(100)")
+			@OneToOne
+			@JoinColumn(name = "RegNO")
+			private SchoolInfoModel schAddress;
+			
+			@Column(name= "StreetBlock", nullable= false,columnDefinition = "nvarchar(100)")
 			private String address;
 
 			@Column(name= "Sector", nullable= true, columnDefinition = "nvarchar(100)")
@@ -40,12 +51,20 @@ import com.raoSystem.Utility.CountryList;
 			@Column(name= "Category", nullable= false,columnDefinition = "nvarchar(100)")
 			private String category;
 
-			public String getIdno() {
+			public Integer getIdno() {
 				return idno;
 			}
 
-			public void setIdno(String idno) {
+			public void setIdno(Integer idno) {
 				this.idno = idno;
+			}
+
+			public SchoolInfoModel getSchAddress() {
+				return schAddress;
+			}
+
+			public void setSchAddress(SchoolInfoModel schAddress) {
+				this.schAddress = schAddress;
 			}
 
 			public String getAddress() {
@@ -106,10 +125,11 @@ import com.raoSystem.Utility.CountryList;
 
 			@Override
 			public String toString() {
-				return "Address [idno=" + idno + ", address=" + address + ", sector=" + sector + ", city=" + city
-						+ ", state=" + state + ", countryList=" + countryList + ", pinCode=" + pinCode + ", category="
-						+ category + "]";
+				return "Address [idno=" + idno + ", schAddress=" + schAddress + ", address=" + address + ", sector="
+						+ sector + ", city=" + city + ", state=" + state + ", countryList=" + countryList + ", pinCode="
+						+ pinCode + ", category=" + category + "]";
 			}
+
 
 	}	
 

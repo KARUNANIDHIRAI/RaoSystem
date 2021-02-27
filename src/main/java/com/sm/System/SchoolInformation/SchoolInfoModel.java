@@ -1,26 +1,30 @@
 package com.sm.System.SchoolInformation;
 
 	import java.io.Serializable;
-	import java.util.Date;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-	import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 	import javax.persistence.Entity;
 	import javax.persistence.Id;
 	import javax.persistence.JoinColumn;
-	import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 	import javax.persistence.Table;
 	import javax.persistence.Temporal;
 	import javax.persistence.TemporalType;
 
 	@Entity
-	@Table(name ="SchoolInformation")
+	@Table(name ="SMSchoolInformation")
 	public class SchoolInfoModel implements Serializable{
 		
+
 		@Id
 		@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
 		private String regNo;
 		
-		@Id
 		@Column(name= "Status", nullable= false,columnDefinition = "nvarchar(100)")
 		private String status;
 		
@@ -31,9 +35,9 @@ package com.sm.System.SchoolInformation;
 		@Column(name="RegDate", nullable= false, columnDefinition = "date")
 		@Temporal(TemporalType.DATE)
 		private Date regDate;
-
-		@Column(name="EmailId", nullable= false, columnDefinition = "nvarchar(200)")
-		private String emailId;
+		
+		@OneToMany(cascade = CascadeType.ALL,mappedBy = "schEmail")
+		private List<Email> emailId= new ArrayList<Email>();
 
 		@Column(name="MobileNo", nullable= false,columnDefinition = "nvarchar(200)")
 		private String mobileNo;
@@ -41,8 +45,7 @@ package com.sm.System.SchoolInformation;
 		@Column(name="PhoneNo", nullable= true,columnDefinition = "nvarchar(200)")
 		private String phoneNo;
 
-		@OneToOne
-		@JoinColumn(name = "AddressID")
+		@OneToOne(mappedBy = "schAddress")
 		private Address address;
 
 
@@ -99,11 +102,11 @@ package com.sm.System.SchoolInformation;
 			this.regDate = regDate;
 		}
 
-		public String getEmailId() {
+		public List<Email> getEmailId() {
 			return emailId;
 		}
 
-		public void setEmailId(String emailId) {
+		public void setEmailId(List<Email> emailId) {
 			this.emailId = emailId;
 		}
 
@@ -185,7 +188,7 @@ package com.sm.System.SchoolInformation;
 					+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", phoneNo=" + phoneNo + ", address="
 					+ address + ", loginId=" + loginId + ", loginPassword=" + loginPassword + ", createdBy=" + createdBy
 					+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", updatedOn=" + updatedOn + "]";
-		}	
+		}
 
 		
 }

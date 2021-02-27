@@ -1,12 +1,10 @@
-package com.sm.System.SchoolInformation;
+package com.smsi.sm.SchoolInformation;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,19 +19,24 @@ import com.rao.System.RwaReg.HDAORwa;
 import com.rao.System.RwaReg.RwaRegModel;
 import com.raoSystem.Utility.CountryList;
 import com.raoSystem.Utility.Utilities;
+import com.sm.System.SchoolInformation.Address;
+import com.sm.System.SchoolInformation.Email;
+import com.sm.System.SchoolInformation.HDAOSchoolInfo;
+import com.sm.System.SchoolInformation.SchoolInfoModel;
 
 /**
- * Servlet implementation class SchoolInfo
+ * Servlet implementation class InfoSchool
  */
-public class SchoolInfo extends HttpServlet {
+public class InfoSchool extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		String erMsg= "Step1:";
+		String erMsg= "Step1: S.Info Start";
 		String valMsg=""; 
 		RwaRegModel rModel = new RwaRegModel();
 		SchoolInfoModel SiModel = new SchoolInfoModel();
@@ -43,22 +46,21 @@ public class SchoolInfo extends HttpServlet {
 		PrintWriter out = response.getWriter(); // using becaz of json in javascript
 		try {
 			switch (Action) {
-			case "RegNo":
+			case "RegNo": // validate school registraion duplicate 
 				String regNo= request.getParameter("RegNo");
-				String rwaValid=HDAOSchoolInfo.validRegNo(regNo);
-				erMsg+= "step 3: HDAO OK." + rwaValid;
-				System.out.println("step 3: HDAO OK." + rwaValid);
-				out.print(rwaValid);
+				String VRegNo=HDAORwa.validRwaNo(regNo);
+				System.out.println("step 3: HDAO OK." + VRegNo);
+				out.print(VRegNo);
 				out.flush();
 				break;
-			case "ValidEmail" :
+			case "Email" : // valid email
 				String emailId = request.getParameter("Email");
 				String emailValid = HDAORwa.validEmail(emailId);
 				System.out.println("Step 4: HDAO OK" + emailValid );
 				out.print(emailValid);
 				out.flush();
 				break;
-			case "information":	
+			case "information":	 // retrieve school information
 				SiModel = UpdFormValueToRModel(SiModel,request);
 				erMsg = "Step 1.1: Update Mpdel OK.";
 				//ShowRegModel(rModel);
@@ -108,7 +110,7 @@ public class SchoolInfo extends HttpServlet {
 //					response.sendRedirect("SuccessMsg.jsp");
 				}
 				break; 
-			case "RWAInformation":	
+			case "SInformation":	
 				rModel.setRegNo("MK103"); 
 				rModel.setStatus("A");
 				erMsg +=" Model Update Ok, ";
@@ -222,7 +224,7 @@ public class SchoolInfo extends HttpServlet {
 			siModel.setRegDate(Utilities.StringToDate(request.getParameter("RegDate")));
 			System.out.println("Date :" + siModel.getRegDate() );
 
-			List<Email> emailList = new LinkedList <Email>() ;
+			List<Email> emailList = (List<Email>) new Email() ;
 
 			Email email = new Email();
 			email.setCategory("Main");

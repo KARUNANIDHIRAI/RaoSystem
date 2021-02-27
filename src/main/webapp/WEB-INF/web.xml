@@ -560,6 +560,12 @@
   	<description></description>
   	<servlet-class>com.sm.System.SchoolInformation.SchoolInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>InfoSchool</servlet-name>
+  	<display-name>InfoSchool</display-name>
+  	<description></description>
+  	<servlet-class>com.smsi.sm.SchoolInformation.InfoSchool</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -930,6 +936,10 @@
   <servlet-mapping>
   	<servlet-name>SchoolInfo</servlet-name>
   	<url-pattern>/SchoolInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>InfoSchool</servlet-name>
+  	<url-pattern>/InfoSchool</url-pattern>
   </servlet-mapping>
  
  </web-app>
