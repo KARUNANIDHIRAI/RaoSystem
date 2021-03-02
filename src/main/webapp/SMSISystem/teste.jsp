@@ -8,20 +8,20 @@
 		<title>Insert title here</title>
 		 	<meta charset="ISO-8859-1">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
+			<link rel="stylesheet" href='../webjars/jquery-ui/1.12.1/jquery-ui.css'>
 
-			<link rel="stylesheet" href="../../css/SMST.css" type="text/css">
-			<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.css'>
-		 	<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
-			<script type="text/javascript" 	src="../../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-			<script type="text/javascript" 	src="../../webjars/jquery/3.4.1/jquery.min.js"></script>
+			<link rel="stylesheet" href="../css/Custom.css" type="text/css">
+			<link rel="stylesheet" 	href='../webjars/bootstrap/4.3.1/css/bootstrap.css'>
+		 	<link rel="stylesheet" 	href='../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+			<script type="text/javascript" 	src="../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			<script type="text/javascript" 	src="../webjars/jquery/3.4.1/jquery.min.js"></script>
 		
-		 	<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.min.js"></script>
-			<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.js"></script>
+		 	<script type="text/javascript" src="../webjars/popper.js/1.14.3/popper.min.js"></script>
+			<script type="text/javascript" src="../webjars/popper.js/1.14.3/popper.js"></script>
 		
-			<link rel="stylesheet"  type="text/css" href="../../webjars/datatables/1.10.19/css/jquery.dataTables.min.css">
-			<script type="text/javascript" src="../../webjars/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
-			<script type="text/javascript"	src="../../webjars/datatables-buttons/1.6.1/js/buttons.print.min.js"></script>
+			<link rel="stylesheet"  type="text/css" href="../webjars/datatables/1.10.19/css/jquery.dataTables.min.css">
+			<script type="text/javascript" src="../webjars/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+			<script type="text/javascript"	src="../webjars/datatables-buttons/1.6.1/js/buttons.print.min.js"></script>
 		
 			<script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>	   	
 			<script src="//cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
@@ -29,15 +29,16 @@
 			<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" ></script>	
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  	
 
-			<script type="text/javascript" src="../../webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
-		  	<script type="text/javascript" src="../../js/SMCF.js"></script>
+			<script type="text/javascript" src="../webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
+		  	<script type="text/javascript" src="../js/CommonFunc.js"></script>
+		  	<script type="text/javascript" src="../js/CommonJSFile.js"></script>
 	</head>
 	<body >
 	
-		<!-- Page Header --><jsp:include page="../../HeaderPage.jsp"></jsp:include><!-- Page Header -->
+		<!-- Page Header --><jsp:include page="../HeaderPage.jsp"></jsp:include><!-- Page Header -->
 <%-- 		<!-- Contact Us Header --><jsp:include page="../ContactUs/ContactUsHeader.jsp"></jsp:include><!-- Contact Us --> --%>
 		<div class="container">
-			<form id="SchInfo" name="SchInfo" action="../../SchoolInfo?Action=information" method="post" class="form-horizontal needs-validation" autocomplete="off">
+			<form id="SchInfo" name="SchInfo" action="../SchoolInfo?Action=information" method="post" class="form-horizontal needs-validation" autocomplete="off">
 
 
 				<br />
@@ -173,96 +174,93 @@
 					<br />
 				</div>
 				<br />
-<!-- 				<div class="bg-light col-sm-12 offset-sm-0"> -->
-<!-- 					<br /> -->
-<!-- 					<div class="row">		 -->
-<!-- 						<div class="col-sm-5 offset-sm-0"> -->
-<!-- 							<p class ="h5 ">Head Office Conact Information </p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<br /> -->
-<!-- 					<div class="row">		 -->
-<!-- 						<div class="col-sm-5 offset-sm-0"> -->
-<!-- 							<input type="email" class="form-control   blinebl " id="HoEmail" name="HoEmail" required  -->
-<!-- 							pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" placeholder="Email*" -->
-<!-- 							title="Enter character between [A-Za-z09]@[A-Za-z09].[A-Za-z] " > -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-4 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control   blinebl " id="HoMobileNo" 	name="HoMobileNo" required  -->
-<!-- 						   pattern="[0-9\s]{10,100}"	placeholder="Mobile No (+91 XXXXXXXXXX)*" > -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-3 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control   blinebl  " id="HoPhoneNo" 	name="HoPhoneNo"  -->
-<!-- 							pattern="[0-9\s]{10,100}" placeholder="Phone No (+91 XXXXXXXXXX)*" > -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<br />					 -->
-<!-- 					<div class="row">		 -->
-<!-- 						<div class="col-sm-5 offset-sm-0"> -->
-<!-- 							<p class ="h6">Address </p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row">		 -->
-<!-- 						<div class="col-sm-5 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control    " id="HoAddress" 	name="HoAddress" -->
-<!-- 							pattern="[A-Za-z0-9,-_.\s]{3,100}" title="" placeholder="Head Office Address*" style="border-top: 1px solid blue;"> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-4 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control    " id="HoSector" name="HoSector"  -->
-<!-- 							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Street/Sector*" style="border-top: 1px solid blue;"> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-3 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control    " id="HoCity" 	name="HoCity"  -->
-<!-- 							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="City*" style="border-top: 1px solid blue;"> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<br /> -->
-<!-- 					<div class="row">		 -->
-<!-- 						<div class="col-sm-5 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control    " id="HoState" 	name="HoState"  -->
-<!-- 							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="State*" style="border-top: 1px solid blue;"> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-4 offset-sm-0"> -->
-<!-- 							<select id="athCountry" name="athCountry" 	class="form-control  " style="border-top: 1px solid blue;" required> -->
-<!-- 								<option selected value ="0">Country Name*</option> -->
-<!-- 							</select> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-3"> -->
-<!-- 							<input type="number" class="form-control    " id="HOPostalCode" 	name="HOPostalCode"  -->
-<!-- 							pattern="[0-9]{8,8}" title=""placeholder="Postal Code*" style="border-top: 1px solid blue;"> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<br />					 -->
-<!-- 				</div> -->
-<!-- 				<br /> -->
-<!-- 				<div class="bg-light col-sm-12 offset-sm-0"> -->
-<!-- 					<br /> -->
-<!-- 					<div class="row">		 -->
-<!-- 						<div class="col-sm-5 offset-sm-0"> -->
-<!-- 							<p class ="h5">Social Media </p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<br />					 -->
-<!-- 					<div class="row">		 -->
-<!-- 						<div class="col-sm-5 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control    " id="athAddress" 	name="athAddress" -->
-<!-- 							pattern="[A-Za-z0-9,-_.\s]{3,100}" title="" placeholder="Facebook Link" style="border-top: 1px solid blue;"> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-4 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control    " id="athSector" name="athSector"  -->
-<!-- 							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Linkdin" style="border-top: 1px solid blue;"> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-3 offset-sm-0"> -->
-<!-- 							<input type="text" class="form-control    " id="athCity" 	name="athCity"  -->
-<!-- 							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Twitter*" style="border-top: 1px solid blue;"> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<br /> -->
-<!-- 				</div> -->
-<!-- 				<br />	 -->
-				
-				
-				
+				<div class="bg-light col-sm-12 offset-sm-0">
+					<br />
+					<div class="row">		
+						<div class="col-sm-5 offset-sm-0">
+							<p class ="h5 ">Head Office Conact Information </p>
+						</div>
+					</div>
+					<br />
+					<div class="row">		
+						<div class="col-sm-5 offset-sm-0">
+							<input type="email" class="form-control   blinebl " id="HoEmail" name="HoEmail" required 
+							pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" placeholder="Email*"
+							title="Enter character between [A-Za-z09]@[A-Za-z09].[A-Za-z] " >
+						</div>
+						<div class="col-sm-4 offset-sm-0">
+							<input type="text" class="form-control   blinebl " id="HoMobileNo" 	name="HoMobileNo" required 
+						   pattern="[0-9\s]{10,100}"	placeholder="Mobile No (+91 XXXXXXXXXX)*" >
+						</div>
+						<div class="col-sm-3 offset-sm-0">
+							<input type="text" class="form-control   blinebl  " id="HoPhoneNo" 	name="HoPhoneNo" 
+							pattern="[0-9\s]{10,100}" placeholder="Phone No (+91 XXXXXXXXXX)*" >
+						</div>
+					</div>
+					<br />					
+					<div class="row">		
+						<div class="col-sm-5 offset-sm-0">
+							<p class ="h6">Address </p>
+						</div>
+					</div>
+					<div class="row">		
+						<div class="col-sm-5 offset-sm-0">
+							<input type="text" class="form-control    " id="HoAddress" 	name="HoAddress"
+							pattern="[A-Za-z0-9,-_.\s]{3,100}" title="" placeholder="Head Office Address*" style="border-top: 1px solid blue;">
+						</div>
+						<div class="col-sm-4 offset-sm-0">
+							<input type="text" class="form-control    " id="HoSector" name="HoSector" 
+							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Street/Sector*" style="border-top: 1px solid blue;">
+						</div>
+						<div class="col-sm-3 offset-sm-0">
+							<input type="text" class="form-control    " id="HoCity" 	name="HoCity" 
+							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="City*" style="border-top: 1px solid blue;">
+						</div>
+					</div>
+					<br />
+					<div class="row">		
+						<div class="col-sm-5 offset-sm-0">
+							<input type="text" class="form-control    " id="HoState" 	name="HoState" 
+							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="State*" style="border-top: 1px solid blue;">
+						</div>
+						<div class="col-sm-4 offset-sm-0">
+							<select id="athCountry" name="athCountry" 	class="form-control  " style="border-top: 1px solid blue;" required>
+								<option selected value ="0">Country Name*</option>
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<input type="number" class="form-control    " id="HOPostalCode" 	name="HOPostalCode" 
+							pattern="[0-9]{8,8}" title=""placeholder="Postal Code*" style="border-top: 1px solid blue;">
+						</div>
+					</div>
+					<br />					
+				</div>
+				<br />
+				<div class="bg-light col-sm-12 offset-sm-0">
+					<br />
+					<div class="row">		
+						<div class="col-sm-5 offset-sm-0">
+							<p class ="h5">Social Media </p>
+						</div>
+					</div>
+					<br />					
+					<div class="row">		
+						<div class="col-sm-5 offset-sm-0">
+							<input type="text" class="form-control    " id="athAddress" 	name="athAddress"
+							pattern="[A-Za-z0-9,-_.\s]{3,100}" title="" placeholder="Facebook Link" style="border-top: 1px solid blue;">
+						</div>
+						<div class="col-sm-4 offset-sm-0">
+							<input type="text" class="form-control    " id="athSector" name="athSector" 
+							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Linkdin" style="border-top: 1px solid blue;">
+						</div>
+						<div class="col-sm-3 offset-sm-0">
+							<input type="text" class="form-control    " id="athCity" 	name="athCity" 
+							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Twitter*" style="border-top: 1px solid blue;">
+						</div>
+					</div>
+					<br />
+				</div>
+				<br />	
 				<div class="bg-light col-sm-12 offset-sm-0">
 					<div class="row">
 				   		<div class="col-sm-8 text-center offset-sm-2">
@@ -279,7 +277,7 @@
 				</div>
 			</form>
 		</div>					
-		<!--Footer  --><jsp:include page="../../FooterPage.jsp"></jsp:include>	<!--Footer  -->
+		<!--Footer  --><jsp:include page="../FooterPage.jsp"></jsp:include>	<!--Footer  -->
 
 	</body>
 	<script type="text/javascript">
@@ -288,8 +286,7 @@
 		$("#email").keypress(function(){
 			$("#LoginId").val($("#email").val())
 		});
-
-/* 		$("#TRegNo").focusout(function() {
+		$("#RegNo").focusout(function() {
 			var RegNo = $("#RegNo").val();
 			if(RegNo.length<=4){
 				$("#RegNo").focus();
@@ -314,7 +311,7 @@
 			});	 // eof AJAX
 		});// eof RegNo
 		
-		$("#Temail").focusout(function() {	
+		$("#email").focusout(function() {	
 			$("#LoginId").val($("#email").val())
 			var email = $("#email").val();
 			if(!IsEmail(email)){
@@ -335,7 +332,7 @@
 			});	 // eof AJAX
 		});// eof RegNo
 
-		$("#THoEmail").focusout(function() {	
+		$("#HoEmail").focusout(function() {	
 			var email = $("#HoEmail").val();
 			if(!IsEmail(email)){
 				$("#HoEmail").val(email +' Invalid email format');
@@ -345,7 +342,7 @@
 			}
 		});
 
-		function tIsEmail(email) {
+		function IsEmail(email) {
 			var regex = /^([a-zA-Z0-9\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 			 if(!regex.test(email)) {
 				 return false;
@@ -353,7 +350,6 @@
 			    return true;
 			 }
 		}			
- */	
 	});
 	</script>
 </html>

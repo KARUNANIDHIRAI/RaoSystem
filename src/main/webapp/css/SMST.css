@@ -1,0 +1,116 @@
+@charset "ISO-8859-1";
+ .dropdown:hover .dropdown-menu { 
+      display: block; 
+ } 
+input:invalid{
+	box-shadow:none;
+/* 	box-shadow:0 0 .25px .5px red; */
+}
+input:focus:invalid{
+box-shadow:none;
+}
+#ItemHd0{
+	box-shadow:0 0 5px 1px yellow;
+}
+#inv02{
+	box-shadow:0 0 5px 1px blue;
+padding-top:2px; padding-bottom:2px;
+}
+#inv01{
+	
+background-color: linear-gradient( #051937, #004d7a, #008793, #00bf72, #a8eb12);
+} 
+#InvItemDetails_paginate{
+	line-height:1rem; 
+	font-size:10px;	
+}
+.dataTables_length{bg-primary: text-light;} 
+table.dataTable.compact thead th, table.dataTable.compact thead td {
+    padding: 10px 17px 4px 4px;
+}
+#POItemDetails_filter{
+background-color: #17a2b8;
+	text-color:white;	
+}
+#InvItem01{
+padding-top:2px; padding-bottom:2px;	
+} 
+#POItemDetails_length{
+	background-color: #17a2b8;
+	text-color:white;
+}
+.bg-info {
+    background-color: #17a2b8 ;
+    color:white;
+}
+#POItemDetails_paginate {
+    float: right;
+    background-color: #17a2b8;
+    padding-top:2px;
+    padding-bottom:2px;
+    color:white;
+    line-height:.85rem;
+    color:light;
+}
+#POItemDetails_info{
+   background-color: #17a2b8;
+    color:white;
+    line-height:.85rem;
+    color:light;
+	
+}
+thead{
+	  background-color: #17a2b8;
+	  color:white;
+	  color:ligth
+}
+#megha_menu{
+	width:800px;
+	overflow:hidden;
+	padding-left:10px;
+}
+p{
+	margin-bottom: .25rem;
+}
+.dropdown:hover .dropdown-menu { 
+    display: block; 
+}    
+#dropdn:hover .dropdown-menu { 
+    display: block; 
+} 
+#blineb{
+	 border-bottom: 1px solid blue;
+	 border-left: 1px solid blue;
+}
+.blinebl{
+	 border-bottom: 1px solid blue;
+	 border-left: 1px solid blue;
+}
+.blineTl{
+	 border-top: 1px solid blue;
+	 border-right: 1px solid blue;
+}
+.blineb{
+	 border-bottom: 1px solid green;
+	 border-left: 1px solid green;
+}
+.blineg{
+	 border-bottom: 1px solid green;
+	 border-left: 1px solid green;
+}
+.blined{
+	 border-bottom: 1px solid black;
+	 border-left: 1px solid black;
+}
+.blinew{
+	 border-bottom: 1px solid #FFC30F;
+	 border-left: 1px solid #FFC30F;
+}
+.blinebr{
+	 border-bottom: 1px solid green;
+	 border-right: 1px solid green;
+}
+
+#texareabotmcolorg{
+	font-size:11px; color:blue	;
+}
