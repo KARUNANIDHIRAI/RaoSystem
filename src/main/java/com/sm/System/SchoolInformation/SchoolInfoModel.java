@@ -45,8 +45,18 @@ import javax.persistence.OneToOne;
 		@Column(name="PhoneNo", nullable= true,columnDefinition = "nvarchar(200)")
 		private String phoneNo;
 
-		@OneToOne(mappedBy = "schAddress")
-		private Address address;
+		@Column(name="HoMobileNo", nullable= true,columnDefinition = "nvarchar(200)")
+		private String hoMobileNo;
+
+		@Column(name="HoPhoneNo", nullable= true,columnDefinition = "nvarchar(200)")
+		private String HoPhoneNo;
+
+		@OneToMany(cascade = CascadeType.ALL,mappedBy = "sMedia")
+		private List<SocialMedia> socialMedia= new ArrayList<SocialMedia>();
+
+
+		@OneToMany(cascade = CascadeType.ALL,mappedBy = "schAddress")
+		private List<Address> address = new ArrayList<Address>();
 
 
 		@Column(name= "LoginID", nullable= false, columnDefinition = "nvarchar(100)")
@@ -126,11 +136,35 @@ import javax.persistence.OneToOne;
 			this.phoneNo = phoneNo;
 		}
 
-		public Address getAddress() {
+		public String getHoMobileNo() {
+			return hoMobileNo;
+		}
+
+		public void setHoMobileNo(String hoMobileNo) {
+			this.hoMobileNo = hoMobileNo;
+		}
+
+		public String getHoPhoneNo() {
+			return HoPhoneNo;
+		}
+
+		public void setHoPhoneNo(String hoPhoneNo) {
+			HoPhoneNo = hoPhoneNo;
+		}
+
+		public List<SocialMedia> getSocialMedia() {
+			return socialMedia;
+		}
+
+		public void setSocialMedia(List<SocialMedia> socialMedia) {
+			this.socialMedia = socialMedia;
+		}
+
+		public List<Address> getAddress() {
 			return address;
 		}
 
-		public void setAddress(Address address) {
+		public void setAddress(List<Address> address) {
 			this.address = address;
 		}
 
@@ -185,10 +219,10 @@ import javax.persistence.OneToOne;
 		@Override
 		public String toString() {
 			return "SchoolInfoModel [regNo=" + regNo + ", status=" + status + ", name=" + name + ", regDate=" + regDate
-					+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", phoneNo=" + phoneNo + ", address="
-					+ address + ", loginId=" + loginId + ", loginPassword=" + loginPassword + ", createdBy=" + createdBy
+					+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", phoneNo=" + phoneNo + ", hoMobileNo="
+					+ hoMobileNo + ", HoPhoneNo=" + HoPhoneNo + ", socialMedia=" + socialMedia + ", address=" + address
+					+ ", loginId=" + loginId + ", loginPassword=" + loginPassword + ", createdBy=" + createdBy
 					+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", updatedOn=" + updatedOn + "]";
 		}
 
-		
 }

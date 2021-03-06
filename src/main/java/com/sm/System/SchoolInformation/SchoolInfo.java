@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 import org.json.simple.JsonArray;
 
 import com.raoSystem.Utility.CountryList;
@@ -52,17 +53,15 @@ public class SchoolInfo extends HttpServlet {
 				break;
 			case "Email" :// check LogiID exist or not
 				String LoginId= request.getParameter("EmailId");
-				System.out.println(" KNRAI :"+LoginId);
 				String emailValid = HDAOSchoolInfo.verifyDupEmail(LoginId);
 				System.out.println("Step 4: HDAO OK" + emailValid );
 				out.print(emailValid);
 				out.flush();
 				break;
 			case "information":	
-				System.out.println("information");
 				SiModel = UpdFormValueToRModel(SiModel,request);
 				erMsg = " form value Update OK.";
-				ShowRegModel(SiModel);
+//				ShowRegModel(SiModel);
 				erMsg = "showvalue  OK.";
 //				valMsg=ValidateRwaReg(SiModel, valMsg);
 				int rwaStatus = HDAOSchoolInfo.newSchInfo(SiModel,erMsg);
@@ -83,14 +82,27 @@ public class SchoolInfo extends HttpServlet {
 //					response.sendRedirect("SuccessMsg.jsp");
 //				}
 				break;
-			case "rInformation":	//edit informations
+			case "rInformation" :	//edit informations
+				System.out.println("\nknrai");
+				System.out.println(request.getParameter("RegDate"));
+				try {
+					System.out.println("String to date Reg :" +Utilities.StringToDate(request.getParameter("RegDate")));
+				} catch (ParseException e) {
+					System.out.println("Error in RegDate Convert:\n" + e);
+				}
+				SchoolInfoModel siModel = new SchoolInfoModel();
+				try {
+					siModel.setRegDate(Utilities.StringToDate(request.getParameter("RegDate")));
+					System.out.println("RegDate Convert:\n" + siModel.getRegDate());
+				} catch (ParseException e) {
+					System.out.println("Error in RegDate Convert:\n" + e);
+				}
 				break; 
 			case "RWAInformation":	
 				break; 
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println("Technical Error"+ e);
-			e.printStackTrace();
 		}
 		finally {
 			System.out.println(erMsg);
@@ -100,69 +112,109 @@ public class SchoolInfo extends HttpServlet {
 		
 
 	private void ShowRegModel(SchoolInfoModel siModel) {
-//		Address address = siModel.getAddress();
-//		CountryList country = address.getCountryList();
-		System.out.println("\nReg No." +siModel.getRegNo( ) + ", Name : " +siModel.getName() + " ,RDate "
-	    +siModel.getRegDate() + ",  Mobile :" + siModel.getMobileNo( )	+ ", Phone :" + siModel.getPhoneNo()
-		+ "Login ID :"+ siModel.getLoginId() + ", PWD: "+	siModel.getLoginPassword());
+//		System.out.println("\n siModel: "+siModel);
 
-		List<Email> emailid = siModel.getEmailId();
-		System.out.println(siModel.getEmailId());
-		String emlid = null ;
-		for (Email eml:emailid) {
-			emlid += eml.getEmailID() + " ," +eml.getCategory() + " ;";
-		}
-		System.out.println("\nEmail :" + emlid);
-//		System.out.println("\nAddress:"+ address.getAddress() +" Sector :"+	address.getSector()
-//		+ ", City:" + address.getCity()	+ ", State : "+ address.getState()+ ", Country :"+ country.getName()
-//		+ ", PinCode:" +	address.getPinCode() + "Category :"+ address.getCategory() );
+		//		CountryList country = address.getCountryList();
+//		System.out.println("\nReg No." +siModel.getRegNo( ) + ", Name : " +siModel.getName()
+//		+ ",  Mobile :" + siModel.getMobileNo( )	+ ", Phone :" + siModel.getPhoneNo()
+//		+ "Login ID :"+ siModel.getLoginId() + ", PWD: "+	siModel.getLoginPassword());
+//
+//		System.out.println("\n Address: "+siModel.getAddress());
+//		System.out.println("\n email : "+siModel.getEmailId());
+//		List<Email> emailid = siModel.getEmailId();
+//		String emlid = null ;
+//		for (Email eml:emailid) {
+//			emlid += eml.getEmailID() + " ," +eml.getCategory() + " ;";
+//		}
+		
 	}
 	private SchoolInfoModel UpdFormValueToRModel(SchoolInfoModel siModel, HttpServletRequest request) {
 		try {
 			siModel.setRegNo(request.getParameter("RegNo"));
-			siModel.setRegDate(Utilities.StringToDate((String) request.getParameter("RegDate")));
-			System.out.println("Date knr:" + siModel.getRegDate() );
+			siModel.setRegDate(Utilities.StringToDate(request.getParameter("RegDate")));
+
 			siModel.setName(request.getParameter("SchName"));
-			siModel.setMobileNo(request.getParameter("mobileNo"));
-			siModel.setPhoneNo(request.getParameter("phoneNo"));
 			siModel.setLoginId(request.getParameter("LoginId"));
 			siModel.setLoginPassword(request.getParameter("Password"));
+			siModel.setMobileNo(request.getParameter("mobileNo"));
+			siModel.setPhoneNo(request.getParameter("phoneNo"));
+			siModel.setHoMobileNo(request.getParameter("HoMobileNo"));
+			siModel.setHoPhoneNo(request.getParameter("HoPhoneNo"));
 
-			List<Email> emailList =  new ArrayList<Email>()  ;
+			
 			Email email = new Email();
 			email.setCategory("SC");
 			email.setEmailID(request.getParameter("email"));
-			emailList.add(email);
+			siModel.getEmailId().add(email);
+			email.setSchEmail(siModel);
 
-//			Email email1 = new Email();
-//			email1.setCategory("HO");
-//			email1.setEmailID(request.getParameter("HoEmail"));
-//			emailList.add(email1);
+			Email HoEmail = new Email();
+			HoEmail.setCategory("HO");
+			HoEmail.setEmailID(request.getParameter("HoEmail"));
+			siModel.getEmailId().add(HoEmail);
+			HoEmail.setSchEmail(siModel);
 			
-			siModel.setEmailId(emailList);;
-//
-//			Address address = siModel.getAddress();
-//			address.setAddress(request.getParameter("Address"));
-//			address.setSector(request.getParameter("Sector"));
-//			address.setCity(request.getParameter("City"));
-//			address.setState(request.getParameter("State"));
-//			address.setPinCode(request.getParameter("postalCode"));
-//			address.setCategory("SC");
-//
-//			CountryList country = address.getCountryList();
-//			country.setName(request.getParameter("country"));
-//			country.setCode(request.getParameter("country"));
-//			address.setCountryList(country);
-//			siModel.setAddress(address);
+			
+			Address address = new Address();
+			address.setAddress(request.getParameter("Address"));
+			address.setSector(request.getParameter("Sector"));
+			address.setCity(request.getParameter("City"));
+			address.setState(request.getParameter("State"));
+			address.setPinCode(request.getParameter("postalCode"));
+			address.setCategory("SC");
+			
+			CountryList country = new CountryList();
+			country.setName(request.getParameter("country"));
+			country.setCode(request.getParameter("country"));
+			address.setCountryList(country);
+			
+			siModel.getAddress().add(address);
+			address.setSchAddress(siModel);
+			
+			Address HoAddress = new Address();
+			HoAddress.setAddress(request.getParameter("HoAddress"));
+			HoAddress.setSector(request.getParameter("HoSector"));
+			HoAddress.setCity(request.getParameter("HoCity"));
+			HoAddress.setState(request.getParameter("HoState"));
+			HoAddress.setPinCode(request.getParameter("HOPostalCode"));
+			HoAddress.setCategory("HO");
+			
+			CountryList HoCountry = new CountryList();
+			HoCountry.setName(request.getParameter("athCountry"));
+			HoCountry.setCode(request.getParameter("athCountry"));
+			HoAddress.setCountryList(HoCountry);
 
+			siModel.getAddress().add(HoAddress);
+			HoAddress.setSchAddress(siModel);
+
+			SocialMedia socialMediaF = new SocialMedia();
+			socialMediaF.setCategory("FB");
+			socialMediaF.setsMediaName(request.getParameter("Facebook"));
+			siModel.getSocialMedia().add(socialMediaF);
+			socialMediaF.setsMedia(siModel);
+			
+			SocialMedia socialMediaL = new SocialMedia();
+			socialMediaL.setCategory("LD");
+			socialMediaL.setsMediaName(request.getParameter("Linkdin"));
+			siModel.getSocialMedia().add(socialMediaL);
+			socialMediaL.setsMedia(siModel);
+
+			SocialMedia socialMediaT = new SocialMedia();
+			socialMediaT.setCategory("TW");
+			socialMediaT.setsMediaName(request.getParameter("Twitter"));
+			siModel.getSocialMedia().add(socialMediaT);
+			socialMediaT.setsMedia(siModel);
+
+			
 			siModel.setStatus("A");
 			siModel.setCreatedBy("KNRAI");
 			siModel.setUpdatedBy("KNRAI");
 			siModel.setCreatedOn(new Date());
 			siModel.setUpdatedOn(new Date());
+			System.out.println("\nKNRAI Address :8");
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("\nError in UpdFormValueToRModel: \n" + e);
 		}
 		return siModel;
 	}

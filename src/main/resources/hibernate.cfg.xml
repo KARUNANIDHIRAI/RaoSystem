@@ -48,10 +48,12 @@
 		<mapping class="com.rao.System.ConfigSetting.ConfigSettingModel"/>
 
 
-		<mapping class="com.sm.System.SchoolInformation.Address"/>
 		<mapping class="com.sm.System.SchoolInformation.SchoolInfoModel"/>
+		<mapping class="com.sm.System.SchoolInformation.Address"/>
 		<mapping class="com.sm.System.SchoolInformation.Email"/>
+		<mapping class="com.sm.System.SchoolInformation.SocialMedia"/>
 
+		<mapping class="com.sm.System.SubjectMaster.Subjects"/>
 
 		
     </session-factory>

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,8 +29,8 @@ import com.raoSystem.Utility.CountryList;
 			@Column(name = "IDNO")
 			private Integer idNo;
 			
-			@ManyToOne
-			@JoinColumn(name = "RegNoFK")
+			@ManyToOne(fetch = FetchType.LAZY)
+			@JoinColumn(name = "RegNo", columnDefinition = "nvarchar(100)")
 			private SchoolInfoModel schEmail;
 			
 			@Column(name= "EmailID", nullable= false,columnDefinition = "nvarchar(100)", unique=true)
@@ -86,6 +87,10 @@ import com.raoSystem.Utility.CountryList;
 						+ category + "]";
 			}
 
+
+
+
+	
 			
 
 	}	

@@ -34,6 +34,17 @@
 	
 <script type="text/javascript"	src="webjars/datatables.net-select/1.3.1/js/dataTables.select.min.js"></script>
 <script type="text/javascript" src="webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
+
+		 	<link rel="stylesheet" 	href='../../webjars/datetimepicker/2.5.1/jquery.datetimepicker.css'>
+		 	<link rel="stylesheet" 	href='../../webjars/bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css'>
+			<script type="text/javascript" 	src="../../webjars/bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
+			<script type="text/javascript"	src="../../webjars/datetimepicker/2.5.1/jquery.datetimepicker.min.js"></script>
+
+
+
+			<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
+
+
 	<body>
 		<div class="container-flucid" > 
 			<div class="row" >
@@ -62,7 +73,7 @@
 				</div>
 			</div>
 		</div>
-	<form id="abc" name="knrai" action="RwaInfo?Action=GenEnquiry" method="post" 	class="form-horizontal needs-validation" autocomplete="off" novalidate>
+	<form id="abc" name="knrai" action="SchoolInfo?Action=rInformation" method="post" 	class="form-horizontal needs-validation" autocomplete="off" novalidate>
 		<div class="row justify-content-md-center">
 			<div class="col-sm-12">
 				<div class="form-row">
@@ -88,52 +99,12 @@
 				                <td>$320,800</td>
 				            </tr>
 				            <tr>
-				                <td>Garrett Winters</td>
-				                <td>Accountant</td>
-				                <td>Tokyo</td>
-				                <td>63</td>
-				                <td>2011/07/25</td>
-				                <td>$170,750</td>
-				            </tr>
-				            <tr>
-				                <td>Brielle Williamson</td>
-				                <td>Integration Specialist</td>
-				                <td>New York</td>
-				                <td>61</td>
-				                <td>2012/12/02</td>
-				                <td>$372,000</td>
-				            </tr>
-				            <tr>
 				                <td>Herrod Chandler</td>
 				                <td>Sales Assistant</td>
 				                <td>San Francisco</td>
 				                <td>59</td>
 				                <td>2012/08/06</td>
 				                <td>$137,500</td>
-				            </tr>
-				            <tr>
-				                <td>Rhona Davidson</td>
-				                <td>Integration Specialist</td>
-				                <td>Tokyo</td>
-				                <td>55</td>
-				                <td>2010/10/14</td>
-				                <td>$327,900</td>
-				            </tr>
-				            <tr>
-				                <td>Colleen Hurst</td>
-				                <td>Javascript Developer</td>
-				                <td>San Francisco</td>
-				                <td>39</td>
-				                <td>2009/09/15</td>
-				                <td>$205,500</td>
-				            </tr>
-				            <tr>
-				                <td>Sonya Frost</td>
-				                <td>Software Engineer</td>
-				                <td>Edinburgh</td>
-				                <td>23</td>
-				                <td>2008/12/13</td>
-				                <td>$103,600</td>
 				            </tr>
 				            <tr>
 				                <td>Donna Snider</td>
@@ -157,8 +128,9 @@
 				    </table>
 				</div>
 				<div class="form-row">
-					<div class="col-sm-5">
-						<input type ="text" id = "datepicker" name="sdt" class ="form-control">
+					<div class="col-sm-5 offset-sm-0">
+						<input type="text" class="form-control blinebl " id="RegDate" name="RegDate" 
+						placeholder="Registration Date*" required>
 					</div>
 					<div class="col-sm-5">
 						<button type="submit" 	class="form-control h5 text-white text-center "
@@ -169,21 +141,12 @@
 			</div>
 		</div>
 
-	<div> 
-        <p id="gfg">GeeksforGeeks courses:</p> 
-  
-        <select id="select">                                              
-            <option value="0">System Design</option> 
-            <option value="1">DSA-Online</option> 
-            <option value="2">Fork Python</option> 
-            <option value="3">Fork Java</option> 
-        </select>  
-    </div> 
 
 	</form>
 
 	<script>
 		$(document).ready(function() {
+			$("#RegDate").datepicker();	
 			 $("#select option[value=1]").attr('selected', 'selected'); 
 		    var events = $('#events');
 		    alert(events);

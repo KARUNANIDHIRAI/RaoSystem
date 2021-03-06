@@ -566,6 +566,18 @@
   	<description></description>
   	<servlet-class>com.smsi.sm.SchoolInformation.InfoSchool</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SubjectsInfo</servlet-name>
+  	<display-name>SubjectsInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.SubjectMaster.SubjectsInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SubjectInformation</servlet-name>
+  	<display-name>SubjectInformation</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.SubjectInformation</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -940,6 +952,14 @@
   <servlet-mapping>
   	<servlet-name>InfoSchool</servlet-name>
   	<url-pattern>/InfoSchool</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SubjectsInfo</servlet-name>
+  	<url-pattern>/SubjectsInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SubjectInformation</servlet-name>
+  	<url-pattern>/SubjectInformation</url-pattern>
   </servlet-mapping>
  
  </web-app>

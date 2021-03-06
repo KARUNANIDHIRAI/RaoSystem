@@ -2,16 +2,20 @@
  * Second March 2021
  */
 var countryOptions=" ";
-alert('SMFC');
+var athCountryOptions=" ";
 $(document).ready(function(){
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
 		getRefreshCaptcha();
 		$("#email").focus();
 	});
 	$("#country").click(function(){
-		countryOptions!=" "?retrun:countryList();
+		countryOptions!=" "?retrun:countryList('C');
 	});
-	function countryList(){
+	$("#athCountry").click(function(){
+		athCountryOptions!=" "?retrun:countryList('A');
+	});
+	function countryList( ctyp){
+		countryOptions="";
 		var request =$.ajax({
 			type:'POST',
 			data:{Action:"CountryList"},
@@ -23,7 +27,7 @@ $(document).ready(function(){
 					countryOptions+=" <option value='"+name.id +"'>"+ name.name + "</option>";
 					//alert("id : " +name.id  + " Name : " + name.name );
 				});
-				$("#country").html(countryOptions);
+				ctyp=='C'?$("#country").html(countryOptions):$("#athCountry").html(countryOptions);
 			}	
 		});// End Of the $.Ajax()
 	}

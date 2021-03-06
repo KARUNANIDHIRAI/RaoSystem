@@ -235,8 +235,8 @@ public class RwaInfo extends HttpServlet {
 			CountryList country = new CountryList();
 			country.setName(request.getParameter("country"));
 			country.setCode(request.getParameter("country"));
-			
 			rModel.setCountryList(country);
+			
 			rModel.setPinCode(request.getParameter("postalCode"));
 			
 			rModel.setRwaUserId(request.getParameter("RwaLoginId"));

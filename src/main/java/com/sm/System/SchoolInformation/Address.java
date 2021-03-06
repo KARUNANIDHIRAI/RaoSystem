@@ -4,10 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,8 +27,8 @@ import com.raoSystem.Utility.CountryList;
 			@Column(name = "IDNO")
 			private Integer idno;
 			
-			@OneToOne
-			@JoinColumn(name = "RegNO")
+			@ManyToOne(fetch = FetchType.LAZY)
+			@JoinColumn(name = "RegNO", columnDefinition = "nvarchar(255)")
 			private SchoolInfoModel schAddress;
 			
 			@Column(name= "StreetBlock", nullable= false,columnDefinition = "nvarchar(100)")
@@ -129,6 +131,7 @@ import com.raoSystem.Utility.CountryList;
 						+ sector + ", city=" + city + ", state=" + state + ", countryList=" + countryList + ", pinCode="
 						+ pinCode + ", category=" + category + "]";
 			}
+
 
 
 	}	
