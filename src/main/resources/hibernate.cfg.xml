@@ -10,7 +10,7 @@
         <property name="hibernate.connection.password">knsa</property>
 		 <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
-		<property name="hibernate.connection.pool_size">10</property>
+		<property name="hibernate.connection.pool_size">20</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
 		
@@ -55,6 +55,26 @@
 
 		<mapping class="com.sm.System.SubjectMaster.Subjects"/>
 
+		<!-- student personal Information  -->
+		<mapping class="com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel"/>
+<!-- 		<mapping class="com.sm.System.StudentPersonalInfo.SParentInfo"/> -->
+<!-- 		<mapping class="com.sm.System.StudentPersonalInfo.SAddressInfo"/> -->
+		<mapping class="com.sm.System.StudentPersonalInfo.StudentAddress"/>
+		<mapping class="com.sm.System.StudentPersonalInfo.SBankDetailInfo"/>
+		<mapping class="com.sm.System.StudentPersonalInfo.SIdProof"/>
+		
+		<!-- student Fee payment -->
+		<mapping class="com.sm.StudentFeePayment.SFeePayment"/>
+		<mapping class="com.sm.StudentFeePayment.FeeChqDDPayment"/>
+
+		<!--  Fee Type -->
+		<mapping class="com.sm.System.FeeType.FeeTypeModel"/>
+
+		<!--  Fee Define -->
+		<mapping class="com.sm.System.FeeDefine.FeeDefineModel"/>
+		<mapping class="com.sm.System.FeeDefine.FeePrgrammeModel"/>
+		<!--  Student Attendance Model -->
+		<mapping class="com.sm.System.StudentAttendance.StudentAttendanceModel"/>
 		
     </session-factory>
 </hibernate-configuration>

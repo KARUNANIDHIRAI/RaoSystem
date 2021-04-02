@@ -121,7 +121,7 @@ public class HDAOGenEnquiry {
 		JsonArray countrylist= new JsonArray();
 		String erMsg;
 		erMsg = " Step 2: HDAO start " ;
-		System.out.println(erMsg);
+		System.out.println("knrai: "+erMsg);
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()){
 			transaction = sessionObj.beginTransaction();
 	          erMsg += " 2.1: Began Tran OK. " ;
@@ -138,16 +138,10 @@ public class HDAOGenEnquiry {
 	          sessionObj.getTransaction().commit();
 	          erMsg = " 2.3 :GEnquiry save Successfully" ;
 	          geEnqStatus=1;
-	      } catch(HibernateException hibernateEx) {
-	    	  if (transaction!=null) {
-	    		  transaction.rollback();
-	    	  }
-              System.out.println("\n" + erMsg+" "+ ".......Transaction Is Being Rolled Back.......\n" + hibernateEx);
 	      }catch (Exception e) {
-	    	  if (transaction!=null) {
-	    		  transaction.rollback();
-	    	  }
 	          System.out.println("\n"+erMsg +"\n"+e );
+		}finally {
+			System.out.println("Execution Status:\n"+erMsg);
 		}
 		return countrylist;
 	}

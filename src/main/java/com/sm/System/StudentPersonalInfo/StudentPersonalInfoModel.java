@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,13 +19,15 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.sm.System.SchoolInformation.Email;
+
 @Entity
-@Table(name ="StudentInformation")
+@Table(name ="SMStudentInfo")
 public class StudentPersonalInfoModel  implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="SIdNo", nullable= false , updatable = false, columnDefinition = "Integer")
+	@Column(name="SIdNo", nullable= false , updatable = false)
 	private Integer sIdNo;
 
 	@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
@@ -33,19 +36,14 @@ public class StudentPersonalInfoModel  implements Serializable{
 	@Column(name="RollNo", nullable= true , updatable = false, columnDefinition = "nvarchar(100)")
 	private String rollNo;
 
-	@Column(name="AdmNo", nullable= false,columnDefinition = "nvarchar(100)")
+	@Column(name="AdmNo", nullable= false)
 	private String admNo;
 	
-	@Column(name="AdmDate", nullable= false, columnDefinition = "date")
+	@Column(name="AdmDate", nullable= false , columnDefinition = "date")
 	@Temporal(TemporalType.DATE)
 	private Date admDate;
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="studentPersonalInfoModel")
-	private SParentInfo sParentInfo;
-	
-	@Column(name= "Status", nullable= false,columnDefinition = "nvarchar(100)")
-	private String status;
-	
+
 	@Column(name="FName", nullable= false, columnDefinition = "nvarchar(100)")
 	private String fName;
 	
@@ -59,23 +57,60 @@ public class StudentPersonalInfoModel  implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 
-	@Column(name="MobileNo", nullable= false,columnDefinition = "nvarchar(100)")
-	private String mobileNo;
-
-	@Column(name="EmailId", nullable= true,columnDefinition = "nvarchar(100)")
-	private String emailId;
-
 	@Column(name="AdmInClass", nullable= true,columnDefinition = "nvarchar(100)")
 	private String admInClass;
 
 	@Column(name="PromotedInClass", nullable= true,columnDefinition = "nvarchar(100)")
 	private String promotedInClass;
 
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "studentPersonalInfo")
-	private List<SIdProofInfo> sidProofInfo = new ArrayList<SIdProofInfo>();
+	@Column(name="MobileNo", nullable= false,columnDefinition = "nvarchar(100)")
+	private String mobileNo;
 
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "stdAddress")
-	private SAddressInfo studentdAddress ;
+	@Column(name="EmailId", nullable= true,columnDefinition = "nvarchar(100)")
+	private String emailId;
+
+	@Column(name="Sibling", nullable= true,columnDefinition = "nvarchar(100)")
+	private String sibling;
+	
+
+	@Column(name="FFName", nullable= false, columnDefinition = "nvarchar(100)")
+	private String ffName;
+	
+	@Column(name="FLName", nullable= false, columnDefinition = "nvarchar(100)")
+	private String flName;
+
+	@Column(name="FProfession", nullable= false, columnDefinition = "nvarchar(100)")
+	private String fprofession;
+
+
+	@Column(name="MFName", nullable= false, columnDefinition = "nvarchar(100)")
+	private String mfName;
+	
+	@Column(name="MLName", nullable= false, columnDefinition = "nvarchar(100)")
+	private String mlName;
+	
+	@Column(name="MProfession", nullable= false, columnDefinition = "nvarchar(100)")
+	private String mprofession;
+	
+	@Column(name="PMobileNo", nullable= true,columnDefinition = "nvarchar(200)")
+	private String pMobileNo;
+
+	@Column(name="PEmailId", nullable= true,columnDefinition = "nvarchar(200)")
+	private String pEmailId;
+	
+
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "SidProof")
+	private List<SIdProof> sidProofInfo= new ArrayList<>();	
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "stdAddress" )
+	private List<StudentAddress> studentdAddress = new ArrayList<>();
+	
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="studentBankDetails")
+	private List<SBankDetailInfo> sBankDtl = new ArrayList<>();	
+	
+	@Column(name= "Status", nullable= false,columnDefinition = "nvarchar(100)")
+	private String status;
 
 	@Column(name= "CreatedBy", nullable= false,updatable = false, columnDefinition = "nvarchar(100)")
 	private String createdBy;
@@ -131,22 +166,6 @@ public class StudentPersonalInfoModel  implements Serializable{
 		this.admDate = admDate;
 	}
 
-	public SParentInfo getsParentInfo() {
-		return sParentInfo;
-	}
-
-	public void setsParentInfo(SParentInfo sParentInfo) {
-		this.sParentInfo = sParentInfo;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getfName() {
 		return fName;
 	}
@@ -179,22 +198,6 @@ public class StudentPersonalInfoModel  implements Serializable{
 		this.dob = dob;
 	}
 
-	public String getMobileNo() {
-		return mobileNo;
-	}
-
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
 	public String getAdmInClass() {
 		return admInClass;
 	}
@@ -211,20 +214,125 @@ public class StudentPersonalInfoModel  implements Serializable{
 		this.promotedInClass = promotedInClass;
 	}
 
-	public List<SIdProofInfo> getSidProofInfo() {
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getSibling() {
+		return sibling;
+	}
+
+	public void setSibling(String sibling) {
+		this.sibling = sibling;
+	}
+
+	public String getFfName() {
+		return ffName;
+	}
+
+	public void setFfName(String ffName) {
+		this.ffName = ffName;
+	}
+
+	public String getFlName() {
+		return flName;
+	}
+
+	public void setFlName(String flName) {
+		this.flName = flName;
+	}
+
+	public String getFprofession() {
+		return fprofession;
+	}
+
+	public void setFprofession(String fprofession) {
+		this.fprofession = fprofession;
+	}
+
+	public String getMfName() {
+		return mfName;
+	}
+
+	public void setMfName(String mfName) {
+		this.mfName = mfName;
+	}
+
+	public String getMlName() {
+		return mlName;
+	}
+
+	public void setMlName(String mlName) {
+		this.mlName = mlName;
+	}
+
+	public String getMprofession() {
+		return mprofession;
+	}
+
+	public void setMprofession(String mprofession) {
+		this.mprofession = mprofession;
+	}
+
+	public String getpMobileNo() {
+		return pMobileNo;
+	}
+
+	public void setpMobileNo(String pMobileNo) {
+		this.pMobileNo = pMobileNo;
+	}
+
+	public String getpEmailId() {
+		return pEmailId;
+	}
+
+	public void setpEmailId(String pEmailId) {
+		this.pEmailId = pEmailId;
+	}
+
+	public List<SIdProof> getSidProofInfo() {
 		return sidProofInfo;
 	}
 
-	public void setSidProofInfo(List<SIdProofInfo> sidProofInfo) {
+	public void setSidProofInfo(List<SIdProof> sidProofInfo) {
 		this.sidProofInfo = sidProofInfo;
 	}
 
-	public SAddressInfo getStudentdAddress() {
+	public List<StudentAddress> getStudentdAddress() {
 		return studentdAddress;
 	}
 
-	public void setStudentdAddress(SAddressInfo studentdAddress) {
+	public void setStudentdAddress(List<StudentAddress> studentdAddress) {
 		this.studentdAddress = studentdAddress;
+	}
+
+
+	public List<SBankDetailInfo> getsBankDtl() {
+		return sBankDtl;
+	}
+
+	public void setsBankDtl(List<SBankDetailInfo> sBankDtl) {
+		this.sBankDtl = sBankDtl;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getCreatedBy() {
@@ -259,14 +367,20 @@ public class StudentPersonalInfoModel  implements Serializable{
 		this.updatedOn = updatedOn;
 	}
 
-	@Override
-	public String toString() {
-		return "StudentPersonalInfoModel [sIdNo=" + sIdNo + ", regNo=" + regNo + ", rollNo=" + rollNo + ", admNo="
-				+ admNo + ", admDate=" + admDate + ", sParentInfo=" + sParentInfo + ", status=" + status + ", fName="
-				+ fName + ", lName=" + lName + ", gender=" + gender + ", dob=" + dob + ", mobileNo=" + mobileNo
-				+ ", emailId=" + emailId + ", admInClass=" + admInClass + ", promotedInClass=" + promotedInClass
-				+ ", sidProofInfo=" + sidProofInfo + ", studentdAddress=" + studentdAddress + ", createdBy=" + createdBy
-				+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", updatedOn=" + updatedOn + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "StudentPersonalInfoModel [sIdNo=" + sIdNo + ", regNo=" + regNo + ", rollNo=" + rollNo + ", admNo="
+//				+ admNo + ", admDate=" + admDate + ", fName=" + fName + ", lName=" + lName + ", gender=" + gender
+//				+ ", dob=" + dob + ", admInClass=" + admInClass + ", promotedInClass=" + promotedInClass + ", mobileNo="
+//				+ mobileNo + ", emailId=" + emailId + ", sibling=" + sibling + ", ffName=" + ffName + ", flName="
+//				+ flName + ", fprofession=" + fprofession + ", mfName=" + mfName + ", mlName=" + mlName
+//				+ ", mprofession=" + mprofession + ", pMobileNo=" + pMobileNo + ", pEmailId=" + pEmailId
+//				+ ", sidProofInfo=" + sidProofInfo + ", studentdAddress=" + studentdAddress + ", sBankDtl=" + sBankDtl
+//				+ ", status=" + status + ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", updatedBy="
+//				+ updatedBy + ", updatedOn=" + updatedOn + "]";
+//	}
+//
+
+
 	
 }

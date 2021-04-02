@@ -57,16 +57,12 @@
 		<div class="container" > 
 			<div class="row "> 
                 <div class="col-lg-7 " > 
- 					<img src="../images/KSB.png" class="img-responsive "/>
+ 					<img src="../../images/KSB.png" class="img-responsive "/>
 				</div>
 				<div class="col-lg-5 text-right text-white"> 
 	                <br />  
 	                <h6> <span class ="glyphicon glyphicon-user" ></span>
 						<a href="Common/RLoginPage.jsp"> <%= Information.signin%></a> 
-
-<%-- 	                  	<a href="#"> <%= Information.joinPartner%>/ </a>
-		                <a href="#"> <%= Information.reachus%> </a>
- --%>
 	                </h6>
 	        	</div>
  			</div>
@@ -89,8 +85,16 @@
 								<div class="dropdown-menu " id="megha_menu" style ="width:400px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
 									<div class="row">
 										<div class="col-sm-10">
-										    <P>	<a class="text-dark" href="SMInfoSystem.jsp">School Management & Information System</a> </P>
-										    <P>	<a class="text-dark" href="SIMainPage.jsp">Student Information System</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/SchoolInformation.jsp">School Information</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/sPersonalInformation.jsp">Student Profile</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/MasSubject.jsp">Teaching Subject</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/MasSFeeType.jsp">Fee Type</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/MasSFeeDefine.jsp">Define Fee</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/SFeePayment.jsp">Fee Payment</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/SAttendance.jsp">Student Attendance</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/SPerformance.jsp">Student Perfromance</a> </P>
+										    
+										    
 										</div>
 								    </div>
 								</div>
@@ -243,7 +247,7 @@
 					    </form>
 					</div>
 				</nav>			
-			</div>
+			</div> <!--  eof NAV -->
 			<div class="row" data-spy="scroll" data-target="#navbar-example2" data-offset="0" >
 				<div class="col-lg-12 "> 
 					<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
@@ -257,10 +261,9 @@
 					    	<li data-target="#carouselExampleCaptions" data-slide-to="6"></li>
 					    	<li data-target="#carouselExampleCaptions" data-slide-to="7"></li>
 					  	</ol>
-
 					  	<div class="carousel-inner">
 					    	<div class="carousel-item active" style="height: 500px">
-					      		<img src="../images/Academic/LIbrary2.jpg" class="img-fluid d-block w-100 " alt="Responsive image"  >
+					      		<img src="../../images/Academic/LIbrary2.jpg" class="img-fluid d-block w-100 " alt="Responsive image"  >
 					      		<div class="carousel-caption d-none d-md-block">
 					        		<h5 class= "text-light">Library Information </h5>
 					      		</div>
@@ -294,32 +297,33 @@
 						      	<div class="carousel-caption d-none d-md-block">
 						        	<h5 class= "text-light">Transport Information</h5>
 						      	</div>
-						  </div>
-						  <div class="carousel-item" style="height: 500px">
-						  	<img src="../images/Academic/transport4.jpg" class="img-fluid d-block w-100" alt="Responsive image">
-						    <div class="carousel-caption d-none d-md-block">
-						    	<h5 class= "text-light">Transport Information</h5>
-						    </div>
-						  </div>
-						  <div class="carousel-item" style="height: 500px">
-				      	  	<img src="../images/Academic/COMPUTERLAB2.jpg" class="img-fluid d-block w-100" alt="Responsive image">
-				      		<div class="carousel-caption d-none d-md-block">
-				        		<h5 class= "text-light">Transport Information</h5>
-				      		</div>
-					  	</div>
-					  	<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-					    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    	<span class="sr-only">Previous</span>
-					  	</a>
-					  	<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-					    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    	<span class="sr-only">Next</span>
-					  	</a>
+						  	</div>
+						  	<div class="carousel-item" style="height: 500px">
+						  		<img src="../images/Academic/transport4.jpg" class="img-fluid d-block w-100" alt="Responsive image">
+						    	<div class="carousel-caption d-none d-md-block">
+						    		<h5 class= "text-light">Transport Information</h5>
+						    	</div>
+						  	</div>
+						  	<div class="carousel-item" style="height: 500px">
+				      	  		<img src="../images/Academic/COMPUTERLAB2.jpg" class="img-fluid d-block w-100" alt="Responsive image">
+				      			<div class="carousel-caption d-none d-md-block">
+				        			<h5 class= "text-light">Transport Information</h5>
+				      			</div>
+					  		</div>
+					  		<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+					    		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    		<span class="sr-only">Previous</span>
+					  		</a>
+					  		<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+					    		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    		<span class="sr-only">Next</span>
+					  		</a>
+					  	</div>	
 					</div>			
-				</div>			
-			</div>
-			<br /><br />
-<!-- 			</div>  -->
+				</div>
+				<br /><br />
+				
+			</div> // end of scroll data-target
 			<div class="row">
 				<div class="col-sm-6 offset-sm-0">
 			    	<div class="card text-center">

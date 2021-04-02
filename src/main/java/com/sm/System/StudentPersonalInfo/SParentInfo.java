@@ -19,7 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name ="StudentParentInfo")
+@Table(name ="SMStudentParent")
 public class SParentInfo  implements Serializable{
 	
 	@Id
@@ -27,9 +27,9 @@ public class SParentInfo  implements Serializable{
 	@Column(name="IdNo", nullable= false , updatable = false, columnDefinition = "Integer")
 	private Integer idNo;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="sIdNo", columnDefinition = "long")
-	private StudentPersonalInfoModel studentPersonalInfoModel;
+//	@OneToOne(mappedBy="sParentInfo")
+//	@JoinColumn(name="sIdNo")
+//	private StudentPersonalInfoModel SParentDetail;
 
 	
 	@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
@@ -40,14 +40,20 @@ public class SParentInfo  implements Serializable{
 	
 	@Column(name="FLName", nullable= false, columnDefinition = "nvarchar(100)")
 	private String flName;
-	
+
+	@Column(name="FProfession", nullable= false, columnDefinition = "nvarchar(100)")
+	private String fprofession;
+
+
 	@Column(name="MFName", nullable= false, columnDefinition = "nvarchar(100)")
 	private String mfName;
 	
 	@Column(name="MLName", nullable= false, columnDefinition = "nvarchar(100)")
 	private String mlName;
 	
-
+	@Column(name="MProfession", nullable= false, columnDefinition = "nvarchar(100)")
+	private String mprofession;
+	
 	@Column(name="PMobileNo", nullable= true,columnDefinition = "nvarchar(200)")
 	private String pMobileNo;
 
@@ -60,14 +66,6 @@ public class SParentInfo  implements Serializable{
 
 	public void setIdNo(Integer idNo) {
 		this.idNo = idNo;
-	}
-
-	public StudentPersonalInfoModel getStudentPersonalInfoModel() {
-		return studentPersonalInfoModel;
-	}
-
-	public void setStudentPersonalInfoModel(StudentPersonalInfoModel studentPersonalInfoModel) {
-		this.studentPersonalInfoModel = studentPersonalInfoModel;
 	}
 
 	public String getRegNo() {
@@ -94,6 +92,14 @@ public class SParentInfo  implements Serializable{
 		this.flName = flName;
 	}
 
+	public String getFprofession() {
+		return fprofession;
+	}
+
+	public void setFprofession(String fprofession) {
+		this.fprofession = fprofession;
+	}
+
 	public String getMfName() {
 		return mfName;
 	}
@@ -108,6 +114,14 @@ public class SParentInfo  implements Serializable{
 
 	public void setMlName(String mlName) {
 		this.mlName = mlName;
+	}
+
+	public String getMprofession() {
+		return mprofession;
+	}
+
+	public void setMprofession(String mprofession) {
+		this.mprofession = mprofession;
 	}
 
 	public String getpMobileNo() {
@@ -128,10 +142,10 @@ public class SParentInfo  implements Serializable{
 
 	@Override
 	public String toString() {
-		return "SParentInfo [idNo=" + idNo + ", studentPersonalInfoModel=" + studentPersonalInfoModel + ", regNo="
-				+ regNo + ", ffName=" + ffName + ", flName=" + flName + ", mfName=" + mfName + ", mlName=" + mlName
-				+ ", pMobileNo=" + pMobileNo + ", pEmailId=" + pEmailId + "]";
+		return "SParentInfo [idNo=" + idNo + ", regNo=" + regNo + ", ffName=" + ffName + ", flName=" + flName
+				+ ", fprofession=" + fprofession + ", mfName=" + mfName + ", mlName=" + mlName + ", mprofession="
+				+ mprofession + ", pMobileNo=" + pMobileNo + ", pEmailId=" + pEmailId + "]";
 	}
-	
+
 	
 }

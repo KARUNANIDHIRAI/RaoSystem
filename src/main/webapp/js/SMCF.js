@@ -1,8 +1,18 @@
 /*Shikha Rai*
  * Second March 2021
  */
+
 var countryOptions=" ";
 var athCountryOptions=" ";
+var	fTOption=" ";
+var courseOption=" ";
+var fApplCF=" ";
+var fApplCT=" ";
+var feePenality =" ";
+var PenalityApplCF = " ";
+var feeGrade = " ";
+var section = " ";
+var subjects="";
 $(document).ready(function(){
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
 		getRefreshCaptcha();
@@ -22,15 +32,26 @@ $(document).ready(function(){
 	 		dataType: 'json',
 			url:'../../ContactUsInfo',
 			success:function(result){
-				countryOptions+=" <option value=1>Select Country Name</option>";
-				$.each(result, function(id, name){
-					countryOptions+=" <option value='"+name.id +"'>"+ name.name + "</option>";
-					//alert("id : " +name.id  + " Name : " + name.name );
-				});
-				ctyp=='C'?$("#country").html(countryOptions):$("#athCountry").html(countryOptions);
+				if(ctyp=='C'){
+					countryOptions+=" <option value=1>Select Country Name</option>";
+					$.each(result, function(id, name){
+						countryOptions+=" <option value='"+name.id +"'>"+ name.name + "</option>";
+					});
+					$("#country").html(countryOptions)
+				}else{
+					athCountryOptions+=" <option value=1>Select Country Name</option>";
+					$.each(result, function(id, name){
+						athCountryOptions+=" <option value='"+name.id +"'>"+ name.name + "</option>";
+					});
+					$("#athCountry").html(athCountryOptions);
+				}
 			}	
 		});// End Of the $.Ajax()
 	}
+
+	
+	
+	
 	$("#Kemail").focusout(function() {
 		var email = $("#email").val();
 		if(!IsEmail(email)){
@@ -147,5 +168,120 @@ $(document).ready(function(){
 		    }				
 		});	 // eof AJAX
 	});// eof RegNo
+
+	$("#feeType").click(function(){
+		if (fTOption!=" "){
+			return;
+		}
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"xSFTRI"},
+		 	dataType: 'Json',
+			url:'../../SFType',
+			success:function(result){
+				fTOption+=" <option value=1>Choose fee Type</option>";
+				$.each(result, function(id, name){
+					fTOption+=" <option value='"+name.Name +"'>"+ name.Name + "</option>";
+				});
+				$("#feeType").html(fTOption)
+			}	
+		});	 // eof AJAX
+	});
+
+	$("#fProgram").click(function(){
+		if (courseOption!=" "){	return;	}
+		courseOption="";
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"xSRVl"},
+		 	dataType: 'Json',
+			url:'../../SubjectsInfo',
+			success:function(result){
+				courseOption+=" <option selected value=0>Choose Course Program</option>";
+				$.each(result, function(id, name){
+					courseOption+=" <option value='"+name.Code +"'>"+ name.Name+ "</option>";
+				});
+				$("#fProgram").html(courseOption);
+			}	
+		});	 // eof AJAX
+	});
 	
+	$("#fApplCF").click(function(){
+		if(fApplCF!=" "){return;}
+		fApplCF=" <option selected value=0>Choose Class from</option>";
+		for (var ctr=1;ctr<=12;ctr++){
+			fApplCF+=" <option value='"+ctr +"'>"+ ctr+ "</option>";
+		}
+		$("#fApplCF").html(fApplCF);
+		$("#PenalityApplCF").html(fApplCF);
+ 	});
+	$("#feeSlab").click(function(){
+		if (fApplCT!=" "){return;}
+		fApplCT=" <option selected value=0>Choose Fee Slab</option>";
+			fApplCT+=" <option value='Monthly'>Monthly   </option>";
+			fApplCT+=" <option value='Monthly'>Quaterly  </option>";
+			fApplCT+=" <option value='Monthly'>HalfYearly</option>";
+			fApplCT+=" <option value='Monthly'>Yearly    </option>";
+		$("#feeSlab").html(fApplCT);
+	});
+	$("#feePenality").click(function(){
+		if (feePenality!=" "){return;}
+		feePenality="  <option selected value=0> Choose Penality Charge Slab</option>";
+		feePenality+=" <option value='Fix'>Fixed               </option>";
+		feePenality+=" <option value='Daily'>Daily             </option>";
+		feePenality+=" <option value='Weekly'>Weekly           </option>";
+		feePenality+=" <option value='Fortnightly'>Fortnightly </option>";
+		feePenality+=" <option value='Monthly'>Monthly         </option>";
+		feePenality+=" <option value='Monthly'>Quaterly        </option>";
+		feePenality+=" <option value='Monthly'>HalfYearly      </option>";
+		feePenality+=" <option value='Monthly'>Yearly          </option>";
+		$("#feePenality").html(feePenality);
+	});
+	$("#feeGrade").click(function(){
+		if (feeGrade!=" "){return;}
+		
+		feeGrade=" <option selected value=0>Choose Fee Slab</option>";
+		feeGrade+=" <option value='General'>General   </option>";
+		feeGrade+=" <option value='EWS'>EWS  </option>";
+		feeGrade+=" <option value='OBC'>OBC  </option>";
+		feeGrade+=" <option value='SC'>SC    </option>";
+		feeGrade+=" <option value='ST'>ST    </option>";
+		feeGrade+=" <option value='DQ'>DQ    </option>";
+		feeGrade+=" <option value='MQ'>MQ    </option>";
+		$("#feeGrade").html(feeGrade);
+	});
+
+	function scrollPage(pos){
+		$("html, body").animate({
+            scrollTop: $('html, body').get(0).scrollHeight}, pos);				
+	 }
+
+   $("#Ssection").click(function(){
+		if (section!=" "){return;}
+		section=" <option selected value=0>Choose Student Section</option>";
+	    var StudentSection = ['A', 'B', 'C', 'D', 'E' , 'F','G'];
+        $.each(StudentSection, function(index, value){
+        	section+=" <option value='"+value +"'>"+ value+ "</option>";
+        });
+        $("#Ssection").html(section);
+   });
+   
+	$("#Subject").click(function(){
+		if (subjects!=""){	return;	}
+		subjects="";
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"xSRVl"},
+		 	dataType: 'Json',
+			url:'../../SubjectsInfo',
+			success:function(result){
+				subjects+=" <option selected value=0>Choose Subject</option>";
+				$.each(result, function(id, name){
+					subjects+=" <option value='"+name.Name +"'>"+ name.Name+ "</option>";
+				});
+				$("#Subject").html(subjects);
+			}	
+		});	 // eof AJAX
+	});
+   
 });

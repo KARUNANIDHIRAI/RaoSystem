@@ -216,13 +216,13 @@ import javax.persistence.OneToOne;
 			this.updatedOn = updatedOn;
 		}
 
-		@Override
-		public String toString() {
-			return "SchoolInfoModel [regNo=" + regNo + ", status=" + status + ", name=" + name + ", regDate=" + regDate
-					+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", phoneNo=" + phoneNo + ", hoMobileNo="
-					+ hoMobileNo + ", HoPhoneNo=" + HoPhoneNo + ", socialMedia=" + socialMedia + ", address=" + address
-					+ ", loginId=" + loginId + ", loginPassword=" + loginPassword + ", createdBy=" + createdBy
-					+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", updatedOn=" + updatedOn + "]";
-		}
+//		@Override
+//		public String toString() {
+//			return "SchoolInfoModel [regNo=" + regNo + ", status=" + status + ", name=" + name + ", regDate=" + regDate
+//					+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", phoneNo=" + phoneNo + ", hoMobileNo="
+//					+ hoMobileNo + ", HoPhoneNo=" + HoPhoneNo + ", socialMedia=" + socialMedia + ", address=" + address
+//					+ ", loginId=" + loginId + ", loginPassword=" + loginPassword + ", createdBy=" + createdBy
+//					+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", updatedOn=" + updatedOn + "]";
+//		}
 
 }

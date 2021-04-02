@@ -48,7 +48,7 @@
 									<li class="nav-item " id="NEWPO"><a class="nav-link text-light" href="../MasterItem/NewItem.jsp">
 										<%=SMFixedValue.New%> <%=SMFixedValue.Item%> <%=SMFixedValue.Info%></a></li>
 									<li class="nav-item " id="SubjectList"><a class="nav-link text-light"
-										href="../MIS/WaterSupplySumSearch.jsp"><%=SMFixedValue.Item%> <%=SMFixedValue.Master%> <%=SMFixedValue.Summary%></a></li>
+										href="../../SubjectsInfo?ACTION=xSRVl"><%=SMFixedValue.Item%> <%=SMFixedValue.Master%> <%=SMFixedValue.Summary%></a></li>
 								</ul>
 							</div>
 							<div class="card-body text-dark h6">

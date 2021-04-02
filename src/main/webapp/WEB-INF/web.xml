@@ -578,6 +578,54 @@
   	<description></description>
   	<servlet-class>com.sm.System.SubjectInformation</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SPInfo</servlet-name>
+  	<display-name>SPInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.StudentPersonalInfo.SPInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>StudentPInformation</servlet-name>
+  	<display-name>StudentPInformation</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.StudentPersonalInfo.StudentPInformation</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>StudentInfoPersonal</servlet-name>
+  	<display-name>StudentInfoPersonal</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.StudentPersonalInfo.StudentInfoPersonal</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SFeePaymentInfo</servlet-name>
+  	<display-name>SFeePaymentInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.StudentFeePayment.SFeePaymentInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SFType</servlet-name>
+  	<display-name>SFType</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.FeeType.SFType</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>FeeDefineInfo</servlet-name>
+  	<display-name>FeeDefineInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.FeeDefine.FeeDefineInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>FeeDefineInformation</servlet-name>
+  	<display-name>FeeDefineInformation</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.FeeDefine.FeeDefineInformation</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>StudentAttendanceInfo</servlet-name>
+  	<display-name>StudentAttendanceInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.StudentAttendance.StudentAttendanceInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -960,6 +1008,38 @@
   <servlet-mapping>
   	<servlet-name>SubjectInformation</servlet-name>
   	<url-pattern>/SubjectInformation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SPInfo</servlet-name>
+  	<url-pattern>/SPInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StudentPInformation</servlet-name>
+  	<url-pattern>/StudentPInformation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StudentInfoPersonal</servlet-name>
+  	<url-pattern>/StudentInfoPersonal</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SFeePaymentInfo</servlet-name>
+  	<url-pattern>/SFeePaymentInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SFType</servlet-name>
+  	<url-pattern>/SFType</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FeeDefineInfo</servlet-name>
+  	<url-pattern>/FeeDefineInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FeeDefineInformation</servlet-name>
+  	<url-pattern>/FeeDefineInformation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StudentAttendanceInfo</servlet-name>
+  	<url-pattern>/StudentAttendanceInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

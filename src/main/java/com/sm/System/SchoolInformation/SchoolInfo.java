@@ -61,7 +61,7 @@ public class SchoolInfo extends HttpServlet {
 			case "information":	
 				SiModel = UpdFormValueToRModel(SiModel,request);
 				erMsg = " form value Update OK.";
-//				ShowRegModel(SiModel);
+				ShowRegModel(SiModel);
 				erMsg = "showvalue  OK.";
 //				valMsg=ValidateRwaReg(SiModel, valMsg);
 				int rwaStatus = HDAOSchoolInfo.newSchInfo(SiModel,erMsg);
@@ -112,7 +112,7 @@ public class SchoolInfo extends HttpServlet {
 		
 
 	private void ShowRegModel(SchoolInfoModel siModel) {
-//		System.out.println("\n siModel: "+siModel);
+		System.out.println("\n siModel: "+siModel);
 
 		//		CountryList country = address.getCountryList();
 //		System.out.println("\nReg No." +siModel.getRegNo( ) + ", Name : " +siModel.getName()

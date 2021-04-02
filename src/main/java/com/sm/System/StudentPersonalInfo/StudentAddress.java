@@ -14,19 +14,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.raoSystem.Utility.CountryList;
-import com.sm.System.SchoolInformation.SchoolInfoModel;
+import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
+
 
 @Entity 
-@Table(name = "Studentddress")
-public class SAddressInfo implements Serializable {
+@Table(name = "SMStudentAddress")
+public class StudentAddress implements Serializable {
 		@Id
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		@Column(name = "IDNO")
 		private Integer idno;
 		
-		@OneToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "sIdNo", columnDefinition = "long")
-		private StudentPersonalInfo stdAddress;
+		@ManyToOne(fetch = FetchType.LAZY)
+		@JoinColumn(name = "sIdNo")
+		private StudentPersonalInfoModel stdAddress;
 		
 		@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
 		private String regNo;
@@ -43,13 +44,13 @@ public class SAddressInfo implements Serializable {
 		@Column(name= "State", nullable= false,columnDefinition = "nvarchar(100)")
 		private String state;
 		
-		@OneToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "Country")
-		private CountryList countryList;
+		@Column(name= "Country", nullable= false,columnDefinition = "nvarchar(100)")
+		private String country;
+
 
 		@Column(name= "PinCode", nullable= true,columnDefinition = "nvarchar(100)")
 		private String pinCode;
-
+		
 		@Column(name= "Status", nullable= true,columnDefinition = "nvarchar(100)")
 		private String status;
 
@@ -61,11 +62,11 @@ public class SAddressInfo implements Serializable {
 			this.idno = idno;
 		}
 
-		public StudentPersonalInfo getStdAddress() {
+		public StudentPersonalInfoModel getStdAddress() {
 			return stdAddress;
 		}
 
-		public void setStdAddress(StudentPersonalInfo stdAddress) {
+		public void setStdAddress(StudentPersonalInfoModel stdAddress) {
 			this.stdAddress = stdAddress;
 		}
 
@@ -109,12 +110,14 @@ public class SAddressInfo implements Serializable {
 			this.state = state;
 		}
 
-		public CountryList getCountryList() {
-			return countryList;
+
+
+		public String getCountry() {
+			return country;
 		}
 
-		public void setCountryList(CountryList countryList) {
-			this.countryList = countryList;
+		public void setCountry(String country) {
+			this.country = country;
 		}
 
 		public String getPinCode() {
@@ -133,12 +136,12 @@ public class SAddressInfo implements Serializable {
 			this.status = status;
 		}
 
-		@Override
-		public String toString() {
-			return "SAddressInfo [idno=" + idno + ", stdAddress=" + stdAddress + ", regNo=" + regNo + ", address="
-					+ address + ", sector=" + sector + ", city=" + city + ", state=" + state + ", countryList="
-					+ countryList + ", pinCode=" + pinCode + ", status=" + status + "]";
-		}
+//		@Override
+//		public String toString() {
+//			return "StudentAddress [idno=" + idno + ", stdAddress=" + stdAddress + ", regNo=" + regNo + ", address="
+//					+ address + ", sector=" + sector + ", city=" + city + ", state=" + state + ", country=" + country
+//					+ ", pinCode=" + pinCode + ", status=" + status + "]";
+//		}
+//
 
-		
-}
+}	

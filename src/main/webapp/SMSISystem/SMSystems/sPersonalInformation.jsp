@@ -10,7 +10,9 @@
 		<title>Insert title here</title>
 		 	<meta charset="ISO-8859-1">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="stylesheet" href="../../css/Custom.css" type="text/css">
+<!-- 			<link rel="stylesheet" href="css/custom.css" type="text/css"> -->
+<!-- 			<link rel="stylesheet" href="../css/custom.css" type="text/css"> -->
+			<link rel="stylesheet" href="../../css/custom.css" type="text/css">
 			<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
 		 	<link rel="stylesheet" 	href='../../webjars/datetimepicker/2.5.1/jquery.datetimepicker.css'>
 		 	<link rel="stylesheet" 	href='../../webjars/bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css'>
@@ -34,13 +36,14 @@
 
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" ></script>
 			<link rel="stylesheet" 	href='https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css'>
+		  	<script type="text/javascript" src="../../js/SMCF.js"></script>			
 
 	</head>
 	<body >
 	
 		<!-- Page Header --><jsp:include page="../../HeaderPage.jsp"></jsp:include><!-- Page Header -->
 		<div class="container">
-			<form id="TNTInfo" name="TNTInfo" action="" method="post" class="form-horizontal needs-validation" autocomplete="off">
+			<form id="SPInfo" name="SPInfo" action="../../StudentPInformation?Action=spInformation" method="post" class="form-horizontal needs-validation" autocomplete="off">
 				<br />
 				<div class="row">
 					<div class="col-sm-12 offset-sm-0">
@@ -57,9 +60,8 @@
 				</div>
 				<br />
 				<div class="row">		
-					<div class="col-sm-8 offset-sm-0">
-						<p class ="h5 text-center">Student Detail Informations </p>
-						<p class ="text-center"> Please fill the form to Generate entry in School ERP  </p>
+					<div class="col-sm-12 text-center offset-sm-0">
+						<p class ="h5 text-center">Student and Parent's Personal Informations </p>
 					</div>
 				</div>
 				<div class="col-sm-12 offset-sm-0">
@@ -74,71 +76,72 @@
 						<div class="col-sm-8 offset-sm-0 bg-light ">
 							<div class="row">	
 								<div class="col-sm-8 offset-sm-0">
-									<p class="h5">Personal Information</p>
+									<p class="h5 text-primary">Personal Information</p>
 								</div>
 							</div>
 							<br />
 							<div class="row">	
 								<div class="col-sm-7 offset-sm-0">
-									<input type="text" class="form-control blinew " id="fName" name="fName"
+									<label for="sMobileNo" class="form-label h6">First Name*</label>
+									<input type="text" class="form-control blinebl " id="fName" name="fName"
 									pattern="[A-Za-z\s]{3,40}" title="Enter character between a-z or A-Z Min 4 char" 
-									placeholder="Student First Name*" required>
+									placeholder="" required >
 								</div>
 								<div class="col-sm-5 offset-sm-0">
+									<label for="sMobileNo" class="form-label h6">Last Name*</label>
 									<input type="text" class="form-control   blinew " id="lName" 	name="lName" 
 										pattern="[A-Za-z\s]{3,40}" title="Enter character between a-z or A-Z Min 5 char"							
-									placeholder="Last Name*" required>
+									placeholder="" required>
 								</div>
 							</div>
-							<br />
 							<div class="row">	
 								<div class="col-sm-7 offset-sm-0">
+									<label for="dob" class="form-label">Gender*</label>
 									<select id="gender" name="gender" class="form-control blinew" required>
-										<option selected value ="Zero">Select Gender*</option>
-										<option selected value ="Male">Male</option>
-										<option selected value ="Female">Female</option>
-										<option selected value ="Trans">TransGender</option>
+										<option selected value ="Zero">Choose Gender*</option>
+										<option value ="Male">Male</option>
+										<option value ="Female">Female</option>
+										<option value ="Trans">TransGender</option>
 									</select>
 								</div>
 								<div class="col-sm-5 offset-sm-0">
+									<label for="dob" class="form-label">Date of Birth*</label>
 									<input type="text" class="form-control   blinew " id="dob" 	name="dob" 
-										pattern="[A-Za-z\s]{3,40}" title="Enter character between a-z or A-Z Min 5 char"							
-									placeholder="Date of Birth*" required>
+											placeholder="" required>
 								</div>
 							</div>
-							<br />
 							<div class="row">	
 								<div class="col-sm-7 offset-sm-0">
+									<label for="admNo" class="form-label text-danger">Admission No.*</label>
 									<input type="text" class="form-control   blinew " id="admNo" 	name="admNo" 
-										pattern="[A-Za-z\s]{3,40}" title="Enter character between [a-z, A-Z, 0-9] Min 5 char"							
-									placeholder="Admission No" >
+										 title="Enter character between [a-z, A-Z, 0-9] Min 5 char"							
+										placeholder="" >
 								</div>
 								<div class="col-sm-5 offset-sm-0">
+									<label for="dob" class="form-label">Admission Date*</label>
 									<input type="text" class="form-control   blinew " id="admDate" 	name="admDate" 
-										pattern="" title=""	placeholder="Date of Admission*" required>
+										placeholder="" required>
 								</div>
 							</div>
-							<br />
 							<div class="row">	
 								<div class="col-sm-7 offset-sm-0">
+									<label for="admClass" class="form-label ">Admission Taken in Class*</label>
 									<input type="text" class="form-control   blinew " id="admClass" 	name="admClass" 
-										pattern="[A-Za-z\s]{3,40}" title="Enter Admission taken in Class "							
-									placeholder="Admission Taken in Class" >
+										 title="Enter Admission taken in Class " placeholder=""  >
 								</div>
 								<div class="col-sm-5 offset-sm-0">
+									<label for="curClass" class="form-label">Promoted in Class*</label>
 									<input type="text" class="form-control   blinew " id="curClass" 	name="curClass" 
-										pattern="" title=""	placeholder="Promoted in class" required>
+										placeholder="" required>
 								</div>
 							</div>
-							<br />
 							<div class="row">		
 								<div class="col-sm-7 offset-sm-0">
-									<label for="sIdProofNo" class="form-label">Id Proof Number*</label>
-									<input type="text" class="form-control   blinew " id="sIdProofNo" 	name="sIdProofNo" required 
-									pattern="[A-Za-z0-9\s]{3,100}" title="" placeholder="id number">
+									<label for="sIdProofNo" class="form-label">Id Proof No.*</label>
+									<input type="text" class="form-control   blinew " id="sIdProofNo" name="sIdProofNo" required> 
 								</div>
 								<div class="col-sm-5 offset-sm-0">
-									<label for="sIdProofNo" class="form-label">Id Proof Document Type*</label>
+									<label for="sIdDocType" class="form-label">Id Proof Document Type*</label>
 									<select id="sIdDocType" name="sIdDocType" class="form-control blinew" required>
 										<option selected value ="0" >Choose Id Document Type *</option>
 										<option  value ="AadharCard">Aadhar Card</option>
@@ -149,13 +152,12 @@
 									</select>
 								</div>
 							</div>
-							<br />
 							<div class="row">		
 								<div class="col-sm-3 offset-sm-0 form-group form-check">
-									<input type="checkbox" class="form-check-input" id="confToSibling"
+									<input type="checkbox" class="" id="confToSibling"
 										   data-toggle="tooltip" data-placement="bottom"
 									       title="clik to check box if your sibling studying in this school">
-								    <label class="form-check-label text-danger" for="exampleCheck1">Sibling Studing</label>
+								    <label class=" text-danger" for="exampleCheck1">Sibling Studing</label>
 								</div>
 								<div class="col-sm-4 offset-sm-0">
 									<label for="siblingNo" class="form-label">Number of sibling Studing*</label>
@@ -175,14 +177,14 @@
 							<div class="col-sm-12 offset-sm-0 bg-light text-dark" id = "father">
 								<div class="row">	
 									<div class="col-sm-12 offset-sm-0">
-										<label for="exampleFormControlInput1" class="form-label">Mobile No*</label>
+										<label for="sMobileNo" class="form-label h6">Mobile No*</label>
 										<input type="text" class="form-control blinebl" id="sMobileNo" 	name="sMobileNo" required 
-									   pattern="[0-9\s]{10,100}"	placeholder="" >
+									   pattern="[0-9\s]{10,100}"	>
 									</div>
 								</div>
 								<div class="row">	
 									<div class="col-sm-12 offset-sm-0">
-										<label for="sEmail" class="form-label">Email ID</label>
+										<label for="sEmail" class="form-label h6">Email ID</label>
 										<input type="email" class="form-control   blinebl " id="sEmail" name="sEmail"  
 										pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" placeholder="Student Email"
 										title="Enter character between [A-Za-z09]@[A-Za-z09].[A-Za-z] " >
@@ -190,14 +192,14 @@
 								</div>
 								<div class="row">		
 									<div class="col-sm-12 offset-sm-0">
-										<label for="exampleFormControlInput1" class="form-label">Parent Mobile No*</label>
+										<label for="pMobileNo" class="form-label h6">Parent Mobile No*</label>
 										<input type="text" class="form-control blinebl" id="pMobileNo" 	name="pMobileNo" required 
-									   pattern="[0-9\s]{10,100}"	placeholder="" >
+									   pattern="[0-9\s]{10,100}">
 									</div>
 								</div>
 								<div class="row">	
 									<div class="col-sm-12 offset-sm-0">
-										<label for="pEmail" class="form-label">Email ID</label>
+										<label for="pEmail" class="form-label h6">Email ID</label>
 										<input type="email" class="form-control   blinebl " id="pEmail" name="pEmail"  
 										pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" placeholder="parent Email"
 										title="Enter character between [A-Za-z09]@[A-Za-z09].[A-Za-z] " >
@@ -213,19 +215,22 @@
 					<br />
 					<div class="row">		
 						<div class="col-sm-12 offset-sm-0">
-							<p class ="h5">Parent Information </p>
+							<p class ="h5 text-primary">Parent Information </p>
 						</div>
 					</div>
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
+							<label for="mFName" class="form-label">Father First Name</label>
 							<input type="text" class="form-control   blinew " id="fFName" 	name="fFName" required
-							pattern="[A-Za-z0-9,-_.\s]{3,100}" title="" placeholder="Father first Name">
+							title="" placeholder="" >
 						</div>
 						<div class="col-sm-4 offset-sm-0">
+							<label for="mFName" class="form-label">Last Name</label>
 							<input type="text" class="form-control    " id="fLName" name="fLName" 
-							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Father Last Name" style="border-top: 1px solid blue;">
+							 placeholder="" style="border-top: 1px solid blue;" >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
+							<label for="mProfession" class="form-label">Profession</label>
 							<select id="fprofession" name="fprofession" class="form-control blinew" required>
 								<option selected value ="0" >Choose father profession*</option>
 								<option  value ="Service">Service</option>
@@ -236,11 +241,11 @@
 							</select>
 						</div>
 					</div>
-					<br />
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<select id="fatherIdDocType" name="fatherIdDocType" class="form-control blinew" required>
-								<option selected value ="0" >Choose Id Document Type *</option>
+							<label for="fIdDocType" class="form-label">Father ID Document Type</label>
+							<select id="fIdDocType" name="fIdDocType" class="form-control blinew" required>
+								<option selected value ="0" >Choose Father Id Doc Type *</option>
 								<option  value ="AadharCard">Aadhar Card</option>
 								<option  value ="PanCard">Pan Card</option>
 								<option  value ="PAadharCArd">Parent Aadhar ID</option>
@@ -249,23 +254,27 @@
 							</select>
 						</div>
 						<div class="col-sm-4 offset-sm-0">
-							<input type="text" class="form-control   blinew " id="mIdProofNo" 	name="mIdProofNo" required 
-							pattern="[A-Za-z0-9\s]{3,100}" title="" placeholder="id number">
+							<label for="fIdDocType" class="form-label">ID Number</label>
+							<input type="text" class="form-control   blinew " id="fIdProofNo" 	name="fIdProofNo" required 
+							       placeholder="" >
 						</div>
 					</div>
 					<br />
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
+							<label for="mFName" class="form-label">Mother First Name</label>
 							<input type="text" class="form-control   blinew " id="mFName" 	name="mFName" required
-							pattern="[A-Za-z0-9,-_.\s]{3,100}" title="" placeholder="Mother first Name">
+							    placeholder="" >
 						</div>
 						<div class="col-sm-4 offset-sm-0">
+							<label for="mFName" class="form-label">Last Name</label>
 							<input type="text" class="form-control    " id="mLName" name="mLName" 
-							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Mother Last Name" style="border-top: 1px solid blue;">
+							       placeholder="" style="border-top: 1px solid blue;" >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
-							<select id="mprofession" name="mprofession" class="form-control blinew" required>
-								<option selected value ="0" >Choose father profession*</option>
+							<label for="mProfession" class="form-label">Profession</label>
+							<select id="mProfession" name="mProfession" class="form-control blinew" required>
+								<option selected value ="0" >Choose Mother profession*</option>
 								<option  value ="Service">Service</option>
 								<option  value ="Business">Business</option>
 								<option  value ="Farming">Farming</option>
@@ -275,15 +284,11 @@
 							</select>
 						</div>
 					</div>
-					<br />
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<input type="text" class="form-control   blinew " id="mIdProofNo" 	name="mIdProofNo" required 
-							pattern="[A-Za-z0-9\s]{3,100}" title="" placeholder="Id number">
-						</div>
-						<div class="col-sm-4 offset-sm-0">
-							<select id="motherIdDocType" name="motherIdDocType" class="form-control blinew" required>
-								<option selected value ="0" >Choose Id Document Type *</option>
+							<label for="mIdProofNo" class="form-label">ID Document Type</label>
+							<select id="mIdDocType" name="mIdDocType" class="form-control blinew" required>
+								<option selected value ="0" >Choose Mother Id Doc Type *</option>
 								<option  value ="AadharCard">Aadhar Card</option>
 								<option  value ="PanCard">Pan Card</option>
 								<option  value ="PAadharCArd">Parent Aadhar ID</option>
@@ -291,49 +296,55 @@
 								<option  value ="Other">None </option>
 							</select>
 						</div>
+						<div class="col-sm-4 offset-sm-0">
+							<label for="mIdProofNo" class="form-label">ID Number</label>
+							<input type="text" class="form-control   blinew " id="mIdProofNo" 	name="mIdProofNo" required 
+							 placeholder="" >
+						</div>
 						<div class="col-sm-3 offset-sm-0">
-							<label for="exampleFormControlInput1" class="form-label">Parent Annual Income</label>
-							<input type="number" class="form-control   blinew" id="vPostalCode" 	name="vPostalCode"  
-							pattern="[0-9]{5,8}" title=""placeholder="">
+							<label for="sPAIncome" class="form-label text-danger">Parent Annual Income*</label>
+							<input type="number" class="form-control   blinew" id="sPAIncome" 	name="sPAIncome"  
+							pattern="[0-9]{5,8}" >
 						</div>
 					</div>
+					<br />
 				</div>
 				<br />
 				<div class="bg-light col-sm-12 offset-sm-0">					
 					<br />
 					<div class="row">		
 						<div class="col-sm-12 offset-sm-0">
-							<p class ="h5">Residence Address </p>
+							<p class ="h5 text-primary">Residence Address </p>
 						</div>
 					</div>
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<input type="text" class="form-control   blinew " id="vAddress" 	name="vAddress" required
-							pattern="[A-Za-z0-9,-_.\s]{3,100}" title="" placeholder="RWA Registration Address*">
+							<input type="text" class="form-control   blinew " id="Address" 	name="Address" required
+							       placeholder="Student Residential Address*" >
 						</div>
 						<div class="col-sm-4 offset-sm-0">
 							<input type="text" class="form-control    " id="Sector" name="Sector" 
-							pattern="[A-Za-z0-9\s]{3,40}" title="" placeholder="Street/Sector*" style="border-top: 1px solid blue;">
+							        placeholder="Street/Sector*" style="border-top: 1px solid blue;" >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
-							<input type="text" class="form-control   blinew " id="city" 	name="city" required 
-							pattern="[A-Za-z\s]{3,100}" title="" placeholder="City*">
+							<input type="text" class="form-control   blinew " id="City" 	name="City" required 
+							 placeholder="City*" >
 						</div>
 					</div>
 					<br />
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<select id="country" name="country" class="form-control blinew" required>
+							<select id="country" name="country" 	class="form-control    blinew" required>
 								<option selected value ="0">Country Name*</option>
 							</select>
 						</div>
 						<div class="col-sm-4 offset-sm-0">
-							<input type="text" class="form-control   blinew " id="vState" 	name="vState" required 
-							pattern="[A-Za-z0-9\s]{3,100}" title="" placeholder="State*">
+							<input type="text" class="form-control   blinew " id="State" 	name="State" required 
+							 title="" placeholder="State*" >
 						</div>
 						<div class="col-sm-3">
-							<input type="number" class="form-control   blinew" id="vPostalCode" 	name="vPostalCode"  
-							pattern="[0-9]{6,8}" title=""placeholder="Pin Code">
+							<input type="number" class="form-control   blinew" id="PostalCode" 	name="PostalCode"  
+							pattern="[0-9]{6,8}" title=""placeholder="Pin Code" >
 						</div>
 					</div>
 					<br />
@@ -343,36 +354,35 @@
 					<br />
 					<div class="row">		
 						<div class="col-sm-12 offset-sm-0">
-							<p class ="h5">Bank Details </p>
+							<p class ="h5 text-primary">Bank Details </p>
 						</div>
 					</div>
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<input type="email" class="form-control   blinebl " id="bName" name="bName" required 
-							pattern="[A-Za-z0-9\s]{3,100}" placeholder="Bank Name" >
+							<input type="text" class="form-control   blinebl " id="bName" name="bName"  
+							 placeholder="Bank Name" >
 						</div>
 						<div class="col-sm-4 offset-sm-0">
-							<input type="email" class="form-control   blinebl " id="bBNnkName" name="bBNnkName" required 
-							pattern="[A-Za-z0-9\s]{3,100}" placeholder="Branch Place" >
+							<input type="text" class="form-control   blinebl " id="bBNnkName" name="bBNnkName" 
+							 placeholder="Branch Place" >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
-							<select id="athCountry" name="athCountry" class="form-control blinew" required>
-								<option selected value ="0">Country Name*</option>
-							</select>
+							<input type="text" class="form-control   blinebl " id="bankCity" name="bankCity"  
+							 placeholder="City Name" >
 						</div>
 					</div>
 					<br />
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<input type="email" class="form-control   blinebl " id="acHName" name="acHName"  
-							pattern="[A-Za-z0-9\s]{3,100}" placeholder="Account Holder Name" >
+							<input type="text" class="form-control   blinebl " id="acHName" name="acHName"  
+							 placeholder="Account Holder Name"  >
 						</div>
 						<div class="col-sm-4 offset-sm-0">
-							<input type="email" class="form-control   blinebl " id="acNo" name="acNo"  
-							pattern="[A-Za-z0-9\s]{3,100}" placeholder="Account number" >
+							<input type="text" class="form-control   blinebl " id="acNo" name="acNo"  
+							 placeholder="Account number"  >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
-							<select id="motherIdDocType" name="motherIdDocType" class="form-control blinew" >
+							<select id="acType" name="acType" class="form-control blinew" >
 								<option selected value ="0" >Choose Account Type *</option>
 								<option  value ="Saving">Saving</option>
 								<option  value ="Current">Current</option>
@@ -383,8 +393,13 @@
 					<br />
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<input type="email" class="form-control   blinebl " id="ifsCode" name="ifsCode"  
-							pattern="[A-Za-z0-9\s]{3,100}" placeholder="Bank IFSCODE" >
+							<input type="text" class="form-control   blinebl " id="ifsCode" name="ifsCode"  
+							 placeholder="Bank IFSCODE" >
+						</div>
+						<div class="col-sm-4 offset-sm-0">
+							<select id="athCountry" name="athCountry" 	class="form-control    blinew" required>
+								<option selected value ="0">Country Name*</option>
+							</select>
 						</div>
 					</div>
 					<br />
@@ -410,7 +425,7 @@
 
 	</body>
 	<script type="text/javascript">
-	$("#vDate").datetimepicker({
+/* 	$("#dob").datetimepicker({
 		timepicker: false,
 		datepicker: true,
 		format: 'd-m-yy', // formate date
@@ -420,9 +435,19 @@
 		yearEnd:'2030',
 		weeks:true	
 	});
-
+ */
 	$(document).ready(function(){
-		$("#dob").datepicker();
+/* 	 	$("#dob").datetimepicker({
+			timepicker: false,
+			datepicker: true,
+			format: 'd-m-yy', // formate date
+			step: 5,	
+			yearStart:yearStart(),
+			yearEnd:'2030',
+			weeks:true	
+		});
+ */
+ 		$("#dob").datepicker();
 		$("#admDate").datepicker();
 	});
 	function yearStart(){

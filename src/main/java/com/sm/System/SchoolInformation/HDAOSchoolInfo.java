@@ -12,6 +12,7 @@ import org.json.simple.JsonArray;
 import com.rao.System.RwaReg.RwaRegModel;
 import com.raoSystem.Utility.ValidRwaNo;
 import com.raoSystem.daoConnection.HibernateDAO;
+import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
 
 public class HDAOSchoolInfo {
 	public static int newSchInfo(SchoolInfoModel siModel, String erMsg) {
@@ -130,5 +131,4 @@ public class HDAOSchoolInfo {
 		}
 		return emailStatus;
 	}
-	
 }
