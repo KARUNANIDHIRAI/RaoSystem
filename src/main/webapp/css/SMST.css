@@ -12,52 +12,14 @@ box-shadow:none;
 #ItemHd0{
 	box-shadow:0 0 5px 1px yellow;
 }
-#inv02{
-	box-shadow:0 0 5px 1px blue;
-padding-top:2px; padding-bottom:2px;
-}
-#inv01{
-	
-background-color: linear-gradient( #051937, #004d7a, #008793, #00bf72, #a8eb12);
-} 
-#InvItemDetails_paginate{
-	line-height:1rem; 
-	font-size:10px;	
-}
 .dataTables_length{bg-primary: text-light;} 
 table.dataTable.compact thead th, table.dataTable.compact thead td {
     padding: 10px 17px 4px 4px;
 }
-#POItemDetails_filter{
-background-color: #17a2b8;
-	text-color:white;	
-}
-#InvItem01{
-padding-top:2px; padding-bottom:2px;	
-} 
-#POItemDetails_length{
-	background-color: #17a2b8;
-	text-color:white;
-}
+
 .bg-info {
     background-color: #17a2b8 ;
     color:white;
-}
-#POItemDetails_paginate {
-    float: right;
-    background-color: #17a2b8;
-    padding-top:2px;
-    padding-bottom:2px;
-    color:white;
-    line-height:.85rem;
-    color:light;
-}
-#POItemDetails_info{
-   background-color: #17a2b8;
-    color:white;
-    line-height:.85rem;
-    color:light;
-	
 }
 thead{
 	  background-color: #17a2b8;

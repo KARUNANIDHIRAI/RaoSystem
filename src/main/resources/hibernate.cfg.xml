@@ -75,6 +75,14 @@
 		<mapping class="com.sm.System.FeeDefine.FeePrgrammeModel"/>
 		<!--  Student Attendance Model -->
 		<mapping class="com.sm.System.StudentAttendance.StudentAttendanceModel"/>
+		<!--  Student Test Performance Model -->
+		<mapping class="com.sm.System.TestPerformance.TestPerformanceModel"/>
+		<mapping class="com.sm.System.TestPerformance.MarksDetialModel"/>
+		<mapping class="com.sm.System.TestPerformance.MarksDetailSubModel"/>
+		<!--  Student Time Table Model -->
+		<mapping class="com.sm.System.TimeTable.TimeTableModel"/>
+		<mapping class="com.sm.System.TimeTable.TimeTableDetailModel"/>
+		<mapping class="com.sm.System.TimeTable.TimeTableSubModel"/>
 		
     </session-factory>
 </hibernate-configuration>

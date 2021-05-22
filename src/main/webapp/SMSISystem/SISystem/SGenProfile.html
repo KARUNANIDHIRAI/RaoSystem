@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<title>Insert title here</title>
+		 	<meta charset="ISO-8859-1">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
+
+			<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.css'>
+		 	<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+
+			<script type="text/javascript" 	src="../../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			<script type="text/javascript" 	src="../../webjars/jquery/3.4.1/jquery.min.js"></script>
+		
+		 	<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.min.js"></script>
+			<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.js"></script>
+		  	<script type="text/javascript" src="../../js/SMCF.js"></script>
+			<link rel="stylesheet" href="../../css/custom.css" type="text/css">
+			<link rel="stylesheet" href="../../css/SMST.css" type="text/css">
+		
+			<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" ></script>	
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  	
+
+		  	<script type="text/javascript" src="../../js/CommonFunc.js"></script>
+		
+	</head>
+	<body>
+		<div class="container-flucid" > 
+			<div class="row">
+				<div class="col-sm-3 offset-sm-1 " Style="padding-right:0px">
+					<div class="card" Style="padding-right:0px; border:0px;padding-bottom:0px;">
+						<div class="card-header bg-info">
+						   <p id="" class="h5 text-right"> Student</p>
+					  	</div>
+					  	<div class="card-body " Style="padding-right:10px; ">
+					  		<ul class="list-group list-group-flush  text-right" style="font-size: 13px;padding-top:5px;padding-bottom:5px;">
+							    <li class="list-group-item "   style="padding-top:4px;padding-bottom:4px;">School Reg No.</li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Admission No. </li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Student Name  </li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Gender        </li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Father  Name  </li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Mother  Name  </li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Course        </li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Class & Section </li>
+<!-- 							    <li class="list-group-item "  >Roll Number   </li> -->
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Email ID      </li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Mobile Number </li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Parent Email ID</li>
+							    <li class="list-group-item "  style="padding-top:4px;padding-bottom:4px;" >Parent Mobile No.</li>
+							    <li class="list-group-item "   style="padding-top:4px;padding-bottom:4px;">Profession</li>
+					  		</ul>
+					  	</div>
+					 </div>
+				</div>			
+				<div class="col-sm-6" Style="padding-left:0px">
+					<div class="card" Style="padding-left:0px; border:0px; padding-bottom:0px;" >
+						<div class="card-header bg-info">
+						   <p id="" class="h5"> Profile Details</p>
+					  	</div>
+					  	<div class="card-body   ">
+				  		<ul class="list-group list-group-flush " style="font-size: 13px;">
+							    <li id="regNo" class="list-group-item " style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="AdmNo" class="list-group-item"  style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="SName" class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="Gender" class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="MName" class="list-group-item"  style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="FName" class="list-group-item"  style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="Course" class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="Class"   class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+<!-- 							    <li id="RollNo" class="list-group-item"></li> -->
+							    <li id="EmailId" class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="MobileNo" class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="PEmailId" class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="PMobileNo" class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+							    <li id="FProfession" class="list-group-item" style="padding-top:4px;padding-bottom:4px;"></li>
+					  		</ul>
+						</div>
+					</div>				
+				</div>			
+			</div>
+		</div>
+		
+		<script>
+		 	$( window ).on( "load", function() {
+//		 		$("#myFrame").hide();
+//		        console.log( "window loaded" );
+				showSGProfile();
+		    });
+			function showSGProfile(){
+				var request =$.ajax({
+					type:'POST',
+ 	 				data:{Action:"XSTProfile"},
+				 	dataType: 'json',
+					url:'../../StudentERP',
+					success:function(result){
+						$.each(result, function(id, name){
+							$("#regNo").text(name.RegNo);
+							$("#SName").text(name.SName);
+							$("#AdmNo").text(name.AdmNo);
+							$("#Course").text(name.Course);
+							$("#Class").text(name.Class + " , " + name.Section);
+//							$("#Section").text(name.Section);
+							$("#RollNo").text(name.RollNo);
+
+							$("#MName").text(name.MName);
+							$("#FName").text(name.FName);
+							$("#Gender").text(name.Gender);
+							$("#MobileNo").text(name.MobileNo);
+							$("#EmailId").text(name.EmailId);
+							$("#PEmailId").text(name.PEmailId);
+							$("#PMobileNo").text(name.PMobileNo);
+							$("#FProfession").text(name.FProfession);
+						});
+					}	
+				});	 // eof AJAX
+			}
+		 	$(document).ready(function(){
+
+		 	});
+		</script>		
+			
+	</body>
+</html>

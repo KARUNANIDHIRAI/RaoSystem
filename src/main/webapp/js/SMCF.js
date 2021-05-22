@@ -13,6 +13,7 @@ var PenalityApplCF = " ";
 var feeGrade = " ";
 var section = " ";
 var subjects="";
+var days = " ";
 $(document).ready(function(){
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
 		getRefreshCaptcha();
@@ -265,6 +266,16 @@ $(document).ready(function(){
         });
         $("#Ssection").html(section);
    });
+   $("#Days").click(function(){
+		if (days!=" "){return;}
+		days=" <option selected value=0>Choose Day</option>";
+	    var cDays = ['SUNDAY', 'MONDAY','TUESDAY','WEDNESSDAY','THURSDAY','FRIDAY','SATURDAY'];
+       $.each(cDays, function(index, value){
+    	   days+=" <option value='"+value +"'>"+ value+ "</option>";
+       });
+       $("#Days").html(days);
+   });
+  
    
 	$("#Subject").click(function(){
 		if (subjects!=""){	return;	}

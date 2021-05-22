@@ -110,6 +110,23 @@
 											placeholder="" required>
 								</div>
 							</div>
+							<div class="row">		
+								<div class="col-sm-7 offset-sm-0">
+									<label for="sIdProofNo" class="form-label">Id Proof No.*</label>
+									<input type="text" class="form-control   blinew " id="sIdProofNo" name="sIdProofNo" required> 
+								</div>
+								<div class="col-sm-5 offset-sm-0">
+									<label for="sIdDocType" class="form-label">Document Type*</label>
+									<select id="sIdDocType" name="sIdDocType" class="form-control blinew" required>
+										<option selected value ="0" >Choose Id Document Type *</option>
+										<option  value ="AadharCard">Aadhar Card</option>
+										<option  value ="PanCard">Pan Card</option>
+										<option  value ="PAadharCArd">Parent Aadhar ID</option>
+										<option  value ="PVoterId">Parent Voter ID</option>
+										<option  value ="Other">None </option>
+									</select>
+								</div>
+							</div>
 							<div class="row">	
 								<div class="col-sm-7 offset-sm-0">
 									<label for="admNo" class="form-label text-danger">Admission No.*</label>
@@ -124,32 +141,20 @@
 								</div>
 							</div>
 							<div class="row">	
-								<div class="col-sm-7 offset-sm-0">
-									<label for="admClass" class="form-label ">Admission Taken in Class*</label>
+ 								<div class="col-sm-3 offset-sm-0">
+									<label for="admClass" class="form-label ">Adm.In Class*</label>
 									<input type="text" class="form-control   blinew " id="admClass" 	name="admClass" 
 										 title="Enter Admission taken in Class " placeholder=""  >
 								</div>
+								<div class="col-sm-4 offset-sm-0">
+									<label for="sSection" class="form-label ">Section*</label>
+									<input type="text" class="form-control   blinew " id="sSection" 	name="sSection" 
+										 title="Enter Admission taken in Class " placeholder=""  >
+								</div>
 								<div class="col-sm-5 offset-sm-0">
-									<label for="curClass" class="form-label">Promoted in Class*</label>
-									<input type="text" class="form-control   blinew " id="curClass" 	name="curClass" 
+									<label for="sRollNo" class="form-label">Roll No.*</label>
+									<input type="text" class="form-control   blinew " id="sRollNo" 	name="sRollNo" 
 										placeholder="" required>
-								</div>
-							</div>
-							<div class="row">		
-								<div class="col-sm-7 offset-sm-0">
-									<label for="sIdProofNo" class="form-label">Id Proof No.*</label>
-									<input type="text" class="form-control   blinew " id="sIdProofNo" name="sIdProofNo" required> 
-								</div>
-								<div class="col-sm-5 offset-sm-0">
-									<label for="sIdDocType" class="form-label">Id Proof Document Type*</label>
-									<select id="sIdDocType" name="sIdDocType" class="form-control blinew" required>
-										<option selected value ="0" >Choose Id Document Type *</option>
-										<option  value ="AadharCard">Aadhar Card</option>
-										<option  value ="PanCard">Pan Card</option>
-										<option  value ="PAadharCArd">Parent Aadhar ID</option>
-										<option  value ="PVoterId">Parent Voter ID</option>
-										<option  value ="Other">None </option>
-									</select>
 								</div>
 							</div>
 							<div class="row">		
@@ -164,9 +169,27 @@
 									<input type="text" class="form-control   blinew " id="siblingNo" 	name="siblingNo"  
 									pattern="[0-9]" title="" placeholder="">
 								</div>
+								<div class="col-sm-5 offset-sm-0">
+									<label for="curClass" class="form-label">Promoted in Class*</label>
+									<input type="text" class="form-control   blinew " id="curClass" 	name="curClass" 
+										placeholder="" required>
+								</div>
 							</div>
-							<br />
+							<div class="row">	
+								<div class="col-sm-7 offset-sm-0">
+									<label for="course" class="form-label">Adimission in Course*</label>
+									<select id="course" name="course" class="form-control blinew" required>
+										<option selected value ="0" >Choose Course Name *</option>
+										<option  value ="Arts">Arts</option>
+										<option  value ="PanCard">Science</option>
+										<option  value ="PAadharCArd">PCM</option>
+										<option  value ="PVoterId">PCM with BIO</option>
+										<option  value ="Other">Arts with Political Science </option>
+									</select>
+								</div>
+							</div>
 						</div>
+						<br />
 						<div class="col-sm-4 offset-sm-0"> 
 							<div class="row">		
 								<div class="col-sm-12 offset-sm-0 bg-light text-dark">
@@ -205,7 +228,7 @@
 										title="Enter character between [A-Za-z09]@[A-Za-z09].[A-Za-z] " >
 									</div>
 								</div>
-								<br /> <br /> <br /> <br /><br /> <br /> <br />
+								<br /> <br /> <br /> <br /><br /> <br /> <br /> <br /> <br /> <br />
 							</div>
 						</div>	<!--  end ofparent -->
 					</div>

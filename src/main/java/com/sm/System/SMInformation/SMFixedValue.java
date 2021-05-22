@@ -40,11 +40,61 @@ public class SMFixedValue {
 	public static final String Teacher="Teacher";
 	public static final String Section="Section";
 	public static final String Retrieve="Retrieve";
-	public static final String RollNo="Roll Number";
+	public static final String RollNo="Roll No.";
 	public static final String Subject="Subject";
 	public static final String Save="Save";
 	
 	
-
+	public static final String TEST="Test";
+	public static final String TEST_TYPE="Type";
+	public static final String PERFORMANCE="Performance";
+	public static final String Report="Report";
+	public static final String ADMISSION="Adimission";
+	public static final String NO="No.";
+	public static final String TEST_CYCLE="Cycle";
+	public static final String MARKS="Marks";
+	public static final String OBTAIN="Obtain";
+	public static final String MAX="Max.";
+	public static final String COURSE ="Course";
+	public static final String DETAILS="Detail";
+	public static final String CATEGORY="Category";
+	public static final String HQL_RSPINFO="SELECT regNo,	fName, lName, promotedInClass, rollNo, course, section " 
+                                          + " FROM  StudentPersonalInfoModel"
+                                          + " WHERE regNo=:regNo AND admNo=:admNo AND status=:Fstatus";
 	
+	public static final String HQL_RSPROFILEINFO = " SELECT regNo, admNo,	course, promotedInClass, rollNo, section, "
+	                                           + " dob,	fName,  lName ,	gender,		mobileNo, emailId,	"
+	                                           + " ffName, 	flName , mfName ,	mlName , fprofession, pEmailId,	pMobileNo"
+											   + " FROM  StudentPersonalInfoModel"
+											   + " WHERE regNo=:studentRegNo AND emailId=:studentEmailId  AND status=:Fstatus";
+	                                           
+
+	public static final String home          = "Home";
+	public static final String profile       = "Profile";
+	public static final String academic      = "Academic";
+	public static final String grievance     = "Grievance";
+	public static final String examination   = "Examination";
+	public static final String update        = "Update";
+	public static final String studentPayment= "Student Payment";
+	public static final String logout        = "Logout";
+	public static final String student       = "STUDENT";
+	public static final String information   = "INFORMATION";
+	public static final String portal        = "PORTAL";	
+
+	public static final String TIME_TABLE    = "Time Table";	
+	public static final String CLASS         = "Class";	
+	public static final String TEACHER       = "Teacher";	
+	public static final String DAYS          = "Day";	
+	public static final String ON            = "On";	
+	public static final String HRS           = "Hours";	
+	public static final String ADD           = "ADD Schedule";	
+	public static final String START         = "Start";	
+	public static final String END           = "End";	
+	public static final String TOTAL         = "Total";	
+	
+	public static final String FETCH_TTDATA = "FROM TimeTableModel "
+	 		 + " WHERE regNo=:rregNo AND subject=:ssubject AND classTT=:cclassTT"
+	 		 + " AND section=:ssection AND status=:sStatus"; 
+	
+	public static final String LIBRARY         = "Library";	
 }

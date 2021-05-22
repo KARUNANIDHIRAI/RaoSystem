@@ -1,3 +1,4 @@
+<%@page import="com.sm.System.SMInformation.SMFixedValue"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.raoSystem.constants.Information"%>
@@ -57,7 +58,7 @@
 		<div class="container" > 
 			<div class="row "> 
                 <div class="col-lg-7 " > 
- 					<img src="../../images/KSB.png" class="img-responsive "/>
+ 					<img src="../images/KSB.png" class="img-responsive "/>
 				</div>
 				<div class="col-lg-5 text-right text-white"> 
 	                <br />  
@@ -76,10 +77,10 @@
 					<div class="collapse navbar-collapse col-sm-12 bg-light text-light" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 					    	<li class="nav-item active">
-					        	<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					        	<a class="nav-link h5" href="#"><%= Information.home%> <span class="sr-only">(current)</span></a>
 					      	</li>
 					      	<li class="nav-item dropdown">
-					      		<a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" 
+					      		<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" 
 					      		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">	<%= Information.product%>
 					        	</a>
 								<div class="dropdown-menu " id="megha_menu" style ="width:400px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
@@ -91,17 +92,14 @@
 										    <P>	<a class="text-dark" href="SMSystems/MasSFeeType.jsp">Fee Type</a> </P>
 										    <P>	<a class="text-dark" href="SMSystems/MasSFeeDefine.jsp">Define Fee</a> </P>
 										    <P>	<a class="text-dark" href="SMSystems/SFeePayment.jsp">Fee Payment</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/SAttendance.jsp">Student Attendance</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/SPerformance.jsp">Student Perfromance</a> </P>
-										    
-										    
+										    <P>	<a class="text-dark" href="SMSystems/SAttendance.jsp">Attendance</a> </P>
+										    <P>	<a class="text-dark" href="SMSystems/SPerformance.jsp">Test Perfromance</a> </P>
 										</div>
 								    </div>
 								</div>
-
 					      	</li>
 					      	<li class="nav-item dropdown">
-					        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" 
+					        	<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" 
 					        	aria-expanded="false"><%= Information.service%></a>
 								<div class="row">
 									<div class="dropdown-menu " id="megha_menu" style ="width:650px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
@@ -109,30 +107,45 @@
 											<div class="col-sm-6">
 									        	<a class="dropdown-item" href="#">Service Offering</a>
 									          	<div class="dropdown-divider"></div>
-									        	<a class="dropdown-item" href="#">Advance Service</a>
-									        	<a class="dropdown-item" href="#">Technology and Consulting</a>
-									        	<a class="dropdown-item" href="#">Enhance and Upgrade</a>
-									        	<a class="dropdown-item" href="#">Outsourcing Software Development</a>
-									        	<a class="dropdown-item" href="#">Corporate Technology Training</a>
-									        	<a class="dropdown-item" href="#">End of Life Service</a>
+									        	<a class="dropdown-item" href="SMSystems/SchoolInformation.jsp">School Information</a>
+									        	<a class="dropdown-item" href="SMSystems/sPersonalInformation.jsp">Student Profile</a>
+									        	<a class="dropdown-item" href="SMSystems/MasSubject.jsp">Subjects</a>
+									        	<a class="dropdown-item" href="SMSystems/TimeTable.jsp">Time Table</a>
+									        	<a class="dropdown-item" href="SMSystems/SAttendance.jsp">Attendance</a>
+									        	<a class="dropdown-item"href="SMSystems/SPerformance.jsp">Test Perfromance</a>
 											</div>
 											<div class="col-sm-5">
-									          	<a class="dropdown-item" href="#">Service for Products and Systems</a>
+									          	<a class="dropdown-item" href="#">Fee Structure</a>
 									          	<div class="dropdown-divider"></div>
-									          	<a class="dropdown-item" href="#">Software Development</a>
-									          	<a class="dropdown-item" href="#">Data Science and Analysis</a>
-									          	<a class="dropdown-item" href="#">QA Automation</a>
-									          	<a class="dropdown-item" href="#">ERP System</a>
-									          	<a class="dropdown-item" href="#">Apartment Automation</a>
-									          	<a class="dropdown-item" href="#">PG Automation Automation</a>
-									          	<a class="dropdown-item" href="#">Business Solution</a>
+									        	<a class="dropdown-item" href="SMSystems/MasSFeeType.jsp">Fee Types</a>
+									        	<a class="dropdown-item" href="SMSystems/MasSFeeDefine.jsp">Fee Define</a>
+									        	<a class="dropdown-item" href="SMSystems/SFeePayment.jsp">Fee Payment</a>
 											</div>
 									    </div>
 									</div>
 								</div>
 					      	</li>
 					      	<li class="nav-item dropdown">
-					      		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+					      		<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          		<%= SMFixedValue.LIBRARY%>
+					        	</a>
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						        	<a class="dropdown-item" href="#">Books Purchase Order</a>
+						        	<a class="dropdown-item" href="#">Books Purchase Order Approved</a>
+						        	<a class="dropdown-item" href="#">Books Receied In Stock</a>
+						        	<a class="dropdown-item" href="#">Reject Damaged Books</a>
+						        	<a class="dropdown-item" href="#">Sale Scraped Books</a>
+						          	<div class="dropdown-divider"></div>
+						          	<a class="dropdown-item" href="#">Books Issued</a>
+						          	<a class="dropdown-item" href="#">Books Received</a>
+						          	<a class="dropdown-item" href="#">Books Lost</a>
+						        	<a class="dropdown-item" href="#">New Books Request</a>
+						          	<a class="dropdown-item" href="#">Books not Return</a>
+						        </div>
+					      	</li>
+
+					      	<li class="nav-item dropdown">
+					      		<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" 
 					      		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					          		<%= Information.about%>
 					        	</a>
@@ -230,7 +243,7 @@
 								</div>
 					      	</li>
 					      	<li class="nav-item dropdown">
-					      		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					      		<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					          		<%= Information.help%>
 					        	</a>
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -243,7 +256,7 @@
 					    </ul>
 					    <form class="form-inline my-3 my-lg-0">
 					      <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
-					      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					      <button class="btn btn-outline-success my-2 my-sm-0 h5" type="submit">Search</button>
 					    </form>
 					</div>
 				</nav>			
@@ -260,18 +273,21 @@
 					    	<li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
 					    	<li data-target="#carouselExampleCaptions" data-slide-to="6"></li>
 					    	<li data-target="#carouselExampleCaptions" data-slide-to="7"></li>
+					    	<li data-target="#carouselExampleCaptions" data-slide-to="8"></li>
 					  	</ol>
 					  	<div class="carousel-inner">
-					    	<div class="carousel-item active" style="height: 500px">
-					      		<img src="../../images/Academic/LIbrary2.jpg" class="img-fluid d-block w-100 " alt="Responsive image"  >
+					    	<div class="carousel-item active" style="height: 440px">
+					      		<img src="../images/Academic/school-education.jpg" class="img-fluid d-block w-100 " alt="Responsive image"  >
 					      		<div class="carousel-caption d-none d-md-block">
-					        		<h5 class= "text-light">Library Information </h5>
+					        		<h5 class= "text-light">School Sketch Building </h5>
 					      		</div>
 					    	</div>
-					    	<div class="carousel-item active" style="height: 500px">
-					      		<img src="../images/Academic/education1.jpg" class="img-fluid d-block w-100 " alt="Responsive image"  >
+
+					    	<div class="carousel-item " style="height: 440px">
+<!-- 					      		<img src="../images/Academic/education1.jpg" class="img-fluid d-block w-100 " alt="Responsive image"  > -->
+					      		<img src="../images/Academic/education-learning.jpg" class="img-fluid d-block w-100 " alt="Responsive image"  >
 					      		<div class="carousel-caption d-none d-md-block">
-					        		<h5 class= "text-light">Library Information </h5>
+					        		<h5 class= "text-light">Student Career </h5>
 					      		</div>
 					    	</div>
 					    	<div class="carousel-item " style="height: 500px">
@@ -323,7 +339,7 @@
 				</div>
 				<br /><br />
 				
-			</div> // end of scroll data-target
+			</div> <!--  end of scroll data-target -->
 			<div class="row">
 				<div class="col-sm-6 offset-sm-0">
 			    	<div class="card text-center">

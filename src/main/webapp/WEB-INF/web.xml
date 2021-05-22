@@ -626,6 +626,36 @@
   	<description></description>
   	<servlet-class>com.sm.System.StudentAttendance.StudentAttendanceInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>TestPerformence</servlet-name>
+  	<display-name>TestPerformence</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.TestPerformance.TestPerformence</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>STestPerformance</servlet-name>
+  	<display-name>STestPerformance</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.TestPerformance.STestPerformance</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>StudentERP</servlet-name>
+  	<display-name>StudentERP</display-name>
+  	<description></description>
+  	<servlet-class>com.si.System.StudentInfo.StudentERP</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>StudentProfile</servlet-name>
+  	<display-name>StudentProfile</display-name>
+  	<description></description>
+  	<servlet-class>com.si.System.StudentProfile</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TimeTableInfo</servlet-name>
+  	<display-name>TimeTableInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.TimeTable.TimeTableInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -1040,6 +1070,26 @@
   <servlet-mapping>
   	<servlet-name>StudentAttendanceInfo</servlet-name>
   	<url-pattern>/StudentAttendanceInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TestPerformence</servlet-name>
+  	<url-pattern>/TestPerformence</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>STestPerformance</servlet-name>
+  	<url-pattern>/STestPerformance</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StudentERP</servlet-name>
+  	<url-pattern>/StudentERP</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StudentProfile</servlet-name>
+  	<url-pattern>/StudentProfile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TimeTableInfo</servlet-name>
+  	<url-pattern>/TimeTableInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

@@ -59,6 +59,10 @@ public class StudentAttendanceInfo extends HttpServlet {
 				erMsg = " Updated.";
 				int CreateStatus = HDAOStudentAttendance.StundentAttendanceMark(sAModel, sAttendanceValue, erMsg);
 				System.out.println("\nCreateStatus" + CreateStatus);
+
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				
 				break; 
 				
 			case "XFeeVr" :	//Retrieve Fee sub Record

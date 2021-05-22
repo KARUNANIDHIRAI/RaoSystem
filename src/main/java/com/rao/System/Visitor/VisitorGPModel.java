@@ -48,7 +48,7 @@ public class VisitorGPModel {
 	@Column(name = "VMobileNo", columnDefinition ="nvarchar(100)", nullable =false)
 	private String vMobileNo;
 	
-	@Column(name = "VInTime", columnDefinition ="t", nullable =false)
+	@Column(name = "VInTime", columnDefinition ="Time", nullable =false)
 	@Temporal(value = TemporalType.TIME)
 	private Date vInTime ;
 	

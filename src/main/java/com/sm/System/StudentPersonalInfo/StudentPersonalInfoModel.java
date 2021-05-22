@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 import com.sm.System.SchoolInformation.Email;
 
 @Entity
-@Table(name ="SMStudentInfo")
+@Table(name ="SMStudentInformation")
 public class StudentPersonalInfoModel  implements Serializable{
 	
 	@Id
@@ -33,17 +33,28 @@ public class StudentPersonalInfoModel  implements Serializable{
 	@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
 	private String regNo;
 
-	@Column(name="RollNo", nullable= true , updatable = false, columnDefinition = "nvarchar(100)")
-	private String rollNo;
-
 	@Column(name="AdmNo", nullable= false)
 	private String admNo;
 	
 	@Column(name="AdmDate", nullable= false , columnDefinition = "date")
 	@Temporal(TemporalType.DATE)
 	private Date admDate;
-	
 
+	@Column(name="AdmInClass", nullable= true,columnDefinition = "nvarchar(100)")
+	private String admInClass;
+
+	@Column(name="RollNo", nullable= true , columnDefinition = "nvarchar(100)")
+	private String rollNo;
+
+	@Column(name="Section", nullable= true , columnDefinition = "nvarchar(100)")
+	private String section;
+	
+	@Column(name="PromotedInClass", nullable= true,columnDefinition = "nvarchar(100)")
+	private String promotedInClass;
+
+	@Column(name="Course", nullable= true , columnDefinition = "nvarchar(100)")
+	private String course;
+	
 	@Column(name="FName", nullable= false, columnDefinition = "nvarchar(100)")
 	private String fName;
 	
@@ -57,11 +68,6 @@ public class StudentPersonalInfoModel  implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 
-	@Column(name="AdmInClass", nullable= true,columnDefinition = "nvarchar(100)")
-	private String admInClass;
-
-	@Column(name="PromotedInClass", nullable= true,columnDefinition = "nvarchar(100)")
-	private String promotedInClass;
 
 	@Column(name="MobileNo", nullable= false,columnDefinition = "nvarchar(100)")
 	private String mobileNo;
@@ -142,14 +148,6 @@ public class StudentPersonalInfoModel  implements Serializable{
 		this.regNo = regNo;
 	}
 
-	public String getRollNo() {
-		return rollNo;
-	}
-
-	public void setRollNo(String rollNo) {
-		this.rollNo = rollNo;
-	}
-
 	public String getAdmNo() {
 		return admNo;
 	}
@@ -164,6 +162,47 @@ public class StudentPersonalInfoModel  implements Serializable{
 
 	public void setAdmDate(Date admDate) {
 		this.admDate = admDate;
+	}
+
+	public String getRollNo() {
+		return rollNo;
+	}
+
+	public void setRollNo(String rollNo) {
+		this.rollNo = rollNo;
+	}
+
+	public String getAdmInClass() {
+		return admInClass;
+	}
+
+	
+	public String getSection() {
+		return section;
+	}
+
+	public void setSection(String section) {
+		this.section = section;
+	}
+
+	public void setAdmInClass(String admInClass) {
+		this.admInClass = admInClass;
+	}
+
+	public String getPromotedInClass() {
+		return promotedInClass;
+	}
+
+	public void setPromotedInClass(String promotedInClass) {
+		this.promotedInClass = promotedInClass;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
 	}
 
 	public String getfName() {
@@ -198,21 +237,6 @@ public class StudentPersonalInfoModel  implements Serializable{
 		this.dob = dob;
 	}
 
-	public String getAdmInClass() {
-		return admInClass;
-	}
-
-	public void setAdmInClass(String admInClass) {
-		this.admInClass = admInClass;
-	}
-
-	public String getPromotedInClass() {
-		return promotedInClass;
-	}
-
-	public void setPromotedInClass(String promotedInClass) {
-		this.promotedInClass = promotedInClass;
-	}
 
 	public String getMobileNo() {
 		return mobileNo;
@@ -367,6 +391,7 @@ public class StudentPersonalInfoModel  implements Serializable{
 		this.updatedOn = updatedOn;
 	}
 
+	
 //	@Override
 //	public String toString() {
 //		return "StudentPersonalInfoModel [sIdNo=" + sIdNo + ", regNo=" + regNo + ", rollNo=" + rollNo + ", admNo="

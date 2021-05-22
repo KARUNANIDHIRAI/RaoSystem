@@ -32,6 +32,7 @@ public class StudentPInformation extends HttpServlet {
 		String erMsg= "Step1:";
 		String valMsg=""; 
 		StudentPersonalInfoModel SiModel = new StudentPersonalInfoModel();
+		SiModel.setRegNo("MK308");
 		String Action = request.getParameter("Action");
 		System.out.println(Action);
 		JsonArray JsonArrayList = new JsonArray();
@@ -40,11 +41,10 @@ public class StudentPInformation extends HttpServlet {
 		try {
 			switch (Action) {
 			case "spInformation":	
-				SiModel.setRegNo("MK308");
 				SiModel = UpdFormValueToModelClass(SiModel,request);
 				erMsg = " form value Updated.";
 				int rwaStatus = HDAOSpInformation.SpInformation(SiModel,erMsg);
-				String hDAOMessage= rwaStatus>0?"THANKS! YOUR ENQUIRY SUBMITED SUCCESSFULLY.": "TECHNICAL ERROR! YOUR ENQUIRY NOT SUBMITED. PLS TRY AFTER SOMETIME.";
+				String hDAOMessage= rwaStatus>0?"Student Record Crated SUCCESSFULLY.": "TECHNICAL ERROR! YOUR ENQUIRY NOT SUBMITED. PLS TRY AFTER SOMETIME.";
 				session.setAttribute("Message",hDAOMessage );
 				response.sendRedirect("SuccessMsg.jsp");
 				break;
@@ -59,7 +59,15 @@ public class StudentPInformation extends HttpServlet {
 				erMsg +=" : Retrieve info done";
 				break; 
 
-			case "rInformation" :	//edit informations
+			case "xRSINFO" :	//Retrieve Student Adimmission information
+				SiModel.setAdmNo(request.getParameter("sAdmNo"));
+				JsonArrayList = HDAOSpInformation.rStudentAdimmissionInfo(SiModel, erMsg);
+				erMsg +=" Ok";
+				System.out.println("\n" + JsonArrayList);
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				erMsg +=" : Retrieve info done";
+				break; 
 //				System.out.println("\nknrai");
 //				System.out.println(request.getParameter("RegDate"));
 //				try {
@@ -74,7 +82,6 @@ public class StudentPInformation extends HttpServlet {
 //				} catch (ParseException e) {
 //					System.out.println("Error in RegDate Convert:\n" + e);
 //				}
-				break; 
 			case "RWAInformation":	
 				break; 
 			}
@@ -101,6 +108,10 @@ public class StudentPInformation extends HttpServlet {
 			siModel.setAdmDate(Utilities.StringToDate(request.getParameter("admDate")));
 			siModel.setAdmInClass(request.getParameter("admClass"));
 			siModel.setPromotedInClass(request.getParameter("curClass"));
+			siModel.setRollNo(request.getParameter("sRollNo"));
+			siModel.setSection(request.getParameter("sSection"));
+			siModel.setCourse(request.getParameter("course"));
+
 			siModel.setSibling(request.getParameter("siblingNo"));
 			siModel.setMobileNo(request.getParameter("sMobileNo"));
 			siModel.setEmailId(request.getParameter("sEmail"));

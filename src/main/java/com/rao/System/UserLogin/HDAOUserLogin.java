@@ -112,6 +112,7 @@ public class HDAOUserLogin {
 	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
 //	        root.join("UAdd");
 	        root.fetch("UAdd");
+
 	        creteriaQuery.where(builder.equal(root.get("regNo"), "MK103"),
 		                        builder.equal(root.get("status"), "A"));
 	        

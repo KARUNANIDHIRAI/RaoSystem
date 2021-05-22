@@ -135,7 +135,7 @@
 							</div>
 						</div>	
 					</div>
-					<div class="card-body  text-light bg-secondary" id ="ItemHd1">
+					<div class="card-footer  text-light bg-secondary" id ="ItemHd1">
 							<button type="button" id ="XsAttMarks" name="XsAttMarks" class="form-control     text-light 
 							text-center h5 btn btn-secondary" style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px" >
 							<%=SMFixedValue.Save%> <%=SMFixedValue.Attendance%></button>
@@ -168,6 +168,11 @@
 					 	dataType: 'Json',
 						url:'../../StudentAttendanceInfo',
 						success:function(result){
+							$("#XsAttMarks").prop('disabled', true);
+							alert("Attendance marked Successfully");
+							StudentList(result);
+							resetSAPage();
+							scrollPageUP(6000);
 						}	
 					});	 // eof AJAX
 		        }
@@ -207,7 +212,15 @@
 		    	atdInfos.push($("#Subject").val());
 		    	return atdInfos;
 			}			
-	 		function subjectValidate(atdInfo ){
+			function resetSAPage(){
+ 		    	$("#CltName").val("");
+		    	$("#fApplCF").val("");
+		    	$("#Ssection").val("");
+		    	$("#SRollN").val("");
+		    	$("#Subject").val("");
+			}			
+
+			function subjectValidate(atdInfo ){
 				if(atdInfo.STeacher==""){
 					$("#CltName").focusin();
 					alert('Enter Class Teacher Name');
@@ -237,7 +250,7 @@
 					success:function(result){
 						$("#studentInfoList").show();
 						StudentList(result);
-						scrollPage(6000);
+						scrollPageDown(6000);
 					}	
 				});	 // eof AJAX
 			}
@@ -253,7 +266,7 @@
 					url:'../../StudentAttendanceInfo',
 					success:function(result){
 						feeList(result);
-						scrollPage(6000);
+						scrollPageDown(6000);
 					}	
 				});	 // eof AJAX
 			});
@@ -278,9 +291,16 @@
 					]
 				}); 
 			}// EOF table FUNCTION	
-			function scrollPage(pos){
+			function scrollPageDown(pos){
 				$("html, body").animate({
 				    scrollTop: $('html, body').get(0).scrollHeight}, pos);				
+			}// eof function -> function for scroll page bottom
+			function scrollPageUP(pos){
+				$("html, body").animate({
+				    scrollTop: $('html, body').get(0).scrollHeight}, pos);	
+			       var bottom = $(document).height() - $(window).height();
+				$("HTML, BODY").animate({
+			            scrollTop: bottom }, 1000);			
 			}// eof function -> function for scroll page bottom
 
 	/*	
