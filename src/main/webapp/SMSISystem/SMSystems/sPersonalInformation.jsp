@@ -90,7 +90,7 @@
 								<div class="col-sm-5 offset-sm-0">
 									<label for="sMobileNo" class="form-label h6">Last Name*</label>
 									<input type="text" class="form-control   blinew " id="lName" 	name="lName" 
-										pattern="[A-Za-z\s]{3,40}" title="Enter character between a-z or A-Z Min 5 char"							
+										pattern="[A-Za-z\s]{3,40}" title="Enter character between a-z or A-Z Min 3 char"							
 									placeholder="" required>
 								</div>
 							</div>

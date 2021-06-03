@@ -16,8 +16,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-import com.sm.System.TestPerformance.TestPerformanceModel;
-
 @Entity
 @Table(name="SMTimeTableDetail")
 public class TimeTableDetailModel {

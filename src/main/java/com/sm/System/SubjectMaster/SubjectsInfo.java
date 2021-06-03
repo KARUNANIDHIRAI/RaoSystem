@@ -95,7 +95,7 @@ public class SubjectsInfo extends HttpServlet {
 			siModel.setUpdatedOn(new Date());
 			System.out.println("Subject Information: "+siModel);
         }catch (Exception e) {
-        	System.out.println("Error: update value in model");
+        	System.out.println("Error: update value in model :" + e);
         }
 		return siModel;
 	}

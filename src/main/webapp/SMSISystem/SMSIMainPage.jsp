@@ -15,22 +15,12 @@
    		<script type="text/javascript" src="../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
    		<script type="text/javascript" src="../webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>	
   		<script type="text/javascript" src="../webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>	
-
-
-    <style type="text/css"> 
-        .dropdown:hover .dropdown-menu { 
-            display: block; 
-        }    
-        #dropdn:hover .dropdown-menu { 
-            display: block; 
-        } 
-    </style> 
-
+	    <style type="text/css"> 
+	        .dropdown:hover .dropdown-menu { display: block; }    
+	        #dropdn:hover .dropdown-menu {   display: block; } 
+	    </style> 
 	</head>
- 
-
 	<body>
-
 		<div class="container-flucid" > 
 			<div class="row" >
  				<div class="col-lg-12 "> 
@@ -47,14 +37,10 @@
 							</ul>
 						</div>
 					</nav>
-
 				</div>
 			</div>
 		</div>		
         <br /><br />
-
-
-
 		<div class="container" > 
 			<div class="row "> 
                 <div class="col-lg-7 " > 
@@ -120,6 +106,8 @@
 									        	<a class="dropdown-item" href="SMSystems/MasSFeeType.jsp">Fee Types</a>
 									        	<a class="dropdown-item" href="SMSystems/MasSFeeDefine.jsp">Fee Define</a>
 									        	<a class="dropdown-item" href="SMSystems/SFeePayment.jsp">Fee Payment</a>
+									        	<a class="dropdown-item" href="SMSystems/Faculty.jsp">Faculty</a>
+									        	<a class="dropdown-item" href="SMSystems/FacultyMembers.jsp">Faculty Member</a>
 											</div>
 									    </div>
 									</div>

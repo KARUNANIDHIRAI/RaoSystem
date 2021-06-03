@@ -72,9 +72,7 @@ $(document).ready(function(){
 		});	 // eof AJAX
 	}
 	$("#SetValueType").click(function(){
-		if (rcOptions!=" "){
-			retrun;
-		}
+		if (rcOptions!=" "){retrun;}
 		getRCList();
 	});
 	function getRCList(){

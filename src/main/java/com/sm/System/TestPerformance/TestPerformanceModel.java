@@ -40,7 +40,7 @@ import com.sm.System.StudentPersonalInfo.StudentAddress;
 		@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
 		private String regNo;
 
-		@Column(name="AdmNo", nullable= false)
+		@Column(name="AdmNo", nullable= false , columnDefinition = "nvarchar(225)")
 		private String admNo;
 		
 		@Column(name="SClass", nullable= true,columnDefinition = "nvarchar(100)")

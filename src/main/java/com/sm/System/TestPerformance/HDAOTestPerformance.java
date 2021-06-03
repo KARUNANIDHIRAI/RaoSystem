@@ -5,21 +5,19 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
 
-import com.rao.System.UserLogin.UserAddress;
-import com.rao.System.UserLogin.UserLoginModel;
 import com.raoSystem.daoConnection.HibernateDAO;
-import com.sm.System.FeeDefine.FeeDefineModel;
-import com.sm.System.FeeDefine.FeePrgrammeModel;
-import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
+import com.sm.System.TestPerformance.MarksDetailSubModel;
+import com.sm.System.TestPerformance.MarksDetialModel;
+import com.sm.System.SMInformation.SMFixedValue;
 
 public class HDAOTestPerformance {
 
@@ -217,5 +215,102 @@ public class HDAOTestPerformance {
 		}			
 		return studentTestPerformance;
 	}
+	public static JsonArray getTestPerformanceData(TestPerformanceModel SiModel, String erMsg) {
+	       erMsg += " 2.0: attendanceSummary() :Generating Student list class and Section wise " ;
+		    JsonArray testPerformanceData = new JsonArray();
+			try ( Session sessionObj = HibernateDAO.getSessionFactory().openSession()){
+				Query<Object[]> rsQuery = sessionObj.createQuery(SMFixedValue.HQL_STUDENT_TEST_PERFORMANCE);
+				rsQuery.setParameter("regNO"              , SiModel.getRegNo());
+				rsQuery.setParameter("studentClass"       ,SiModel.getsClass());
+				rsQuery.setParameter("studentClassSection", SiModel.getSection());
+				rsQuery.setParameter("studentClassSection", SiModel.getAdmNo());
+				rsQuery.setParameter("Fstatus"            ,SiModel.getStatus());
+				System.out.println("Parameter Value: " +SiModel.getRegNo()+": "+ SiModel.getsClass()+": "+SiModel.getSection()+": "+SiModel.getAdmNo() );
+				erMsg += " PARAM SET ;" ;
+		       ArrayList <Object[]> rows = (ArrayList <Object[]>)  rsQuery.list();
+		       System.out.println("\nTotal No of Row retrieved:  "+rows.size());
+		       int sNO =0;
+		        erMsg += " Execute Query OK.:" ;
+		       for(Object[] row: rows) {
+		          JsonObject rObj = new JsonObject();
+		          rObj.put("SNo"            , Integer.toString(++ sNO)) ;
+			      rObj.put("RollNo"         , (String) row[0]) ;
+			      rObj.put("TestType"       , (String) row[1]) ;
+			      rObj.put("TestCycle"      , (String) row[2]) ;
+			      rObj.put("TestCategory"   , (String) row[3]) ;
+			      rObj.put("Subject"        , (String) row[4]) ;
+			      rObj.put("MarksObtained"  , (Integer)row[5]) ;
+			      rObj.put("MaxMarks"       , (Integer)row[6]) ;
+			      testPerformanceData.add(rObj);	
+		       }
+		        erMsg += " Update JsonArray OK.:" ;
+		       sessionObj.close();
+			}catch(Exception e) {
+		    	erMsg += "Catch Exception: \n"+ e;
+			}finally {
+				System.out.println("\n"+erMsg );
+			}			
+			return testPerformanceData;		
+	}
+	public static JsonArray getTestPerformanceDetail(TestPerformanceModel testPerformanceModel, String erMsg) {
+	       erMsg += " 2.0: student Test Data Retrieveing. " ;
+		    JsonArray studentTestPerformance = new JsonArray();
+			try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+
+		        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+		        CriteriaQuery<TestPerformanceModel> creteriaQuery = builder.createQuery(TestPerformanceModel.class);
+		        Root<TestPerformanceModel> root = creteriaQuery.from(TestPerformanceModel.class);
+		        root.fetch("marksDetialModel");
+
+		        creteriaQuery.where(builder.equal(root.get("regNo"), testPerformanceModel.getRegNo()),
+		           builder.equal(root.get("admNo"), testPerformanceModel.getAdmNo()),
+	        	   builder.equal(root.get("sClass"), testPerformanceModel.getsClass()),
+	        	   builder.equal(root.get("section"),testPerformanceModel.getSection()),
+		           builder.equal(root.get("status"), testPerformanceModel.getStatus()));
+//		        creteriaQuery.orderBy(builder.asc(root.get("tIdNo"))); // using order by on single col
+		           List<Order> orderList = new ArrayList<>();
+		            orderList.add(builder.asc(root.get("testCycle")));
+		            orderList.add(builder.desc(root.get("testType")));
+		            orderList.add(builder.desc(root.get("testCategory")));
+		            creteriaQuery.orderBy(orderList);
+		        
+		        
+		        Query<TestPerformanceModel> query = sessionObj.createQuery(creteriaQuery);
+			       ArrayList <TestPerformanceModel> rows =  (ArrayList<TestPerformanceModel>) query.getResultList();
+		        int sNO =0;
+		        int id = 0;
+			     System.out.println("\nTotal No of Row retrieved:  "+rows.size());
+		        for(TestPerformanceModel row: rows) {
+		        	if(id==row.gettIdNo()) {
+		        		continue;
+		        	}
+		        	id = row.gettIdNo();	
+			    	  JsonObject rObj1 = new JsonObject();
+		        	List<MarksDetialModel> marksData = row.getMarksDetialModel();
+		        	int counter =0;
+			      for ( MarksDetialModel data:marksData) {
+			    	  if(data.getStatus().equals("A")) {
+				    	  JsonObject rObj = new JsonObject();
+//				    	  rObj.put("SNo"           , Integer.toString(++ sNO)) ;
+				    	  rObj.put("TestType"      , (String)row.getTestType() +" "+(String)row.getTestCycle());
+//				    	  rObj.put("TestCycle"     , (String)row.getTestCycle() );
+				    	  rObj.put("TestCategory"  , (String)row.getTestCategory());
+				    	  rObj.put("Subject"       , (String)data.getSubject());
+				    	  rObj.put("MarksObtained" , (Integer)data.getMarksObtained());
+				    	  rObj.put("MaxMarks"      , (Integer)data.getMaxMarks());
+				    	  studentTestPerformance.add(rObj);	
+			    	  }
+			      }
+			    }
+   	    	  System.out.println("studentTestPerformance : "+studentTestPerformance);
+		        erMsg += " Update JsonArray OK.:" ;
+		        sessionObj.close();
+			}catch(Exception e) {
+		    	erMsg += "Catch Exception: \n"+ e;
+			}finally {
+				System.out.println("\n"+erMsg );
+			}			
+			return studentTestPerformance;
+		}
 
 }

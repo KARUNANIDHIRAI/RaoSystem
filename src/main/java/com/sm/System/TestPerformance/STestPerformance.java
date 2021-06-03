@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JsonArray;
 
+import com.sm.System.StudentAttendance.HDAOStudentAttendance;
+import com.sm.System.TimeTable.TimeTableModel;
+
 public class STestPerformance extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,8 +49,16 @@ public class STestPerformance extends HttpServlet {
 				out.print(JsonArrayList.toJson());
 				out.flush();
 				break;
-			case "StdPresent" :	//Student Attendance update in db
-				break; 
+			case "xTPerfromanceSummary" :	//Retrieve Student Test performance Information
+				SiModel = testPerfromanceQueryCriteria(SiModel,request);
+				erMsg = " : Time Tabel Model Updated.";
+				
+				JsonArrayList = HDAOTestPerformance.getTestPerformanceDetail(SiModel, erMsg);
+//				JsonArrayList = HDAOTestPerformance.getTestPerformanceData(SiModel, erMsg);
+				erMsg +="\n Student List Class and Section wise :"+ JsonArrayList ;
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break;
 			case "XSTPRDATA" :	//Retrieve Student Test Performance Da	
 				SiModel = UpdSTPRetrieveDataToModel(SiModel,request);
 				erMsg = " : TPM Model Updated.";
@@ -65,6 +76,20 @@ public class STestPerformance extends HttpServlet {
 			System.out.println(erMsg);
 		}
 
+	}
+
+	private TestPerformanceModel testPerfromanceQueryCriteria(TestPerformanceModel siModel,
+			HttpServletRequest request) {
+		System.out.println("\n Update testPerfromanceQueryCriteria into timeTableModel.");
+		siModel.setRegNo("MK308");
+		siModel.setsClass("11");
+		siModel.setSection("A");
+		siModel.setAdmNo("RA19002030525");
+		siModel.setStatus("A"); 
+		System.out.println(": timeTableModel ->" +  siModel.getRegNo() + " ," + siModel.getsClass()+ 
+				" ," +siModel.getSection() + " ," + siModel.getStatus() + " ," + siModel.getAdmNo());
+
+		return siModel;
 	}
 
 	private TestPerformanceModel UpdSTPRetrieveDataToModel(TestPerformanceModel siModel, HttpServletRequest request) {

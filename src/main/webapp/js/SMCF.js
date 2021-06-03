@@ -14,6 +14,10 @@ var feeGrade = " ";
 var section = " ";
 var subjects="";
 var days = " ";
+var gender = " ";
+var facultyOption= " ";
+var actionType =" ";
+alert("SMFC");
 $(document).ready(function(){
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
 		getRefreshCaptcha();
@@ -49,11 +53,7 @@ $(document).ready(function(){
 			}	
 		});// End Of the $.Ajax()
 	}
-
-	
-	
-	
-	$("#Kemail").focusout(function() {
+	$("#email").focusout(function() {
 		var email = $("#email").val();
 		if(!IsEmail(email)){
 			$("#email").val(' Invalid email format');
@@ -259,7 +259,7 @@ $(document).ready(function(){
 
    $("#Ssection").click(function(){
 		if (section!=" "){return;}
-		section=" <option selected value=0>Choose Student Section</option>";
+		section=" <option selected value=0>Choose Student Section*</option>";
 	    var StudentSection = ['A', 'B', 'C', 'D', 'E' , 'F','G'];
         $.each(StudentSection, function(index, value){
         	section+=" <option value='"+value +"'>"+ value+ "</option>";
@@ -268,7 +268,7 @@ $(document).ready(function(){
    });
    $("#Days").click(function(){
 		if (days!=" "){return;}
-		days=" <option selected value=0>Choose Day</option>";
+		days=" <option selected value=0>Choose Day*</option>";
 	    var cDays = ['SUNDAY', 'MONDAY','TUESDAY','WEDNESSDAY','THURSDAY','FRIDAY','SATURDAY'];
        $.each(cDays, function(index, value){
     	   days+=" <option value='"+value +"'>"+ value+ "</option>";
@@ -286,7 +286,7 @@ $(document).ready(function(){
 		 	dataType: 'Json',
 			url:'../../SubjectsInfo',
 			success:function(result){
-				subjects+=" <option selected value=0>Choose Subject</option>";
+				subjects+=" <option selected value=0>Choose Subject*</option>";
 				$.each(result, function(id, name){
 					subjects+=" <option value='"+name.Name +"'>"+ name.Name+ "</option>";
 				});
@@ -294,5 +294,86 @@ $(document).ready(function(){
 			}	
 		});	 // eof AJAX
 	});
-   
+	$("#Gender").click(function(){
+		if (gender!=" "){return;}
+		gender=" <option selected value=0>Choose Gender*</option>";
+		var cGender = ['MALE', 'FEMALE','TRANS'];
+	    $.each(cGender, function(index, value){
+	    	gender+=" <option value='"+value +"'>"+ value+ "</option>";
+	    });
+	    $("#Gender").html(gender);
+	});
+	$("#ActionType").click(function(){
+		if (actionType!=" "){return;}
+		actionType=" <option selected value=0>Choose Gender*</option>";
+		var aType = ['Veiw Faculity Staffs List ', 'Update Faculity Staff Details'];
+	    $.each(aType, function(index, value){
+	    	actionType+=" <option value='"+value +"'>"+ value+ "</option>";
+	    });
+	    $("#ActionType").html(actionType);
+	});
+	
+	
+	var vTime = visitTime();
+	function visitTime(){
+		var vDate = new Date();
+		var vInTime = vDate.getHours()+":"+ vDate.getMinutes();
+		return 	vInTime;
+	}	
+	function yearStart(){
+		var cdate = new Date();
+		return cdate.getFullYear();
+	}
+	$("#doj").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+		value:  false, //defaultTime
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
+
+	$("#dor").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+		value:  false, //defaultTime visitTime() ; default date value:  false
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
+	$("#dob").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+		value:  false, //defaultTime and date
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
+	
+	
+	$("#faculty").click(function(){
+		facultyOption!=" "?retrun:facultyList();
+	});
+	function facultyList(){
+		facultyOption="";
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"xRNLFaculty"},
+	 		dataType: 'json',
+			url:'../../FacultyInformation',
+			success:function(result){
+				facultyOption+=" <option value=1>Choose Faculty*</option>";
+				$.each(result, function(id, name){
+					facultyOption+=" <option value='"+name.Code +"'>"+ name.Name + "</option>";
+				});
+				$("#faculty").html(facultyOption)
+			}	
+		});// End Of the $.Ajax()
+	}	
 });

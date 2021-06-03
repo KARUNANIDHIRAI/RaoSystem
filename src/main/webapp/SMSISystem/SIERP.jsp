@@ -108,7 +108,7 @@
 									<div class="dropdown-menu " id="megha_menu" style ="width:400px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
 										<div class="row">
 											<div class="col-sm-10">
-											    <P id ="sGInfo">	<a onclick="abc()" class="text-dark" href="SISystem/SGenProfile.html" target="myFrame">General Information</a> </P>
+											    <P id ="sIERP"><a onclick="sIERP()" class="text-dark" href="SISystem/SGenProfile.html" target="myFrame">General Information</a> </P>
 											    <P>	<a class="text-dark" href="SMSystems/sPersonalInformation.jsp">Hostel Details</a> </P>
 											    <P>	<a class="text-dark" href="SMSystems/MasSubject.jsp">Transport Details</a> </P>
 											    <P>	<a class="text-dark" href="SMSystems/MasSubject.jsp">Liabrary Detials</a> </P>
@@ -125,13 +125,13 @@
 												<div class="col-sm-4">
 										          	<a class="dropdown-item" href="#"><h6>Performance</h6></a>
 										          	<div class="dropdown-divider"></div>
-										        	<a class="dropdown-item" href="#">Test  Performance</a>
+										          	<a id ="sIERP" class="dropdown-item" onclick="sIERP()()"  href= <%= SMFixedValue.TEST_PERFORMANCE%> target="myFrame">Test Performance</a>
 												</div>
 												<div class="col-sm-4">
 										          	<a class="dropdown-item" href="#"><h6>Academic Details</h6></a>
 										          	<div class="dropdown-divider"></div>
-										          	<a class="dropdown-item" href="#">Attendance</a>
-										          	<a class="dropdown-item" href="#">Class Schedule</a>
+										          	<a id ="sIERP"class="dropdown-item" onclick="sIERP()"  href= <%= SMFixedValue.ATTENDANCE%> target="myFrame">Attendance</a>
+										          	<a id ="sIERP" class="dropdown-item" onclick="sIERP()"  href= <%= SMFixedValue.TIMETABLE%> target="myFrame">Class Schedule</a>
 										          	<a class="dropdown-item" href="#">Subject List</a>
 										          	<a class="dropdown-item" href="#">Scocial Misbehaviour</a>
 												</div>
@@ -206,7 +206,7 @@
 					</div>				
  				</div>			
 				<div class="col-lg-9 offset-sm-0"> 
-				    <iframe id="myFrame" name="myFrame" style="width:100%;height:440px;border: 2px solid blue;"></iframe>
+				    <iframe id="myFrame" name="myFrame" style="width:100%;height:440px;"></iframe>
 				
 					<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
 						<ol class="carousel-indicators">
@@ -274,16 +274,27 @@
 					}	
 				});	 // eof AJAX
 			}
-			function abc(){ 
+			function sIERP(){ 
 		 		$("#myFrame").show();
 		 		$("#carouselExampleCaptions").hide();
 			}
 		 	$(document).ready(function(){
         		$('.dropdown-toggle').dropdown()
 				showStudentProfile();
+        		$("#sIERP").click(function(){ 
+    		 		$("#myFrame").show();
+                })			   	
+				
         		$("#sGInfo").click(function(){ 
     		 		$("#myFrame").show();
                 })			   	
+	      		$("#xTimeTable").click(function(){ 
+    		 		$("#myFrame").show();
+                })
+	      		$("#xAttendance").click(function(){ 
+    		 		$("#myFrame").show();
+                })
+                			   	
 				function scrollPageDown(pos){
 					$("html, body").animate({
 					    scrollTop: $('html, body').get(0).scrollHeight}, pos);				

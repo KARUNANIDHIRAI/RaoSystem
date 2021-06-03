@@ -154,5 +154,46 @@ public class HDAOSpInformation {
 		}			
 		return StudentAdmInfo;
 	}
+	public static JsonArray StudentListForAttendance(StudentPersonalInfoModel siModel, String erMsg) {
+        erMsg += " 2.0: rStudentListClassSectionWise() :Generating Student list class and Section wise " ;
+	    JsonArray StudentList = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+			String hql_StudentCSList  = siModel.getRollNo()==""?SMFixedValue.HQL_STUDENTLIST_CS:SMFixedValue.HQL_STUDENTLIST_CSR;
+			System.out.println("\n hql_StudentCSList: " +hql_StudentCSList);
+			Query<Object[]> rsQuery = sessionObj.createQuery(hql_StudentCSList);
+			rsQuery.setParameter("regNO", siModel.getRegNo());
+			rsQuery.setParameter("studentClass", siModel.getPromotedInClass());
+			rsQuery.setParameter("studentClassSection", siModel.getSection());
+			rsQuery.setParameter("Fstatus","A");
+			if(!siModel.getRollNo().isEmpty()) {
+				rsQuery.setParameter("studentRollNo", siModel.getRollNo());
+			}
+			erMsg += " PARAM SET ;" ;
+	       ArrayList <Object[]> rows = (ArrayList <Object[]>)  rsQuery.list();
+	       System.out.println("\nTotal No of Row retrieved:  "+rows.size());
+	       int sNO =0;
+	        erMsg += " Execute Query OK.:" ;
+	       for(Object[] row: rows) {
+	          JsonObject rObj = new JsonObject();
+              rObj.put("SNO"        , Integer.toString(++ sNO)) ;
+		      rObj.put("RegNo"      , (String) row[0]) ;
+		      rObj.put("FName"      , (String) row[1]) ;
+		      rObj.put("LName"      , (String) row[2]) ;
+		      rObj.put("Name"       , (String) row[1] + " "+(String) row[2]) ;
+		      rObj.put("Class"      , (String) row[3]) ;
+		      rObj.put("RollNo"     , (String) row[4]) ;
+		      rObj.put("SIDNO"      , (Integer) row[5]) ;
+		      StudentList.add(rObj);	
+	       }
+			System.out.println("\n"+StudentList );
+	        erMsg += " Update JsonArray OK.:" ;
+	       sessionObj.close();
+		}catch(Exception e) {
+	    	erMsg += "Catch Exception: \n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return StudentList;
+	}
 	
 }

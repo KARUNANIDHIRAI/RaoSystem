@@ -83,6 +83,11 @@
 		<mapping class="com.sm.System.TimeTable.TimeTableModel"/>
 		<mapping class="com.sm.System.TimeTable.TimeTableDetailModel"/>
 		<mapping class="com.sm.System.TimeTable.TimeTableSubModel"/>
+		<!--  Faculty and Faculty Model -->
+		<mapping class="com.sm.System.Faculty.FacultyModel"/> 
+		<!--  Faculty and Faculty Member Model -->
+ 		<mapping class="com.sm.System.Faculty.FacultyMemberModel"/> 
+		<mapping class="com.sm.System.Faculty.FacultyMemberAddressModel"/>  
 		
     </session-factory>
 </hibernate-configuration>

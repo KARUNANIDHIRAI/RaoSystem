@@ -14,6 +14,7 @@ import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
 
 import com.raoSystem.daoConnection.HibernateDAO;
+import com.sm.System.FeeDefine.FeeDefineModel;
 import com.sm.System.SMInformation.SMFixedValue;
 
 
@@ -65,7 +66,7 @@ public class HDAOTimeTable {
 			Query<TimeTableModel> rsQuery = sessionObj.createQuery(FETCH_TTDATA);
 			rsQuery.setParameter("RegNo"    , timeTableModel.getRegNo());
 			rsQuery.setParameter("Subject"  , timeTableModel.getSubject());
-			rsQuery.setParameter("ClassTT"  , Integer.parseInt(timeTableModel.getClassTT().toString()));
+			rsQuery.setParameter("ClassTT"  , timeTableModel.getClassTT());
 			rsQuery.setParameter("Section"  , timeTableModel.getSection());
 			rsQuery.setParameter("Status" , "A");
 			erMsg += " PARAM SET ;" ;
@@ -113,6 +114,10 @@ public class HDAOTimeTable {
 		        		builder.equal(root.get("classTT"), timeTableModel.getClassTT()),
 		        		builder.equal(root.get("status"), "A"));
 	        	break;
+	        case 4:// retrive Time Table Data for a school for particual class 
+		        creteriaQuery.where(builder.equal(root.get("regNo"), timeTableModel.getRegNo()),
+		        		       		builder.equal(root.get("status"), "A"));
+	        	break;
 	        default:
 	        	sessionObj.close();
 	        	return timeTableData;
@@ -122,7 +127,6 @@ public class HDAOTimeTable {
 	        int sNO =0;
 	        for(TimeTableModel row: rows) {
 		    	   List<TimeTableDetailModel> timeTableinfo = row.getTTDetailModel();
-	        	
 		      for ( TimeTableDetailModel data:timeTableinfo) {
 		    	  if(data.getStatus().equals("A")) {
 			    	  JsonObject rObj = new JsonObject();
@@ -131,16 +135,17 @@ public class HDAOTimeTable {
 			    	  rObj.put("Subject"    , row.getSubject());
 			    	  rObj.put("Class"      , row.getClassTT());
 			    	  rObj.put("Section"    , row.getSection());
-			    	  rObj.put("TTIDNOFK"   , row.gettTIdNo());
+			    	  rObj.put("THours"     , row.getTotalHours().toString());
+			    	  rObj.put("TTIDNOPK"   , row.gettTIdNo());
 			    	  rObj.put("Teacher"    , data.getTeacherName());
 			    	  rObj.put("Day"        , data.getClassDay());
 			    	  rObj.put("ClassEnd"   , data.getClassEnd().toString());
 			    	  rObj.put("ClassStart" , data.getClassStart().toString());
-			    	  rObj.put("TTDIDNO"      , data.gettTDIdNo());
+			    	  rObj.put("TTDIDNO"    , data.gettTDIdNo());
 			    	  timeTableData.add(rObj);	
-			    	  System.out.println("TIME TABLE : "+timeTableData);
 		    	  }
 		      }
+	    	  System.out.println("TIME TABLE : "+timeTableData);
 		      break;
 		    }
 	        erMsg += " Update JsonArray OK.:" ;
@@ -151,5 +156,187 @@ public class HDAOTimeTable {
 			System.out.println("\n"+erMsg );
 		}			
 		return timeTableData;
+	}
+
+	public static JsonArray getAllClassTimeTableData(TimeTableModel timeTableModel, String erMsg) {
+	       erMsg += " 2.0: getAllClassTimeTableData :Time Table Data Retrieveing. " ;
+		    JsonArray timeTableData = new JsonArray();
+			try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+
+		        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+		        CriteriaQuery<TimeTableModel> creteriaQuery = builder.createQuery(TimeTableModel.class);
+		        Root<TimeTableModel> root = creteriaQuery.from(TimeTableModel.class);
+			        creteriaQuery.where(builder.equal(root.get("regNo"), timeTableModel.getRegNo()),
+			        		       		builder.equal(root.get("status"), "A"));
+
+			        Query<TimeTableModel> query = sessionObj.createQuery(creteriaQuery);
+			       ArrayList <TimeTableModel> rows =  (ArrayList<TimeTableModel>) query.getResultList();
+		        int sNO =0;
+		        for(TimeTableModel row: rows) {
+		        	JsonObject rObj = new JsonObject();
+		        	rObj.put("SNO"        , Integer.toString(++ sNO)) ;
+		        	rObj.put("RegNo"      , row.getRegNo());
+		        	rObj.put("Subject"    , row.getSubject());
+		        	rObj.put("Class"      , row.getClassTT());
+		        	rObj.put("Section"    , row.getSection());
+		        	rObj.put("THours"     , row.getTotalHours().toString());
+		        	rObj.put("TTIDNOPK"   , row.gettTIdNo());
+		        	timeTableData.add(rObj);	
+			    }
+		    	System.out.println("TIME TABLE : "+timeTableData);
+		        erMsg += " Update JsonArray OK.:" ;
+		        sessionObj.close();
+			}catch(Exception e) {
+		    	erMsg += "Catch Exception: \n"+ e;
+			}finally {
+				System.out.println("\n"+erMsg );
+			}			
+			return timeTableData;
+		}
+
+	
+	public static int removeTimeTableSubInfo(int timeTableDetailIDNOPK,  String erMsg) {
+		erMsg+=" 2.Start removing.removeTimeTableSDetailInfo()";
+        int executeUpdate = 0;
+    	Transaction tr = null; 
+	    try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        String HQLString = "Update TimeTableDetailModel set status =:nStatus where tTDIdNo =:tTTDIDNO AND  status=:oStatus";
+	        Query query = sessionObj.createQuery(HQLString );
+	        query.setParameter("nStatus", "D");
+	        query.setParameter("tTTDIDNO", timeTableDetailIDNOPK);
+	        query.setParameter("oStatus", "A");
+	        tr = sessionObj.beginTransaction();
+	        erMsg += " Param setting done ;" ;
+	        executeUpdate= query.executeUpdate();
+        	erMsg+= executeUpdate>0?Integer.toString(executeUpdate) + " Data Removed Successfully"
+        			               :Integer.toString(executeUpdate) + " Data Removed Successfully";
+	        erMsg += " removal done.:" ;
+	       sessionObj.close();
+		}catch(Exception e) { 
+			tr.rollback();
+			erMsg += "Catch Exception: \n"+ e;
+		}finally {System.out.println("\n"+erMsg );}			
+		return executeUpdate;
+	}
+
+	public static JsonArray getSpecificClassSectionTimeTableData(int sCSSTTData, String erMsg) {
+	       erMsg += " 2.0: getAllClassTimeTableData :Time Table Data Retrieveing. " ;
+		    JsonArray timeTableData = new JsonArray();
+			try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+
+		        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+		        CriteriaQuery<TimeTableDetailModel> creteriaQuery = builder.createQuery(TimeTableDetailModel.class);
+		        Root<TimeTableDetailModel> root = creteriaQuery.from(TimeTableDetailModel.class);
+			        creteriaQuery.where(builder.equal(root.get("timeTableModel"), sCSSTTData),
+			        		       		builder.equal(root.get("status"), "A"));
+
+			        Query<TimeTableDetailModel> query = sessionObj.createQuery(creteriaQuery);
+			       ArrayList <TimeTableDetailModel> rows =  (ArrayList<TimeTableDetailModel>) query.getResultList();
+		        int sNO =0;
+		        for(TimeTableDetailModel row: rows) {
+		        	JsonObject rObj = new JsonObject();
+		        	rObj.put("SNO"            , Integer.toString(++ sNO)) ;
+		        	rObj.put("RegNo"          , row.getRegNo());
+		        	rObj.put("Day"            , row.getClassDay());
+		        	rObj.put("ClassStartTime" , row.getClassStart().toString());
+		        	rObj.put("ClassEndTime"   , row.getClassEnd().toString());
+		        	rObj.put("Teacher"        , row.getTeacherName());
+		        	rObj.put("TTDIDNO"        , row.gettTDIdNo().toString());
+		        	timeTableData.add(rObj);	
+			    }
+		    	System.out.println("TIME TABLE : "+timeTableData);
+		        erMsg += " Update JsonArray OK.:" ;
+		        sessionObj.close();
+			}catch(Exception e) {
+		    	erMsg += "Catch Exception: \n"+ e;
+			}finally {
+				System.out.println("\n"+erMsg );
+			}			
+			return timeTableData;
+	}
+
+
+	public static JsonArray getClassSchedule(TimeTableModel timeTableModel, String erMsg) {
+	       erMsg += " 2.0: Time Table Data Retrieveing. " ;
+		    JsonArray timeTableData = new JsonArray();
+			try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+		        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+		        CriteriaQuery<TimeTableModel> creteriaQuery = builder.createQuery(TimeTableModel.class);
+		        Root<TimeTableModel> root = creteriaQuery.from(TimeTableModel.class);
+		        root.fetch("TTDetailModel");
+		        creteriaQuery.where(builder.equal(root.get("regNo"), timeTableModel.getRegNo()),
+			        		builder.equal(root.get("classTT"), timeTableModel.getClassTT()),
+			        		builder.equal(root.get("section"), timeTableModel.getSection()),
+			        		builder.equal(root.get("status"), "A"));
+
+		        Query<TimeTableModel> query = sessionObj.createQuery(creteriaQuery);
+		        ArrayList <TimeTableModel> rows =  (ArrayList<TimeTableModel>) query.getResultList();
+		        String TeacherName ="";
+		        int id=0;
+		        int sNo=0;
+		        for(TimeTableModel row: rows) {
+		        	if(id==row.gettTIdNo()) {
+		        		continue;
+		        	}
+		        	id=row.gettTIdNo();
+  		    	    List<TimeTableDetailModel> timeTableinfo = row.getTTDetailModel();
+			   		Object[] timeSchedule=  {"","","","","",""};
+			      for ( TimeTableDetailModel data:timeTableinfo) {
+			    	  if(data.getStatus().equals("A")) {
+			    		  TeacherName = data.getTeacherName();	
+			    		  switch (data.getClassDay().toString()) {
+			    		  case "MONDAY":
+			    			  timeSchedule[0]+=data.getClassStart().toString().substring(0, 5) +" - " + data.getClassEnd().toString().substring(0, 5)+ " ";
+			    			  continue;
+			    		  case "TUESDAY":
+			    			  timeSchedule[1]+=data.getClassStart().toString().substring(0, 5) +" - " + data.getClassEnd().toString().substring(0, 5)+ " ";
+			    			  continue;
+			    		  case "WEDNESSDAY":
+			    			  timeSchedule[2]+=data.getClassStart().toString().substring(0, 5) +" - " + data.getClassEnd().toString().substring(0, 5)+ " ";
+			    			  continue;
+			    		  case "THURSDAY":
+			    			  timeSchedule[3]+=data.getClassStart().toString().substring(0, 5) +" - " + data.getClassEnd().toString().substring(0, 5)+ " ";
+			    			  continue;
+			    		  case "FRIDAY":
+			    			  timeSchedule[4]+=data.getClassStart().toString().substring(0, 5) +" - " + data.getClassEnd().toString().substring(0, 5)+ " ";
+			    			  continue;
+			    		  case "SATURDAY":
+			    			  timeSchedule[5]+=data.getClassStart().toString().substring(0, 5) +" - " + data.getClassEnd().toString().substring(0, 5)+ " ";
+			    			  continue;
+			    		  }
+			    	  }// eof switch case
+		    	  }// eof inner for loop
+	    		  JsonObject rObj = new JsonObject();
+		    	  rObj.put("SNo"      ,  Integer.toString(++ sNo)) ;
+		    	  rObj.put("RegNo"      , row.getRegNo());
+		    	  rObj.put("Subject"    , row.getSubject());
+		    	  rObj.put("Class"      , row.getClassTT());
+		    	  rObj.put("Section"    , row.getSection());
+		    	  rObj.put("THours"     , row.getTotalHours().toString());
+		    	  rObj.put("Teacher"    , TeacherName);
+		    	  rObj.put("MONDAY"     , timeSchedule[0]);
+		    	  rObj.put("TUESDAY"    , timeSchedule[1]);
+		    	  rObj.put("WEDNESSDAY" , timeSchedule[2]);
+		    	  rObj.put("THURSDAY"   , timeSchedule[3]);
+		    	  rObj.put("FRIDAY"     , timeSchedule[4]);
+		    	  rObj.put("SATURDAY"   , timeSchedule[5]);
+		    	  timeTableData.add(rObj);	
+			    }// eof outer for loop
+		    	  System.out.println("TIME TABLE : "+timeTableData);
+		        erMsg += " Update JsonArray OK.:" ;
+		        sessionObj.close();
+			}catch(Exception e) {
+		    	erMsg += "Catch Exception: \n"+ e;
+			}finally {
+				System.out.println("\n"+erMsg );
+			}			
+			return timeTableData;
+		}
+	
+	public static JsonArray abc() {
+		JsonArray abc = new JsonArray();
+		
+		return abc;
+		
 	}
 }

@@ -656,6 +656,12 @@
   	<description></description>
   	<servlet-class>com.sm.System.TimeTable.TimeTableInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>FacultyInformation</servlet-name>
+  	<display-name>FacultyInformation</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.Faculty.FacultyInformation</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -1090,6 +1096,10 @@
   <servlet-mapping>
   	<servlet-name>TimeTableInfo</servlet-name>
   	<url-pattern>/TimeTableInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FacultyInformation</servlet-name>
+  	<url-pattern>/FacultyInformation</url-pattern>
   </servlet-mapping>
  
  </web-app>

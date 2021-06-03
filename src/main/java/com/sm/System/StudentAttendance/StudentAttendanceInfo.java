@@ -20,6 +20,8 @@ import com.sm.System.FeeDefine.FeePrgrammeModel;
 import com.sm.System.FeeDefine.HDAOFeeDefine;
 import com.sm.System.StudentPersonalInfo.HDAOSpInformation;
 import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
+import com.sm.System.TimeTable.HDAOTimeTable;
+import com.sm.System.TimeTable.TimeTableModel;
 
 public class StudentAttendanceInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,9 +44,9 @@ public class StudentAttendanceInfo extends HttpServlet {
 		try {
 			switch (Action) {
 			case "SAtdInfo":	 // sTUDNENT LIST FOR MARKING ATTENDANCE
-				SiModel = sSearchInfoToSPIModel(SiModel,request);
+				SiModel = attendanceQueryCriteria(SiModel,request);
 				erMsg = " : Attendance Model Updated.";
-				JsonArrayList = HDAOSpInformation.rStudentListClassSectionWise(SiModel, erMsg);
+				JsonArrayList = HDAOSpInformation.StudentListForAttendance(SiModel, erMsg);
 				erMsg +="\n Student List Class and Section wise :"+ JsonArrayList ;
 				out.print(JsonArrayList.toJson());
 				out.flush();
@@ -59,15 +61,19 @@ public class StudentAttendanceInfo extends HttpServlet {
 				erMsg = " Updated.";
 				int CreateStatus = HDAOStudentAttendance.StundentAttendanceMark(sAModel, sAttendanceValue, erMsg);
 				System.out.println("\nCreateStatus" + CreateStatus);
-
 				out.print(JsonArrayList.toJson());
 				out.flush();
-				
 				break; 
+			case "xrAttendanceInfo":	 // Generate Student ATTENDANCE Summary
+				TimeTableModel timeTableModel = new TimeTableModel();
+				timeTableModel = timeTableQueryCriteria(timeTableModel,request);
+				erMsg = " : Time Tabel Model Updated.";
+				JsonArrayList = HDAOStudentAttendance.attendanceSummary(timeTableModel, erMsg);
+				erMsg +="\n Student List Class and Section wise :"+ JsonArrayList ;
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break;
 				
-			case "XFeeVr" :	//Retrieve Fee sub Record
-				break; 
-	
 			}
 		} catch (Exception e) {
 			System.out.println("Technical Error"+ e);
@@ -78,13 +84,14 @@ public class StudentAttendanceInfo extends HttpServlet {
 
 	}
 
-	private StudentPersonalInfoModel sSearchInfoToSPIModel(StudentPersonalInfoModel siModel,	HttpServletRequest request) {
-		System.out.println("\nsSearchInfoToSPIModel()");
+	private StudentPersonalInfoModel attendanceQueryCriteria(StudentPersonalInfoModel siModel,	HttpServletRequest request) {
+		System.out.println("\n Update Criteria into Model.");
 		Object []items = request.getParameterValues("InputValues[]");
-		siModel.setAdmInClass(items[1].toString());;
+		siModel.setPromotedInClass(items[1].toString());;
+		siModel.setSection(items[2].toString());;
 		siModel.setRollNo(items[3].toString());
 		siModel.setStatus("A"); 
-		System.out.println(": siModel ->" +  siModel );
+		System.out.println(": siModel ->" +  siModel.getPromotedInClass() + " ," + siModel.getSection() + " ," + siModel.getRollNo() + " ," + siModel.getStatus() );
 		return siModel;
 	}
 	private StudentAttendanceModel sAttendnceToSPIModel(StudentAttendanceModel sAModel,	HttpServletRequest request) {
@@ -103,6 +110,15 @@ public class StudentAttendanceInfo extends HttpServlet {
 		sAModel.setCreatedOn(new Date());
 		System.out.println(": sAModel ->" +  sAModel );
 		return sAModel;
+	}
+	private TimeTableModel timeTableQueryCriteria(TimeTableModel timeTableModel,HttpServletRequest request) {
+		System.out.println("\n Update Criteria into timeTableModel.");
+		timeTableModel.setRegNo("MK308");
+		timeTableModel.setClassTT("11");
+		timeTableModel.setSection("A");
+		timeTableModel.setStatus("A"); 
+		System.out.println(": timeTableModel ->" +  timeTableModel.getClassTT() + " ," + timeTableModel.getSection() + " ," + timeTableModel.getStatus()+ ","+ timeTableModel.getRegNo());
+		return timeTableModel;
 	}
 
 }

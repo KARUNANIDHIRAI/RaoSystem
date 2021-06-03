@@ -46,16 +46,52 @@ public class TimeTableInfo extends HttpServlet {
 				out.print(JsonArrayList.toJson());
 				out.flush();
 				break;
-			case "StdPresent" :	//Student Attendance update in db
-				break; 
 			case "xTTRDATA" :	//Retrieve Student Test Performance Da	
 				SiModel = UpdateTTDRetrieveCQueryToModel(SiModel,request);
 				erMsg = " : TPM Model Updated.";
 				JsonArrayList = HDAOTimeTable.getTimeTableData(SiModel, 1, erMsg);
-				erMsg +="\n Test Performance List :"+ JsonArrayList ;
+				erMsg +="\n Time Table List :"+ JsonArrayList ;
 				out.print(JsonArrayList.toJson());
 				out.flush();
 				break; 
+			case "xvTTNDATA" :	//Retrieve Student Test Performance Da	
+//				JsonArrayList = HDAOTimeTable.getTimeTableData(SiModel, 4, erMsg);
+				JsonArrayList = HDAOTimeTable.getAllClassTimeTableData(SiModel, erMsg);
+				erMsg +="\n Time Table List :"+ JsonArrayList ;
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break; 
+			case "xvSCSSTTData" :	//Retrieve Student Test Performance Da	
+				int sCSSTTData =Integer.parseInt((String)request.getParameter("SCSSTTData"));
+				JsonArrayList = HDAOTimeTable.getSpecificClassSectionTimeTableData(sCSSTTData,  erMsg);
+				
+				erMsg +="\n Time Table List :"+ JsonArrayList ;
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break; 
+				
+			case "xrTTDATA" :	//Remove Time Table Subject sub Data
+     			int timeTableDetailIDNOPK = Integer.parseInt(request.getParameter("TTDSNO"));
+				int TTDATARemove =HDAOTimeTable. removeTimeTableSubInfo(timeTableDetailIDNOPK,   erMsg) ;
+				erMsg = " : " + Integer.toString(TTDATARemove) +" Data Removed";
+				if (TTDATARemove>0) {
+					SiModel = UpdateTTDRetrieveCQueryToModel(SiModel,request);
+					JsonArrayList =  HDAOTimeTable.getTimeTableData(SiModel, 1, erMsg) ;
+				}
+				erMsg +="\n Time Table List :"+ JsonArrayList ;
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break; 
+			case "xrTimeTable":
+				String a="11";
+				SiModel.setClassTT(a);
+				SiModel.setSection("A");
+				JsonArrayList = HDAOTimeTable.getClassSchedule(SiModel,  erMsg);
+				erMsg +="\n Time Table List :"+ JsonArrayList.toJson() ;
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break; 
+			
 			}
 		} catch (Exception e) {
 			System.out.println("Technical Error"+ e);
@@ -64,11 +100,12 @@ public class TimeTableInfo extends HttpServlet {
 			System.out.println(erMsg);
 		}
 	}
+
 	private TimeTableModel UpdateTTDRetrieveCQueryToModel(TimeTableModel siModel, HttpServletRequest request) {
 		System.out.println("\nUpdateTTDRetrieveCQueryToModel()");
 		Object []inputValues = request.getParameterValues("InputTTRData[]");
 		siModel.setSubject((String)inputValues[0]);
-		siModel.setClassTT(Integer.parseInt((String)inputValues[1]));
+		siModel.setClassTT((String)inputValues[1]);
 		siModel.setSection((String)inputValues[2]);
 		siModel.setStatus("A"); 
 		System.out.println("siModel: " + siModel);
@@ -80,7 +117,7 @@ public class TimeTableInfo extends HttpServlet {
 		Object []inputValues = request.getParameterValues("InputTTValues[]");
 
 		siModel.setSubject(inputValues[0].toString());
-		siModel.setClassTT(Integer.parseInt((String)inputValues[1]));
+		siModel.setClassTT((String)inputValues[1]);
 		siModel.setSection(inputValues[2].toString());;
 		siModel.setTotalHours(Integer.parseInt(inputValues[3].toString()));
 		siModel.setStatus("A"); 

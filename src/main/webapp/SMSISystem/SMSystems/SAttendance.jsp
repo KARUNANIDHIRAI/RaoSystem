@@ -58,7 +58,6 @@
  									<li class="nav-item " ><button type="button" class="nav-link text-white" id="xSFIR1"
 									    style="background-color: #000080">
 										<%=SMFixedValue.View%>  <%=SMFixedValue.Attendance%></button> </li>
-
  								</ul>
 							</div>
 						</div>				
@@ -161,7 +160,7 @@
 		        if (sAttendance.length>0){
 	 				var InputData = [];
 					InputData = updateValue(InputData);
-		            alert("My favourite input values: " + InputData.join("; "));
+		           // alert("My favourite input values: " + InputData.join("; "));
 					var request =$.ajax({
 						type:'POST',
 		 				data:{Action:"StdPresent", attendance: sAttendance, InputValues :  InputData},
@@ -233,10 +232,6 @@
 					$("#Ssection").focusin();
 					alert("Select Class Section");
 					return false;
-				}else if(atdInfo.SRollNo==""){
-					$("#SRollN").focusin();
-					alert("Enter Stundent Roll Number");
-					return false;
 				}
 				return true;
 			}
@@ -303,55 +298,6 @@
 			            scrollTop: bottom }, 1000);			
 			}// eof function -> function for scroll page bottom
 
-	/*	
-
-				function feeSubList(result){
-					$('#feeSubList').dataTable({
-					    destroy: true,
-						"data":result,
-						 columnDefs: [ {	targets: -1, className: 'dt-body-right'	}, ],
-					    "columns": [
-							 { title:	'SNo'	      ,data:"SNO"},
-	 						 { title:	'Stream'      ,data:"Stream" },
-	 						 { title:	'Fee Amount'  ,data:"FeeAmount"},
-	 						 { title:	'Fee Discount',data:"FeeDisocunt" },
-				    		 { title:	'Del'		 ,data:"FPIdNo",
-						     	"render": function(data,type,row,meta){
-						       	 	return	'<button type="button" name="XFeeSubDLR"  value="'+data+'" class="btn btn-danger btn-sm"	data-toggle="tooltip" data-placement="right" title="Click to remove item" onclick="RemoveItem('+data+')"><span>&#9988;</span></button>'; 
-					        	},
-					        }
-						]
-					}); // EOF table
-				}// EOF table FUNCTION	
-
-			
-		   $(document).on('click', "Button[name='XFeeSubDLR']", function(){ 
-				var ItemCode=$(this).val();
-				var request =$.ajax({
-					type:'POST',
-					data:{Action:"XFeeSubDLR", Code:ItemCode},
-				 	dataType: 'Json',
-					url:'../../FeeDefineInformation',
-					success:function(result){
-						feeSubList(result);
-					}	
-				});
-		   	});// EOF RCIVEDIT item
-
-		   $(document).on('click', "Button[name='XFeeVr']", function(){ 
-				var ItemCode=$(this).val();
-				var request =$.ajax({
-					type:'POST',
-					data:{Action:"XFeeVr", Code:ItemCode},
-				 	dataType: 'Json',
-					url:'../../FeeDefineInformation',
-					success:function(result){
-						feeSubList(result);
-					}	
-				});
-		   	});// on click button
-		   	
- */		
 		});// document.ready eof
 	</script>
 </html>

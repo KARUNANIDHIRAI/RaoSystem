@@ -77,73 +77,146 @@
  						</div>	
 						<div class="row">		
 							<div class="col-sm-5 offset-sm-1  form-group">
+							    <label for="teacher01" class="h6"><%=SMFixedValue.TEACHER%> </label>
+								<input type="text" class="form-control blineTl " id="teacher01" name="teacher01" 
+								placeholder="Enter Total class Hours for current session">
+							</div>
+							<div class="col-sm-5 offset-sm-0  form-group">
 							    <label for="Subject" class="h6"><%=SMFixedValue.Subject%>  <%=SMFixedValue.Name%></label>
 								<select id="Subject" name="Subject" class="form-control blineTl" >
 									<option selected value ="0"><%=SMFixedValue.Choose%> <%=SMFixedValue.Subject%> *</option>
 								</select>
 							</div>
-							<div class="col-sm-5 offset-sm-0  form-group">
+						</div>
+						<div class="row">	
+							<div class="col-sm-5 offset-sm-1  form-group">
 							    <label for="fApplCF" class="h6"><%=SMFixedValue.Student%> <%=SMFixedValue.Class%>  </label>
 								<select id="fApplCF" name="fApplCF" class="form-control blineTl" style="border-bootom: 1px solid blue;">
 									<option selected value ="0"><%=SMFixedValue.Choose%> <%=SMFixedValue.Class%> *</option>
 								</select>
 							</div>
-						</div>
-						<div class="row">	
-							<div class="col-sm-5 offset-sm-1  form-group">
+							<div class="col-sm-3 offset-sm-0  form-group">
 							    <label for="Ssection" class="h6"><%=SMFixedValue.Section%>  </label>
 	 							<select id="Ssection" name="Ssection" 	class="form-control blineTl " style="border-bootom: 1px solid blue;" >
 									<option selected value ="0"><%=SMFixedValue.Choose%> <%=SMFixedValue.Student%> <%=SMFixedValue.Section%>*</option>
 								</select>
 	 						</div>
-							<div class="col-sm-5 offset-sm-0  form-group">
+							<div class="col-sm-2 offset-sm-0  form-group">
 							    <label for="totHours" class="h6"><%=SMFixedValue.TOTAL%> <%=SMFixedValue.HRS%> </label>
 								<input type="text" class="form-control blineTl " id="totHours" name="totHours" 
 								placeholder="Enter Total class Hours for current session">
 							</div>
 						</div>
-<%-- 						<div class="row">
-							<div class="col-lg-2 offset-sm-1 ">
-							    <label for="xTTDataView"> </label>
-								<button type = "button" id ="xTTDataView" name="xTTDataView" 
-									class = "form-control text-light text-center h5 btn bg-secondary" 
-									style = "background:linear-gradient(90deg,#1CB5E0 0%,#000851 100%); 
-										        padding-left:0 px" ><%=SMFixedValue.View%> xTTDataView</button>
-							</div>
-						</div>	
- --%>
  					</div>
-					<div class="card-body  col-lg-12 offset-sm-0 blinew" id ="xSTPb">
+					<div class="card-body  col-lg-12 offset-sm-0 " id ="xSTPb">
 						<div class="row">		
-							<div class="col-sm-4 offset-sm-0  form-group">
-							    <label for="teacher01" class="h6"> <%=SMFixedValue.TEACHER%> <%=SMFixedValue.Name%>  </label>
-								<input type="text" class="form-control blinew H6 " id="teacher01" name="teacher01">
-	 						</div>
-							<div class="col-sm-2 offset-sm-0  form-group">
-							    <label for="Days" class="h6"><%=SMFixedValue.CLASS%>  <%=SMFixedValue.ON%> <%=SMFixedValue.DAYS%></label>
-	 							<select id="Days" name="Days" 	class="form-control blinew "  >
-									<option selected value ="0"><%=SMFixedValue.Choose%> <%=SMFixedValue.DAYS%> *</option>
-								</select>
-	 						</div>
-
-							<div class="col-lg-2 offset-sm-0 form-group">
-							    <label for="CSTime" class="h6"><%=SMFixedValue.CLASS%> <%=SMFixedValue.START%>  </label>
-								<input type="text" class="form-control blinew  " id="CSTime" name="CSTime" required 
-									   title="Enter Class start Time" placeholder="class start time" >
+							<div class="col-sm-12 offset-sm-0">
+									<p class="h4 text-center"> <%=SMFixedValue.CLASS%> <%=SMFixedValue.SCHEDULE%></p>
 							</div>
-							<div class="col-lg-2 offset-sm-0 form-group">
-							    <label for="CETime" class="h6"> <%=SMFixedValue.CLASS%> <%=SMFixedValue.END%>  </label>
-								<input type="text" class="form-control   blinew " id="CETime" name="CETime" required 
-								       title="Enter Class start Time" placeholder="class End time" >
-							</div>
-							<div class="col-lg-2 offset-sm-0 ">
+						</div>
+						<div class="row" Style="padding-bottom:0px">		
+							<div class="col-sm-4 offset-sm-0  form-group " Style="border:1px solid;padding-bottom:0px;">
+							    <label for="Days" class="h6"><%=SMFixedValue.MONDAY%> </label>
+								<div class="row">		
+									<div class="col-sm-6 offset-sm-0  form-group">
+									    <label for="mCSTime" class=""><%=SMFixedValue.CLASS%> <%=SMFixedValue.START%>  </label>
+										<input type="text" class="form-control blineTl  " id="mCSTime" name="mCSTime" required 
+											   title="Enter Class start Time" placeholder="class start time" >
+									</div>
+									<div class="col-lg-6 offset-sm-0 form-group">
+									    <label for="mCETime" class=""> <%=SMFixedValue.CLASS%> <%=SMFixedValue.END%>  </label>
+										<input type="text" class="form-control   blineTl " id="mCETime" name="mCETime" required 
+										       title="Enter Class start Time" placeholder="class End time" >
+									</div>
+								</div>	
+	 						</div>
+							<div class="col-sm-4 offset-sm-0  form-group" Style="border:1px solid" >
+							    <label for="Days" class="h6"><%=SMFixedValue.TUESDAY%> </label>
+								<div class="row">		
+									<div class="col-sm-6 offset-sm-0  form-group">
+									    <label for="tCSTime" class=""><%=SMFixedValue.CLASS%> <%=SMFixedValue.START%>  </label>
+										<input type="text" class="form-control blineTl  " id="tCSTime" name="tCSTime" required 
+											   title="Enter Class start Time" placeholder="class start time" >
+									</div>
+									<div class="col-lg-6 offset-sm-0 form-group">
+									    <label for="tCETime" class=""> <%=SMFixedValue.CLASS%> <%=SMFixedValue.END%>  </label>
+										<input type="text" class="form-control   blineTl " id="tCETime" name="tCETime" required 
+										       title="Enter Class start Time" placeholder="class End time" >
+									</div>
+								</div>	
+	 						</div>
+							<div class="col-sm-4 offset-sm-0  form-group" Style="border:1px solid">
+							    <label for="Days" class="h6"><%=SMFixedValue.WEDNESSDAY%> </label>
+								<div class="row">		
+									<div class="col-sm-6 offset-sm-0  form-group">
+									    <label for="wCSTime" class=""><%=SMFixedValue.CLASS%> <%=SMFixedValue.START%>  </label>
+										<input type="text" class="form-control blineTl  " id="wCSTime" name="wCSTime" required 
+											   title="Enter Class start Time" placeholder="class start time" >
+									</div>
+									<div class="col-lg-6 offset-sm-0 form-group">
+									    <label for="wCETime" class=""> <%=SMFixedValue.CLASS%> <%=SMFixedValue.END%>  </label>
+										<input type="text" class="form-control   blineTl " id="wCETime" name="wCETime" required 
+										       title="Enter Class start Time" placeholder="class End time" >
+									</div>
+								</div>	
+	 						</div>
+  						</div>	
+						<div class="row"  >		
+							<div class="col-sm-4 offset-sm-0  form-group" Style="border:1px solid;padding-top:0px">
+							    <label for="Days" class="h6"><%=SMFixedValue.THURSDAY%> </label>
+								<div class="row">		
+									<div class="col-sm-6 offset-sm-0  form-group">
+									    <label for="thCSTime" class=""><%=SMFixedValue.CLASS%> <%=SMFixedValue.START%>  </label>
+										<input type="text" class="form-control blineTl  " id="thCSTime" name="thCSTime" required 
+											   title="Enter Class start Time" placeholder="class start time" >
+									</div>
+									<div class="col-lg-6 offset-sm-0 form-group">
+									    <label for="thCETime" class=""> <%=SMFixedValue.CLASS%> <%=SMFixedValue.END%>  </label>
+										<input type="text" class="form-control   blineTl " id="thCETime" name="thCETime" required 
+										       title="Enter Class start Time" placeholder="class End time" >
+									</div>
+								</div>	
+	 						</div>
+							<div class="col-sm-4 offset-sm-0  form-group" Style="border:1px solid">
+							    <label for="Days" class="h6"><%=SMFixedValue.FRIDAY%> </label>
+								<div class="row">		
+									<div class="col-sm-6 offset-sm-0  form-group">
+									    <label for="fCSTime" class=""><%=SMFixedValue.CLASS%> <%=SMFixedValue.START%>  </label>
+										<input type="text" class="form-control blineTl  " id="fCSTime" name="fCSTime" required 
+											   title="Enter Class start Time" placeholder="class start time" >
+									</div>
+									<div class="col-lg-6 offset-sm-0 form-group">
+									    <label for="fCETime" class=""> <%=SMFixedValue.CLASS%> <%=SMFixedValue.END%>  </label>
+										<input type="text" class="form-control   blineTl " id="fCETime" name="fCETime" required 
+										       title="Enter Class start Time" placeholder="class End time" >
+									</div>
+								</div>	
+	 						</div>
+							<div class="col-sm-4 offset-sm-0  form-group" Style="border:1px solid">
+							    <label for="Days" class="h6"><%=SMFixedValue.SATURDAY%> </label>
+								<div class="row">		
+									<div class="col-sm-6 offset-sm-0  form-group">
+									    <label for="sCSTime" class=""><%=SMFixedValue.CLASS%> <%=SMFixedValue.START%>  </label>
+										<input type="text" class="form-control blineTl  " id="sCSTime" name="sCSTime" required 
+											   title="Enter Class start Time" placeholder="class start time" >
+									</div>
+									<div class="col-lg-6 offset-sm-0 form-group">
+									    <label for="sCETime" class=""> <%=SMFixedValue.CLASS%> <%=SMFixedValue.END%>  </label>
+										<input type="text" class="form-control   blineTl " id="sCETime" name="sCETime" required 
+										       title="Enter Class start Time" placeholder="class End time" >
+									</div>
+								</div>	
+	 						</div>
+  						</div>	
+  						<div class="row">
+							<div class="col-lg-2 offset-sm-5 ">
 							    <label for="xTTAdd"> </label>
 								<button type = "button" id ="xTTAdd" name="xTTAdd" 
 									class = "form-control text-light text-center h5 btn bg-secondary" 
 									style = "background:linear-gradient(90deg,#1CB5E0 0%,#000851 100%); 
 										        padding-left:0 px" ><%=SMFixedValue.ADD%> </button>
 							</div>
- 						</div>	
+						</div>
  					</div>
 					<div class="card-footer"   id ="xSTPf">
 						<p class="h5 text-center"><%=SMFixedValue.Student%> <%=SMFixedValue.CLASS%> <%=SMFixedValue.TIME_TABLE%> <%=SMFixedValue.Summary%></p>
@@ -239,7 +312,7 @@
 		}// EOF table FUNCTION	
 
     	
-		$("#CSTime").datetimepicker({
+		$("#mCSTime").datetimepicker({
 			timepicker: true,
 			datepicker: false,
 			format: 'h:i', // formateTime
@@ -247,7 +320,87 @@
 			hours12: true,
 			step: 5	
 		});
-		$("#CETime").datetimepicker({
+		$("#mCETime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});	
+		$("#tCSTime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});
+		$("#tCETime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});	
+		$("#wCSTime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});
+		$("#wCETime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});	
+		$("#thCSTime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});
+		$("#thCETime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});	
+		$("#fCSTime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});
+		$("#fCETime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});	
+		$("#sCSTime").datetimepicker({
+			timepicker: true,
+			datepicker: false,
+			format: 'h:i', // formateTime
+			value:  false, //visitTime() defaultTime
+			hours12: true,
+			step: 5	
+		});
+		$("#sCETime").datetimepicker({
 			timepicker: true,
 			datepicker: false,
 			format: 'h:i', // formateTime
@@ -271,11 +424,12 @@
 				if(TTInputDataValidate()){
  	 				var TTInfo = [];
  					TTInfo = updateTTData(TTInfo);
+ 					//alert(TTInfo.join("; " ));
 					var request =$.ajax({
 						type:'POST',
 	 	 				data:{Action:"xTTNDATA", InputTTValues :  TTInfo},
 					 	dataType: 'Json',
-						url:'../../TimeTableInfo',
+ 						url:'../../TimeTableInfo',
 						success:function(result){
 							TimeTable(result);
 							scrollPageUP(6000);
@@ -286,14 +440,23 @@
 			});
 			
 			function updateTTData(ttdInfo){
+				ttdInfo.push($("#teacher01").val());
 				ttdInfo.push($("#Subject").val());
 				ttdInfo.push($("#fApplCF").val());
 				ttdInfo.push($("#Ssection").val());
 				ttdInfo.push($("#totHours").val());
-				ttdInfo.push($("#teacher01").val());
-				ttdInfo.push($("#Days").val());
-				ttdInfo.push($("#CSTime").val());
-				ttdInfo.push($("#CETime").val());
+				ttdInfo.push($("#mCSTime").val());
+				ttdInfo.push($("#mCETime").val());
+				ttdInfo.push($("#tCSTime").val());
+				ttdInfo.push($("#tCETime").val());
+				ttdInfo.push($("#wCSTime").val());
+				ttdInfo.push($("#wCETime").val());
+				ttdInfo.push($("#thCSTime").val());
+				ttdInfo.push($("#thCETime").val());
+				ttdInfo.push($("#fCSTime").val());
+				ttdInfo.push($("#fCETime").val());
+				ttdInfo.push($("#sCSTime").val());
+				ttdInfo.push($("#sCETime").val());
 		    	return ttdInfo;
 			}			
 			function resetTTInputData(){
@@ -442,20 +605,6 @@
 					]
 				}); 
 			}// EOF table FUNCTION	
-
-			$("#xTimeTable").click(function(){  
-				alert("wait hai ji");
-				var request =$.ajax({
-					type:'POST',
-					data:{ Action:"xrTimeTable"},
-				 	dataType: 'json',
-					url:'../../TimeTableInfo',
-					success:function(result){
-						alert("working");
-					}	
-				});	 // eof AJAX
-
-			});
 
 		});// document.ready eof
 	</script>
