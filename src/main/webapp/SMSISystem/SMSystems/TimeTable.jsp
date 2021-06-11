@@ -444,7 +444,6 @@
 			}// EOF table FUNCTION	
 
 			$("#xTimeTable").click(function(){  
-				alert("wait hai ji");
 				var request =$.ajax({
 					type:'POST',
 					data:{ Action:"xrTimeTable"},

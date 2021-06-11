@@ -40,7 +40,6 @@
 
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" ></script>
 			<link rel="stylesheet" 	href='https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css'>
-		  	
 	</head>
 	<body >
 		<!-- Page Header --><jsp:include page="../../HeaderPage.jsp"></jsp:include><!-- Page Header -->
@@ -61,11 +60,11 @@
 					</div>
 				</div>
 				<br />
- 					<div class="row">		
-						<div class="col-sm-12 offset-sm-0 ">
-							<p class ="h5  text-center">Fill <%=SMFixedValue.FACULTY%> <%=SMFixedValue.INFORMATION%> for Creating New Member  </p>
-						</div>
+				<div class="row">		
+					<div class="col-sm-12 offset-sm-0 ">
+						<p class ="h5  text-center">Fill <%=SMFixedValue.FACULTY%> <%=SMFixedValue.INFORMATION%> for Creating New Member  </p>
 					</div>
+				</div>
 				<div class="bg-light col-sm-12 offset-sm-0">
  					<div class="row">		
 						<div class="col-sm-5 offset-sm-0 ">

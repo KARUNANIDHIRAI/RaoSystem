@@ -103,16 +103,71 @@ public class FacultyInformation extends HttpServlet {
 				session.setAttribute(SMFixedValue.MESSAGE,hDAOMessage );
 				erMsg = SMFixedValue.ACTION_CREATE + SMFixedValue.ACTION_STATUS + Integer.toString(excStatus) + ":"+hDAOMessage;
 				break;
+				
 			case "xRfmList": // retrieve Faculty Member list	
 				FacultyMemberModel xfacultyMemberModel = new FacultyMemberModel();
 				xfacultyMemberModel.setRegNo("MK308");
-				excStatus = HDAOFaculty.facultyMemberList(xfacultyMemberModel,erMsg);
+				System.out.println("\nInput Param:" +xfacultyMemberModel.getRegNo());
+				JsonArrayList = HDAOFaculty.facultyMemberList(xfacultyMemberModel,erMsg);
 				
-				hDAOMessage= excStatus>0?SMFixedValue.EXEC_CREATE_MSG:SMFixedValue.EXEC_TECHERROR_MSG ;
+				hDAOMessage= JsonArrayList.size()>0?SMFixedValue.EXEC_GENERATE_LIST:SMFixedValue.EXEC_TECHERROR_MSG ;
 				session.setAttribute(SMFixedValue.MESSAGE,hDAOMessage );
-				erMsg = SMFixedValue.ACTION_CREATE + SMFixedValue.ACTION_STATUS + Integer.toString(excStatus) + ":"+hDAOMessage;
+				erMsg += hDAOMessage + " :" + Integer.toString(JsonArrayList.size());
+				System.out.println("\n Output Faculty Member List:\n" +JsonArrayList.toJson());
+
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break;
+			case "xRfmIDNO": // Remove FAculty Member and then retrieve Faculty Member list	
+				FacultyMemberModel rfacultyMemberModel = new FacultyMemberModel();
+				rfacultyMemberModel= UpdateCriteriaToModel(rfacultyMemberModel, request);
+				ViewParameter(rfacultyMemberModel);
+				excStatus = HDAOFaculty.facultyMemberRemoveInfo(rfacultyMemberModel,erMsg);
+				hDAOMessage= excStatus>0?SMFixedValue.EXEC_REMOVE_MSG:SMFixedValue.EXEC_TECHERROR_MSG ;
+				
+				JsonArrayList = HDAOFaculty.facultyMemberList(rfacultyMemberModel,erMsg);
+				hDAOMessage= JsonArrayList.size()>0?SMFixedValue.EXEC_GENERATE_LIST:SMFixedValue.EXEC_TECHERROR_MSG ;
+				session.setAttribute(SMFixedValue.MESSAGE,hDAOMessage );
+				erMsg += hDAOMessage + " :" + Integer.toString(JsonArrayList.size());
+				System.out.println("\n Output Faculty Member List:\n" +JsonArrayList.toJson());
+
+				out.print(JsonArrayList.toJson());
+				out.flush();
 				break;
 				
+
+			case "xUfmIDNO": // Update FAculty Member and then retrieve Faculty Member list	
+				FacultyMemberModel ufacultyMemberModel = new FacultyMemberModel();
+				ufacultyMemberModel= UpdateCriteriaToModel(ufacultyMemberModel,  request);
+				ViewParameter(ufacultyMemberModel);
+				excStatus = HDAOFaculty.facultyMemberUpdateInfo(ufacultyMemberModel,erMsg);
+				hDAOMessage= excStatus>0?SMFixedValue.EXEC_UPDATE_MSG:SMFixedValue.EXEC_TECHERROR_MSG ;
+				
+				JsonArrayList = HDAOFaculty.facultyMemberList(ufacultyMemberModel,erMsg);
+				hDAOMessage= JsonArrayList.size()>0?SMFixedValue.EXEC_CREATE_MSG:SMFixedValue.EXEC_TECHERROR_MSG ;
+				session.setAttribute(SMFixedValue.MESSAGE,hDAOMessage );
+				erMsg = SMFixedValue.ACTION_CREATE + SMFixedValue.ACTION_LIST +
+						SMFixedValue.ACTION_STATUS + Integer.toString(JsonArrayList.size())
+						+ ": "+hDAOMessage;
+				System.out.println("\n Output Faculty Member List:\n" +JsonArrayList.toJson());
+
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break;
+			case "xRBKIssuedBy": // Update FAculty Member and then retrieve Faculty Member list	
+				FacultyMemberModel iFacultyMemberModel = new FacultyMemberModel();
+				iFacultyMemberModel= issByCriteriaToModel(iFacultyMemberModel, request);
+				ViewIssuedByParameter(iFacultyMemberModel);
+
+				JsonArrayList = HDAOFaculty.facultyMemberInformation(iFacultyMemberModel);
+				hDAOMessage= JsonArrayList.size()>0?SMFixedValue.EXEC_CREATE_MSG:SMFixedValue.EXEC_NODATAFOUND_MSG ;
+				session.setAttribute(SMFixedValue.MESSAGE,hDAOMessage );
+				erMsg = hDAOMessage +SMFixedValue.FACULTY+":"+ Integer.toString(JsonArrayList.size());
+				erMsg+="\n"+SMFixedValue.OUTPUT +JsonArrayList.toJson();
+
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break;				
 			}
 		} catch (Exception e) {
 			System.out.println(SMFixedValue.EXEC_TECHERROR_MSG +"\n "+ e);
@@ -121,6 +176,31 @@ public class FacultyInformation extends HttpServlet {
 			System.out.println(erMsg);
 		}
 
+	}
+
+	private FacultyMemberModel issByCriteriaToModel(FacultyMemberModel iFacultyMemberModel, HttpServletRequest request) {
+		iFacultyMemberModel.setRegNo("MK308");
+		iFacultyMemberModel.setStatus(SMFixedValue.STATUS); 
+		iFacultyMemberModel.setFacultyCode(request.getParameter("bkIssueedBy"));
+		return iFacultyMemberModel;
+	}
+	private void ViewIssuedByParameter(FacultyMemberModel iFacultyMemberModel) {
+		System.out.println(SMFixedValue.PARM_QUERY_INPUT 
+				+ "RegNo: " +iFacultyMemberModel.getRegNo()
+		        + " EmpCode: " + iFacultyMemberModel.getFacultyCode()
+		        + " Status : " + iFacultyMemberModel.getStatus());
+	}
+
+	private FacultyMemberModel UpdateCriteriaToModel(FacultyMemberModel ufacultyMemberModel, HttpServletRequest request) {
+		ufacultyMemberModel.setRegNo("MK308");
+		ufacultyMemberModel.setStatus("D"); // for Remove Status
+		ufacultyMemberModel.setfMIDNO(Integer.parseInt((String)request.getParameter("fmIDNOU")));
+		return ufacultyMemberModel;
+	}
+
+	private void ViewParameter(FacultyMemberModel ufacultyMemberModel) {
+		System.out.println("\nInput Param:"+ufacultyMemberModel.getRegNo() +" Upd fmIDNOU:" + ufacultyMemberModel.getfMIDNO().toString());
+		
 	}
 
 	private FacultyMemberModel UpdateFMValuesToRModel(FacultyMemberModel facultyMemberModel, HttpServletRequest request) throws ParseException {

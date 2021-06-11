@@ -662,6 +662,36 @@
   	<description></description>
   	<servlet-class>com.sm.System.Faculty.FacultyInformation</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>BookPurchase</servlet-name>
+  	<display-name>BookPurchase</display-name>
+  	<description></description>
+  	<servlet-class>com.SLIBM.System.BooksPurchase.BookPurchase</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Bookborrowed</servlet-name>
+  	<display-name>Bookborrowed</display-name>
+  	<description></description>
+  	<servlet-class>com.SLIBM.System.BooksIssue.Bookborrowed</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BooksBorrow</servlet-name>
+  	<display-name>BooksBorrow</display-name>
+  	<description></description>
+  	<servlet-class>com.SLIBM.System.BooksIssue.BooksBorrow</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BookIssued</servlet-name>
+  	<display-name>BookIssued</display-name>
+  	<description></description>
+  	<servlet-class>com.SLIBM.System.BooksIssue.BookIssued</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BooksBorrowedReturn</servlet-name>
+  	<display-name>BooksBorrowedReturn</display-name>
+  	<description></description>
+  	<servlet-class>com.SLIBM.System.BooksBorrowedReturn.BooksBorrowedReturn</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -1100,6 +1130,26 @@
   <servlet-mapping>
   	<servlet-name>FacultyInformation</servlet-name>
   	<url-pattern>/FacultyInformation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BookPurchase</servlet-name>
+  	<url-pattern>/BookPurchase</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Bookborrowed</servlet-name>
+  	<url-pattern>/Bookborrowed</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BooksBorrow</servlet-name>
+  	<url-pattern>/BooksBorrow</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BookIssued</servlet-name>
+  	<url-pattern>/BookIssued</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BooksBorrowedReturn</servlet-name>
+  	<url-pattern>/BooksBorrowedReturn</url-pattern>
   </servlet-mapping>
  
  </web-app>

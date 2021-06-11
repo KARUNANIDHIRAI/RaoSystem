@@ -1,6 +1,13 @@
 package com.sm.System.SMInformation;
 
 public class SMFixedValue {
+	public static final String ACTION_PLAIN_TEXT= "text/plain";
+	public static final String NEW_STATUS= "A";
+	public static final String UPDATE_STATUS= "D";
+	public static final String REMOVE_STATUS= "D";
+	public static final String LIST_STATUS= "A";
+	public static final String STATUS= "A";
+	
 	public static final String SAVE="Save";
 	public static final String SUBMIT="Submit";
 	public static final String Action="Add";
@@ -10,6 +17,7 @@ public class SMFixedValue {
 	public static final String New="New";
 	public static final String ACTION="Action";
 	public static final String CANCEL="Cancel";
+	public static final String CLICKME="Click Me";
 	
 	public static final String Summary="Summary";
 	public static final String Item="Subject";
@@ -96,6 +104,11 @@ public class SMFixedValue {
 		        + " AND admNo=: studentAdmNo AND A.status=:Fstatus"
 		        + " ORDER BY testCycle, testType, testCategory, subject";
 
+	 public static final String HQL_FACULTY_MEMBER= " Update FacultyMemberModel set status =:nStatus "
+			   +  " where fMIDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus";
+	 public static final String HQL_FACULTY_MEMBER1= " Update FacultyMemberAddressModel set status =:nStatus, "
+			   +  " where fMAddress=:remFIDNO AND regNo =:RegNo AND  status=:oStatus ";
+	 
 	public static final String home          = "Home";
 	public static final String profile       = "Profile";
 	public static final String academic      = "Academic";
@@ -144,11 +157,16 @@ public class SMFixedValue {
 	public static final String HQL_FACULTY_REMOVE = "Update FacultyModel set status =:nStatus  WHERE regNo=: RegNo AND fIDNO =:remFIDNO AND status=:oStatus";
 	public static final String PARM_NSTATUS ="nStatus"; // new Status
 	public static final String PARM_OSTATUS ="oStatus"; // old Status
+	public static final String PARM_STATUS ="Status"; // Status
 	public static final String PARM_REGNO ="RegNo";
 	public static final String PARM_CODE ="Code";
+	public static final String PARM_INVOICE_NO ="invoiceNo";
+	
+	
 	
 	public static final String PARM_IDNO        = "remFIDNO";
 	public static final String PARM_SET_MSG     = " Param setting done";
+	public static final String EXEC_GENERATE_LIST  = " Generate List Successfully ;" ;
 	public static final String EXEC_REMOVE_MSG  = " Removed Inforamtion Successfully ;" ;
 	public static final String EXEC_CREATE_MSG  = " Create Inforamtion Successfully ;" ;
 	public static final String EXEC_UPDATE_MSG  = " Update Inforamtion Successfully ;" ;
@@ -156,7 +174,10 @@ public class SMFixedValue {
 	public static final String EXEC_CATCH_MSG  = " \nCatch Exception: " ;
 	public static final String COMMIT           = " Commit";
 	public static final String TRANSACTION      = " Transaction";
-
+	public static final String EXEC_QUERY_MSG  = " Execute Query Successfully. " ;
+	public static final String EXEC_NODATAFOUND_MSG  = " No Data found. " ;
+	
+	
 	
 	public static final String ACTION_STEP      = " Step: ";
 	public static final String ACTION_START     = " Start: ";
@@ -172,6 +193,7 @@ public class SMFixedValue {
 	public static final String ACTION_LIST      = " List ";
 	public static final String ACTION_STATUS    = " Status ";
 	public static final String MESSAGE          = "Message";
+	
 	
 	public static final String MEMBER           = " Member"    ;
 	public static final String LNAME            = " Last Name" ;
@@ -191,7 +213,76 @@ public class SMFixedValue {
 	public static final String INFORMATION      = " Information";
 	public static final String CONTACT          = " Contact";
 	public static final String ADDRESS          = " Address";
-	public static final String SKILLS          = "  Expertise";
-	 	
+	public static final String SKILLS           = "  Expertise";
+//------------------
+	public static final String BOOK             = " Book";
+	public static final String PURCHASE         = " Purchase";
+	public static final String ACADEMIC         = " Academic";
+	public static final String PUBLICATION      = " Publicafion";
+	public static final String ISBN             = " ISBN";
+	public static final String TITLE         	= " Title";
+	public static final String AUTHOR      		= " Author";
+	public static final String EDITION          = " Edition	";
+	public static final String SOURCE         	= " Source";
+	public static final String BOOKCOPIES      	= " Book Copies";
+	public static final String DATE             = " Date";
+	public static final String BOOKPONO         = " Purchase Order No.";
+	public static final String PRICE      	    = " Price";
+	public static final String TAX              = " Tax";
+	public static final String QUANTITY         = " Quanity";
+	public static final String INVNO            = " Invoice No.";
+	public static final String Invoice          = " Invoice";
+	public static final String NETAMT           = " Net.Amount";	
+	public static final String SUPPLIER          = " Supplier";	
+	public static final String VERIFY          = " Verify ";	
+	public static final String OUTPUT          = " Output: ";	
+	public static final String PARM_QUERY_INPUT = " Query Input PARAM Values : ";	
+	//-------------------Model List
+	public static final String MODEL_BOOK_PURCHASE ="BooksPurchaseModel";
+	public static final String MODEL_BOOK_PURCHASE_DETAILS="BooksPurchaseDetailModel";
+	public static final String MODEL_BOOK_PURCHASE_DETAILS_REFIN_BKMODEL="BKPurchaseDetail";
+	public static final String MODEL_BOOK_REGNO="regNo";
+	public static final String MODEL_BOOK_INVOICENO="invocieNo";
+	public static final String MODEL_BOOK_STATUS="status";
+	public static final String MODEL_BOOK_CODE="bookCode";
 	
+	public static final String HQL_VERIFY_INVOICE_NO = " FROM BooksPurchaseModel "
+	 		                   + " WHERE regNo=:RegNo AND invocieNo=:invoiceNo AND status=:oStatus";	
+
+	public static final String HQL_REM_BOOK_INFO= " Update BooksPurchaseDetailModel set status =:nStatus "
+			   +  " where iDDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus";
+		
+	public static final String HQL_BKP_LIST = "FROM BooksPurchaseModel "
+	                           + " WHERE regNo=:" + SMFixedValue.PARM_REGNO 
+	                           + " AND invocieNo=:" +SMFixedValue.PARM_INVOICE_NO  + " AND status=:"+ SMFixedValue.PARM_OSTATUS ;
+
+	//------------BOOKS BORROWED
+	public static final String STUDENT="Student";
+	public static final String TO="To";
+	public static final String BORROWED="Borrowed";
+	public static final String ISSUEDBYCODE="Issued By Emp.Code";
+	public static final String ISSUEDBYNAME="Issued By Emp.Name";
+	public static final String FROM_DATE="From Date";
+	public static final String TO_DATE="TO Date";
+	public static final String MODEL_FACULTYCODE="facultyCode";
+	public static final String MODEL_FACULTYREGNO="regNo";
+	public static final String MODEL_FACULTYSTATUS="status";
+	
+	public static final String WEBPAGE_INPUTVALUE_TOMODEL=" Web page Input values to MODEL";
+	public static final String MODEL_BOOK_BORROW_ADMNO="admNo";
+	public static final String BOOK_BORROW_INPUTVALUES="Book Borrowed Input Values:";
+	public static final String BOOK_BORROW_REM_CRETRERIA="Book Borrowed Removing Creteria:";
+	public static final String ACTION_REMOVING_BOOK_BORROW ="Removing Book Borrowed:";
+	public static final String TOMODEL="To Model:";
+	public static final String DELETE_STATUS ="D";
+	public static final String PARM_ADMNO ="AdmNo";
+	public static final String HQL_BOOK_BORROWED_REMOVE = "Update BooksBorrowModel set status =:nStatus "
+			                                            + " WHERE regNo=: RegNo AND iDNO =:remFIDNO AND status=:oStatus";
+	public static final String BOOK_BORROW_LIST_CRETRERIA = "Books Borrowed Generating List Creteria";	
+	public static final String BOOK_BORROW_LIST_GENERATING = "Books Borrowed List Generating..";
+	public static final String BOOK_BORROW_LIST_GENERATED = "Books Borrowed List Generated..";
+	public static final String PARAM_BOOK_BORROW_CRETERIA_DONE = "Books Borrowed Creteria Seting Done.";
+	//----------BOOKS BORROWED RETURN 
+	public static final String RETURN_DATE = "Return Date";
+	public static final String LATE_FEE = "Late Fee";	
 }

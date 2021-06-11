@@ -23,6 +23,10 @@ $(document).ready(function(){
 		getRefreshCaptcha();
 		$("#email").focus();
 	});
+	$("#xfmMainPage").load("../SMSISystem/SMSystems/FacultyMemberMain.jsp", function(){
+		actionType();
+	});
+	actionType
 	$("#country").click(function(){
 		countryOptions!=" "?retrun:countryList('C');
 	});
@@ -308,7 +312,7 @@ $(document).ready(function(){
 		actionType=" <option selected value=0>Choose Gender*</option>";
 		var aType = ['Veiw Faculity Staffs List ', 'Update Faculity Staff Details'];
 	    $.each(aType, function(index, value){
-	    	actionType+=" <option value='"+value +"'>"+ value+ "</option>";
+	    	actionType+=" <option value='"+index +"'>"+ value+ "</option>";
 	    });
 	    $("#ActionType").html(actionType);
 	});
@@ -356,7 +360,26 @@ $(document).ready(function(){
 		weeks:true	
 	});
 	
-	
+	$("#fromDate").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+		value:  false, //defaultTime and date
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
+	$("#toDate").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+		value:  false, //defaultTime and date
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
 	$("#faculty").click(function(){
 		facultyOption!=" "?retrun:facultyList();
 	});
@@ -376,4 +399,7 @@ $(document).ready(function(){
 			}	
 		});// End Of the $.Ajax()
 	}	
+
+
+
 });

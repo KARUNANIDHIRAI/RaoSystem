@@ -23,7 +23,7 @@ public class FacultyMemberAddressModel{
 	private Integer fMAIDNO;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "fMIDNOFK", columnDefinition = "nvarchar(255)")
+	@JoinColumn(name = "fMIDNOFK")
 	private FacultyMemberModel fMAddress;
 
 	@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")

@@ -167,10 +167,12 @@
 						      	</li>
 						      	<li class="nav-item dropdown">
 						      		<a class="nav-link dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						          		<%= SMFixedValue.update%>
+						          		<%= SMFixedValue.LIBRARY%>
 						        	</a>
 							        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							        	<a class="dropdown-item" href="#">dropdown menu</a>
+							        	<a class="dropdown-item" href="../LibSystem/BooksBorrow.jsp">Boos Borrowed</a>
+							        	<a class="dropdown-item" href="../LibSystem/BooksBorrowedReturn.jsp">Boos Borrowed Return</a>
+							        	<a class="dropdown-item" href="#">Boos Borrowed Due</a>
 							        </div>
 						      	</li>
 						      	<li class="nav-item dropdown">

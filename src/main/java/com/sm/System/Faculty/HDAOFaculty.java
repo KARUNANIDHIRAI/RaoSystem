@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.xml.crypto.Data;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,10 +14,11 @@ import org.hibernate.query.Query;
 import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
 
+import com.SLIBM.System.BooksPurchase.BooksPurchaseDetailModel;
+import com.SLIBM.System.BooksPurchase.BooksPurchaseModel;
 import com.raoSystem.daoConnection.HibernateDAO;
 import com.sm.System.SMInformation.SMFixedValue;
-import com.sm.System.TimeTable.TimeTableDetailModel;
-import com.sm.System.TimeTable.TimeTableModel;
+
 
 
 public class HDAOFaculty {
@@ -46,7 +48,6 @@ public class HDAOFaculty {
 		int exeStatus=0;
 		try ( Session sessionObj = HibernateDAO.getSessionFactory().openSession()){
 			transaction = sessionObj.beginTransaction();
-			System.out.println("FACULTY MEMBER MODEL");
 			sessionObj.save(siModel);
  		    sessionObj.getTransaction().commit();
 			sessionObj.close();
@@ -158,8 +159,6 @@ public class HDAOFaculty {
 
 	        Query<FacultyMemberModel> query = sessionObj.createQuery(creteriaQuery);
 	        ArrayList <FacultyMemberModel> rows =  (ArrayList<FacultyMemberModel>) query.getResultList();
-	        String TeacherName ="";
-	        int id=0;
 	        int sNo=0;
 	        for(FacultyMemberModel row: rows) {
     		  JsonObject rObj = new JsonObject();
@@ -169,13 +168,13 @@ public class HDAOFaculty {
 	    	  rObj.put("Faculty"     , row.getFaculty());
 	    	  rObj.put("Designation" , row.getDesignation());
 	    	  rObj.put("Name"        , row.getName());
-	    	  rObj.put("Mobile No"   , row.getMobileNo());
+	    	  rObj.put("MobileNo"   , row.getMobileNo());
 	    	  rObj.put("Phone"       , row.getPhoneNo());
 	    	  rObj.put("Qualification", row.getQualification());
-	    	  rObj.put("DOJ"          , row.getdOJ());
+	    	  rObj.put("DOJ"          , row.getdOJ().toString());
 	    	  rObj.put("EmailID"      , row.getEmailID());
 	    	  rObj.put("Expertise"    , row.getSkillArea());
-	    	  rObj.put("fMIDNO"    , row.getfMIDNO());
+	    	  rObj.put("fMIDNO"       , row.getfMIDNO());
 	    	  facultyMemberList.add(rObj);	
 		    }
 	        erMsg += "\n"+  SMFixedValue.FACULTY + SMFixedValue.MEMBER + ": "+facultyMemberList;
@@ -186,5 +185,78 @@ public class HDAOFaculty {
 			System.out.println("\n"+erMsg );
 		}			
 		return facultyMemberList;
-	}	
+	}
+
+	public static int facultyMemberUpdateInfo(FacultyMemberModel ufacultyMemberModel, String erMsg) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int facultyMemberRemoveInfo(FacultyMemberModel rfacultyMemberModel, String erMsg) {
+		erMsg+=SMFixedValue.ACTION_STEP +SMFixedValue.ACTION_START + SMFixedValue.ACTION_REMOVING;
+        int executeUpdate = 0;
+    	Transaction transaction = null; 
+	    try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        Query query = sessionObj.createQuery(SMFixedValue.HQL_FACULTY_MEMBER);
+	        query.setParameter(SMFixedValue.PARM_NSTATUS, rfacultyMemberModel.getStatus());
+	        query.setParameter(SMFixedValue.PARM_OSTATUS, "A");
+	        query.setParameter(SMFixedValue.PARM_REGNO, rfacultyMemberModel.getRegNo());
+	        query.setParameter(SMFixedValue.PARM_IDNO, rfacultyMemberModel.getfMIDNO());
+		
+	        erMsg += SMFixedValue.PARM_SET_MSG;
+	        
+	        sessionObj.beginTransaction();
+	        executeUpdate= query.executeUpdate();
+        	sessionObj.beginTransaction().commit();
+	        erMsg += Integer.toString(executeUpdate) +" "+SMFixedValue.EXEC_REMOVE_MSG + " :" + SMFixedValue.ACTION_OK ;
+ 	        sessionObj.close();
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return executeUpdate;
+	}
+
+		
+	public static JsonArray facultyMemberInformation(FacultyMemberModel facultyMemberModel) {
+        String erMsg = SMFixedValue.START + SMFixedValue.ACTION_GENERATE +SMFixedValue.FACULTY 
+        		+ SMFixedValue.MEMBER + SMFixedValue.INFORMATION +": " ;
+        
+		JsonArray facultyInformation = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        
+	        CriteriaQuery<FacultyMemberModel> creteriaQuery = builder.createQuery(FacultyMemberModel.class);
+	        Root<FacultyMemberModel> root = creteriaQuery.from(FacultyMemberModel.class);
+	        
+	        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_FACULTYREGNO), facultyMemberModel.getRegNo()),
+	        	builder.equal(root.get(SMFixedValue.MODEL_FACULTYCODE), facultyMemberModel.getFacultyCode()),
+	        	builder.equal(root.get(SMFixedValue.MODEL_FACULTYSTATUS), SMFixedValue.STATUS));
+	        erMsg += SMFixedValue.PARM_SET_MSG;
+
+	        Query<FacultyMemberModel> query = sessionObj.createQuery(creteriaQuery);
+	        ArrayList <FacultyMemberModel> rows=(ArrayList<FacultyMemberModel>) query.getResultList();
+	    	erMsg += SMFixedValue.EXEC_QUERY_MSG; 
+	        for ( FacultyMemberModel data:rows) {
+	    	  if(data.getStatus().equals(SMFixedValue.STATUS)) {
+		    	  JsonObject rObj = new JsonObject();
+		    	  rObj.put("RegNo"       , data.getRegNo());
+		    	  rObj.put("EmpCode"     , data.getFacultyCode());
+		    	  rObj.put("Name"        , data.getName() + " "+ data.getlName());
+		    	  rObj.put("Designation" , data.getDesignation());
+		    	  facultyInformation.add(rObj);
+		    	  break;
+	    	  }
+	       }
+	       sessionObj.close();
+	       erMsg += "\n"+ SMFixedValue.OUTPUT +" Rows:" + rows.size() 
+	    	+SMFixedValue.FACULTY +SMFixedValue.INFORMATION +"\n" +facultyInformation;
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return facultyInformation;
+	}				
 }

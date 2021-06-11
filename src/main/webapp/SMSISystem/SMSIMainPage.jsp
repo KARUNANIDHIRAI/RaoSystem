@@ -107,7 +107,7 @@
 									        	<a class="dropdown-item" href="SMSystems/MasSFeeDefine.jsp">Fee Define</a>
 									        	<a class="dropdown-item" href="SMSystems/SFeePayment.jsp">Fee Payment</a>
 									        	<a class="dropdown-item" href="SMSystems/Faculty.jsp">Faculty</a>
-									        	<a class="dropdown-item" href="SMSystems/FacultyMembers.jsp">Faculty Member</a>
+									        	<a class="dropdown-item" href="SMSystems/FacultyMemberMain.jsp">Faculty Member</a>
 											</div>
 									    </div>
 									</div>
@@ -120,12 +120,12 @@
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						        	<a class="dropdown-item" href="#">Books Purchase Order</a>
 						        	<a class="dropdown-item" href="#">Books Purchase Order Approved</a>
-						        	<a class="dropdown-item" href="#">Books Receied In Stock</a>
+						        	<a class="dropdown-item" href="../LibSystem/BookPurchase.jsp">New Books Purchase</a>
 						        	<a class="dropdown-item" href="#">Reject Damaged Books</a>
 						        	<a class="dropdown-item" href="#">Sale Scraped Books</a>
 						          	<div class="dropdown-divider"></div>
-						          	<a class="dropdown-item" href="#">Books Issued</a>
-						          	<a class="dropdown-item" href="#">Books Received</a>
+						          	<a class="dropdown-item" href="../LibSystem/BookBorrow.jsp">Books Borrow</a>
+						          	<a class="dropdown-item" href="../LibSystem/BooksBorrowReturn.jsp">Books Return</a>
 						          	<a class="dropdown-item" href="#">Books Lost</a>
 						        	<a class="dropdown-item" href="#">New Books Request</a>
 						          	<a class="dropdown-item" href="#">Books not Return</a>
