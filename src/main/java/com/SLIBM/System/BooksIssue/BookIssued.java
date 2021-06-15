@@ -84,6 +84,14 @@ public class BookIssued extends HttpServlet {
 				out.print(JsonArrayList.toJson());
 				out.flush();
 				break; 	
+			case "xRBKBRPendingL":	
+				booksBorrowModel = BooksBorrowListToModel(booksBorrowModel, request);
+				erMsg+= SMFixedValue.PARAM_BOOK_BORROW_CRETERIA_DONE;
+				JsonArrayList = HDAOBooksBorrowed.getBooksBorrowedPendingList(booksBorrowModel);
+				erMsg+= SMFixedValue.BOOK_BORROW_LIST_GENERATED;
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break; 	
 			}
 		} catch (Exception e) {
 			erMsg += SMFixedValue.EXEC_TECHERROR_MSG +"\n "+ e;

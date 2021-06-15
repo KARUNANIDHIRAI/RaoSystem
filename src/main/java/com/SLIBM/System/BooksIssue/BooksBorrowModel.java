@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 @Table(name ="LBBooksBorrow")
 public class BooksBorrowModel{
@@ -54,9 +56,14 @@ public class BooksBorrowModel{
 	@Column(name="PenaltyAmount", nullable= true , updatable = true)
 	private float penaltyAmount;
 
-	@Column(name="Status", nullable= true,columnDefinition = "nvarchar(100)")
+	@Column(name="Status", nullable= true,columnDefinition = "nvarchar(100) ")
+	@ColumnDefault(value="P")
 	private String status;
-
+	
+	@Column(name="BorrowedRetStatus", nullable= true,columnDefinition = "nvarchar(100) ")
+	@ColumnDefault(value="P")
+	private String borrowedRetStatus;
+	
 	@Column(name= "CreatedBy", nullable= true,updatable = false, columnDefinition = "nvarchar(100)")
 	private String createdBy;
 
@@ -103,14 +110,6 @@ public class BooksBorrowModel{
 		this.facultyCode = facultyCode;
 	}
 
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-
 	public String getIssuedBy() {
 		return issuedBy;
 	}
@@ -125,6 +124,14 @@ public class BooksBorrowModel{
 
 	public void setBookCode(String bookCode) {
 		this.bookCode = bookCode;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 	public Date getBorrowFromDate() {
@@ -175,6 +182,17 @@ public class BooksBorrowModel{
 		this.status = status;
 	}
 
+	
+
+
+	public String getBorrowedRetStatus() {
+		return borrowedRetStatus;
+	}
+
+	public void setBorrowedRetStatus(String borrowedRetStatus) {
+		this.borrowedRetStatus = borrowedRetStatus;
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -213,7 +231,9 @@ public class BooksBorrowModel{
 				+ facultyCode + ", issuedBy=" + issuedBy + ", bookCode=" + bookCode + ", bookName=" + bookName
 				+ ", borrowFromDate=" + borrowFromDate + ", BorrowToDate=" + BorrowToDate + ", actualReturnDate="
 				+ actualReturnDate + ", noOfCopyIssued=" + noOfCopyIssued + ", penaltyAmount=" + penaltyAmount
-				+ ", status=" + status + ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", updatedBy="
-				+ updatedBy + ", updatedOn=" + updatedOn + "]";
+				+ ", status=" + status + ", borrowedStatus=" + borrowedRetStatus + ", createdBy=" + createdBy
+				+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", updatedOn=" + updatedOn + "]";
 	}
+
+
 }	

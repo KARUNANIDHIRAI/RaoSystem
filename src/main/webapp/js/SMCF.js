@@ -17,6 +17,7 @@ var days = " ";
 var gender = " ";
 var facultyOption= " ";
 var actionType =" ";
+var category =" ";
 alert("SMFC");
 $(document).ready(function(){
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
@@ -371,6 +372,16 @@ $(document).ready(function(){
 		weeks:true	
 	});
 	$("#toDate").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+		value:  false, //defaultTime and date
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
+	$("#retDate").datetimepicker({
 		timepicker: false,
 		datepicker: true,
 		format: 'd-m-yy', // formate date

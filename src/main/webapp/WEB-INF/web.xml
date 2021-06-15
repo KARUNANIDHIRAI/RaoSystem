@@ -692,6 +692,18 @@
   	<description></description>
   	<servlet-class>com.SLIBM.System.BooksBorrowedReturn.BooksBorrowedReturn</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>BookMaster</servlet-name>
+  	<display-name>BookMaster</display-name>
+  	<description></description>
+  	<servlet-class>com.SLIBM.System.BookMaster.BookMaster</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BooksMaster</servlet-name>
+  	<display-name>BooksMaster</display-name>
+  	<description></description>
+  	<servlet-class>com.SLIBM.System.BooksMaster.BooksMaster</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -1150,6 +1162,14 @@
   <servlet-mapping>
   	<servlet-name>BooksBorrowedReturn</servlet-name>
   	<url-pattern>/BooksBorrowedReturn</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BookMaster</servlet-name>
+  	<url-pattern>/BookMaster</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BooksMaster</servlet-name>
+  	<url-pattern>/BooksMaster</url-pattern>
   </servlet-mapping>
  
  </web-app>

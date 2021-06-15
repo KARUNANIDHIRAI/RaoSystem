@@ -1,5 +1,7 @@
 package com.sm.System.SMInformation;
 
+import javax.persistence.metamodel.SingularAttribute;
+
 public class SMFixedValue {
 	public static final String ACTION_PLAIN_TEXT= "text/plain";
 	public static final String NEW_STATUS= "A";
@@ -270,6 +272,8 @@ public class SMFixedValue {
 	
 	public static final String WEBPAGE_INPUTVALUE_TOMODEL=" Web page Input values to MODEL";
 	public static final String MODEL_BOOK_BORROW_ADMNO="admNo";
+	public static final String BKBR_RETSTATUS="P";
+	public static final String MODEL_BOOK_BORROW_RETSTATUS="borrowedRetStatus";
 	public static final String BOOK_BORROW_INPUTVALUES="Book Borrowed Input Values:";
 	public static final String BOOK_BORROW_REM_CRETRERIA="Book Borrowed Removing Creteria:";
 	public static final String ACTION_REMOVING_BOOK_BORROW ="Removing Book Borrowed:";
@@ -285,4 +289,16 @@ public class SMFixedValue {
 	//----------BOOKS BORROWED RETURN 
 	public static final String RETURN_DATE = "Return Date";
 	public static final String LATE_FEE = "Late Fee";	
+	public static final String BOOK_BR_PENDLIST_GENERATING = "Books Borrowed Pendning List Generating....";
+	public static final String COMPLETED = "Completed.";
+	//----------BOOKS Master
+	public static final String BOOK_MS_CREATING = "Books Master New Information Creatting....";
+	public static final String BOOK_MS_INPUT_UPDMODEL = "Books Master Inpute Values Updating to Model.";
+	public static final String BOOK_MS_INPUT_VALUE = "Books Master Inpute Values: ";
+	public static final String BOOK_MS_OUPT_VALUE = "Books Master Output Values: ";
+	public static final String CREATING_INFO_INTOTABLE = "Inserting New Information into [DB]... ";
+	public static final String MODEL_BOOK_MASTER_QTY = "bksMasterQtyIDNO";
+	public static final String MODEL_BOOK_iDNO = "iDNO";
+	public static final String HQL_REM_BOOKMASTER_INFO= " Update BooksMasterInfoModel set status =:nStatus "
+			   +  " where iDDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus ";	
 }

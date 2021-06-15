@@ -104,4 +104,48 @@ public class HDAOBooksBorrowed {
 		}			
 		return executeUpdate;
 	}
+	public static JsonArray getBooksBorrowedPendingList(BooksBorrowModel booksBorrowModel) {
+        String erMsg = SMFixedValue.BOOK_BR_PENDLIST_GENERATING ;
+		JsonArray bookBorrowedList = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<BooksBorrowModel> creteriaQuery = builder.createQuery(BooksBorrowModel.class);
+	        Root<BooksBorrowModel> root = creteriaQuery.from(BooksBorrowModel.class);
+	        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_BOOK_REGNO), booksBorrowModel.getRegNo()),
+	            builder.equal(root.get(SMFixedValue.MODEL_BOOK_BORROW_ADMNO), booksBorrowModel.getAdmNo()),
+	        	builder.equal(root.get(SMFixedValue.MODEL_BOOK_STATUS), SMFixedValue.LIST_STATUS),
+	        	builder.equal(root.get(SMFixedValue.MODEL_BOOK_BORROW_RETSTATUS), SMFixedValue.BKBR_RETSTATUS));
+	        erMsg += SMFixedValue.PARM_SET_MSG;
+
+	        Query<BooksBorrowModel> query = sessionObj.createQuery(creteriaQuery);
+	        ArrayList <BooksBorrowModel> rows=(ArrayList<BooksBorrowModel>) query.getResultList();
+	    	erMsg += SMFixedValue.EXEC_QUERY_MSG; 
+	        int sNO =0;
+	        for(BooksBorrowModel row: rows) {
+	    	  if(row.getStatus().equals(SMFixedValue.STATUS)) {
+		    	  JsonObject rObj = new JsonObject();
+	              rObj.put("SNO"         , Integer.toString(++ sNO)) ;
+		    	  rObj.put("RegNo"       , row.getRegNo());
+		    	  rObj.put("SAdmNo"      , row.getAdmNo());
+		    	  rObj.put("BookCode"    , row.getBookCode());
+		    	  rObj.put("BookName"    , row.getBookName());
+		    	  rObj.put("IssuedByCode", row.getFacultyCode());
+		    	  rObj.put("IssuedByName", row.getIssuedBy());
+		    	  rObj.put("fromDate"    , row.getBorrowFromDate().toString());
+		    	  rObj.put("ToDate"      , row.getBorrowToDate().toString());
+		    	  rObj.put("BooksCopies" , row.getNoOfCopyIssued());
+		    	  rObj.put("iDNO"        , row.getiDNO());
+		    	  bookBorrowedList.add(rObj);	
+	    	  }
+		    }// EOF outer for loop
+	       sessionObj.close();
+	        erMsg+= SMFixedValue.BOOK_BR_PENDLIST_GENERATING + SMFixedValue.COMPLETED + SMFixedValue.OUTPUT 
+	    	+ " Total Rows:" + rows.size() +"\n" +bookBorrowedList;
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return bookBorrowedList;
+	}
 }

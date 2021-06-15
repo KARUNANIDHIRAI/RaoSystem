@@ -50,7 +50,7 @@
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item " id="ViewUser"><a class="nav-link active text-white "
 										style="background-color: #000080" href="#"> <%=SMFixedValue.BOOK%> <%=SMFixedValue.BORROWED%> <%=SMFixedValue.TO%> <%=SMFixedValue.STUDENT%> </a></li>
-									<li class="nav-item " id="XrBKView"><a class="nav-link text-light" href="#">
+									<li class="nav-item " id="XrBKBRPendingView"><a class="nav-link text-light" href="#">
 										<%=SMFixedValue.View%>  <%=SMFixedValue.BOOK%> <%=SMFixedValue.BORROWED%> </a></li>
 								</ul>
 							</div>
@@ -125,8 +125,8 @@
 							<input type="text" class="form-control " id="bkQty" 	name="bkQty" readonly>
 						</div>
 						<div class="col-sm-2 offset-sm-0">
-							<label for="toDate" class="form-label h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.RETURN_DATE%>*</label>
-							<input type="text" class="form-control   blinew " id="toDate" 	name="toDate" required>
+							<label for="retDate" class="form-label h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.RETURN_DATE%>*</label>
+							<input type="text" class="form-control   blinew " id="retDate" 	name="retDate" required>
 						</div>
 						<div class="col-sm-2 offset-sm-0">
 						    <label for="bkQty" class ="h6"> <%=SMFixedValue.LATE_FEE%></label>
@@ -354,30 +354,40 @@
 							 { title:	'Book Name'    ,data:"BookName"},
 							 { title:	'Book Issue By',data:"IssuedByName"},
 							 { title:	'Issued Date'  ,data:"fromDate" },  
+							 { title:	'Ret Due Date'  ,data:"ToDate" },  
 							 { title:	'BooksCopies'  ,data:"BooksCopies"},
 				    		 { title:	'Action'       ,data:"iDNO",
 						     	"render": function(data,type,row,meta){
-						       	 	return	'<button type="button" name="xRiBRData" align="middle" value="'+data+'" class="bg-warning text-dark" data-toggle="tooltip" data-placement="right" title="Click to Remove " ><span> &#9988; </span> </button>'; 
+						       	 	return	'<button type="button" name="xRetBKBR" align="middle" value="'+data+'" class="bg-warning text-dark" data-toggle="tooltip" data-placement="right" title="Click to Return Borrowed Book " ><span> &#8630; </span> </button>'; 
 				        		},
 					        }
 						]
 					}); 
 				}// EOF table FUNCTION	
 
-			   $(document).on('click', "Button[name='xRiBRData']", function(){ 
+			   $(document).on('click', "Button[name='xRetBKBR']", function(){ 
 					var bookIDNO=$(this).val();
 					var sAdmNo = $("#sAdmNo").val();
 					var request =$.ajax({
 						type:'POST',
 						data:{Action:"xRiBRData", CodeId:bookIDNO, AdmNumber:sAdmNo },
 					 	dataType: 'Json',
-						url:'../BookIssued',
+						url:'../BooksBorrowedReturn',
 						success:function(result){
-							bookBorrowedList(result);
-							scrollPage(6000);
+							showBKBRDetails(result);
 						}	
 					});
 			   	});// on click button
+				function showBKBRDetails(result){ 
+					$.each(result, function(id, name){
+						$("#bkCode").val(name.BookCode);
+						$("#bkISBN").val(name.ISBN);
+						$("#bkEdition").val(name.Edition);
+						$("#bkTitle").val(name.Title);
+						$("#bkAuthor").val(name.Author);
+						$("#bkPubName").val(name.Publisher);
+					})
+				}
 
 				function scrollPageDown(pos){
 					$("html, body").animate({
@@ -391,19 +401,37 @@
 				            scrollTop: bottom }, 1000);			
 				}// eof function -> function for scroll page bottom
 
-				$("#XrBKView").click(function(){  
-	 				var sAdmNo = $("#sAdmNo").val();
+				function booksBorrowedPendingList(admNo){
 					var request =$.ajax({
 						type:'POST',
-						data:{Action : "xRiBookBorrowed", AdmNumber : sAdmNo },
+						data:{Action:"xRBKBRPendingL", AdmNumber : sAdmNo },
 					 	dataType: 'Json',
-						url:'../BooksBorrowedReturn',
+						url:'../BookIssued',
+						success:function(result){
+							bookBorrowedList(result);
+						}	
+					});	 // eof AJAX
+				}
+				$("#XrBKBRPendingView").click(function(){ 
+	 				var sAdmNo = $("#sAdmNo").val();
+	 				alert(sAdmNo);
+					if(xValidAdmissionNo(sAdmNo)){
+						xShowBKBRPendingList(sAdmNo);
+					}
+				});
+				function xShowBKBRPendingList(sAdmNo){  
+					alert("Jai Ho1");
+					var request =$.ajax({
+						type:'POST',
+						data:{Action : "xRBKBRPendingL", AdmNumber : sAdmNo },
+					 	dataType: 'Json',
+						url:'../BookIssued',
 						success:function(result){
 							bookBorrowedList(result);
 							scrollPageUP(6000);
 						}	
 					});					
-				});
+				}
 			});// eof doucment			
 		</script>	
 	</body>
