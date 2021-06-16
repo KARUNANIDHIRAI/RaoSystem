@@ -126,10 +126,29 @@ public class HDAOBooksMaster {
 			return bookMaterIdnoList;
 	}
 
-	public static JsonArray remBookMasteriDNOList(BooksMasterInfoModel bookMasterModel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public static int remBookMasteriDNOList(BooksMasterInfoModel bookMasterModel) {
+		String erMsg = SMFixedValue.ACTION_START + SMFixedValue.ACTION_REMOVING + SMFixedValue.BOOK + SMFixedValue.information;
+        int executeUpdate = 0;
+    	Transaction transaction = null; 
+	    try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        Query query = sessionObj.createQuery(SMFixedValue.HQL_REM_BOOKMASTER_IDNO);
+	        query.setParameter(SMFixedValue.PARM_IDNO   , bookMasterModel.getiDNO());
+	        query.setParameter(SMFixedValue.PARM_REGNO  , bookMasterModel.getRegNo());
+	        query.setParameter(SMFixedValue.PARM_NSTATUS, SMFixedValue.REMOVE_STATUS);
+	        query.setParameter(SMFixedValue.PARM_OSTATUS, SMFixedValue.STATUS);
+
+	        erMsg += SMFixedValue.PARM_SET_MSG;  
+	        sessionObj.beginTransaction();
+	        executeUpdate= query.executeUpdate();
+//        	sessionObj.beginTransaction().commit();
+ 	        sessionObj.close();
+	        erMsg += Integer.toString(executeUpdate) +" "+SMFixedValue.EXEC_REMOVE_MSG ;
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return executeUpdate;	}
 
 
 }

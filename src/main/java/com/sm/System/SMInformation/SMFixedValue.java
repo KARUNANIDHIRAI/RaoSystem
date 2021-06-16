@@ -292,13 +292,19 @@ public class SMFixedValue {
 	public static final String BOOK_BR_PENDLIST_GENERATING = "Books Borrowed Pendning List Generating....";
 	public static final String COMPLETED = "Completed.";
 	//----------BOOKS Master
-	public static final String BOOK_MS_CREATING = "Books Master New Information Creatting....";
-	public static final String BOOK_MS_INPUT_UPDMODEL = "Books Master Inpute Values Updating to Model.";
-	public static final String BOOK_MS_INPUT_VALUE = "Books Master Inpute Values: ";
-	public static final String BOOK_MS_OUPT_VALUE = "Books Master Output Values: ";
+	public static final String BOOK_MS_CREATING        = "Books Master New Information Creatting....";
+	public static final String BOOK_MS_INPUT_UPDMODEL  = "Books Master Inpute Values Updating to Model.";
+	public static final String BOOK_MS_INPUT_VALUE     = "Books Master Inpute Values: ";
+	public static final String BOOK_MS_OUPT_VALUE      = "Books Master Output Values: ";
 	public static final String CREATING_INFO_INTOTABLE = "Inserting New Information into [DB]... ";
-	public static final String MODEL_BOOK_MASTER_QTY = "bksMasterQtyIDNO";
-	public static final String MODEL_BOOK_iDNO = "iDNO";
-	public static final String HQL_REM_BOOKMASTER_INFO= " Update BooksMasterInfoModel set status =:nStatus "
-			   +  " where iDDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus ";	
+	public static final String MODEL_BOOK_MASTER_QTY   = "bksMasterQtyIDNO";
+	public static final String MODEL_BOOK_iDNO         = "iDNO";
+	public static final String HQL_REM_BOOKMASTER_IDNO =" Update BooksMasterInfoModel "
+		+" SET status =:nStatus "
+		+" WHERE iDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus "
+        +" AND iDNO IN(select a.iDNO from BooksMasterInfoModel a join BooksMasterQtyModel b "
+        + "on a.bksMasterQtyIDNO = b.iDNO where b.issueBooksQty =b.returnBooksQty and a.iDNO =:remFIDNO)" ;	
+	
+//	Update LBBookMaster set status ='D' where iDNO =566 AND regNo ='MK308' AND  status='A' AND IDNO IN(select A.IDNO from LBBookMaster a join LBBookMasterQty b on a.BKMastQtyIDNOFK = b.IDNO 
+//			  where b.IssueBooksQty =b.ReturnBooksQty and a.idno=566)
 }

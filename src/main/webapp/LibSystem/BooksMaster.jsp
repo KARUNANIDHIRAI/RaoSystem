@@ -182,9 +182,7 @@
 				}
 				$("#xBkMSInfo1").click(function(){  
  	 				var xBkMSInfo = [];
- 	 				alert('price' + $("#bkPrice").val() + ' , Category:' + $("#Category").val());
  	 				xBkMSInfo = updateBKMSData(xBkMSInfo);
- 	 				alert('xBkMSInfo'+ xBkMSInfo.join(","));
 					var request =$.ajax({
 						type:'POST',
 	 	 				data:{Action:"xNrBkMS", xSbkBorrowed :  xBkMSInfo},
@@ -278,19 +276,23 @@
 						$("#Category").html(" <option value='"+name.Category +"'>"+ name.Category+ "</option>")
 					});
 				}
-
-				   $(document).on('click', "Button[name='xRBKMSiD']", function(){ 
-						var bookIDNO=$(this).val();
+			    $(document).on('click', "Button[name='xRBKMSiD']", function(){ 
+					var con = confirm("Do you really want to delete? ");
+					if(con){
+					   var bookIDNO=$(this).val();
 						var request =$.ajax({
 							type:'POST',
 							data:{Action:"xRBKMSiD",bkMSIDNO : bookIDNO },
 						 	dataType: 'Json',
 							url:'../BooksMaster',
 							success:function(result){
-								showBKMSDetails(result);
+								bookMasterList(result);
+								scrollPageUP(6000);
+								resetBKMastData();
 							}	
 						});
-				   	});// on click button
+					}
+			   	});// on click button
 
 			   	function scrollPageDown(pos){
 					$("html, body").animate({
@@ -305,7 +307,6 @@
 				}// eof function -> function for scroll page bottom
 
 				$("#xRBkMSInfoX").click(function(){  
-					alert("xRBkMSInfoX");
 					var request =$.ajax({
 						type:'POST',
 	 	 				data:{Action:"xRiBKMSData"},

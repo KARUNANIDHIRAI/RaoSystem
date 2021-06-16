@@ -168,7 +168,7 @@ public class HDAOBooksPurchase {
 	        erMsg += SMFixedValue.PARM_SET_MSG;
 	        sessionObj.beginTransaction();
 	        executeUpdate= query.executeUpdate();
-        	sessionObj.beginTransaction().commit();
+//        	sessionObj.beginTransaction().commit();
  	        sessionObj.close();
 	        erMsg += Integer.toString(executeUpdate) +" "+SMFixedValue.EXEC_REMOVE_MSG + " :" + SMFixedValue.ACTION_OK ;
 		}catch(Exception e) {

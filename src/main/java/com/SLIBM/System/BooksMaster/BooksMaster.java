@@ -66,7 +66,7 @@ public class BooksMaster extends HttpServlet {
 				break; 	
 			case "xRBKMSiD":	
 				bookMasterModel= booksMasteriDNOToModel(bookMasterModel, request);
-				JsonArrayList = HDAOBooksMaster.remBookMasteriDNOList(bookMasterModel);
+				excStatus = HDAOBooksMaster.remBookMasteriDNOList(bookMasterModel);
 				JsonArrayList = HDAOBooksMaster.getBookMasterList(bookMasterModel);
 				erMsg+= SMFixedValue.BOOK_BORROW_LIST_GENERATED;
 				out.print(JsonArrayList.toJson());
@@ -85,8 +85,9 @@ public class BooksMaster extends HttpServlet {
 		String erMsg =  SMFixedValue.BOOK_MS_INPUT_UPDMODEL;
 		try {
 			booksMasterModel.setiDNO(Integer.parseInt((String)request.getParameter("bkMSIDNO")));
+			booksMasterModel.setStatus(SMFixedValue.DELETE_STATUS);
 			erMsg+= "\n"+ SMFixedValue.BOOK_MS_INPUT_VALUE +"\n" + booksMasterModel;
-			erMsg = "\n"+ SMFixedValue.BOOK_MS_INPUT_UPDMODEL  + SMFixedValue.COMPLETED;
+			erMsg+= "\n"+ SMFixedValue.BOOK_MS_INPUT_UPDMODEL  + SMFixedValue.COMPLETED;
 		} catch (Exception e) {
 			erMsg+= "\n"+ SMFixedValue.EXEC_CATCH_MSG + e;
 		}finally {
