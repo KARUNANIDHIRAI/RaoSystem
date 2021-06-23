@@ -150,5 +150,45 @@ public class HDAOBooksMaster {
 		}			
 		return executeUpdate;	}
 
+	public static BooksMasterInfoModel getBookMasterCodeInfo(String bookCode, String regNo) {
+	       String erMsg = SMFixedValue.RETRIEVE + SMFixedValue.BOOK + SMFixedValue.INFORMATION;
+	       BooksMasterInfoModel bookMasterModel = new BooksMasterInfoModel();
+	       try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+		        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+		        CriteriaQuery<BooksMasterInfoModel> creteriaQuery = builder.createQuery(BooksMasterInfoModel.class);
+		        Root<BooksMasterInfoModel> root = creteriaQuery.from(BooksMasterInfoModel.class);
+		        root.fetch(SMFixedValue.MODEL_BOOK_MASTER_QTY);
+		        
+		        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_BOOK_REGNO), regNo),
+		        		            builder.equal(root.get(SMFixedValue.MODEL_BOOK_CODE), bookCode),
+		        	                builder.equal(root.get(SMFixedValue.MODEL_BOOK_STATUS), SMFixedValue.STATUS));
+		        erMsg += SMFixedValue.PARM_SET_MSG;
+
+		        Query<BooksMasterInfoModel> query = sessionObj.createQuery(creteriaQuery);
+		        ArrayList <BooksMasterInfoModel> rows=(ArrayList<BooksMasterInfoModel>) query.getResultList();
+		    	erMsg += SMFixedValue.EXEC_QUERY_MSG; 
+		        for(BooksMasterInfoModel row: rows) {
+		        	bookMasterModel.setRegNo(row.getRegNo());
+		        	bookMasterModel.setBookCode(row.getBookCode());
+		        	bookMasterModel.setBookTitle(row.getBookTitle());
+		        	bookMasterModel.setAuthor(row.getAuthor());
+		        	bookMasterModel.setBooksISBN(row.getBooksISBN());
+		        	bookMasterModel.setEdition(row.getEdition());
+		        	bookMasterModel.setPublisher(row.getPublisher());
+		        	bookMasterModel.setCategory(row.getCategory());
+		        	bookMasterModel.setPrice(row.getPrice());
+		        	bookMasterModel.setBksMasterQtyIDNO(row.getBksMasterQtyIDNO());
+		        	bookMasterModel.setiDNO(row.getiDNO());
+			    	  break;
+			    }
+		       sessionObj.close();
+		    	erMsg += "\n"+ SMFixedValue.OUTPUT +" Rows:(" + rows.size() + ")"+ bookMasterModel;
+			}catch(Exception e) {
+				erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+			}finally {
+				System.out.println("\n"+erMsg );
+			}
+			return bookMasterModel;
+	}
 
 }

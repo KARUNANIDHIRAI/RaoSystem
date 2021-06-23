@@ -62,7 +62,7 @@ public class BookIssued extends HttpServlet {
 				out.flush();
 				break; 				
 				
-			case "xRiBRData":	
+			case "xRiBKRData":	
 				erMsg= SMFixedValue.ACTION_REMOVING + SMFixedValue.BOOK + SMFixedValue.BORROWED  + SMFixedValue.INFORMATION ;
 				booksBorrowModel = BooksBorrowRemToModel(booksBorrowModel,request);
 				excStatus = HDAOBooksBorrowed.BooksBorrowedRemoved(booksBorrowModel);
@@ -147,7 +147,8 @@ public class BookIssued extends HttpServlet {
 			booksBorrowModel.setBorrowFromDate(new SimpleDateFormat("dd-mm-yyyy").parse(inputValues[5].toString()));	
 			booksBorrowModel.setBorrowToDate(new SimpleDateFormat("dd-mm-yyyy").parse(inputValues[6].toString()));	
 			booksBorrowModel.setNoOfCopyIssued(Integer.parseInt(inputValues[7].toString()));
-			booksBorrowModel.setStatus("A"); 
+			booksBorrowModel.setStatus(SMFixedValue.NEW_STATUS); 
+			booksBorrowModel.setBorrowedRetStatus(SMFixedValue.BK_RET_DEFAULT_STATUS);
 			booksBorrowModel.setCreatedBy("KNRAI");
 			booksBorrowModel.setCreatedOn(new Date());
 			booksBorrowModel.setUpdatedBy("KNRAI");

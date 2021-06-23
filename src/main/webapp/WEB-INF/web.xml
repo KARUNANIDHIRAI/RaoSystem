@@ -704,6 +704,12 @@
   	<description></description>
   	<servlet-class>com.SLIBM.System.BooksMaster.BooksMaster</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SupplierMaster</servlet-name>
+  	<display-name>SupplierMaster</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.SupplierMaster.SupplierMaster</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -1170,6 +1176,10 @@
   <servlet-mapping>
   	<servlet-name>BooksMaster</servlet-name>
   	<url-pattern>/BooksMaster</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SupplierMaster</servlet-name>
+  	<url-pattern>/SupplierMaster</url-pattern>
   </servlet-mapping>
  
  </web-app>

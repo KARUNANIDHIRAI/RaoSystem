@@ -102,6 +102,12 @@
  		
 		<!--  Book Borrowed Return -->
  		<mapping class="com.SLIBM.System.BooksBorrowedReturn.BookBorrowedReturnModel"/> 
-		<mapping class="com.SLIBM.System.BooksBorrowedReturn.UserInfo"/> 
+<!-- 		<mapping class="com.SLIBM.System.BooksBorrowedReturn.UserInfo"/>  -->
+
+		<!--  Supplier Master -->
+ 		<mapping class="com.sm.System.SupplierMaster.SupplierMasterModel"/> 
+		<mapping class="com.sm.System.SupplierMaster.SupplierMasterAddressModel"/> 
+		<mapping class="com.sm.System.SupplierMaster.SupplierMasterContact"/> 
+
     </session-factory>
 </hibernate-configuration>

@@ -18,8 +18,18 @@ var gender = " ";
 var facultyOption= " ";
 var actionType =" ";
 var category =" ";
-alert("SMFC");
+alert("knSMFC");
 $(document).ready(function(){
+	   $("#Category").click(function(){
+			if (category!=" "){return;}
+			category=" <option selected value=0>Choose Category*</option>";
+		    var cCategory = ['Computer Science', 'History','Social Science','English','Mathematics','Music','Dance', 'Home Science'];
+	       $.each(cCategory, function(index, value){
+	    	   category+=" <option value='"+value +"'>"+ value+ "</option>";
+	       });
+	       $("#Category").html(category);
+	   });
+	
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
 		getRefreshCaptcha();
 		$("#email").focus();
@@ -410,6 +420,17 @@ $(document).ready(function(){
 			}	
 		});// End Of the $.Ajax()
 	}	
+   	function scrollPageDown(pos){
+		$("html, body").animate({
+		    scrollTop: $('html, body').get(0).scrollHeight}, pos);				
+	}// eof function -> function for scroll page bottom
+	function scrollPageUP(pos){
+		$("html, body").animate({
+		    scrollTop: $('html, body').get(0).scrollHeight}, pos);	
+	       var bottom = $(document).height() - $(window).height();
+		$("HTML, BODY").animate({
+	            scrollTop: bottom }, 1000);			
+	}// eof function -> function for scroll page bottom
 
 
 

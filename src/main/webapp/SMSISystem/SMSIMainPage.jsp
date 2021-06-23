@@ -118,7 +118,7 @@
 					          		<%= SMFixedValue.LIBRARY%>
 					        	</a>
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						        	<a class="dropdown-item" href="../LibSystem/Supplier.jsp">Supplier Information</a>
+						        	<a class="dropdown-item" href="SMSystems/SupplierMaster.jsp">Suppliers Information</a>
 						        	<a class="dropdown-item" href="../LibSystem/BooksMaster.jsp">Books Information</a>
 						          	<div class="dropdown-divider bg-primary"></div>
 						        	<a class="dropdown-item" href="#">Books Purchase Order</a>
@@ -127,7 +127,7 @@
 						        	<a class="dropdown-item" href="#">Reject Damaged Books</a>
 						        	<a class="dropdown-item" href="#">Sale Scraped Books</a>
 						          	<div class="dropdown-divider bg-primary"></div>
-						          	<a class="dropdown-item" href="../LibSystem/BookBorrow.jsp">Books Borrow</a>
+						          	<a class="dropdown-item" href="../LibSystem/BooksBorrow.jsp">Books Borrow</a>
 						          	<a class="dropdown-item" href="../LibSystem/BooksBorrowReturn.jsp">Books Return</a>
 						          	<a class="dropdown-item" href="#">Books Lost</a>
 						        	<a class="dropdown-item" href="#">New Books Request</a>

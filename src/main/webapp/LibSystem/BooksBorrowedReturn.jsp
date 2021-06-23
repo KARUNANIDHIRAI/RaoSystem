@@ -40,7 +40,7 @@
 	<body onload="xStdInfo()">
 		<!-- Page Header --><jsp:include page="../HeaderPage.jsp"></jsp:include><!-- Page Header -->
 		<div class="container">
-			<form id="xfmInfo" name="SchInfo" action="../BooksBorrowedReturn?Action=xBookPurchase" method="post" class="form-horizontal needs-validation" autocomplete="off">
+			<form id="xfmInfo" name="SchInfo" action="../BooksBorrowedReturn?Action=xRetBKBRCD" method="post" class="form-horizontal needs-validation" autocomplete="off">
 				<br />
 				<div class="row">
 					<div class="col-sm-12 offset-sm-0">
@@ -76,12 +76,12 @@
 							<input type="text" class="form-control blineTl " id="sAdmNo" name="sAdmNo"  placeholder="Student Admission No.">
  						</div>
 						<div class="col-sm-4 offset-sm-0">
-						    <label for="issueByCode" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.ISSUEDBYCODE%> </label>
-							<input type="text" class="form-control blineTl" id="issueByCode" name="issueByCode"  required>
+						    <label for="takenByCode" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.ISSUEDBYCODE%> </label>
+							<input type="text" class="form-control blineTl" id="takenByCode" name="takenByCode"  required>
 						</div>
 						<div class="col-sm-4 offset-sm-0">
-						    <label for="issueByName" class ="h6 "><%=SMFixedValue.BOOK%> <%=SMFixedValue.ISSUEDBYNAME%>  </label>
-							<input type="text" class="form-control   blineTl " id="issueByName" 	name="issueByName" readonly>
+						    <label for="takenByName" class ="h6 "><%=SMFixedValue.BOOK%> <%=SMFixedValue.ISSUEDBYNAME%>  </label>
+							<input type="text" class="form-control   blineTl " id="takenByName" 	name="takenByName" readonly>
 						</div>
 					</div>	
  					<div class="row" id="xSPInfo01" >		
@@ -109,29 +109,29 @@
 					<div class="row bg-light">		
 						<div class="col-sm-2 offset-sm-0">
 						    <label for="bkCode" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.Code%> </label>
-							<input type="text" class="form-control   blineTl " id="bkCode" 	name="bkCode"  required
-							pattern="[A-Za-z0-9]{4,100}" title=""  value="BK101">
+							<input type="text" class="form-control   blineTl " id="bkCode" 	name="bkCode"  required 
+							pattern="[A-Za-z0-9]{4,100}" title=""  readonly >
 						</div>
 						<div class="col-sm-2 offset-sm-0">
-						    <label for="fromDate" class ="h6"><%=SMFixedValue.BORROWED%> <%=SMFixedValue.FROM_DATE%></label>
-							<input type="text" class="form-control " id="fromDate" 	name="fromDate"  readonly>
+						    <label for="fFromDate" class ="h6"><%=SMFixedValue.BORROWED%> <%=SMFixedValue.FROM_DATE%></label>
+							<input type="text" class="form-control" id="fFromDate" 	name="fFromDate"  readonly>
 						</div>
 						<div class="col-sm-2 offset-sm-0">
-							<label for="toDate" class="form-label h6"><%=SMFixedValue.BORROWED%> <%=SMFixedValue.TO_DATE%>*</label>
-							<input type="text" class="form-control " id="toDate" 	name="toDate" readonly>
+							<label for="tToDate" class="form-label h6"><%=SMFixedValue.BORROWED%> <%=SMFixedValue.TO_DATE%>*</label>
+							<input type="text" class="form-control " id="tToDate" 	name="tToDate" readonly>
 						</div>
 						<div class="col-sm-2 offset-sm-0">
 						    <label for="bkQty" class ="h6"> <%=SMFixedValue.BOOKCOPIES%> </label>
 							<input type="text" class="form-control " id="bkQty" 	name="bkQty" readonly>
 						</div>
 						<div class="col-sm-2 offset-sm-0">
-							<label for="retDate" class="form-label h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.RETURN_DATE%>*</label>
-							<input type="text" class="form-control   blinew " id="retDate" 	name="retDate" required>
+							<label for="retnDate" class="form-label h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.RETURN_DATE%>*</label>
+							<input type="text" class="form-control   blinew " id="retnDate" 	name="retnDate" readonly>
 						</div>
 						<div class="col-sm-2 offset-sm-0">
-						    <label for="bkQty" class ="h6"> <%=SMFixedValue.LATE_FEE%></label>
-							<input type="text" class="form-control   blinew " id="bkQty" 	name="bkQty"  required
-							 pattern="[0-9]{1,5}" value="50">
+						    <label for="bkRetLFee" class ="h6"> <%=SMFixedValue.LATE_FEE%></label>
+							<input type="text" class="form-control   blinew " id="bkRetLFee" 	name="bkRetLFee"  
+							 pattern="[0-9]{1,5}" >
 						</div>
 					</div>	
 					<br />
@@ -167,15 +167,16 @@
 				   		<div class="col-sm-8 text-center offset-sm-2">
 				    		<p class="text-danger"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
 								<%session.removeAttribute("Message");%>
+								<input type="hidden" class="form-control blinebl" id="bkID" name="bkID" readonly Style="border:0px">
+								
 			    		</div>
 			  		</div>
 					<div class="form-row">
 						<div class="col-sm-2 offset-sm-5 ">
-							<button type="submit" id ="xbkBorrowed1" name="subSch01" class="form-control     text-light 
+							<button type="submit" id ="xBKBRRet1" name="xBKBRRet1" class="form-control     text-light 
 							text-center h5 btn btn-secondary" style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px" ><%=SMFixedValue.SUBMIT %></button>
 						</div>
 					</div>
-					<br />
 				</div>
 				<hr class="bg-warning" id="inv02"/>
 				<div class="form-row">
@@ -193,6 +194,7 @@
 				$("#xSPInfo01").hide();
 				$("#xbkDetail").hide();
 				$("BookBorrowedList").hide();
+				var xBKBRidno = "";
 			}
 			$(document).ready(function(){
 				$("#sAdmNo").focusout(function(){// validate and retrieve info
@@ -236,106 +238,42 @@
 						studentPInfo.push(name.RollNo);
 						resetSTPPage();
 						scrollPageUP(6000);
-					})
+					});
 				}
-				$("#bkCode").focusout(function(){ 
-					var xBookCode=$("#bkCode").val();
-					if(xValidBookCode(xBookCode)){
-						xBookInfoRetrieve(xBookCode);
-						//var xbkTitle = $("#bkTitle").val();
-						//xValidBookCode(xbkTitle);
+				
+ 				$("#takenByCode").focusout(function(){ 
+					var xBKTakenBy = $("#takenByCode").val();
+					if(xValidBookIssueBy(xBKTakenBy)){
+						xShowIssueByName(xBKTakenBy);
 					}
 				});			
-				function xValidBookCode(xBookCode){
-					if(xBookCode==null || xBookCode=="" || xBookCode=="Enter Valid Book Code."){ 
-						$("#bkCode").val("Enter Valid Book Code.");
-						$("#bkCode").focusin();
+				function xValidBookIssueBy(xBKTakenBy){
+					if(xBKTakenBy==null || xBKTakenBy=="" || xBKTakenBy=="Enter Valid Code."){ 
+						$("#takenByCode").val("Enter Valid Code.");
+						$("#takenByCode").focusin();
 						return false;
 					}
 					return true;	
 				}
-				function xBookInfoRetrieve(xBookCode){
+				function xShowIssueByName(xBKTakenBy){
 					var request =$.ajax({
 						type:'POST',
-	 	 				data:{Action:"xRBookInfo", xRbookCode : xBookCode},
-					 	dataType: 'Json',
-						url:'../BookPurchase',
-						success:function(result){
-							showBookInformation(result);
-						}	
-					});	 // eof AJAX
-				}
-				function showBookInformation(result){ 
-					$.each(result, function(id, name){
-						$("#xbkDetail").show();
-						$("#bkISBN").val(name.ISBN);
-						$("#bkTitle").val(name.Title);
-						$("#bkAuthor").val(name.Author);
-						$("#bkPubName").val(name.Publisher);
-						$("#bkEdition").val(name.Edition);
-						resetSTPPage();
-						scrollPageUP(6000);
-					})
-				}
-				$("#issueByCode").focusout(function(){ 
-					var xBKissueBy = $("#issueByCode").val();
-					if(xValidBookIssueBy(xBKissueBy)){
-						xShowIssueByName(xBKissueBy);
-						//xValidBookIssueBy($("#issueByName").val());
-					}
-				});			
-				function xValidBookIssueBy(xBKissueBy){
-					if(xBKissueBy==null || xBKissueBy=="" || xBKissueBy=="Enter Valid Code."){ 
-						$("#issueByCode").val("Enter Valid Code.");
-						$("#issueByCode").focusin();
-						return false;
-					}
-					return true;	
-				}
-				function xShowIssueByName(xBKissueBy){
-					var request =$.ajax({
-						type:'POST',
-	 	 				data:{Action:"xRBKIssuedBy", bkIssueedBy : xBKissueBy},
+	 	 				data:{Action:"xRBKIssuedBy", bkIssueedBy : xBKTakenBy},
 					 	dataType: 'Json',
 						url:'../FacultyInformation',
 						success:function(result){
 							$.each(result, function(id, name){
-								$("#issueByName").val(name.Name);
+								$("#takenByName").val(name.Name);
 							})
 						}	
 					});	 // eof AJAX
 				}
-				$("#xbkBorrowed").click(function(){  
- 	 				var xBKBorrowed = [];
- 	 				xBKBorrowed = updateBKBorredData(xBKBorrowed);
-					var request =$.ajax({
-						type:'POST',
-	 	 				data:{Action:"xNrBookBorrowed", xSbkBorrowed :  xBKBorrowed},
-					 	dataType: 'Json',
-						url:'../BookIssued',
-						success:function(result){
-							bookBorrowedList(result);
-							scrollPageUP(6000);
-							resetBKBorredData()
-						}	
-					});					
-				});
-				function updateBKBorredData(xBKBorrowed){ 
-					xBKBorrowed.push($("#sAdmNo").val());
-					xBKBorrowed.push($("#issueByCode").val());
-					xBKBorrowed.push($("#issueByName").val());
-					xBKBorrowed.push($("#bkCode").val());
-					xBKBorrowed.push($("#bkTitle").val());
-					xBKBorrowed.push($("#fromDate").val());
-					xBKBorrowed.push($("#toDate").val());
-					xBKBorrowed.push($("#bkQty").val());
- 					return xBKBorrowed;
-				}
+				
 				function resetBKBorredData(){ 
 					$("#bkCode").val("")     ;
 					$("#bkTitle").val("")    ;
-					$("#fromDate").val("")   ;
-					$("#toDate").val("")     ;
+					$("#fFromDate").val("")   ;
+					$("#tToDate").val("")     ;
 					$("#bkQty").val("")      ;
 					$("#admClass").val("")   ;
 					$("#sSection").val("")   ;
@@ -358,19 +296,21 @@
 							 { title:	'BooksCopies'  ,data:"BooksCopies"},
 				    		 { title:	'Action'       ,data:"iDNO",
 						     	"render": function(data,type,row,meta){
-						       	 	return	'<button type="button" name="xRetBKBR" align="middle" value="'+data+'" class="bg-warning text-dark" data-toggle="tooltip" data-placement="right" title="Click to Return Borrowed Book " ><span> &#8630; </span> </button>'; 
+						       	 	return	'<button type="button" name="xRetBKBRINFO" align="middle" value="'+data+'" class="bg-warning text-dark" data-toggle="tooltip" data-placement="right" title="Click to Return Borrowed Book " ><span> &#8630; </span> </button>'; 
 				        		},
 					        }
 						]
 					}); 
 				}// EOF table FUNCTION	
 
-			   $(document).on('click', "Button[name='xRetBKBR']", function(){ 
+			   $(document).on('click', "Button[name='xRetBKBRINFO']", function(){ 
 					var bookIDNO=$(this).val();
 					var sAdmNo = $("#sAdmNo").val();
-					var request =$.ajax({
+					 $("#bkID").val($(this).val());
+		// 		        xBKBRidno = bookIDNO;
+		 				var request =$.ajax({
 						type:'POST',
-						data:{Action:"xRiBRData", CodeId:bookIDNO, AdmNumber:sAdmNo },
+						data:{Action:"xRetBKBRINFO", CodeId:bookIDNO, AdmNumber:sAdmNo },
 					 	dataType: 'Json',
 						url:'../BooksBorrowedReturn',
 						success:function(result){
@@ -378,28 +318,20 @@
 						}	
 					});
 			   	});// on click button
-				function showBKBRDetails(result){ 
+			   	function showBKBRDetails(result){ 
 					$.each(result, function(id, name){
 						$("#bkCode").val(name.BookCode);
+						$("#fFromDate").val(name.FromDate);
+						$("#tToDate").val(name.ToDate);
+						$("#bkQty").val(name.NoOfBooksBR);
 						$("#bkISBN").val(name.ISBN);
 						$("#bkEdition").val(name.Edition);
-						$("#bkTitle").val(name.Title);
+						$("#bkTitle").val(name.BookTitle);
 						$("#bkAuthor").val(name.Author);
 						$("#bkPubName").val(name.Publisher);
-					})
+						$('#retnDate').datepicker().datepicker('setDate', 'today');		
+					});
 				}
-
-				function scrollPageDown(pos){
-					$("html, body").animate({
-					    scrollTop: $('html, body').get(0).scrollHeight}, pos);				
-				}// eof function -> function for scroll page bottom
-				function scrollPageUP(pos){
-					$("html, body").animate({
-					    scrollTop: $('html, body').get(0).scrollHeight}, pos);	
-				       var bottom = $(document).height() - $(window).height();
-					$("HTML, BODY").animate({
-				            scrollTop: bottom }, 1000);			
-				}// eof function -> function for scroll page bottom
 
 				function booksBorrowedPendingList(admNo){
 					var request =$.ajax({
@@ -414,13 +346,11 @@
 				}
 				$("#XrBKBRPendingView").click(function(){ 
 	 				var sAdmNo = $("#sAdmNo").val();
-	 				alert(sAdmNo);
 					if(xValidAdmissionNo(sAdmNo)){
 						xShowBKBRPendingList(sAdmNo);
 					}
 				});
 				function xShowBKBRPendingList(sAdmNo){  
-					alert("Jai Ho1");
 					var request =$.ajax({
 						type:'POST',
 						data:{Action : "xRBKBRPendingL", AdmNumber : sAdmNo },
@@ -432,6 +362,33 @@
 						}	
 					});					
 				}
+				
+/*  				$("#xBKBRRet1").click(function(){ 
+					var xsAdmNo = $("#sAdmNo").val();
+					vAR XbkCode = $("#bkCode").val();
+					alert('xBKBRidno:' + xBKBRidno);
+					var request =$.ajax({
+						type:'POST',
+						data:{Action : "xRetBKBRCD", AdmNumber : xsAdmNo, CodeId: xBKBRidno },
+					 	dataType: 'Json',
+						url:'../BooksBorrowedReturn',
+						success:function(result){
+							bookBorrowedList(result);
+						}	
+					});					
+				});
+ */				function scrollPageDown(pos){
+					$("html, body").animate({
+					    scrollTop: $('html, body').get(0).scrollHeight}, pos);				
+				}// eof function -> function for scroll page bottom
+				function scrollPageUP(pos){
+					$("html, body").animate({
+					    scrollTop: $('html, body').get(0).scrollHeight}, pos);	
+				       var bottom = $(document).height() - $(window).height();
+					$("HTML, BODY").animate({
+				            scrollTop: bottom }, 1000);			
+				}// eof function -> function for scroll page bottom
+				
 			});// eof doucment			
 		</script>	
 	</body>

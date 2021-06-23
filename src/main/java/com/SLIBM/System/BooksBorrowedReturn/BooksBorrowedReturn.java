@@ -2,6 +2,10 @@ package com.SLIBM.System.BooksBorrowedReturn;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JsonArray;
 
 import com.SLIBM.System.BooksIssue.BooksBorrowModel;
+import com.SLIBM.System.BooksIssue.HDAOBooksBorrowed;
+import com.raoSystem.Utility.Utilities;
 import com.sm.System.SMInformation.SMFixedValue;
 
 public class BooksBorrowedReturn extends HttpServlet {
@@ -24,18 +30,110 @@ public class BooksBorrowedReturn extends HttpServlet {
 		String erMsg= SMFixedValue.ACTION_STEP + SMFixedValue.ACTION_START + 1 ;
 		BookBorrowedReturnModel booksBorrowedReturn = new BookBorrowedReturnModel();
 		booksBorrowedReturn.setRegNo("MK308");
-		BooksBorrowModel booksBorrowModel = new BooksBorrowModel();
-		booksBorrowModel.setiDNO(Integer.parseInt((String)("488")));
-		booksBorrowedReturn.setBooksBorrowModel(booksBorrowModel);
 		String hDAOMessage= "";
 		int excStatus =0;
-		excStatus = HDAOBooksBorrowedReturn.BooksBorrowedReturnNew(booksBorrowedReturn);
 		JsonArray JsonArrayList = new JsonArray();
 		response.setContentType(SMFixedValue.ACTION_PLAIN_TEXT);
 		PrintWriter out = response.getWriter(); 
 		String Action = request.getParameter("Action");
 		erMsg+= Action;
-
+		try {
+			switch (Action) {
+			case "xRetBKBRINFO":	
+				erMsg= SMFixedValue.BOOK_BORROWED_RETURN;
+				BooksBorrowModel booksBorrowModel = new BooksBorrowModel();
+				booksBorrowModel.setRegNo("MK308");
+				booksBorrowModel = BooksReturnIDNOToModel(booksBorrowModel,request);
+				JsonArrayList = HDAOBooksBorrowed.BooksBorrowedInfoIDNO(booksBorrowModel);
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break; 				
+			case "xRetBKBRCD":	
+				try {
+					booksBorrowedReturn = bkBrReturnToModel(booksBorrowedReturn,request);
+				} catch (Exception e) {
+					e.printStackTrace();
+					break;
+				}
+				excStatus = HDAOBooksBorrowedReturn.BooksBorrowedReturnIDNO(booksBorrowedReturn);
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break; 	
+			case "xRiBookBorrowed":	
+				break; 	
+			case "xRBKBRPendingL":	
+				break; 	
+			}
+		} catch (Exception e) {
+			erMsg += SMFixedValue.EXEC_TECHERROR_MSG +"\n "+ e;
+		}
+		finally {
+			System.out.println(erMsg);
+		}
 	}
+	private BooksBorrowModel BooksReturnIDNOToModel(BooksBorrowModel booksBorrowModel, HttpServletRequest request) {
+		String erMsg = "";
+		try {
+			booksBorrowModel.setiDNO(Integer.parseInt((String)request.getParameter("CodeId")));
+			booksBorrowModel.setAdmNo(request.getParameter("AdmNumber"));
+			booksBorrowModel.setStatus(SMFixedValue.STATUS);
+			erMsg+= SMFixedValue.BOOK_BORROWED_RETURN + SMFixedValue.INPUT_VALUES + booksBorrowModel; 
+		} catch (Exception e) {
+			erMsg+= "\n"+SMFixedValue.EXEC_TECHERROR_MSG +"\n "+ e;
+		}finally {
+			System.out.println(erMsg);
+		}
+		return booksBorrowModel;
+	}
+	private BookBorrowedReturnModel  bkBrReturnToModel(BookBorrowedReturnModel bkBrReturn,HttpServletRequest request) throws ParseException {
+		String erMsg =  SMFixedValue.ACTION_UPDATING + SMFixedValue.BOOK_RETURN + SMFixedValue.INPUT_VALUES  
+				        +SMFixedValue.TOMODEL ;
+		try {
+			bkBrReturn.setAdmNo(request.getParameter("sAdmNo"));
+			bkBrReturn.setFacultyCode(request.getParameter("takenByCode"));
+			bkBrReturn.setBookTakenBy(request.getParameter("takenByName"));
+			bkBrReturn.setBookCode(request.getParameter("bkCode"));
+			
+//			bkBrReturn.setBorrowRetrunDate(convertStringToDate((request.getParameter("retnDate"))));
+//	        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//	        Date convertDate = dateFormat.parse((String)request.getParameter("retnDate"));
+//			bkBrReturn.setBorrowRetrunDate(convertDate);
+			bkBrReturn.setBorrowRetrunDate(new Date());
+			
+			bkBrReturn.setNoOfCopyReturn(Integer.parseInt(request.getParameter("bkQty").toString()));
+			bkBrReturn.setLateFee((request.getParameter("bkRetLFee").equals(""))?0:
+					Float.parseFloat(request.getParameter("bkRetLFee"))); 
+			BooksBorrowModel booksBorrowModel = new BooksBorrowModel();
+			booksBorrowModel.setiDNO(Integer.parseInt(request.getParameter("bkID").toString()));
+			bkBrReturn.setBooksBorrowModel(booksBorrowModel);
+			bkBrReturn.setiDNO(Integer.parseInt(request.getParameter("bkID").toString()));
 
+			bkBrReturn.setStatus(SMFixedValue.NEW_STATUS); 
+			bkBrReturn.setCreatedBy("KNRAI");
+			bkBrReturn.setCreatedOn(new Date());
+			bkBrReturn.setUpdatedBy("KNRAI");
+			bkBrReturn.setUpdatedOn(new Date());
+			erMsg+= "\n"+ SMFixedValue.BOOK_RETURN +SMFixedValue.INPUT_VALUES + bkBrReturn;
+		} catch (Exception e) {
+			erMsg+= "\n"+ SMFixedValue.EXEC_CATCH_MSG + e;
+			
+		}finally {
+			System.out.println(erMsg);
+		}
+		return bkBrReturn;
+	}
+	
+	   public static Date convertStringToDate(String strDate) throws ParseException {
+		   Date convertedDate = new Date();
+		   String  tempDate = "";
+		   try {
+				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+				  tempDate = dateFormat.format(strDate);
+				 convertedDate = dateFormat.parse(tempDate);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return convertedDate;
+	    }	
+	
 }

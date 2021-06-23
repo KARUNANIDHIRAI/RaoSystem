@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -38,8 +39,8 @@ public class BookBorrowedReturnModel extends UserInfo {
 	@Column(name="BookCode", nullable= false )
 	private String bookCode;
 	
-	@Column(name="BookName", nullable= false )
-	private String bookName;
+//	@Column(name="BookName", nullable= false )
+//	private String bookName;
 
 	@Column(name="BorrowRetrunDate", nullable= false )
 	@Temporal(TemporalType.DATE)
@@ -51,23 +52,25 @@ public class BookBorrowedReturnModel extends UserInfo {
 	@Column(name="LateFee", nullable= false )
 	private float lateFee;
 
-//	@Column(name="Status", nullable= true,columnDefinition = "nvarchar(100)")
-//	private String status;
-//
-//	@Column(name= "CreatedBy", nullable= false,updatable = false, columnDefinition = "nvarchar(100)")
-//	private String createdBy;
-//
-//	@Column(name= "CreatedOn", nullable= false,updatable = false, columnDefinition = "date")
-//	@Temporal(TemporalType.TIMESTAMP)
-//	private Date createdOn;
-//
-//	@Column(name= "UpdatedBy", nullable= false,columnDefinition = "nvarchar(100)")
-//	private String updatedBy;
-//
-//	@Column(name= "UpdatedOn", nullable= false,columnDefinition = "date")
-//	@Temporal(TemporalType.TIMESTAMP)
-//	private Date updatedOn;
+	@Column(name="Status", nullable= true,columnDefinition = "nvarchar(100)")
+	private String status;
+
+	@Column(name= "CreatedBy", nullable= false,updatable = false, columnDefinition = "nvarchar(100)")
+	private String createdBy;
+
+	@Column(name= "CreatedOn", nullable= false,updatable = false, columnDefinition = "date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdOn;
+
+	@Column(name= "UpdatedBy", nullable= false,columnDefinition = "nvarchar(100)")
+	private String updatedBy;
+
+	@Column(name= "UpdatedOn", nullable= false,columnDefinition = "date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedOn;
+
 	@OneToOne
+	@JoinColumn(name="BKBRIDNOFK")
 	private BooksBorrowModel  booksBorrowModel;
 
 	public Integer getiDNO() {
@@ -118,14 +121,6 @@ public class BookBorrowedReturnModel extends UserInfo {
 		this.bookCode = bookCode;
 	}
 
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-
 	public Date getBorrowRetrunDate() {
 		return borrowRetrunDate;
 	}
@@ -134,12 +129,12 @@ public class BookBorrowedReturnModel extends UserInfo {
 		this.borrowRetrunDate = borrowRetrunDate;
 	}
 
-	public int getNoOfCopyTaken() {
+	public int getNoOfCopyReturn() {
 		return noOfCopyReturn;
 	}
 
-	public void setNoOfCopyTaken(int noOfCopyTaken) {
-		this.noOfCopyReturn = noOfCopyTaken;
+	public void setNoOfCopyReturn(int noOfCopyReturn) {
+		this.noOfCopyReturn = noOfCopyReturn;
 	}
 
 	public float getLateFee() {
@@ -148,6 +143,46 @@ public class BookBorrowedReturnModel extends UserInfo {
 
 	public void setLateFee(float lateFee) {
 		this.lateFee = lateFee;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Date getUpdatedOn() {
+		return updatedOn;
+	}
+
+	public void setUpdatedOn(Date updatedOn) {
+		this.updatedOn = updatedOn;
 	}
 
 	public BooksBorrowModel getBooksBorrowModel() {
@@ -161,10 +196,12 @@ public class BookBorrowedReturnModel extends UserInfo {
 	@Override
 	public String toString() {
 		return "BookBorrowedReturnModel [iDNO=" + iDNO + ", regNo=" + regNo + ", admNo=" + admNo + ", facultyCode="
-				+ facultyCode + ", bookTakenBy=" + bookTakenBy + ", bookCode=" + bookCode + ", bookName=" + bookName
-				+ ", borrowRetrunDate=" + borrowRetrunDate + ", noOfCopyTaken=" + noOfCopyReturn + ", lateFee=" + lateFee
-				+ ", booksBorrowModel=" + booksBorrowModel + "]";
+				+ facultyCode + ", bookTakenBy=" + bookTakenBy + ", bookCode=" + bookCode + ", borrowRetrunDate="
+				+ borrowRetrunDate + ", noOfCopyReturn=" + noOfCopyReturn + ", lateFee=" + lateFee + ", status="
+				+ status + ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", updatedBy=" + updatedBy
+				+ ", updatedOn=" + updatedOn + ", booksBorrowModel=" + booksBorrowModel + "]";
 	}
+
 
 
 }

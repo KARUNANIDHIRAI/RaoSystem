@@ -1,5 +1,9 @@
 package com.sm.System.SMInformation;
 
+import java.util.Date;
+
+import javax.persistence.Parameter;
+import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.metamodel.SingularAttribute;
 
 public class SMFixedValue {
@@ -304,7 +308,77 @@ public class SMFixedValue {
 		+" WHERE iDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus "
         +" AND iDNO IN(select a.iDNO from BooksMasterInfoModel a join BooksMasterQtyModel b "
         + "on a.bksMasterQtyIDNO = b.iDNO where b.issueBooksQty =b.returnBooksQty and a.iDNO =:remFIDNO)" ;	
+	//----------SUPPLER Master
+	public static final String SECTOR_BLOCK  = "Sector /  Block";
+	public static final String CITY          = "City";
+	public static final String STATE         = "State";
+	public static final String COUNTRY       = "Country";
+	public static final String PINCODE       = "Pin Code";
+	public static final String FACEBOOK      = "Facebook";
+	public static final String TWITTER       = "Twitter";
+	public static final String LINKDIN       = "Linkdin";
+	public static final String SUPPLIER_MASTER     = "Supplier Master ";
+	public static final String INPUT_VALUES    = "Input Values : ";
+	public static final String OUTPUT_VALUES   = "Output Values : ";
+	public static final String NEW_INFORMATION = "New Information Creatting.... ";
+	public static final String UPD_MODEL = " Model Updation Completed ";
+	public static final String MODEL_SUP_MASTER_ADDRESS   = "supMAddress";
+	public static final String MODEL_SUP_MASTER_CONTACT   = "supMasterContact";
+	public static final String MODEL_REGNO   = "regNo";
+	public static final String MODEL_STATUS   = "status";
+	public static final String ADDRESS_CATEGRORY = "AD";
+	public static final String ADDRESS_CATEGORY_HO = "HO";
+	public static final String CONTACT_REF_HO = "HO";
+	public static final String LIST_GENERATING = "List Generating ";
+	public static final String MODEL_IDNO = "iDNO";
+	public static final String UPDATE_MODEL = "Updating to Model";
+	public static final String HQL_REM_SUPPLIER_IDNO =" Update SupplierMasterModel "
+			+" SET status =:nStatus WHERE iDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus " ;
+	public static final String CONTACT_CATEGORY_HO = "HO";
+	public static final String CONTACT_CATEGORY = "SP";
+	public static final String PARM_BOOKCODE = "bookCode";
+	public static final String PARM_BOOKISSEDUEQTY = "bkIssueQty";
+	public static final String PARM_BOOKRETURNQTY = "bkReturnQty";
+	public static final String UPD_BOOKMASTER_QTYBAL_BKISSUENEW = "Update BooksMasterQtyModel "
+			+ " SET closingBooksQty =closingBooksQty - :bkIssueQty "
+			+ ", issueBooksQty=issueBooksQty + :bkIssueQty"
+			+ " WHERE regNo =:"+SMFixedValue.PARM_REGNO + " and bookCode =:"+ SMFixedValue.PARM_BOOKCODE 	
+		    + " AND closingBooksQty -: "+ SMFixedValue.PARM_BOOKISSEDUEQTY +">=0";
+	public static final String UPD_BOOKMASTER_QTYBAL_BKISSUEREMOVE = "Update BooksMasterQtyModel "
+			+ " SET closingBooksQty =closingBooksQty + :bkIssueQty "
+			+ ", issueBooksQty=issueBooksQty - :bkIssueQty"
+			+ " WHERE regNo =:"+SMFixedValue.PARM_REGNO + " and bookCode =:"+ SMFixedValue.PARM_BOOKCODE 	
+		    + " AND closingBooksQty -: "+ SMFixedValue.PARM_BOOKISSEDUEQTY +">=0";
+	public static final String UPD_BOOKMASTER_QTYBAL_BKRETURN = "Update BooksMasterQtyModel "
+			+ " SET closingBooksQty =closingBooksQty + :" + SMFixedValue.PARM_BOOKRETURNQTY
+			+ ", returnBooksQty=returnBooksQty + :" + SMFixedValue.PARM_BOOKRETURNQTY
+			+ " WHERE regNo =:"+SMFixedValue.PARM_REGNO + " and bookCode =:"+ SMFixedValue.PARM_BOOKCODE; 	
+
+	public static final String UPD_BOOKBORROW_RETURN_INFO = "Update BooksBorrowModel "
+			+ " SET actualReturnDate =:" + SMFixedValue.PARM_RETURN_DATE
+			+ ", borrowedRetStatus =:" + SMFixedValue.PARM_RETURN_STATUS
+			+ " WHERE iDNO =:" + SMFixedValue.PARM_IDNO + " AND regNo =:" +  SMFixedValue.PARM_REGNO 
+			+ " AND  status=: " + SMFixedValue.PARM_STATUS ;
 	
-//	Update LBBookMaster set status ='D' where iDNO =566 AND regNo ='MK308' AND  status='A' AND IDNO IN(select A.IDNO from LBBookMaster a join LBBookMasterQty b on a.BKMastQtyIDNOFK = b.IDNO 
-//			  where b.IssueBooksQty =b.ReturnBooksQty and a.idno=566)
+	public static final String RETRIEVING = "Retrieving ";
+	public static final String EXEC_REMOVE_UPD_MSG="Update BookS Closing Balance Successflly.";
+	public static final String BK_RET_DEFAULT_STATUS = "P";	
+	public static final String PARM_RETURN_STATUS = "R";
+	public static final String PARM_RETURN_DATE = "ReturnDate" ;
+	public static final String INFORMATION_FETCH_CRITERIA = "Informatio Fetch Criteria :";
+	public static final String BOOK_BORROWED_RETURN = "Book Borrowed Return ";
+	public static final String BOOK_BORROW_IDNOINFO = "Retrieving Book Borrow Information base on IDNO:";
+	public static final String HQL_BOOK_BORROW_IDNOINFO1 = "SELECT a.regNo, a.bookCode,"
+			        + " a.bookName, borrowFromDate, BorrowToDate, noOfCopyIssued,booksISBN, edition, author, publisher, a.iDNO "
+	                + " FROM BooksBorrowModel a "
+	                + " INNER JOIN  BooksMasterInfoModel b on a.bookCode=b.bookCode WHERE a.iDNO =729";
+//			        + " WHERE a.iDNO =:" + SMFixedValue.PARM_IDNO + " AND a.regNo =:" +SMFixedValue.PARM_REGNO
+//			        + " AND  a.status=:" + SMFixedValue.PARM_STATUS;
+	 public static final String HQL_BOOK_BORROW_IDNOINFO=" FROM BooksBorrowModel "
+		        + " WHERE iDNO =:" + SMFixedValue.PARM_IDNO + " AND regNo =:" +SMFixedValue.PARM_REGNO
+		        + " AND  status=:" + SMFixedValue.PARM_STATUS;
+	public static final String RETRIEVE = "Retrieve ";
+	public static final String BOOK_RETURN = "Book Retrun ";
+	
+
 }

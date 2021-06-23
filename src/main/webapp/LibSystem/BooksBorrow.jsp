@@ -57,20 +57,14 @@
 						</div>				
 					</div>
 				</div>
-				<br />
 				<div class="row">		
 					<div class="col-sm-12 offset-sm-0 ">
 						<p class ="h5  text-center">Fill <%=SMFixedValue.New%> <%=SMFixedValue.BOOK%> <%=SMFixedValue.BORROWED%> <%=SMFixedValue.INFORMATION%>  </p>
 					</div>
 				</div>
 				<div class="bg-light col-sm-12 offset-sm-0 ">
-					<div class="row">
-						<div class="col-sm-6 offset-sm-0">
-						    <label for="RegNo" class ="h6 "><%=SMFixedValue.School%> </label>
-							<input type="text" class="form-control " id="RegNo" 	name="RegNo" readonly style="border: 0px;">
-						</div>
-					</div>	
-					<div class="row">
+					<br />
+ 					<div class="row">
 						<div class="col-sm-4 offset-sm-0  form-group">
 						    <label for="sAdmNo" class ="h6 "><%=SMFixedValue.STUDENT%> <%=SMFixedValue.ADMISSION%> <%=SMFixedValue.NO%>  </label>
 							<input type="text" class="form-control blineTl " id="sAdmNo" name="sAdmNo"  placeholder="Student Admission No.">
@@ -104,9 +98,9 @@
 					<br />
 				</div>	
 				<br />
-				<div class=" col-sm-12 offset-sm-0 blinebl" Style="border:1px solid">
+				<div class=" col-sm-12 offset-sm-0 blinebl bg-light" Style="border:1px solid">
 					<br />
-					<div class="row bg-light">		
+					<div class="row ">		
 						<div class="col-sm-4 offset-sm-0">
 						    <label for="bkCode" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.Code%> </label>
 							<input type="text" class="form-control   blineTl " id="bkCode" 	name="bkCode"  required
@@ -128,31 +122,29 @@
 							 pattern="[0-9]{1,5}" value="50">
 						</div>
 					</div>	
-					<div id="xbkDetail ">
-						<div class="row">		
-							<div class="col-sm-2 offset-sm-0">
-							    <label for="bkISBN" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.ISBN%> </label>
-								<input type="text" class="form-control blinebl" id="bkISBN" name="bkISBN" readonly Style="border:0px">
-							</div>
-							<div class="col-sm-2 offset-sm-0">
-								<label for="bkEdition" class="form-label h6"><%=SMFixedValue.EDITION%>*</label>
-								<input type="text" class="form-control blinebl" id="bkEdition" name="bkEdition" readonly Style="border:0px">
-							</div>
-							<div class="col-sm-3 offset-sm-0">
-							    <label for="bkTitle" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.TITLE%> </label>
-								<input type="text" class="form-control blinebl" id="bkTitle" name="bkTitle" readonly Style="border:0px">
-							</div>
-							<div class="col-sm-3 offset-sm-0">
-							    <label for="bkAuthor" class ="h6"><%=SMFixedValue.AUTHOR%> </label>
-								<input type="text" class="form-control blinebl" id="bkAuthor" name="bkAuthor" readonly Style="border:0px">
-							</div>
-							<div class="col-sm-2 offset-sm-0">
-							    <label for="bkPubName" class ="h6"><%=SMFixedValue.PUBLICATION%> <%=SMFixedValue.Name%></label>
-								<input type="text" class="form-control blinebl" id="bkPubName" name="bkPubName" readonly Style="border:0px">
-							</div>
-						</div>	
-						<br />
-					</div>
+					<div class="row" id="xbkDetail">		
+						<div class="col-sm-2 offset-sm-0">
+						    <label for="bkISBN" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.ISBN%> </label>
+							<input type="text" class="form-control blinebl" id="bkISBN" name="bkISBN" readonly Style="border:0px">
+						</div>
+						<div class="col-sm-2 offset-sm-0">
+							<label for="bkEdition" class="form-label h6"><%=SMFixedValue.EDITION%>*</label>
+							<input type="text" class="form-control blinebl" id="bkEdition" name="bkEdition" readonly Style="border:0px">
+						</div>
+						<div class="col-sm-3 offset-sm-0">
+						    <label for="bkTitle" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.TITLE%> </label>
+							<input type="text" class="form-control blinebl" id="bkTitle" name="bkTitle" readonly Style="border:0px">
+						</div>
+						<div class="col-sm-3 offset-sm-0">
+						    <label for="bkAuthor" class ="h6"><%=SMFixedValue.AUTHOR%> </label>
+							<input type="text" class="form-control blinebl" id="bkAuthor" name="bkAuthor" readonly Style="border:0px">
+						</div>
+						<div class="col-sm-2 offset-sm-0">
+						    <label for="bkPubName" class ="h6"><%=SMFixedValue.PUBLICATION%> <%=SMFixedValue.Name%></label>
+							<input type="text" class="form-control blinebl" id="bkPubName" name="bkPubName" readonly Style="border:0px">
+						</div>
+					</div>	
+					<br />
 				</div>	
 				<br />
 				<div class="bg-light col-sm-12 offset-sm-0">
@@ -168,7 +160,6 @@
 							text-center h5 btn btn-secondary" style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px" ><%=SMFixedValue.SUBMIT %></button>
 						</div>
 					</div>
-					<br />
 				</div>
 				<hr class="bg-warning" id="inv02"/>
 				<div class="form-row">
@@ -350,19 +341,19 @@
 							 { title:	'BooksCopies'  ,data:"BooksCopies"},
 				    		 { title:	'Action'       ,data:"iDNO",
 						     	"render": function(data,type,row,meta){
-						       	 	return	'<button type="button" name="xRiBRData" align="middle" value="'+data+'" class="bg-warning text-dark" data-toggle="tooltip" data-placement="right" title="Click to Remove " ><span> &#9988; </span> </button>'; 
+						       	 	return	'<button type="button" name="xRiBKRData" align="middle" value="'+data+'" class="bg-warning text-dark" data-toggle="tooltip" data-placement="right" title="Click to Remove " ><span> &#9988; </span> </button>'; 
 				        		},
 					        }
 						]
 					}); 
 				}// EOF table FUNCTION	
 
-			   $(document).on('click', "Button[name='xRiBRData']", function(){ 
+			   $(document).on('click', "Button[name='xRiBKRData']", function(){ 
 					var bookIDNO=$(this).val();
 					var sAdmNo = $("#sAdmNo").val();
 					var request =$.ajax({
 						type:'POST',
-						data:{Action:"xRiBRData", CodeId:bookIDNO, AdmNumber:sAdmNo },
+						data:{Action:"xRiBKRData", CodeId:bookIDNO, AdmNumber:sAdmNo },
 					 	dataType: 'Json',
 						url:'../BookIssued',
 						success:function(result){
