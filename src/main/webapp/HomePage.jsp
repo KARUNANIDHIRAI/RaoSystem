@@ -87,9 +87,9 @@
 								<div class="dropdown-menu " id="megha_menu" style ="width:370px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
 									<div class="row">
 										<div class="col-sm-10">
-										    <P>	<a class="text-dark" href="#">Apartment Automation Solution</a> </P>
-										    <P>	<a class="text-dark" href="#">PG Automation Solution</a> </P>
-										    <P>	<a class="text-dark" href="#">Academic ERP System</a> </P>
+										    <P>	<a class="text-dark" href="UserLogin/UserLogin.jsp">Apartment Automation Solution</a> </P>
+										    <P>	<a class="text-dark" href="UserLogin/UserLogin.jsp">PG Automation Solution</a> </P>
+										    <P>	<a class="text-dark" href="UserLogin/UserLoginSMSI.jsp">Academic ERP System</a> </P>
 										    <P>	<a class="text-dark" href="#">QA Automation</a> </P>
 										    <P>	<a class="text-dark" href="#">Business Solution</a> </P>
 										    <P>	<a class="text-dark" href="#">Resource Out Source</a> </P>
@@ -502,9 +502,9 @@
 			  	<div class="col-sm-3">
 			  		<div class="card text-center">
 			      		<div class="card-body">
-			        		<h5 class="card-title">Commercial Space Automation</h5>
+			        		<h5 class="card-title">Academic ERP System</h5>
 			        		<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			        		<a href="#" class="btn btn-primary">Go somewhere</a>
+			        		<a href="UserLogin/UserLogin.jsp" class="btn btn-primary">Go somewhere</a>
 			      		</div>
 			    	</div>
 			  	</div>

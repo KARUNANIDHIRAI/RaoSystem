@@ -7,6 +7,11 @@ import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.metamodel.SingularAttribute;
 
 public class SMFixedValue {
+	public static final String USER= "User";
+	public static final String LOGIN= "Login";
+	public static final String ROLE= "Role";
+	public static final String TYPE= "Type";
+	
 	public static final String ACTION_PLAIN_TEXT= "text/plain";
 	public static final String NEW_STATUS= "A";
 	public static final String UPDATE_STATUS= "D";
@@ -182,6 +187,7 @@ public class SMFixedValue {
 	public static final String TRANSACTION      = " Transaction";
 	public static final String EXEC_QUERY_MSG  = " Execute Query Successfully. " ;
 	public static final String EXEC_NODATAFOUND_MSG  = " No Data found. " ;
+	public static final String EXE_VALID_MSG = " Validaion Start : ";
 	
 	
 	
@@ -372,13 +378,43 @@ public class SMFixedValue {
 			        + " a.bookName, borrowFromDate, BorrowToDate, noOfCopyIssued,booksISBN, edition, author, publisher, a.iDNO "
 	                + " FROM BooksBorrowModel a "
 	                + " INNER JOIN  BooksMasterInfoModel b on a.bookCode=b.bookCode WHERE a.iDNO =729";
-//			        + " WHERE a.iDNO =:" + SMFixedValue.PARM_IDNO + " AND a.regNo =:" +SMFixedValue.PARM_REGNO
-//			        + " AND  a.status=:" + SMFixedValue.PARM_STATUS;
-	 public static final String HQL_BOOK_BORROW_IDNOINFO=" FROM BooksBorrowModel "
-		        + " WHERE iDNO =:" + SMFixedValue.PARM_IDNO + " AND regNo =:" +SMFixedValue.PARM_REGNO
-		        + " AND  status=:" + SMFixedValue.PARM_STATUS;
+	public static final String MODEL_ACUTAL_RETURNDATE = "borrowRetrunDate";
+	public static final String HQL_BOOK_BORROW_IDNOINFO=" FROM BooksBorrowModel "
+			        + " WHERE a.iDNO =:" + SMFixedValue.PARM_IDNO + " AND a.regNo =:" +SMFixedValue.PARM_REGNO
+			        + " AND  a.status=:" + SMFixedValue.PARM_STATUS;
+	 public static final String HQL_BOOK_RETURN_ON_CURDATE=" FROM BooksBorrowModel "
+		        + " WHERE regNo =:" +SMFixedValue.PARM_REGNO +" AND admNo =:" + SMFixedValue.PARM_IDNO  
+		        + " AND  status=:" + SMFixedValue.PARM_STATUS + " AND  actualReturnDate=:" + SMFixedValue.MODEL_ACUTAL_RETURNDATE;
 	public static final String RETRIEVE = "Retrieve ";
 	public static final String BOOK_RETURN = "Book Retrun ";
+	public static final String SUCCESSFULLY = "Successfully ";
+// SPORT INFORMATION
+	public static final String SPORTS="Sports";
+	public static final String MAKE="Make";
+	public static final String ITEM="Item";
+	public static final String MANUFACTURING_YEAR="Manufacturing Year";
+	public static final String EXPIRY_DATE="Expiry Date";
+	public static final String UNIT="Units";
+	public static final String NOS="Nos";
+	public static final String ACTION_VERIFY_ITEMCODE = "Verifying Duplicate Item Code :";
+	public static final String MODEL_ITEMMASTER = "ItemMasterModel";
+	public static final String MODEL_CODE = "code";
+	public static final String HQL_REM_ITEM_INFO = "Update ItemMasterModel "
+			+ " SET status =:" + SMFixedValue.PARM_NSTATUS
+			+ " WHERE iDNO =:" + SMFixedValue.PARM_IDNO + " AND regNo =:" +  SMFixedValue.PARM_REGNO 
+			+ " AND  status=: " + SMFixedValue.PARM_OSTATUS ;
+	public static final String MODEL_CREATEDON = "createdOn";
+	public static final String REM_SPORTITEM_INFO =  "Update ItemMasterModel "
+			+ " SET status =:" + SMFixedValue.PARM_NSTATUS
+			+ " WHERE iDNO =:" + SMFixedValue.PARM_IDNO + " AND regNo =:" +  SMFixedValue.PARM_REGNO 
+			+ " AND  status=: " + SMFixedValue.PARM_OSTATUS ;
+// URLBase accessibility
+	public static final String PARM_USER_ROLE = "UserRole";
+	public static final String DUPLICATE = "Duplicate";
+	public static final String FNAME = "First Name";
+	public static final String RESET = "Reset";
+	
+	
 	
 
 }

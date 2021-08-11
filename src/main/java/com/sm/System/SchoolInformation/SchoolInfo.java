@@ -46,8 +46,6 @@ public class SchoolInfo extends HttpServlet {
 			case "RegNo": // check regNo exist or not
 				String regNo= request.getParameter("RegNo");
 				String rwaValid=HDAOSchoolInfo.validRegNo(regNo);
-				erMsg+= "step 3: HDAO OK." + rwaValid;
-				System.out.println("step 3: HDAO OK." + rwaValid);
 				out.print(rwaValid);
 				out.flush();
 				break;
@@ -58,7 +56,7 @@ public class SchoolInfo extends HttpServlet {
 				out.print(emailValid);
 				out.flush();
 				break;
-			case "information":	
+			case "information":	 // CREATE NEW USER LOGIN
 				SiModel = UpdFormValueToRModel(SiModel,request);
 				erMsg = " form value Update OK.";
 				ShowRegModel(SiModel);

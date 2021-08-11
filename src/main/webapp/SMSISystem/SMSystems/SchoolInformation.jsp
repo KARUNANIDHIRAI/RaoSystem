@@ -59,8 +59,6 @@
 <%-- 		<!-- Contact Us Header --><jsp:include page="../ContactUs/ContactUsHeader.jsp"></jsp:include><!-- Contact Us --> --%>
 		<div class="container">
 			<form id="SchInfo" name="SchInfo" action="../../SchoolInfo?Action=information" method="post" class="form-horizontal needs-validation" autocomplete="off">
-
-
 				<br />
 				<div class="row">
 					<div class="col-sm-12 offset-sm-0">

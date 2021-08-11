@@ -47,6 +47,16 @@
 		<mapping class="com.rao.System.UserLogin.UserAddress"/>
 		<mapping class="com.rao.System.ConfigSetting.ConfigSettingModel"/>
 
+		<!-- SMSI User Role Based Access  -->
+		<mapping class="com.sm.System.URBAccess.UserRolesModel"/>
+		<mapping class="com.sm.System.URBAccess.UserRolesAccessModel"/>
+		<mapping class="com.sm.System.URBAccess.UserRolesDetailsModel"/>
+		<mapping class="com.sm.System.URBAccess.UserRolesDetailsSubModel"/>
+
+		<!-- SMSI User Login  -->
+		<mapping class="com.sm.System.UserLogin.UserLoginSMSIModel"/>
+		<mapping class="com.sm.System.UserLogin.UserSMSIAddress"/>
+
 
 		<mapping class="com.sm.System.SchoolInformation.SchoolInfoModel"/>
 		<mapping class="com.sm.System.SchoolInformation.Address"/>
@@ -108,6 +118,8 @@
  		<mapping class="com.sm.System.SupplierMaster.SupplierMasterModel"/> 
 		<mapping class="com.sm.System.SupplierMaster.SupplierMasterAddressModel"/> 
 		<mapping class="com.sm.System.SupplierMaster.SupplierMasterContact"/> 
+		<!--  Sport Item Master -->
+		<mapping class="com.Sprots.System.SportItemMaster.ItemMasterModel"/> 
 
     </session-factory>
 </hibernate-configuration>

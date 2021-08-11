@@ -1,4 +1,4 @@
-package com.rao.System.UserLogin;
+package com.sm.System.UserLogin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.raoSystem.password.SendOTP;
 
-
-public class UserLoginValidate extends HttpServlet {
+public class UserLoginInfoValidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,19 +47,16 @@ public class UserLoginValidate extends HttpServlet {
 				showLoginPageVal(loginObj1);
 				
 				erMsg += "Step 2 Show value OK: ,";
-				String Captcha = (String) loginObj1.get("Captcha");//(String) loginObj.get("Captcha");	
-				String lableCaptcha = loginObj1.get("LblCaptcha").toString();
+				String Captcha = loginObj1.get("Captcha");//(String) loginObj.get("Captcha");	
+				String lableCaptcha = loginObj1.get("LblCaptcha");
 				loginObj1 = HDAOUserLogin.validPassword(loginObj1, erMsg);
-				
-//|| !PasswordEncoder.matches(loginObj1.get("PWD"),loginObj1.get("password"))
-				if (!Captcha.equals(lableCaptcha) || !loginObj1.get("PWD").equals(loginObj1.get("password"))) {	
-					String hDAOMessage= "Invalid Login Cridential ! ";
+				if(!Captcha.equals(lableCaptcha)|| !loginObj1.containsKey("password") || !PasswordEncoder.matches(loginObj1.get("PWD"),loginObj1.get("password"))) {
+					String hDAOMessage= "Invalid User id / Password ! ";
 					session.setAttribute("Message",hDAOMessage );
 					response.sendRedirect("UserLogin/UserLogin.jsp");
 				}else {
 					session.setAttribute("UID", loginObj1.get("UID"));
 					session.setAttribute("RwaNo", loginObj1.get("RwaNo"));
-//					response.sendRedirect("../SMSISystem/SMSIMainPage.jsp");
 					response.sendRedirect("RwaHomePage.jsp");
 				}
 				erMsg += "Step 4. HDOA OK: ,";
@@ -75,9 +71,6 @@ public class UserLoginValidate extends HttpServlet {
 				String Captcha1 = loginObj.get("LblCaptcha");//(String) loginObj.get("Captcha");	
 				String valpwd="Invalid";
 				if(!Captcha1.equals(loginObj.get("LblCaptcha"))) {
-					out.print(valpwd);
-					out.flush();
-				}else {
 					boolean valEmail = HDAOUserLogin.validEmail(loginObj.get("email"), erMsg);
 					if(valEmail) {
 						SendOTP mail = new SendOTP();	
@@ -87,23 +80,13 @@ public class UserLoginValidate extends HttpServlet {
 							loginObj.put("OTP", otp);
 							boolean valOTP = HDAOUserLogin.UpdateULOTP(loginObj, erMsg); //updage OPT in loginUser for validate OTP
 							if(valOTP) {
-								out.print("Valid");
-								out.flush();
-							}else {
-								out.print(valpwd);
-								out.flush();
-							}	
-						}else{  
-							erMsg += "OTP Not sent Technical Error ";
-							out.print(valpwd);
-							out.flush();
-				        }  
-					}else {
-						erMsg += "Invalid User ID ";
-						out.print(valpwd);
-						out.flush();
+								valpwd="Valid";
+							}
+						}  
 					}
 				}
+				out.print(valpwd);
+				out.flush();
 				erMsg += "Step 4. HDOA OK:,";
 				break;
 			case "chkOT":
@@ -147,25 +130,55 @@ public class UserLoginValidate extends HttpServlet {
 
 				break;
 			case "uLRD" :
-				erMsg += "Step 1.1 Validate OTP Start: ,";
-				String UIDR = request.getParameter("ulRID");
+				erMsg += "; 1.1 Validation Start: ";
+				String UIDR = request.getParameter("userID");
+				HashMap<String, String> uRIDObj = new HashMap<>();  
+				uRIDObj.put("email", UIDR);
+				erMsg +=  UIDR+ " ," ;
 				String uStatus = "Invalid";
 				String otpSent = "Otp Sent Fail";
-				System.out.println(" ulRID: "+UIDR);
 				String valEmail = HDAOUserLogin.ValidateUIDR(UIDR, erMsg);
+				
 				erMsg += " HDAO OK " + valEmail ;
-				if(valEmail.length()>=1) {
+				if(valEmail!= null) { // email not null
+					uRIDObj.put("email", valEmail);
+					System.out.println("pkrEmail: " + uRIDObj.get("email"));
 					SendOTP mail = new SendOTP();	
 					String otp=mail.emailsend(valEmail); // call method to send OTP
-					if(otp.length()>=4){  
+					
+					if(otp.length()>=1){  // opt not null
 						otpSent = "OTP sent ";
-						uStatus = "Valid";
+						uRIDObj.put("OTP", otp);
+						System.out.println("pk Otp: " + uRIDObj.get("OTP"));
+						boolean uIRDOTP = HDAOUserLogin.UpdateULOTP(uRIDObj, erMsg); //updage OPT in loginUser for validate OTP
+						if(uIRDOTP) {
+							uStatus = "Valid";
+						}
 			        } 
 				}
-				erMsg += otpSent;
+				erMsg += otpSent + "OTP Update" +uStatus ;
 				out.print(uStatus);
 				out.flush();
-				break;
+ 				break; 
+			case "VUIRD" :
+				erMsg += "; 1.1 Validation Start: ";
+				boolean uidstat = false;
+			    UserLoginModel uIRDObj = new UserLoginModel();
+			    uIRDObj = updateUidValue(uIRDObj, request);
+				erMsg +=  " pkotpval: " + uIRDObj.getOtp()+ " , email : " + uIRDObj.getEmail()+ " ,";
+				UserLoginModel valOTP1 = HDAOUserLogin.sentUIRD(uIRDObj, erMsg);
+				System.out.println("pkotp: "+ valOTP1.getEmail());
+				if(valOTP1.getEmail().length()>=5) {
+					SendOTP mail = new SendOTP();	
+						uidstat=mail.uidSend((String)valOTP1.getEmail(),(String)valOTP1.getEmail()); // call method to send OTP
+				}
+				String uirdMessage =uidstat?"Thanks your user login ID sent to your registered email Successfully.":
+					                "Technical Error: User Login fail to recover, contact Technical Team";
+				erMsg += " UIRD sent Status : " + uidstat;
+				session.setAttribute("Message",uirdMessage);
+		        RequestDispatcher rd1=request.getRequestDispatcher("SuccessMsg.jsp");  
+		        rd1.forward(request, response);  
+ 				break;     
 			}
 		} catch (IOException e) {
 			System.out.println("Technical Error: \n"+ e);
@@ -175,6 +188,12 @@ public class UserLoginValidate extends HttpServlet {
 			session.setAttribute("Message","Technical Error");
 			System.out.println(erMsg);
 		}
+	}
+
+	private UserLoginModel updateUidValue(UserLoginModel uIRDObj, HttpServletRequest request) {
+		uIRDObj.setEmail(request.getParameter("ulRID"));
+		uIRDObj.setOtp(request.getParameter("uoptNo"));
+		return uIRDObj;
 	}
 
 	private void showPwdObj(HashMap<String, String> pwdObj) {
@@ -204,7 +223,7 @@ public class UserLoginValidate extends HttpServlet {
 	} 
 
 	private HashMap<String, String> UpdateLoginPageVal(HashMap<String, String> loginObj, HttpServletRequest request, HttpSession session) {
-		loginObj.put("Captcha", (String) request.getParameter("Captcha"));
+		loginObj.put("Captcha", request.getParameter("Captcha"));
 		loginObj.put("LblCaptcha",(String) session.getAttribute("ucpname"));
 		loginObj.put("UID", request.getParameter("email"));
 		loginObj.put("PWD", request.getParameter("Pwd"));
@@ -229,4 +248,5 @@ public class UserLoginValidate extends HttpServlet {
 		}
 		return captchBuffer.toString();
 	}
+	
 }

@@ -38,10 +38,10 @@
 		<!-- Page Header --><jsp:include page="../HeaderPage.jsp"></jsp:include><!-- Page Header -->
 <%-- 		<!-- Contact Us Header --><jsp:include page="../ContactUs/ContactUsHeader.jsp"></jsp:include><!-- Contact Us --> --%>
 		<div class="container" style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);">
-			<form id="TNTInfo" name="TNTInfo" action="../UserLoginValidate?Action=Action" method="post" class="form-horizontal needs-validation" autocomplete="off">
+			<form id="TNTInfo" name="TNTInfo" action="../UserLoginSMSI?Action=Action" method="post" class="form-horizontal needs-validation" autocomplete="off">
 				<br />	
 				<div class = "row" >
-					<p class ="h5 col-sm-4 offset-sm-4">Apartment Management System  </p>
+					<p class ="h5 col-sm-4 offset-sm-5">Academic ERP System  </p>
 				</div>
 
 				<div class = "row" >

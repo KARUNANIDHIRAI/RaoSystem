@@ -710,6 +710,36 @@
   	<description></description>
   	<servlet-class>com.sm.System.SupplierMaster.SupplierMaster</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ItemMaster</servlet-name>
+  	<display-name>ItemMaster</display-name>
+  	<description></description>
+  	<servlet-class>com.Sprots.System.SportItemMaster.ItemMaster</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SportItemPurchase</servlet-name>
+  	<display-name>SportItemPurchase</display-name>
+  	<description></description>
+  	<servlet-class>com.Sprots.System.SportItemsPurchase.SportItemPurchase</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserLoginSMSI</servlet-name>
+  	<display-name>UserLoginSMSI</display-name>
+  	<description>School Management - user login authorization</description>
+  	<servlet-class>com.sm.System.UserLogin.UserLoginSMSI</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserLoginSMSIInfo</servlet-name>
+  	<display-name>UserLoginSMSIInfo</display-name>
+  	<description>Create New User Login for School Management</description>
+  	<servlet-class>com.sm.System.UserLogin.UserLoginSMSIInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>URBAccessInfo</servlet-name>
+  	<display-name>URBAccessInfo</display-name>
+  	<description>Create User Roles Information</description>
+  	<servlet-class>com.sm.System.URBAccess.URBAccessInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -1180,6 +1210,26 @@
   <servlet-mapping>
   	<servlet-name>SupplierMaster</servlet-name>
   	<url-pattern>/SupplierMaster</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ItemMaster</servlet-name>
+  	<url-pattern>/ItemMaster</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SportItemPurchase</servlet-name>
+  	<url-pattern>/SportItemPurchase</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserLoginSMSI</servlet-name>
+  	<url-pattern>/UserLoginSMSI</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserLoginSMSIInfo</servlet-name>
+  	<url-pattern>/UserLoginSMSIInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>URBAccessInfo</servlet-name>
+  	<url-pattern>/URBAccessInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

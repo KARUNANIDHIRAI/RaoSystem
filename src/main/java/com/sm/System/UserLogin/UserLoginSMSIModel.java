@@ -1,4 +1,4 @@
-package com.rao.System.UserLogin;
+package com.sm.System.UserLogin;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,22 +12,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 @Entity
-@Table(name = "knUserLogin")
-public class UserLoginModel {
-
-										
+@Table(name = "SMUserLogin")
+public class UserLoginSMSIModel {
+	
 	@Id
 	@Column(name ="emailId", columnDefinition = "nvarchar(255)")
 	private String email;
-
-	@OneToMany(cascade = CascadeType.ALL , mappedBy= "ULModel")
-	private List<UserAddress> UAdd = new ArrayList<>();
-
- 
 	
-	@Column(name="RwaNO", nullable= false, updatable = false, columnDefinition = "nvarchar(255)")
+	@OneToMany(cascade = CascadeType.ALL , mappedBy= "ULModel")
+	private List<UserSMSIAddress> UAdd = new ArrayList<>();
+	
+	
+	
+	@Column(name="RegNo", nullable= false, updatable = false, columnDefinition = "nvarchar(255)")
 	private String regNo;
 	
 	@Column(name ="userType", nullable= false, updatable = false, columnDefinition = "int")
@@ -38,7 +36,7 @@ public class UserLoginModel {
 	
 	@Column(name ="lName", nullable= false, updatable = true, columnDefinition = "nvarchar(255)")
 	private String LastName;
-		
+	
 	@Column(name ="mobileNo", nullable= false, updatable = true, columnDefinition = "nvarchar(255)")
 	private String Mobile;
 	
@@ -48,10 +46,10 @@ public class UserLoginModel {
 	@Column(name ="loginPassword", nullable= false, updatable = true, columnDefinition = "nvarchar(255)")
 	private String LPassword;
 	
-
+	
 	@Column(name= "Status", nullable= false, columnDefinition = "nvarchar(255)")
 	private String status;
-
+	
 	@Column(name= "CreatedBy", nullable= false, updatable = false, columnDefinition = "nvarchar(255)")
 	private String createdBy;
 	
@@ -69,147 +67,144 @@ public class UserLoginModel {
 	private String otp;
 	
 	/**
-	 * @param email
-	 * @param regNo
-	 * @param otp
-	 */
-	public UserLoginModel(String email, String otpNo, String regNo ) {
+	* @param email
+	* @param regNo
+	* @param otp
+	*/
+	public UserLoginSMSIModel(String email, String otpNo, String regNo ) {
 		super();
 		this.email = email;
 		this.otp = otpNo;
 		this.regNo = regNo;
 	}
-	public UserLoginModel() {
+	public UserLoginSMSIModel() {
 		super();
 	}
 	public String getEmail() {
 		return email;
 	}
-
+	
 	public void setEmail(String email) {
-		this.email = email;
+	this.email = email;
 	}
 	public String getRegNo() {
-		return regNo;
+	return regNo;
 	}
-
+	
 	public void setRegNo(String regNo) {
-		this.regNo = regNo;
+	this.regNo = regNo;
 	}
-
+	
 	public int getlUType() {
-		return lUType;
+	return lUType;
 	}
-
+	
 	public void setlUType(int lUType) {
-		this.lUType = lUType;
+	this.lUType = lUType;
 	}
-
+	
 	public String getFirstName() {
-		return FirstName;
+	return FirstName;
 	}
-
+	
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+	FirstName = firstName;
 	}
-
+	
 	public String getLastName() {
-		return LastName;
+	return LastName;
 	}
-
+	
 	public void setLastName(String lastName) {
-		LastName = lastName;
+	LastName = lastName;
 	}
-
+	
 	public String getMobile() {
-		return Mobile;
+	return Mobile;
 	}
-
+	
 	public void setMobile(String mobile) {
-		Mobile = mobile;
+	Mobile = mobile;
 	}
-
+	
 	public String getSecurity() {
-		return Security;
+	return Security;
 	}
-
+	
 	public void setSecurity(String security) {
-		Security = security;
+	Security = security;
 	}
-
+	
 	public String getLPassword() {
-		return LPassword;
+	return LPassword;
 	}
-
+	
 	public void setLPassword(String lPassword) {
-		LPassword = lPassword;
+	LPassword = lPassword;
 	}
-
+	
 	public String getStatus() {
-		return status;
+	return status;
 	}
-
+	
 	public void setStatus(String status) {
-		this.status = status;
+	this.status = status;
 	}
-
+	
 	public String getCreatedBy() {
-		return createdBy;
+	return createdBy;
 	}
-
+	
 	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
+	this.createdBy = createdBy;
 	}
-
+	
 	public Date getCreatedOn() {
-		return createdOn;
+	return createdOn;
 	}
-
+	
 	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
+	this.createdOn = createdOn;
 	}
-
+	
 	public String getUpdatedBy() {
-		return updatedBy;
+	return updatedBy;
 	}
-
+	
 	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
+	this.updatedBy = updatedBy;
 	}
-
+	
 	public Date getUpdatedOn() {
-		return UpdatedOn;
+	return UpdatedOn;
 	}
-
+	
 	public void setUpdatedOn(Date updatedOn) {
-		UpdatedOn = updatedOn;
+	UpdatedOn = updatedOn;
 	}
-
-	public List<UserAddress> getUAdd() {
-		return UAdd;
+	
+	public List<UserSMSIAddress> getUAdd() {
+	return UAdd;
 	}
-
-	public void setUAdd(List<UserAddress> uAdd) {
-		UAdd = uAdd;
+	
+	public void setUAdd(List<UserSMSIAddress> uAdd) {
+	UAdd = uAdd;
 	}
-
+	
 	public String getOtp() {
-		return otp;
+	return otp;
 	}
-
+	
 	public void setOtp(String otpNo) {
-		this.otp = otpNo;
+	this.otp = otpNo;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "UserLoginModel [email=" + email + ", UAdd=" + UAdd + ", regNo=" + regNo + ", lUType=" + lUType
-				+ ", FirstName=" + FirstName + ", LastName=" + LastName + ", Mobile=" + Mobile + ", Security="
-				+ Security + ", LPassword=" + LPassword + ", status=" + status + ", createdBy=" + createdBy
-				+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", UpdatedOn=" + UpdatedOn + ", otp=" + otp
-				+ "]";
+		+ ", FirstName=" + FirstName + ", LastName=" + LastName + ", Mobile=" + Mobile + ", Security="
+		+ Security + ", LPassword=" + LPassword + ", status=" + status + ", createdBy=" + createdBy
+		+ ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", UpdatedOn=" + UpdatedOn + ", otp=" + otp
+		+ "]";
 	}
-
-
-	
 }

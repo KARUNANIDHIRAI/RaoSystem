@@ -1,4 +1,4 @@
-package com.rao.System.UserLogin;
+package com.sm.System.UserLogin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,20 +15,25 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.mail.EmailException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.sm.System.UserLogin.HDAOUserLoginSMSI;
+import com.rao.System.UserLogin.UserLoginModel;
 import com.raoSystem.password.SendOTP;
 
-
-public class UserLoginValidate extends HttpServlet {
+/**
+ * Servlet implementation class UserLoginSMSI
+ */
+public class UserLoginSMSI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 
+  	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		String erMsg= "Step1: Start";
 		String Action = request.getParameter("Action");
-		System.out.println("Action :" + Action);
+		erMsg += " Action: ";
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter(); // using becaz of json in javascript
 		try {
@@ -43,14 +48,13 @@ public class UserLoginValidate extends HttpServlet {
 			case "Action" :
 				BCryptPasswordEncoder PasswordEncoder = new BCryptPasswordEncoder(); 
 				HashMap<String, String> loginObj1 = new HashMap<>();
-				loginObj1 = UpdateLoginPageVal(loginObj1, request, session);
+				loginObj1 = UpdateLoginSMSIPageVal(loginObj1, request, session);
 				erMsg += "Step 1.1 Form value Get OK: ,";
 				showLoginPageVal(loginObj1);
-				
 				erMsg += "Step 2 Show value OK: ,";
-				String Captcha = (String) loginObj1.get("Captcha");//(String) loginObj.get("Captcha");	
+				String Captcha = (String) loginObj1.get("Captcha");	
 				String lableCaptcha = loginObj1.get("LblCaptcha").toString();
-				loginObj1 = HDAOUserLogin.validPassword(loginObj1, erMsg);
+				loginObj1 = HDAOUserLoginSMSI.validPassword(loginObj1, erMsg);
 				
 //|| !PasswordEncoder.matches(loginObj1.get("PWD"),loginObj1.get("password"))
 				if (!Captcha.equals(lableCaptcha) || !loginObj1.get("PWD").equals(loginObj1.get("password"))) {	
@@ -60,8 +64,7 @@ public class UserLoginValidate extends HttpServlet {
 				}else {
 					session.setAttribute("UID", loginObj1.get("UID"));
 					session.setAttribute("RwaNo", loginObj1.get("RwaNo"));
-//					response.sendRedirect("../SMSISystem/SMSIMainPage.jsp");
-					response.sendRedirect("RwaHomePage.jsp");
+					response.sendRedirect("SMSISystem/SMSIMainPage.jsp");
 				}
 				erMsg += "Step 4. HDOA OK: ,";
 				break;
@@ -78,14 +81,14 @@ public class UserLoginValidate extends HttpServlet {
 					out.print(valpwd);
 					out.flush();
 				}else {
-					boolean valEmail = HDAOUserLogin.validEmail(loginObj.get("email"), erMsg);
+					boolean valEmail = HDAOUserLoginSMSI.validEmail(loginObj.get("email"), erMsg);
 					if(valEmail) {
 						SendOTP mail = new SendOTP();	
 						String otp=mail.emailsend(loginObj.get("email")); // call method to send OTP
 						if(otp.length()>=4){  
 							erMsg += "OTP sent ";
 							loginObj.put("OTP", otp);
-							boolean valOTP = HDAOUserLogin.UpdateULOTP(loginObj, erMsg); //updage OPT in loginUser for validate OTP
+							boolean valOTP = HDAOUserLoginSMSI.UpdateULOTP(loginObj, erMsg); //updage OPT in loginUser for validate OTP
 							if(valOTP) {
 								out.print("Valid");
 								out.flush();
@@ -108,9 +111,9 @@ public class UserLoginValidate extends HttpServlet {
 				break;
 			case "chkOT":
 				erMsg += "Step 1.1 Validate OTP Start: ,";
-				UserLoginModel ULOTP = new UserLoginModel(request.getParameter("email"),request.getParameter("otpNo") , "");
+				UserLoginSMSIModel ULOTP = new UserLoginSMSIModel(request.getParameter("email"),request.getParameter("otpNo") , "");
 				System.out.println(" pkotpval: " + ULOTP.getOtp()+ " , email : " + ULOTP.getEmail());
-				boolean valOTP = HDAOUserLogin.ValidateOTP(ULOTP, erMsg);
+				boolean valOTP = HDAOUserLoginSMSI.ValidateOTP(ULOTP, erMsg);
 			    System.out.println("valOTP: "+ valOTP);
 				erMsg += "Step 4 HDAO OK: ,";
 				String OPTValid = valOTP?"Valid OTP" :"Invalid OTP" ;	
@@ -133,7 +136,7 @@ public class UserLoginValidate extends HttpServlet {
 				    if(pwdEncoder.matches(pwdObj.get("password"),pwdBcrypt) ) {
 				    	pwdObj.put("password",pwdBcrypt);
 						erMsg += "Step 2.1 PWD Encrption OK: ,";
-						boolean validEmail = HDAOUserLogin.UpdatePassword(pwdObj, erMsg);
+						boolean validEmail = HDAOUserLoginSMSI.UpdatePassword(pwdObj, erMsg);
 						
 						erMsg += "Step 4. execute HDOA PWD OK:" +validEmail + " , ";
 						if(validEmail) {
@@ -152,7 +155,7 @@ public class UserLoginValidate extends HttpServlet {
 				String uStatus = "Invalid";
 				String otpSent = "Otp Sent Fail";
 				System.out.println(" ulRID: "+UIDR);
-				String valEmail = HDAOUserLogin.ValidateUIDR(UIDR, erMsg);
+				String valEmail = HDAOUserLoginSMSI.ValidateUIDR(UIDR, erMsg);
 				erMsg += " HDAO OK " + valEmail ;
 				if(valEmail.length()>=1) {
 					SendOTP mail = new SendOTP();	
@@ -203,7 +206,7 @@ public class UserLoginValidate extends HttpServlet {
 		 }       
 	} 
 
-	private HashMap<String, String> UpdateLoginPageVal(HashMap<String, String> loginObj, HttpServletRequest request, HttpSession session) {
+	private HashMap<String, String> UpdateLoginSMSIPageVal(HashMap<String, String> loginObj, HttpServletRequest request, HttpSession session) {
 		loginObj.put("Captcha", (String) request.getParameter("Captcha"));
 		loginObj.put("LblCaptcha",(String) session.getAttribute("ucpname"));
 		loginObj.put("UID", request.getParameter("email"));

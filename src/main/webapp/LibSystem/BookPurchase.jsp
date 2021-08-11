@@ -219,7 +219,7 @@
 				<br />
 				<hr class="bg-warning" id="inv02"/>
 				<div class="form-row">
-					<div class="col-sm-12 offset-sm-0" >  <!--  showing data into table -->
+					<div class="col-sm-12 offset-sm-0">  <!--  showing data into table -->
 						<div class="table-responsive ">
 							<table id="BookList" class="table table-striped table-hover compact row-border"  style="width:100%; font-size: 12px;"> </table>
 						</div>

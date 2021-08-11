@@ -12,6 +12,7 @@ import org.json.simple.JsonArray;
 import com.rao.System.RwaReg.RwaRegModel;
 import com.raoSystem.Utility.ValidRwaNo;
 import com.raoSystem.daoConnection.HibernateDAO;
+import com.sm.System.SMInformation.SMFixedValue;
 import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
 
 public class HDAOSchoolInfo {
@@ -43,19 +44,16 @@ public class HDAOSchoolInfo {
 		String regStaus = "";
 		Transaction transaction = null;
 		String erMsg;
-		erMsg = " Step 2: Validatation start " ;
-		System.out.println("errMsg: "+ erMsg + "Rwa RegNO: "+ registrationNo);
+		erMsg = SMFixedValue.EXE_VALID_MSG;
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()){
 			transaction = sessionObj.beginTransaction();
-	          erMsg += " 2.1: Began Tran OK. " ;
-	          SchoolInfoModel rows=  (SchoolInfoModel) sessionObj.get(SchoolInfoModel.class,registrationNo);
-	          System.out.println( "query execute successfully");
-	          if (rows!=null) {
-		          regStaus="Duplicate";
-		          erMsg = " 2.3 :Validatation ok" +rows.getRegNo() ;
-	          }
-	      }catch (Exception e) {
-	    	  erMsg += "Catch Exception: \n"+ e;
+	        SchoolInfoModel rows=  (SchoolInfoModel) sessionObj.get(SchoolInfoModel.class,registrationNo);
+	        erMsg += SMFixedValue.EXEC_QUERY_MSG;
+	        if (rows!=null) {
+		        regStaus=SMFixedValue.DUPLICATE; 
+	        }
+	    }catch (Exception e) {
+	    	  erMsg += SMFixedValue.EXEC_CATCH_MSG + e;
 		}finally {
 	          System.out.println("\n"+erMsg );
 		}

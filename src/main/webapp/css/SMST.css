@@ -68,6 +68,10 @@ p{
 	 border-bottom: 1px solid #FFC30F;
 	 border-left: 1px solid #FFC30F;
 }
+.blineTlw{
+	 border-top: 1px solid #FFC30F;
+	 border-left: 1px solid #FFC30F;
+}
 .blinebr{
 	 border-bottom: 1px solid green;
 	 border-right: 1px solid green;

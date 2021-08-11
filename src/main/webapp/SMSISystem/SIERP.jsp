@@ -62,12 +62,7 @@
 				</div>
 			</div>
 		</div>		
-        <br /><br />
-
-
-
-		<div class="container-flucid" > 
-			<div class="row "> 
+        <br /><br />``
                 <div class="col-lg-2 offset-sm-1" > 
  					<img src="../images/KSB.png" class="img-responsive "/>
 				</div>

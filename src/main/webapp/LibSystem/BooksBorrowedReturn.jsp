@@ -41,7 +41,6 @@
 		<!-- Page Header --><jsp:include page="../HeaderPage.jsp"></jsp:include><!-- Page Header -->
 		<div class="container">
 			<form id="xfmInfo" name="SchInfo" action="../BooksBorrowedReturn?Action=xRetBKBRCD" method="post" class="form-horizontal needs-validation" autocomplete="off">
-				<br />
 				<div class="row">
 					<div class="col-sm-12 offset-sm-0">
 						<div class="card" Style="Padding-top:0px">
@@ -49,9 +48,11 @@
 								style="background-color: #38ACEC">
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item " id="ViewUser"><a class="nav-link active text-white "
-										style="background-color: #000080" href="#"> <%=SMFixedValue.BOOK%> <%=SMFixedValue.BORROWED%> <%=SMFixedValue.TO%> <%=SMFixedValue.STUDENT%> </a></li>
+										style="background-color: #000080" href="#"> <%=SMFixedValue.BOOK_RETURN%> <%=SMFixedValue.TO%> <%=SMFixedValue.LIBRARY%> </a></li>
 									<li class="nav-item " id="XrBKBRPendingView"><a class="nav-link text-light" href="#">
 										<%=SMFixedValue.View%>  <%=SMFixedValue.BOOK%> <%=SMFixedValue.BORROWED%> </a></li>
+									<li class="nav-item " id="XrBKBRPendingSum"><a class="nav-link text-light" href="#">
+										<%=SMFixedValue.BOOK_RETURN%> <%=SMFixedValue.Summary%>  </a></li>
 								</ul>
 							</div>
 						</div>				
@@ -329,7 +330,8 @@
 						$("#bkTitle").val(name.BookTitle);
 						$("#bkAuthor").val(name.Author);
 						$("#bkPubName").val(name.Publisher);
-						$('#retnDate').datepicker().datepicker('setDate', 'today');		
+						//$('#retnDate').datepicker().datepicker('setDate', new Date());	
+						$("#retnDate").datepicker({dateFormat: "yy-mm-dd"}).datepicker("setDate", new Date());	
 					});
 				}
 
@@ -363,21 +365,39 @@
 					});					
 				}
 				
-/*  				$("#xBKBRRet1").click(function(){ 
+  				$("#XrBKBRPendingSum").click(function(){ 
 					var xsAdmNo = $("#sAdmNo").val();
-					vAR XbkCode = $("#bkCode").val();
-					alert('xBKBRidno:' + xBKBRidno);
 					var request =$.ajax({
 						type:'POST',
-						data:{Action : "xRetBKBRCD", AdmNumber : xsAdmNo, CodeId: xBKBRidno },
+						data:{Action : "xRiBooksReturn", AdmNumber : xsAdmNo },
 					 	dataType: 'Json',
 						url:'../BooksBorrowedReturn',
 						success:function(result){
-							bookBorrowedList(result);
+							bookReturnList(result);
 						}	
 					});					
 				});
- */				function scrollPageDown(pos){
+				function bookReturnList(result){
+					$("BookBorrowedList").show();
+					$('#BookBorrowedList').dataTable({
+					    destroy: true,
+						"data":result,
+						 columnDefs: [ {	targets: -1, className: 'dt-body-justify'	}, ],
+					    "columns": [
+							 { title:	'SNo'	       ,data:"SNO"},
+							 { title:	'RegNo'        ,data:"RegNo"},
+							 { title:	'Adm.No'       ,data:"SAdmNo"},
+							 { title:	'Book Code'    ,data:"BookCode" },  
+							 { title:	'Book Name'    ,data:"BookName"},
+							 { title:	'Faculty Name',data:"Name"},
+							 { title:	'Return Date'  ,data:"ReturnDate" },  
+							 { title:	'Issue Date'  ,data:"fromDate" },  
+							 { title:	'Due Date'  ,data:"ToDate" },  
+							 { title:	'Books Retrun'  ,data:"BKReturnNos"}
+						]
+					}); 
+				}// EOF table FUNCTION				
+ 				function scrollPageDown(pos){
 					$("html, body").animate({
 					    scrollTop: $('html, body').get(0).scrollHeight}, pos);				
 				}// eof function -> function for scroll page bottom
@@ -388,6 +408,7 @@
 					$("HTML, BODY").animate({
 				            scrollTop: bottom }, 1000);			
 				}// eof function -> function for scroll page bottom
+
 				
 			});// eof doucment			
 		</script>	

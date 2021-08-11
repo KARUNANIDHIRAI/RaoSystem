@@ -18,6 +18,7 @@ var gender = " ";
 var facultyOption= " ";
 var actionType =" ";
 var category =" ";
+var uRType = " ";
 alert("knSMFC");
 $(document).ready(function(){
 	   $("#Category").click(function(){
@@ -328,6 +329,15 @@ $(document).ready(function(){
 	    $("#ActionType").html(actionType);
 	});
 	
+	$("#UserType").click(function(){
+		if (uRType!=" "){return;}
+		uRType=" <option selected value=0>Choose User Role Type*</option>";
+		var cURType = ['Super User', 'Admin User','Site User'];
+	    $.each(cURType, function(index, value){
+	    	uRType+=" <option value='"+index+1 +"'>"+ value+ "</option>";
+	    });
+	    $("#UserType").html(uRType);
+	});
 	
 	var vTime = visitTime();
 	function visitTime(){
@@ -391,7 +401,7 @@ $(document).ready(function(){
 		yearEnd:'2030',
 		weeks:true	
 	});
-	$("#retDate").datetimepicker({
+	$("#MfcDate").datetimepicker({
 		timepicker: false,
 		datepicker: true,
 		format: 'd-m-yy', // formate date
@@ -401,6 +411,26 @@ $(document).ready(function(){
 		yearEnd:'2030',
 		weeks:true	
 	});
+	$("#ExpiryDate").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'd-m-yy', // formate date
+		value:  false, //defaultTime and date
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});
+	/*$("#retnDate").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'dd-MM-yyyy', // formate date
+		value:  false, //defaultTime and date
+		step: 5,	
+		yearStart:yearStart(),
+		yearEnd:'2030',
+		weeks:true	
+	});*/
 	$("#faculty").click(function(){
 		facultyOption!=" "?retrun:facultyList();
 	});
@@ -431,6 +461,15 @@ $(document).ready(function(){
 		$("HTML, BODY").animate({
 	            scrollTop: bottom }, 1000);			
 	}// eof function -> function for scroll page bottom
+   $("#Unit").click(function(){
+		if (unit!=" "){return;}
+		unit=" <option selected value=0>Choose Unit*</option>";
+	    var uUnit = ['KG', 'PKT','NOS','LTR'];
+       $.each(uUnit, function(index, value){
+    	   unit+=" <option value='"+value +"'>"+ value+ "</option>";
+       });
+       $("#Unit").html(unit);
+   });
 
 
 

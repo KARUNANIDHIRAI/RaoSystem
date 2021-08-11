@@ -34,6 +34,7 @@
 								<li class="active nav-item "><a href="../ContactUs/ProdDemoEnquiry.jsp" class="nav-link text-light"	> <%= Information.reqdemo%> </a> </li> 
 								<li class="nav-item"><a href="../ContactUs/CollaborationEnquiry.jsp" class="nav-link text-light"><%= Information.joinPartner%> </a> </li> 
 								<li class="nav-item"><a href="../ContactUs/ContactUsMainPage.jsp" class="nav-link text-light"> <%= Information.reachus%> </a> </li> 
+								<li class="nav-item"><a href="../Common/LogOutPage.jsp" class="nav-link text-primary"> <%= Information.LogoutTitle%> </a> </li> 
 							</ul>
 						</div>
 					</nav>
@@ -133,6 +134,37 @@
 						        	<a class="dropdown-item" href="#">New Books Request</a>
 						          	<a class="dropdown-item" href="#">Books not Return</a>
 						        </div>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					        	<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" 
+					        	aria-expanded="false">Sports</a> <%--  <%=SMFixedValue.SPORTS%> --%>
+								<div class="row">
+									<div class="dropdown-menu " id="megha_menu" style ="width:650px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
+										<div class="row">
+											<div class="col-sm-6">
+									        	<a class="dropdown-item" href="#">Sports Information<%-- <%=SMFixedValue.SPORTS%> <%=SMFixedValue.INFORMATION%> --%></a>
+									          	<div class="dropdown-divider"></div>
+									        	<a class="dropdown-item" href="SMSystems/SupplierMaster.jsp">Supplier Information</a>
+									        	<a class="dropdown-item" href="../Sports/ItemMaster.jsp">Sport Items Information</a>
+									        	<a class="dropdown-item" href="../Sports/ItemsMasterOpenBal.jsp">Opening Stock Items</a>
+									        	<a class="dropdown-item" href="SMSystems/MasSubject.jsp">Purchase Order</a>
+									        	<a class="dropdown-item" href="SMSystems/TimeTable.jsp">Purchase Order Approved</a>
+									        	<a class="dropdown-item" href="../Sports/ItemMasterPurchase.jsp">Purchase New Items</a>
+									        	<a class="dropdown-item"href="SMSystems/SPerformance.jsp">Reject Damaged Sports Items</a>
+									        	<a class="dropdown-item"href="SMSystems/SPerformance.jsp">Sale Scrap Sports Items</a>
+									        	<a class="dropdown-item" href="SMSystems/FacultyMemberMain.jsp">Request For New Sports item</a>
+											</div>
+											<div class="col-sm-5">
+									          	<a class="dropdown-item" href="#">Borrow Information</a>
+									          	<div class="dropdown-divider"></div>
+									        	<a class="dropdown-item" href="../LibSystem/BooksBorrow.jsp">Borrow Sports Items</a>
+									        	<a class="dropdown-item" href="../LibSystem/BooksBorrowReturn.jsp">Return Sports Items</a>
+									        	<a class="dropdown-item" href="SMSystems/SFeePayment.jsp">Lost Borrowed Sports Item</a>
+									        	<a class="dropdown-item" href="SMSystems/Faculty.jsp">Borrowed Sprots Items Not Return</a>
+											</div>
+									    </div>
+									</div>
+								</div>
 					      	</li>
 
 					      	<li class="nav-item dropdown">

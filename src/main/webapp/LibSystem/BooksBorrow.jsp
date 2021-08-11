@@ -57,6 +57,7 @@
 						</div>				
 					</div>
 				</div>
+				<br />
 				<div class="row">		
 					<div class="col-sm-12 offset-sm-0 ">
 						<p class ="h5  text-center">Fill <%=SMFixedValue.New%> <%=SMFixedValue.BOOK%> <%=SMFixedValue.BORROWED%> <%=SMFixedValue.INFORMATION%>  </p>
@@ -104,22 +105,21 @@
 						<div class="col-sm-4 offset-sm-0">
 						    <label for="bkCode" class ="h6"><%=SMFixedValue.BOOK%> <%=SMFixedValue.Code%> </label>
 							<input type="text" class="form-control   blineTl " id="bkCode" 	name="bkCode"  required
-							pattern="[A-Za-z0-9]{4,100}" title=""  value="BK101">
+							pattern="[A-Za-z0-9]{4,100}" title=""  >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
 						    <label for="fromDate" class ="h6"><%=SMFixedValue.BORROWED%> <%=SMFixedValue.FROM_DATE%></label>
-							<input type="text" class="form-control   blineTl " id="fromDate" 	name="fromDate"  required
-							  value="1000">
+							<input type="text" class="form-control   blineTl " id="fromDate" 	name="fromDate"  required >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
 							<label for="toDate" class="form-label h6"><%=SMFixedValue.BORROWED%> <%=SMFixedValue.TO_DATE%>*</label>
 							<input type="text" class="form-control   blineTl " id="toDate" 	name="toDate" 
-							       placeholder="First Edition" required  value="11.24 ">
+							       placeholder="First Edition" required  >
 						</div>
 						<div class="col-sm-2 offset-sm-0">
 						    <label for="bkQty" class ="h6"> <%=SMFixedValue.BOOKCOPIES%> </label>
 							<input type="text" class="form-control   blineTl " id="bkQty" 	name="bkQty"  required
-							 pattern="[0-9]{1,5}" value="50">
+							 pattern="[0-9]{1,5}" >
 						</div>
 					</div>	
 					<div class="row" id="xbkDetail">		

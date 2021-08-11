@@ -1,12 +1,7 @@
-package com.rao.System.UserLogin;
-
+package com.sm.System.UserLogin;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
-import javax.persistence.NoResultException;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -14,38 +9,25 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
-import org.apache.commons.mail.EmailException;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
-
-import com.rao.System.RwaReg.RwaRegModel;
-import com.raoSystem.createUser.UserModel;
 import com.raoSystem.daoConnection.HibernateDAO;
-import com.raoSystem.password.SendOTP;
-
-public class HDAOUserLogin {
-	
-	public static String newUser(UserLoginModel uLModel, String erMsg) {
+//import com.rao.System.UserLogin.UserLoginModel;
+//import com.rao.System.UserLogin.UserAddress;
+public class HDAOUserLoginSMSI {
+	public static String newUser(UserLoginSMSIModel uLModel, String erMsg) {
 		Transaction transaction = null;
 		erMsg+=" Step 3.0 Start HDAO - ";
 		try ( Session sessionObj = HibernateDAO.getSessionFactory().openSession()){
 			transaction = sessionObj.beginTransaction();
-//			sessionObj.save(uLModel);
 			sessionObj.persist(uLModel);
 			sessionObj.getTransaction().commit();
 			sessionObj.close();
 			erMsg ="";
-		}catch(HibernateException hibernateEx) {
-			erMsg +="...HibernateException Transaction .. \n" + hibernateEx;
-			if (transaction!=null) {
-	    		  transaction.rollback();
-	    	  }
-    		return erMsg;
 	    }catch (Exception e) {
 			erMsg +="......Catch exception .. \n" + e;
 	    	  if (transaction!=null) {
@@ -64,7 +46,7 @@ public class HDAOUserLogin {
 		     int ctr= 0;
 	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
 	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
-	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        Root<UserLoginSMSIModel> root = creteriaQuery.from(UserLoginSMSIModel.class);
 	        
 	        Path<Object> rwaNo = root.get("regNo");
 	        Path<Object> email = root.get("email");
@@ -108,18 +90,18 @@ public class HDAOUserLogin {
 	        erMsg += " 2.1: Began Tran OK. " ;
 	        int ctr = 0;
 	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
-	        CriteriaQuery<UserLoginModel> creteriaQuery = builder.createQuery(UserLoginModel.class);
-	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        CriteriaQuery<UserLoginSMSIModel> creteriaQuery = builder.createQuery(UserLoginSMSIModel.class);
+	        Root<UserLoginSMSIModel> root = creteriaQuery.from(UserLoginSMSIModel.class);
 //	        root.join("UAdd");
 	        root.fetch("UAdd");
 
 	        creteriaQuery.where(builder.equal(root.get("regNo"), "MK103"),
 		                        builder.equal(root.get("status"), "A"));
 	        
-	        Query<UserLoginModel> query = sessionObj.createQuery(creteriaQuery);
-		       ArrayList <UserLoginModel> rows =  (ArrayList<UserLoginModel>) query.getResultList();
+	        Query<UserLoginSMSIModel> query = sessionObj.createQuery(creteriaQuery);
+		       ArrayList <UserLoginSMSIModel> rows =  (ArrayList<UserLoginSMSIModel>) query.getResultList();
 
-		       for(UserLoginModel row : rows) {
+		       for(UserLoginSMSIModel row : rows) {
 		    	   JsonObject rObj = new JsonObject();
 		    	   rObj.put("SNO", ++ctr);
 		    	   rObj.put("RWA", row.getRegNo());
@@ -127,8 +109,8 @@ public class HDAOUserLogin {
 		    	   rObj.put("FName", row.getFirstName());
 		    	   rObj.put("LName", row.getLastName());
 		    	   rObj.put("Mobile", row.getMobile());
-		    	   List<UserAddress> uAddress = row.getUAdd();
-		    	   for( UserAddress uarow :uAddress ) {
+		    	   List<UserSMSIAddress> uAddress = row.getUAdd();
+		    	   for( UserSMSIAddress uarow :uAddress ) {
 		    		   rObj.put("Address", uarow.getAddress());
 		    		   rObj.put("Sector", uarow.getSector());
 		    		   rObj.put("City", uarow.getCity());
@@ -189,7 +171,7 @@ public class HDAOUserLogin {
 		}
 		return userInfoArray;
 	}
-	public static Integer  userLoginInfoEdit(UserLoginModel uLModel, String erMsg) {
+	public static Integer  userLoginInfoEdit(UserLoginSMSIModel uLModel, String erMsg) {
         erMsg += " 2.1: Began Tran OK. " ;
         Integer  spStatus=0;
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
@@ -221,8 +203,8 @@ public class HDAOUserLogin {
 	        sPQuery.setParameter("UID",      uLModel.getCreatedBy());
 	        sPQuery.setParameter("Password", uLModel.getLPassword());
 	        
-	    	   List<UserAddress> uAddress =  uLModel.getUAdd();
-	    	   for( UserAddress uarow :uAddress ) {
+	    	   List<UserSMSIAddress> uAddress =  uLModel.getUAdd();
+	    	   for( UserSMSIAddress uarow :uAddress ) {
 		         sPQuery.setParameter("Address", uarow.getAddress());
 		         sPQuery.setParameter("Sector", uarow.getSector());
 		         sPQuery.setParameter("City",    uarow.getCity());
@@ -249,7 +231,7 @@ public class HDAOUserLogin {
 			
 	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
 	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
-	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        Root<UserLoginSMSIModel> root = creteriaQuery.from(UserLoginSMSIModel.class);
 	        
 	        Path<Object> rwaNo = root.get("regNo");
 	        Path<Object> lgpwd = root.get("LPassword");
@@ -287,7 +269,7 @@ public class HDAOUserLogin {
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
 	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
 	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
-	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        Root<UserLoginSMSIModel> root = creteriaQuery.from(UserLoginSMSIModel.class);
 	        
 	        Path<Object> uid = root.get("email");
 	        Path<Object> mobile = root.get("Mobile");
@@ -410,14 +392,14 @@ public class HDAOUserLogin {
 			return OTPUpdStatus;
 	}
 
-	public static boolean ValidateOTP(UserLoginModel uLOTP, String erMsg) {
+	public static boolean ValidateOTP(UserLoginSMSIModel uLOTP, String erMsg) {
 		erMsg += "Step 3: validate OTP ";
 		boolean valOTPStatus=false;
 		String dbOTP=null;
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
 	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
 	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
-	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        Root<UserLoginSMSIModel> root = creteriaQuery.from(UserLoginSMSIModel.class);
 	        
 	        Path<Object> otp = root.get("otp");
 	        creteriaQuery.multiselect(otp );
@@ -450,7 +432,7 @@ public class HDAOUserLogin {
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
 	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
 	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
-	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        Root<UserLoginSMSIModel> root = creteriaQuery.from(UserLoginSMSIModel.class);
 	        
 	        Path<Object> uid = root.get("email");
 	        Path<Object> mobile = root.get("Mobile");
@@ -485,13 +467,13 @@ public class HDAOUserLogin {
 		}
 		return valEmail;
 	}
-	public static UserLoginModel sentUIRD(UserLoginModel uIRDObj, String erMsg) {
+	public static UserLoginSMSIModel sentUIRD(UserLoginSMSIModel uIRDObj, String erMsg) {
 		erMsg += "Step 3: validPassword ";
 //		boolean valEmail=false;
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
 	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
 	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
-	        Root<UserLoginModel> root = creteriaQuery.from(UserLoginModel.class);
+	        Root<UserLoginSMSIModel> root = creteriaQuery.from(UserLoginSMSIModel.class);
 	        Path<Object> uid = root.get("email");
 	        Path<Object> Name = root.get("FirstName");
 	        
@@ -523,5 +505,5 @@ public class HDAOUserLogin {
 	          System.out.println("\n"+erMsg );
 		}
 		return uIRDObj;
-	}
+	}	
 }
