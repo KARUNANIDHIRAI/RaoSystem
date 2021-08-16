@@ -63,7 +63,7 @@
 				<div class="bg-light col-sm-12 offset-sm-0">
 					<br />
 					<div class="row">		
-						<div class="col-sm-4 offset-sm-3  form-group">
+						<div class="col-sm-4 offset-sm-2  form-group">
 						    <label for="ICode"><%=SMFixedValue.FACULTY%> <%=SMFixedValue.Code%></label>
 							<input type="text" class="form-control blineTl " id="ICode" name="ICode" required>
 						</div>

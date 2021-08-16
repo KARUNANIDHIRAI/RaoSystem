@@ -29,9 +29,6 @@ public class UserRolesModel {
 	@Column(name ="UserRole", nullable= false, updatable = true)
 	private String userRole;
 	
-	@Column(name ="RolesDescription", nullable= false, updatable = true)
-	private String rolesDescription;
-	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy= "URolesModel")
 	private List<UserRolesDetailsModel> URDetailModel = new ArrayList<>();
 	
@@ -76,13 +73,7 @@ public class UserRolesModel {
 		this.userRole = userRole;
 	}
 
-	public String getRolesDescription() {
-		return rolesDescription;
-	}
 
-	public void setRolesDescription(String rolesDescription) {
-		this.rolesDescription = rolesDescription;
-	}
 
 	public List<UserRolesDetailsModel> getURDetailModel() {
 		return URDetailModel;
@@ -134,12 +125,9 @@ public class UserRolesModel {
 
 	@Override
 	public String toString() {
-		return "UserRolesModel [iDNO=" + iDNO + ", regNo=" + regNo + ", userRole=" + userRole + ", rolesDescription="
-				+ rolesDescription + ", URDetailModel=" + URDetailModel + ", status=" + status + ", createdBy="
-				+ createdBy + ", createdOn=" + createdOn + ", updatedBy=" + updatedBy + ", UpdatedOn=" + UpdatedOn
-				+ "]";
+		return "UserRolesModel [iDNO=" + iDNO + ", regNo=" + regNo + ", userRole=" + userRole + ", URDetailModel="
+				+ URDetailModel + ", status=" + status + ", createdBy=" + createdBy + ", createdOn=" + createdOn
+				+ ", updatedBy=" + updatedBy + ", UpdatedOn=" + UpdatedOn + "]";
 	}
-	
-	
 
 }

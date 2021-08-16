@@ -413,7 +413,25 @@ public class SMFixedValue {
 	public static final String DUPLICATE = "Duplicate";
 	public static final String FNAME = "First Name";
 	public static final String RESET = "Reset";
+	public static final String MODEL_USERROLE = "userRole";
+	public static final String ACTION_CRITERIA = "Criteria :";
+	public static final String MODEL_USERROLE_ID = "iDNO";	
+	public static final String REMOVE_USERROLE_DETAIL = "Update UserRolesDetailsModel "
+			+ " SET status =:" + SMFixedValue.PARM_NSTATUS
+			+ " WHERE iDDNO =:" + SMFixedValue.PARM_IDNO + " AND regNo =:" +  SMFixedValue.PARM_REGNO 
+			+ " AND  status=: " + SMFixedValue.PARM_OSTATUS ;
 	
+	public static final String UTILITY ="Utility";
+	public static final String REMOVE_USERROLE_GROUP = "Update UserRolesModel "
+			+ " SET status =:" + SMFixedValue.PARM_NSTATUS
+			+ " WHERE iDNO =:" + SMFixedValue.PARM_IDNO + " AND regNo =:" +  SMFixedValue.PARM_REGNO 
+			+ " AND  status=: " + SMFixedValue.PARM_OSTATUS ;
+	public static final String DATA_ALREADY_EXIST = "Data Already Exist! Duplicate Data can't careate"; ;
+	public static final String ID = "ID";
+	public static final String PASSWORD = "Password";
+	public static final String CREDENTIALS ="Credentials";
+	public static final String ACTION_UPDATING_CRITERIA ="Updating Information Retrieve Criteria: ";
+	public static final String GENERATING = "GENERATING :";
 	
 	
 

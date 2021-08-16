@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
+import com.sm.System.URBAccess.UserRolesDetailsModel;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -228,11 +229,9 @@ public class HDAOUserLoginSMSI {
 	public static HashMap<String, String> validPassword(HashMap<String, String> loginObj, String erMsg) {
 		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
 			erMsg += "Step 3: validPassword ";
-			
 	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
 	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
 	        Root<UserLoginSMSIModel> root = creteriaQuery.from(UserLoginSMSIModel.class);
-	        
 	        Path<Object> rwaNo = root.get("regNo");
 	        Path<Object> lgpwd = root.get("LPassword");
 	        Path<Object> FirstName = root.get("FirstName");

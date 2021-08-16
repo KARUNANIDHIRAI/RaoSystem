@@ -4,159 +4,214 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "SMUserRolesDetail")
+@Table(name = "SMUserLoginInfo")
 public class UserRolesDetailsSubModel{
-		@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		@Column(name = "UserRoleDetailId")
-		private Integer iDDNO;	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "UserRoleDetailId")
+	private Integer iDDNO;	
 
-		@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
-		private String regNo;
-		
-		@Column(name ="FName", nullable= false, updatable = true)
-		private String fName;
-		
-		@Column(name ="LName", nullable= false, updatable = true)
-		private String lName;
+	@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
+	private String regNo;
+	
+	@Column(name ="UserCode", nullable= false, updatable = true)
+	private String userCode;
 
-		@Column(name ="EmailID", nullable= false, updatable = true)
-		private String emailID;
-		
-		@Column(name ="MobileNo", nullable= false, updatable = true)
-		private String mobileNo;
+	@Column(name ="FName", nullable= false, updatable = true)
+	private String fName;
+	
+	@Column(name ="LName", nullable= false, updatable = true)
+	private String lName;
 
-		@Column(name="UserRoleIdFK", nullable= false , updatable = false)
-		private int userRoleIdFK;
-		
-		@Column(name= "Status", nullable= false, updatable = true)
-		private String status;
-		
-		@Column(name= "CreatedBy", nullable= false, updatable = false)
-		private String createdBy;
-		
-		@Column(name= "CreatedOn", nullable= false, updatable = false, columnDefinition = "date")
-		@Temporal(TemporalType.TIMESTAMP)
-		private Date createdOn;
-		
-		@Column(name= "UpdatedBy", nullable= false, updatable = true)
-		private String updatedBy;
-		
-		@Column(name= "UpdatedOn", nullable= false, columnDefinition = "date")
-		@Temporal(TemporalType.TIMESTAMP)
-		private Date UpdatedOn;
+	@Column(name ="MobileNo", nullable= false, updatable = true)
+	private String mobileNo;
 
-		public Integer getiDDNO() {
-			return iDDNO;
-		}
+	@Column(name ="LoginID", nullable= false, updatable = true)
+	private String emailID;
+	
+	@Column(name ="ULPassword", nullable= false, updatable = true)
+	private String uLPWD;
 
-		public void setiDDNO(Integer iDDNO) {
-			this.iDDNO = iDDNO;
-		}
+	@Column(name ="UserCategory", nullable= false, updatable = true)
+	private String userCategory;
 
-		public String getRegNo() {
-			return regNo;
-		}
+	@Column(name ="OTP", nullable= true, updatable = true)
+	private String otp;
 
-		public void setRegNo(String regNo) {
-			this.regNo = regNo;
-		}
+	@Column(name="UserRoleIdFK", nullable= false , updatable = false)
+	private int userRoleIdFK;
+	
+	@Column(name= "Status", nullable= false, updatable = true)
+	private String status;
+	
+	@Column(name= "CreatedBy", nullable= false, updatable = false)
+	private String createdBy;
+	
+	@Column(name= "CreatedOn", nullable= false, updatable = false, columnDefinition = "date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdOn;
+	
+	@Column(name= "UpdatedBy", nullable= false, updatable = true)
+	private String updatedBy;
+	
+	@Column(name= "UpdatedOn", nullable= false, columnDefinition = "date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date UpdatedOn;
 
-		public String getfName() {
-			return fName;
-		}
+	public Integer getiDDNO() {
+		return iDDNO;
+	}
 
-		public void setfName(String fName) {
-			this.fName = fName;
-		}
+	public void setiDDNO(Integer iDDNO) {
+		this.iDDNO = iDDNO;
+	}
 
-		public String getlName() {
-			return lName;
-		}
+	public String getRegNo() {
+		return regNo;
+	}
 
-		public void setlName(String lName) {
-			this.lName = lName;
-		}
+	public void setRegNo(String regNo) {
+		this.regNo = regNo;
+	}
 
-		public String getEmailID() {
-			return emailID;
-		}
+	public String getUserCode() {
+		return userCode;
+	}
 
-		public void setEmailID(String emailID) {
-			this.emailID = emailID;
-		}
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
 
-		public String getMobileNo() {
-			return mobileNo;
-		}
+	public String getfName() {
+		return fName;
+	}
 
-		public void setMobileNo(String mobileNo) {
-			this.mobileNo = mobileNo;
-		}
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
 
-		public int getUserRoleIdFK() {
-			return userRoleIdFK;
-		}
+	public String getlName() {
+		return lName;
+	}
 
-		public void setUserRoleIdFK(int userRoleIdFK) {
-			this.userRoleIdFK = userRoleIdFK;
-		}
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
 
-		public String getStatus() {
-			return status;
-		}
+	public String getMobileNo() {
+		return mobileNo;
+	}
 
-		public void setStatus(String status) {
-			this.status = status;
-		}
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
 
-		public String getCreatedBy() {
-			return createdBy;
-		}
+	public String getEmailID() {
+		return emailID;
+	}
 
-		public void setCreatedBy(String createdBy) {
-			this.createdBy = createdBy;
-		}
+	public void setEmailID(String emailID) {
+		this.emailID = emailID;
+	}
 
-		public Date getCreatedOn() {
-			return createdOn;
-		}
+	public String getuLPWD() {
+		return uLPWD;
+	}
 
-		public void setCreatedOn(Date createdOn) {
-			this.createdOn = createdOn;
-		}
+	public void setuLPWD(String uLPWD) {
+		this.uLPWD = uLPWD;
+	}
 
-		public String getUpdatedBy() {
-			return updatedBy;
-		}
+	public String getUserCategory() {
+		return userCategory;
+	}
 
-		public void setUpdatedBy(String updatedBy) {
-			this.updatedBy = updatedBy;
-		}
+	public void setUserCategory(String userCategory) {
+		this.userCategory = userCategory;
+	}
 
-		public Date getUpdatedOn() {
-			return UpdatedOn;
-		}
+	public String getOtp() {
+		return otp;
+	}
 
-		public void setUpdatedOn(Date updatedOn) {
-			UpdatedOn = updatedOn;
-		}
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
 
-		@Override
-		public String toString() {
-			return "UserRolesDetailsSubModel [iDDNO=" + iDDNO + ", regNo=" + regNo + ", fName=" + fName + ", lName="
-					+ lName + ", emailID=" + emailID + ", mobileNo=" + mobileNo + ", userRoleIdFK=" + userRoleIdFK
-					+ ", status=" + status + ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", updatedBy="
-					+ updatedBy + ", UpdatedOn=" + UpdatedOn + "]";
-		}
+	public int getUserRoleIdFK() {
+		return userRoleIdFK;
+	}
 
+	public void setUserRoleIdFK(int userRoleIdFK) {
+		this.userRoleIdFK = userRoleIdFK;
+	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Date getUpdatedOn() {
+		return UpdatedOn;
+	}
+
+	public void setUpdatedOn(Date updatedOn) {
+		UpdatedOn = updatedOn;
+	}
+
+	@Override
+	public String toString() {
+		return "UserRolesDetailsSubModel [iDDNO=" + iDDNO + ", regNo=" + regNo + ", userCode=" + userCode + ", fName="
+				+ fName + ", lName=" + lName + ", mobileNo=" + mobileNo + ", emailID=" + emailID + ", uLPWD=" + uLPWD
+				+ ", userCategory=" + userCategory + ", otp=" + otp + ", userRoleIdFK=" + userRoleIdFK + ", status="
+				+ status + ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", updatedBy=" + updatedBy
+				+ ", UpdatedOn=" + UpdatedOn + ", getiDDNO()=" + getiDDNO() + ", getRegNo()=" + getRegNo()
+				+ ", getUserCode()=" + getUserCode() + ", getfName()=" + getfName() + ", getlName()=" + getlName()
+				+ ", getMobileNo()=" + getMobileNo() + ", getEmailID()=" + getEmailID() + ", getuLPWD()=" + getuLPWD()
+				+ ", getUserCategory()=" + getUserCategory() + ", getOtp()=" + getOtp() + ", getUserRoleIdFK()="
+				+ getUserRoleIdFK() + ", getStatus()=" + getStatus() + ", getCreatedBy()=" + getCreatedBy()
+				+ ", getCreatedOn()=" + getCreatedOn() + ", getUpdatedBy()=" + getUpdatedBy() + ", getUpdatedOn()="
+				+ getUpdatedOn() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+	
+	
 	}

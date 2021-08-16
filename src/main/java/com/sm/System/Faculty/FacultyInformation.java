@@ -118,6 +118,15 @@ public class FacultyInformation extends HttpServlet {
 				out.print(JsonArrayList.toJson());
 				out.flush();
 				break;
+			case "x10RfmInformation": // retrieve Faculty Member list	
+				FacultyMemberModel xFMemberModel = new FacultyMemberModel();
+				xFMemberModel = uFMInfoRetriveCriteria(xFMemberModel, request); 
+				JsonArrayList = HDAOFaculty.getfacultyMemberInfo(xFMemberModel);
+				hDAOMessage= JsonArrayList.size()>0?SMFixedValue.EXEC_GENERATE_LIST:SMFixedValue.EXEC_TECHERROR_MSG ;
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break;
+
 			case "xRfmIDNO": // Remove FAculty Member and then retrieve Faculty Member list	
 				FacultyMemberModel rfacultyMemberModel = new FacultyMemberModel();
 				rfacultyMemberModel= UpdateCriteriaToModel(rfacultyMemberModel, request);
@@ -176,6 +185,22 @@ public class FacultyInformation extends HttpServlet {
 			System.out.println(erMsg);
 		}
 
+	}
+
+	private FacultyMemberModel uFMInfoRetriveCriteria(FacultyMemberModel xFMemberModel,
+			HttpServletRequest request) {
+		String msg = SMFixedValue.ACTION_UPDATING_CRITERIA;
+		try {
+			xFMemberModel.setRegNo("MK308");
+			xFMemberModel.setFacultyCode(request.getParameter("xCodeInfo"));
+			xFMemberModel.setStatus(SMFixedValue.STATUS); 		
+			msg += SMFixedValue.ACTION_UPDATING +  SMFixedValue.ACTION_CRITERIA+  SMFixedValue.COMPLETED;
+		} catch (Exception e) {
+			msg += SMFixedValue.EXEC_CATCH_MSG +  e;			
+		}finally  {
+			System.out.println("\n"+ msg);
+		}
+		return xFMemberModel;
 	}
 
 	private FacultyMemberModel issByCriteriaToModel(FacultyMemberModel iFacultyMemberModel, HttpServletRequest request) {

@@ -259,7 +259,7 @@
 						$("#bkEdition").val(name.Edition);
 						resetSTPPage();
 						scrollPageUP(6000);
-					})
+					});
 				}
 				$("#issueByCode").focusout(function(){ 
 					var xBKissueBy = $("#issueByCode").val();

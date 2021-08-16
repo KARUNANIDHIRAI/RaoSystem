@@ -19,17 +19,76 @@ var facultyOption= " ";
 var actionType =" ";
 var category =" ";
 var uRType = " ";
+var uRLGList=" ";
+var userGroupType= " ";
 alert("knSMFC");
 $(document).ready(function(){
-	   $("#Category").click(function(){
-			if (category!=" "){return;}
-			category=" <option selected value=0>Choose Category*</option>";
-		    var cCategory = ['Computer Science', 'History','Social Science','English','Mathematics','Music','Dance', 'Home Science'];
-	       $.each(cCategory, function(index, value){
-	    	   category+=" <option value='"+value +"'>"+ value+ "</option>";
-	       });
-	       $("#Category").html(category);
-	   });
+   $("#UserTypeGRP").click(function(){
+		if (userGroupType!=" "){return;}
+		userGroupType=" <option selected value=0>Choose User Category Type*</option>";
+	    var uUserGroupType = ['EMPOLYEE', 'STUDENT'];
+       $.each(uUserGroupType, function(index, value){
+    	   userGroupType+=" <option value='"+value +"'>"+ value+ "</option>";
+       });
+       $("#UserTypeGRP").html(userGroupType);
+   });
+	$("#UserType").click(function(){
+		if (uRLGList!=" "){	return;	}
+		uRLGList="";
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"getSMUserRoles"},
+		 	dataType: 'Json',
+			url:'../../URBAccessInfo',
+			success:function(result){
+				uRLGList+=" <option selected value=0>Choose User Role*</option>";
+				$.each(result, function(id, name){
+					uRLGList+=" <option value='"+name.userRole +"'>"+ name.userRole+ "</option>";
+				});
+				$("#UserType").html(uRLGList);
+			}	
+		});	
+	}); 
+	$("#UserTypeX").click(function(){
+		if (uRLGList!=" "){	return;	}
+		uRLGList="";
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"getSMUserRoles"},
+		 	dataType: 'Json',
+			url:'../../URBAccessInfo',
+			success:function(result){
+				uRLGList+=" <option selected value=0>Choose User Role*</option>";
+				$.each(result, function(id, name){
+					uRLGList+=" <option value='"+name.userRoleId +"'>"+ name.userRole+ "</option>";
+				});
+				$("#UserTypeX").html(uRLGList);
+			}	
+		});	
+	}); 
+
+	$("#iX3UserRolelist").click(function(){ 
+		var request =$.ajax({
+			type:'POST',
+				data:{Action:"iX3UserRolelist", registrationNumber :  $("#RwaNo").val()},
+		 	dataType: 'Json',
+			url:'../../URBAccessInfo',
+			success:function(result){
+				xUserRoleList10(result);
+				scrollPageUP(6000);
+			}	
+		});	
+	});	
+	
+   $("#Category").click(function(){
+		if (category!=" "){return;}
+		category=" <option selected value=0>Choose Category*</option>";
+	    var cCategory = ['Computer Science', 'History','Social Science','English','Mathematics','Music','Dance', 'Home Science'];
+       $.each(cCategory, function(index, value){
+    	   category+=" <option value='"+value +"'>"+ value+ "</option>";
+       });
+       $("#Category").html(category);
+   });
 	
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
 		getRefreshCaptcha();
@@ -124,8 +183,6 @@ $(document).ready(function(){
 					$("#email").val("Email Id Already exist!")
 					$("#email").focus()
 				}
-
-//				result!="Duplicate"?$("#mobileNo").focus():$("#email").focus();
 			},	
 		    error: function () {
 				$("#email").val("Sorry, there was an error");
@@ -158,8 +215,14 @@ $(document).ready(function(){
 				$("#email").val("Sorry, there was an error");
 		    }				
 		});	 // eof AJAX
-
 	});
+    $("#xEmail").focusout(function() {	
+ 		var email = $("#xEmail").val();
+ 		if(!IsEmail(email)){
+ 			$("#xEmail").val(email +' Invalid email format');
+ 			$("#xEmail").focus();
+ 		}
+ 	});
 
 	$("#RegNo").focusout(function() {
 		var RegNo = $("#RegNo").val();
@@ -329,12 +392,12 @@ $(document).ready(function(){
 	    $("#ActionType").html(actionType);
 	});
 	
-	$("#UserType").click(function(){
+	$("#knUserType").click(function(){
 		if (uRType!=" "){return;}
 		uRType=" <option selected value=0>Choose User Role Type*</option>";
 		var cURType = ['Super User', 'Admin User','Site User'];
 	    $.each(cURType, function(index, value){
-	    	uRType+=" <option value='"+index+1 +"'>"+ value+ "</option>";
+	    	uRType+=" <option value='"+value +"'>"+ value+ "</option>";
 	    });
 	    $("#UserType").html(uRType);
 	});
@@ -471,6 +534,47 @@ $(document).ready(function(){
        $("#Unit").html(unit);
    });
 
+	function xUserRoleList10(result){
+		$('#xUserRoleList10').dataTable({
+		    destroy: true,
+			"data":result,
+			 columnDefs: [ {targets: -1, className: 'dt-body-right'	}, ],
+		    "columns": [
+				 { title:	'SNO'	    ,data:"SNO"}         ,
+				 { title:	'Reg No'    ,data:"Registration"},
+				 { title:	'User Role' ,data:"Role"}        ,  
+//					 { title:	'Name'      ,data:"UserName"}    ,
+//					 { title:	'Mobile No.',data:"Mobile"}      , 
+//					 { title:	'Email ID'	,data:"Email"}       , 
+				 { title:	'View'	    ,data:"uRoleId"      ,
+				 	"render": function(data,type,row,meta){
+	    			 	return	'<button type="button" name="xUrlView10"  value="'+data+'" class="btn btn-secondary text-light btn-sm"	data-toggle="tooltip" data-placement="right" title="Click to remove item" onclick="RemoveItem('+data+')"><span>&#xf044;</span></button>'; 
+	    		 	},
+	    		 }
+	    	]
+		}); // EOF table
+	}// EOF table FUNCTION	
+
+/*	function checkDuplicateURLEmail(email) {	
+		if(!IsEmail(email)){
+			$("#xEmail").val(email +' Invalid email format');
+			$("#xEmail").focus();
+			return;
+		}
+		var request =$.ajax({
+			type:'POST',
+			data:{"EmailId":email, Action:"Email"},
+		 	dataType: 'text',
+			url:'../../URBAccessInfo',
+			success:function(result){
+				if(result=="Duplicate"){
+					$("#xEmail").val("Email Id Already exist!")
+					$("#xEmail").focus()
+				}
+			},	
+		    error: function () { $("#xEmail").val("Sorry, there was an error"); }				
+		});	 // eof AJAX
+	}*/
 
 
 });

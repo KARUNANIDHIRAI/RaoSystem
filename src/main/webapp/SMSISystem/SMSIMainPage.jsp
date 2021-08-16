@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.raoSystem.constants.Information"%>
+<%@page import="com.sm.System.SMInformation.SMFixedValue"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -264,6 +265,22 @@
 										</div>	
 								    </div>
 								</div>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					      		<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          		<%= SMFixedValue.UTILITY%>
+					        	</a>
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						        	<a class="dropdown-item" href="SMSIUserRole/UserRole.jsp">Define User Login Role</a>
+						        	<a class="dropdown-item" href="SMSIUserRole/UserLogin.jsp">Create User Login </a>
+						          	<div class="dropdown-divider"></div>
+						          	<a class="dropdown-item" href="#">Reset Password</a>
+						          	<a class="dropdown-item" href="SMSIUserRole/UserRole.jsp">Change Password</a>
+						          	<a class="dropdown-item" href="#">Forget Password</a>
+						          	<div class="dropdown-divider"></div>
+						          	<a class="dropdown-item" href="#">Disable User Login</a>
+						          	<a class="dropdown-item" href="#">Enable User Login</a>
+						        </div>
 					      	</li>
 					      	<li class="nav-item dropdown">
 					      		<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

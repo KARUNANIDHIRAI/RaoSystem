@@ -1,10 +1,7 @@
 package com.sm.System.URBAccess;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,15 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-
 @Entity
 @Table(name = "SMUserLoginInfo")
-public class UserRolesDetailsModel {
+public class UserLoginModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "UserRoleDetailId")
@@ -54,7 +49,7 @@ public class UserRolesDetailsModel {
 	@Column(name ="OTP", nullable= true, updatable = true)
 	private String otp;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn( name = "UserRoleIdFK")
 	private UserRolesModel URolesModel;
 	
@@ -205,12 +200,11 @@ public class UserRolesDetailsModel {
 
 	@Override
 	public String toString() {
-		return "UserRolesDetailsModel [iDDNO=" + iDDNO + ", regNo=" + regNo + ", userCode=" + userCode + ", fName="
-				+ fName + ", lName=" + lName + ", mobileNo=" + mobileNo + ", emailID=" + emailID + ", uLPWD=" + uLPWD
+		return "UserLoginModel [iDDNO=" + iDDNO + ", regNo=" + regNo + ", userCode=" + userCode + ", fName=" + fName
+				+ ", lName=" + lName + ", mobileNo=" + mobileNo + ", emailID=" + emailID + ", uLPWD=" + uLPWD
 				+ ", userCategory=" + userCategory + ", otp=" + otp + ", URolesModel=" + URolesModel + ", status="
 				+ status + ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", updatedBy=" + updatedBy
 				+ ", UpdatedOn=" + UpdatedOn + "]";
 	}
-
 	
 }

@@ -25,8 +25,6 @@ $(document).ready(function(){
 	 		dataType: 'json',
 			url:'../ContactUsInfo',
 			success:function(result){
-				alert("wahre wahre result");
-				
 				countryOptions+=" <option value=1>Select Country Name</option>";
 				$.each(result, function(id, name){
 					countryOptions+=" <option value='"+name.id +"'>"+ name.name + "</option>";
@@ -40,7 +38,8 @@ $(document).ready(function(){
 		var email = $("#email").val();
 		if(!IsEmail(email)){
 			$("#email").val(' Invalid email format');
-			$("#email").focus();
+			$("#email").focusin();
+			return;
 		}
 	});
 	function IsEmail(email) {

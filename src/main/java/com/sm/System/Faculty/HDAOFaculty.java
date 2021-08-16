@@ -258,5 +258,48 @@ public class HDAOFaculty {
 			System.out.println("\n"+erMsg );
 		}			
 		return facultyInformation;
+	}
+
+	public static JsonArray getfacultyMemberInfo(FacultyMemberModel xfacultyMemberModel) {
+			String erMsg= SMFixedValue.USER + SMFixedValue.INFORMATION + SMFixedValue.GENERATING ;
+		    JsonArray facultyMemberInfo = new JsonArray();
+			try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+		        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+		        CriteriaQuery<FacultyMemberModel> creteriaQuery = builder.createQuery(FacultyMemberModel.class);
+		        Root<FacultyMemberModel> root = creteriaQuery.from(FacultyMemberModel.class);
+		        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_FACULTYREGNO), xfacultyMemberModel.getRegNo()),
+			        	builder.equal(root.get(SMFixedValue.MODEL_FACULTYCODE), xfacultyMemberModel.getFacultyCode()),
+			        	builder.equal(root.get(SMFixedValue.MODEL_FACULTYSTATUS), SMFixedValue.STATUS));
+			        erMsg += SMFixedValue.PARM_SET_MSG + "; ";
+
+		        Query<FacultyMemberModel> query = sessionObj.createQuery(creteriaQuery);
+		        ArrayList <FacultyMemberModel> rows =  (ArrayList<FacultyMemberModel>) query.getResultList();
+		        int sNo=0;
+		        for(FacultyMemberModel row: rows) {
+	    		  JsonObject rObj = new JsonObject();
+		    	  rObj.put("SNo"         ,  Integer.toString(++ sNo)) ;
+		    	  rObj.put("RegNo"       , row.getRegNo());
+		    	  rObj.put("Code"        , row.getFacultyCode());
+		    	  rObj.put("Faculty"     , row.getFaculty());
+		    	  rObj.put("Designation" , row.getDesignation());
+		    	  rObj.put("Name"        , row.getName() );
+		    	  rObj.put("LName"        , row.getlName() );
+		    	  rObj.put("MobileNo"   , row.getMobileNo());
+		    	  rObj.put("Phone"       , row.getPhoneNo());
+		    	  rObj.put("Qualification", row.getQualification());
+		    	  rObj.put("DOJ"          , row.getdOJ().toString());
+		    	  rObj.put("EmailID"      , row.getEmailID());
+		    	  rObj.put("Expertise"    , row.getSkillArea());
+		    	  rObj.put("fMIDNO"       , row.getfMIDNO());
+		    	  facultyMemberInfo.add(rObj);	
+			    }
+		        erMsg += "\n"+  SMFixedValue.FACULTY + SMFixedValue.MEMBER + ": "+facultyMemberInfo;
+		        sessionObj.close();
+			}catch(Exception e) {
+				erMsg += SMFixedValue.EXEC_CATCH_MSG + e;
+			}finally {
+				System.out.println("\n"+erMsg );
+			}			
+		return facultyMemberInfo;
 	}				
 }
