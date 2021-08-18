@@ -295,7 +295,6 @@
 						});
 					}
 			   	});// on click button
-
 			   	function scrollPageDown(pos){
 					$("html, body").animate({
 					    scrollTop: $('html, body').get(0).scrollHeight}, pos);				
@@ -307,7 +306,6 @@
 					$("HTML, BODY").animate({
 				            scrollTop: bottom }, 1000);			
 				}// eof function -> function for scroll page bottom
-
 				$("#xRBkMSInfoX").click(function(){  
 					var request =$.ajax({
 						type:'POST',
@@ -339,7 +337,6 @@
 			       });
 			       $("#Unit").html(unit);
 			   });
-
 				
 			});// eof doucment			
 		</script>	

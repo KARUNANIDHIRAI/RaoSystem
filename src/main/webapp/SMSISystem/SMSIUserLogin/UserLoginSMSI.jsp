@@ -42,7 +42,6 @@
 				<div class = "row" >
 					<p class ="h5 col-sm-4 offset-sm-5">Academic ERP System  </p>
 				</div>
-
 				<div class = "row" >
 					<div class="card col-sm-10 offset-sm-1" style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px">
 						<div class="card-body" >

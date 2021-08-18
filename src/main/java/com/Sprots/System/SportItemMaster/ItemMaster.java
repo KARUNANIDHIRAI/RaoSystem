@@ -30,7 +30,7 @@ public class ItemMaster extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String erMsg= SMFixedValue.ACTION_STEP + SMFixedValue.ACTION_START + 1 ;
 		ItemMasterModel itemMasterModel = new ItemMasterModel();
-		itemMasterModel.setRegNo("MK308");
+		itemMasterModel.setRegNo(session.getAttribute("RegNo").toString());
 		String hDAOMessage= "";
 		int excStatus =0;
 		JsonArray JsonArrayList = new JsonArray();
@@ -43,12 +43,12 @@ public class ItemMaster extends HttpServlet {
 			case "xNritemInfo":	// create New sprot Item
 				erMsg= SMFixedValue.ACTION_CREATING + SMFixedValue.ITEM +  SMFixedValue.INFORMATION ;
 
-				itemMasterModel = ItemMasterModel(itemMasterModel,request);
+				itemMasterModel = ItemMasterModel(itemMasterModel,request,session);
 				excStatus = HDAOItemMaster.ItemMasterNew(itemMasterModel);
 				hDAOMessage += Integer.toString(excStatus) +SMFixedValue.EXEC_CREATE_MSG;
 				session.setAttribute(SMFixedValue.MESSAGE,hDAOMessage );
 				erMsg+= hDAOMessage;
-				response.sendRedirect("Sport/ItemMaster?Action=xNritemInfo");
+				response.sendRedirect("Sports/ItemMaster.jsp");
 				break; 				
 			case "xiTiNFOVerify": // verify duplicate sport item code
 				erMsg=  SMFixedValue.RETRIEVE + SMFixedValue.ITEM + SMFixedValue.INFORMATION;;
@@ -71,7 +71,7 @@ public class ItemMaster extends HttpServlet {
 				out.flush();
 				break; 	
 			case "XsprtITMRInfo01":	// remove existing sport item information
-				itemMasterModel = removeSprtItemInfo(itemMasterModel,request);
+				itemMasterModel = removeSprtItemInfo(itemMasterModel,request, session);
 				excStatus = HDAOItemMaster.sprotItemMasterRemove(itemMasterModel);
 
 				hDAOMessage += Integer.toString(excStatus) +SMFixedValue.EXEC_REMOVE_MSG;
@@ -92,20 +92,16 @@ public class ItemMaster extends HttpServlet {
 			System.out.println(erMsg);
 		}
 	}
-	private ItemMasterModel ItemMasterModel(ItemMasterModel itemMasterModel,HttpServletRequest request) throws ParseException {
+	private ItemMasterModel ItemMasterModel(ItemMasterModel itemMasterModel,
+			HttpServletRequest request, HttpSession session) throws ParseException {
 		String erMsg =  SMFixedValue.ACTION_UPDATING + SMFixedValue.ITEM + SMFixedValue.INPUT_VALUES 
 				        +SMFixedValue.TOMODEL ;
 		try {
-			/*
-			 * itemMasterModel.setCode(request.getParameter("sICode"));
-			 * itemMasterModel.setName(request.getParameter("sIName"));
-			 * itemMasterModel.setItemCategory(request.getParameter("SportCategory"));
-			 */
-			itemMasterModel.setCode("SP102");
-			itemMasterModel.setName("CRICKET");
-			itemMasterModel.setItemCategory("SportCategory");
+			itemMasterModel.setCode(request.getParameter("sICode"));
+			itemMasterModel.setName(request.getParameter("sIName"));
+			itemMasterModel.setItemCategory(request.getParameter("SportCategory"));
 			itemMasterModel.setStatus(SMFixedValue.NEW_STATUS); 
-			itemMasterModel.setCreatedBy("KNRAI");
+			itemMasterModel.setCreatedBy(session.getAttribute("UserID").toString());
 			itemMasterModel.setCreatedOn(new Date());
 			itemMasterModel.setUpdatedBy(itemMasterModel.getCreatedBy());
 			itemMasterModel.setUpdatedOn(itemMasterModel.getCreatedOn());
@@ -117,13 +113,14 @@ public class ItemMaster extends HttpServlet {
 		}
 		return itemMasterModel;
 	}
-	private ItemMasterModel removeSprtItemInfo(ItemMasterModel itemMasterModel,HttpServletRequest request) throws ParseException {
+	private ItemMasterModel removeSprtItemInfo(ItemMasterModel itemMasterModel,
+			HttpServletRequest request, HttpSession session) throws ParseException {
 		String erMsg =  SMFixedValue.ACTION_UPDATING + SMFixedValue.SPORTS + SMFixedValue.ITEM + SMFixedValue.INPUT_VALUES 
 				        +SMFixedValue.TOMODEL ;
 		try {
 			itemMasterModel.setiDNO(Integer.parseInt(request.getParameter("iCode")));
 			itemMasterModel.setStatus(SMFixedValue.NEW_STATUS); 
-			itemMasterModel.setUpdatedBy("KNRAI");
+			itemMasterModel.setUpdatedBy(session.getAttribute("UserID").toString());
 			itemMasterModel.setUpdatedOn(new Date());
 			erMsg+= "\n"+ SMFixedValue.SPORTS + SMFixedValue.ITEM + SMFixedValue.INPUT_VALUES + itemMasterModel;
 		} catch (Exception e) {

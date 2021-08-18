@@ -44,54 +44,31 @@ import com.raoSystem.Utility.CountryList;
 			public Integer getIdNo() {
 				return idNo;
 			}
-
-
 			public void setIdNo(Integer idNo) {
 				this.idNo = idNo;
 			}
-
-
 			public SchoolInfoModel getSchEmail() {
 				return schEmail;
 			}
-
-
 			public void setSchEmail(SchoolInfoModel schEmail) {
 				this.schEmail = schEmail;
 			}
-
-
 			public String getEmailID() {
 				return emailID;
 			}
-
-
 			public void setEmailID(String emailID) {
 				this.emailID = emailID;
 			}
-
-
 			public String getCategory() {
 				return category;
 			}
-
-
 			public void setCategory(String category) {
 				this.category = category;
 			}
-
-
 			@Override
 			public String toString() {
 				return "Email [idNo=" + idNo + ", schEmail=" + schEmail + ", emailID=" + emailID + ", category="
 						+ category + "]";
 			}
-
-
-
-
-	
-			
-
 	}	
 

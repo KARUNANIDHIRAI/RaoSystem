@@ -71,12 +71,7 @@
  								<%session.removeAttribute("Message");%> 
 			    		</div>
 			  		</div>
-<%-- 					<div class="row">		
-						<div class="col-sm-5 offset-sm-4">
-							<p class ="h5"><%=SMFixedValue.USER%> <%=SMFixedValue.ROLE%> </p>
-						</div>
-					</div>
- --%>					<div class="row">		
+					<div class="row">		
 						<div class="col-sm-4 offset-sm-0">
 						    <label for="RwaNo" class ="h6"><%=SMFixedValue.RegNo%></label>
 							<input type="text" class="form-control   blineTl " id="RwaNo" 	name="RwaNo" placeholder="School Registration No*" required
@@ -228,7 +223,7 @@
 			
 			function updateUrolInfoValue(InputURData){
 				InputURData.push($("#RwaNo").val());
-				InputURData.push($("#UserType").val());
+				InputURData.push($("#UserTypeX").val());
 				InputURData.push($("#Fname").val());
 				InputURData.push($("#Lname").val());
 				InputURData.push($("#mobileNo").val());

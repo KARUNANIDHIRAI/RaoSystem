@@ -24,8 +24,11 @@
 		</div>
 		<div class="container" >
 			<div class="row">
-				<div class="col-sm-7">
-					<img src="../images/KSB.png" class="img-responsive " />
+                <div class="col-lg-2" > 
+ 					<img src="../images/KSB.png" class="img-responsive "/>
+				</div>
+		         <div class="col-lg-5 offset-sm-1" > 
+		              <br /> <p class="h6"><%= session.getAttribute("School")== null?"":session.getAttribute("School") %>
 				</div>
 			</div>
 		</div>

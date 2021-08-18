@@ -414,6 +414,7 @@ public class SMFixedValue {
 	public static final String FNAME = "First Name";
 	public static final String RESET = "Reset";
 	public static final String MODEL_USERROLE = "userRole";
+	public static final String MODEL_USERROLE_IDFK = "URolesModel";
 	public static final String ACTION_CRITERIA = "Criteria :";
 	public static final String MODEL_USERROLE_ID = "iDNO";	
 	public static final String REMOVE_USERROLE_DETAIL = "Update UserRolesDetailsModel "
@@ -432,6 +433,17 @@ public class SMFixedValue {
 	public static final String CREDENTIALS ="Credentials";
 	public static final String ACTION_UPDATING_CRITERIA ="Updating Information Retrieve Criteria: ";
 	public static final String GENERATING = "GENERATING :";
+	public static final String ACTION_VALIDATING = "Validating";
+	public static final String ACTION_PASSWORD = "Password";
+	public static final String MODEL_EMAILID = "emailID";
+	public static final String MODEL_USER_CODE = "userCode";
+	public static final String MODEL_USER_FNAME = "fName";
+	public static final String MODEL_USER_PASSWORD = "uLPWD";
+	public static final String MODEL_USER_LOGINID = "emailID";
+	public static final String CAPTCHA ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+	
+	
 	
 	
 

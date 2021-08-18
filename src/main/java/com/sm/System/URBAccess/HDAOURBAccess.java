@@ -18,6 +18,7 @@ import com.sm.System.SMInformation.SMFixedValue;
 
 public class HDAOURBAccess {
 	private static int errStatus=0;
+/*	
 	public static int sMUserRoles(UserRolesModel userRolesModel) {
 		String erMsg = SMFixedValue.ACTION_CREATING + SMFixedValue.USER + SMFixedValue.ROLE + SMFixedValue.INFORMATION; 
 		Transaction transaction = null;
@@ -67,41 +68,14 @@ public class HDAOURBAccess {
 		return exeStatus;
 	
 	}
-
-	public static int sMUserLoginCreate(UserRolesModel userRolesModel) {
+*/
+	public static int sMUserLoginCreate(SMSIUserLoginSubModel userLoginCreate) {
 		String erMsg = SMFixedValue.ACTION_CREATING + SMFixedValue.USER + SMFixedValue.ROLE + SMFixedValue.INFORMATION; 
 		Transaction transaction = null;
 		int exeStatus=0;
 		try ( Session sessionObj = HibernateDAO.getSessionFactory().openSession()){
 			transaction = sessionObj.beginTransaction();
-			int uroleID= verifyUserRoleExist(userRolesModel);
-			if (errStatus==1) {	return 3;} // return if error in verifyUserRoleExist(userRolesModel)
-			if(uroleID == 0) {
-				sessionObj.save(userRolesModel); // Insert data first time in Parent And Child Table
-			}else { // Insert data into child table only 
-				UserRolesDetailsSubModel URDSubModel = new UserRolesDetailsSubModel();
-				List<UserRolesDetailsModel> URDModel = new ArrayList<UserRolesDetailsModel>();
-				URDModel =  userRolesModel.getURDetailModel();
-		        for(UserRolesDetailsModel row:URDModel) {
-		        	URDSubModel.setRegNo(userRolesModel.getRegNo());
-		        	URDSubModel.setfName(row.getfName());
-		        	URDSubModel.setlName(row.getlName());
-		        	URDSubModel.setEmailID(row.getEmailID());
-		        	URDSubModel.setMobileNo(row.getMobileNo());
-		        	URDSubModel.setuLPWD(row.getuLPWD());
-		        	URDSubModel.setOtp(row.getOtp());
-		        	URDSubModel.setUserCategory(row.getUserCategory());
-		        	URDSubModel.setUserCode(row.getUserCode());
-		        	URDSubModel.setStatus(row.getStatus());
-		        	URDSubModel.setCreatedBy(row.getCreatedBy());
-		        	URDSubModel.setCreatedOn(row.getCreatedOn());
-		        	URDSubModel.setUpdatedBy(row.getUpdatedBy());
-		        	URDSubModel.setUpdatedOn(row.getUpdatedOn());
-		        	URDSubModel.setUserRoleIdFK(uroleID);
-					System.out.println("Input values user roles Details:" + URDSubModel);		        	
-		        }
-				sessionObj.save(URDSubModel);
-			}
+			sessionObj.save(userLoginCreate); 
  		    sessionObj.getTransaction().commit();
 			sessionObj.close();
 			erMsg +=SMFixedValue.EXEC_CREATE_MSG ;
@@ -115,7 +89,6 @@ public class HDAOURBAccess {
  		   System.out.println(erMsg);
  	   }
 		return exeStatus;
-	
 	}
 
 	private static int verifyUserRoleExist(UserRolesModel userRolesModel) {
@@ -391,6 +364,7 @@ public class HDAOURBAccess {
 	}
 
 	/* Generate user login details based on user role name */
+/*	
 	public static JsonArray getSMUserRoleLoginInfo(UserRolesModel userRolesModel) {
 	    String erMsg = SMFixedValue.ACTION_GENERATE +SMFixedValue.USER +SMFixedValue.ROLE + SMFixedValue.ACTION_LIST  ;
 		JsonArray userRoleList = new JsonArray();
@@ -434,6 +408,44 @@ public class HDAOURBAccess {
 		}			
 		return userRoleList;
 	}
-	
+*/	
+	/* Generate user login details based on user role name */
+	public static JsonArray getSMSIUserLoginInfo(SMSIUserLoginSubModel sMSIUserLoginSubModel) {
+	    String erMsg = SMFixedValue.ACTION_GENERATE +SMFixedValue.USER +SMFixedValue.ROLE + SMFixedValue.ACTION_LIST  ;
+		JsonArray userRoleList = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<SMSIUserLoginModel> creteriaQuery = builder.createQuery(SMSIUserLoginModel.class);
+	        Root<SMSIUserLoginModel> root = creteriaQuery.from(SMSIUserLoginModel.class);
+	        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_REGNO), sMSIUserLoginSubModel.getRegNo()),
+	        	builder.equal(root.get(SMFixedValue.MODEL_USERROLE_IDFK), sMSIUserLoginSubModel.getUserRoleIdFK()),
+	        	builder.equal(root.get(SMFixedValue.MODEL_STATUS), SMFixedValue.STATUS));
+	        erMsg += SMFixedValue.PARM_SET_MSG +" ;";
+	        Query<SMSIUserLoginModel> query = sessionObj.createQuery(creteriaQuery);
+	        List <SMSIUserLoginModel> rows=(ArrayList<SMSIUserLoginModel>) query.getResultList();
+	        int sNO =0;
+	       for(SMSIUserLoginModel row: rows) {
+	    	   JsonObject rObj = new JsonObject();
+		       rObj.put("SNO"           , Integer.toString(++ sNO)) ;
+			   rObj.put("Registration"  , row.getRegNo())           ;
+			   rObj.put("Role"          , row.getURolesModel().getUserRole())        ;
+			   rObj.put("UserName"      , row.getfName() + " " + row.getlName() );
+			   rObj.put("Email"         , row.getEmailID())      ;
+			   rObj.put("Mobile"        , row.getMobileNo())     ;
+			   rObj.put("uRoleId"       , row.getiDDNO().toString())            ;
+			   rObj.put("uRoleDetailId" , row.getiDDNO().toString()+ "/" +row.getURolesModel().getiDNO().toString()) ;
+			   userRoleList.add(rObj);	
+		   }
+	       sessionObj.close();
+	    	erMsg += SMFixedValue.EXEC_QUERY_MSG; 
+	    	erMsg += SMFixedValue.OUTPUT + rows.size() 	+userRoleList ;
+		}catch(Exception e) {
+			errStatus =1;
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return userRoleList;
+	}
 
 }

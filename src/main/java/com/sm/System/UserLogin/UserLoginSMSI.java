@@ -2,6 +2,7 @@ package com.sm.System.UserLogin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.mail.EmailException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.sm.System.SMInformation.SMFixedValue;
+import com.sm.System.SchoolInformation.HDAOSchoolInfo;
 import com.sm.System.UserLogin.HDAOUserLoginSMSI;
 import com.rao.System.UserLogin.UserLoginModel;
 import com.raoSystem.password.SendOTP;
@@ -47,30 +50,32 @@ public class UserLoginSMSI extends HttpServlet {
 				break;
 			case "Action" :
 				BCryptPasswordEncoder PasswordEncoder = new BCryptPasswordEncoder(); 
-				HashMap<String, String> loginObj1 = new HashMap<>();
-				loginObj1 = UpdateLoginSMSIPageVal(loginObj1, request, session);
-				erMsg += "Step 1.1 Form value Get OK: ,";
-				showLoginPageVal(loginObj1);
-				erMsg += "Step 2 Show value OK: ,";
-				String Captcha = (String) loginObj1.get("Captcha");	
-				String lableCaptcha = loginObj1.get("LblCaptcha").toString();
-				loginObj1 = HDAOUserLoginSMSI.validPassword(loginObj1, erMsg);
-				
+				HashMap<String, String> userLogin  = new HashMap<>();
+				userLogin = UpdateLoginSMSIPageVal(userLogin, request, session);
+				showLoginPageVal(userLogin);
+				String Captcha = (String) userLogin.get("Captcha");	
+				String lableCaptcha = userLogin.get("LblCaptcha").toString();
+				userLogin = HDAOUserLoginSMSI.getLoginPasswordValidate(userLogin);
+				String schName = HDAOSchoolInfo.getSchoolName(userLogin.get("RegNo"));
 //|| !PasswordEncoder.matches(loginObj1.get("PWD"),loginObj1.get("password"))
-				if (!Captcha.equals(lableCaptcha) || !loginObj1.get("PWD").equals(loginObj1.get("password"))) {	
-					String hDAOMessage= "Invalid Login Cridential ! ";
+				if (!Captcha.equals(lableCaptcha) || !userLogin.get("InputPWD").equals(userLogin.get("OutputPWD"))) {	
+					String hDAOMessage= "Invalid Login Credential ! ";
 					session.setAttribute("Message",hDAOMessage );
-					response.sendRedirect("UserLogin/UserLogin.jsp");
+					response.sendRedirect("SMSISystem/SMSIUserLogin/UserLoginSMSI.jsp");
 				}else {
-					session.setAttribute("UID", loginObj1.get("UID"));
-					session.setAttribute("RwaNo", loginObj1.get("RwaNo"));
+					session.setAttribute("RegNo"    , userLogin.get("RegNo"));
+					session.setAttribute("UserID"   , userLogin.get("UserID"));
+					session.setAttribute("UserName" , userLogin.get("UserName"));
+					session.setAttribute("School"   , schName);
 					response.sendRedirect("SMSISystem/SMSIMainPage.jsp");
 				}
 				erMsg += "Step 4. HDOA OK: ,";
 				break;
 			case "sentEmail":
-				HashMap<String, String> loginObj = new HashMap<>();     
-				loginObj1 = UpdatePWDRestPageVal(loginObj, request, session);
+				HashMap<String, String> loginObj = new HashMap<>(); 
+				loginObj = UpdatePWDRestPageVal(loginObj, request, session);
+				
+				//loginObj1 = UpdatePWDRestPageVal(loginObj, request, session);
 				erMsg += "Step 1.1 sent email Form value Get OK: ,";
 				showLoginPageVal(loginObj);
 				
@@ -201,16 +206,32 @@ public class UserLoginSMSI extends HttpServlet {
 	}
 
 	private void showLoginPageVal(HashMap<String, String> loginObj) {
-		 for (HashMap.Entry<String, String> e : loginObj.entrySet()) {
+		String msg = SMFixedValue.USER + SMFixedValue.LOGIN + SMFixedValue.ACTION_CRITERIA + SMFixedValue.INPUT_VALUES;
+		try {
+			for (HashMap.Entry<String, String> e : loginObj.entrySet()) {
 	            System.out.println(e.getKey() + " " + e.getValue());
 		 }       
+			msg += SMFixedValue.END +  SMFixedValue.USER + SMFixedValue.LOGIN + SMFixedValue.ACTION_CRITERIA;
+		} catch (Exception e) {
+			msg += SMFixedValue.EXEC_CATCH_MSG +  e;			
+		}finally  {
+			System.out.println("\n"+ msg );
+		}
 	} 
 
 	private HashMap<String, String> UpdateLoginSMSIPageVal(HashMap<String, String> loginObj, HttpServletRequest request, HttpSession session) {
-		loginObj.put("Captcha", (String) request.getParameter("Captcha"));
-		loginObj.put("LblCaptcha",(String) session.getAttribute("ucpname"));
-		loginObj.put("UID", request.getParameter("email"));
-		loginObj.put("PWD", request.getParameter("Pwd"));
+		String msg = SMFixedValue.ACTION_UPDATING + SMFixedValue.USER + SMFixedValue.LOGIN + SMFixedValue.ACTION_CRITERIA;
+		try {
+			loginObj.put("Captcha", (String) request.getParameter("Captcha"));
+			loginObj.put("LblCaptcha",(String) session.getAttribute("ucpname"));
+			loginObj.put("InputUID", request.getParameter("email"));
+			loginObj.put("InputPWD", request.getParameter("Pwd"));
+			msg += SMFixedValue.ACTION_UPDATING +  SMFixedValue.ACTION_CRITERIA+  SMFixedValue.COMPLETED;
+		} catch (Exception e) {
+			msg += SMFixedValue.EXEC_CATCH_MSG +  e;			
+		}finally  {
+			System.out.println("\n"+ msg );
+		}
 		return loginObj;
 	}
 
@@ -223,12 +244,13 @@ public class UserLoginSMSI extends HttpServlet {
 		return captcha;
 	}
 	private String generateCapcha(int captchalength) {
-		String captcha ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		
+		//String captcha ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		StringBuffer captchBuffer = new StringBuffer();
 		Random random = new Random();
 		while (captchBuffer.length()<captchalength) {
-			int index = (int) (random.nextFloat()*captcha.length());
-			captchBuffer.append(captcha.substring(index,index+1));
+			int index = (int) (random.nextFloat()*SMFixedValue.CAPTCHA.length());
+			captchBuffer.append(SMFixedValue.CAPTCHA.substring(index,index+1));
 		}
 		return captchBuffer.toString();
 	}

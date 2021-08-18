@@ -2,20 +2,27 @@ package com.sm.System.SchoolInformation;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.json.simple.JsonArray;
+import org.json.simple.JsonObject;
 
 import com.rao.System.RwaReg.RwaRegModel;
 import com.raoSystem.Utility.ValidRwaNo;
 import com.raoSystem.daoConnection.HibernateDAO;
 import com.sm.System.SMInformation.SMFixedValue;
 import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
+import com.sm.System.URBAccess.UserRolesModel;
 
-public class HDAOSchoolInfo {
+public class HDAOSchoolInfo{
 	public static int newSchInfo(SchoolInfoModel siModel, String erMsg) {
 		Transaction transaction = null;
 		erMsg+=" Step 3.0 Start HDAO - ";
@@ -128,5 +135,30 @@ public class HDAOSchoolInfo {
 	          System.out.println("\n"+erMsg );
 		}
 		return emailStatus;
+	}
+	public static String getSchoolName(String SchoolRegNo) {
+	    String erMsg = SMFixedValue.GENERATING + SMFixedValue.School + SMFixedValue.INFORMATION;
+		String SchoolInfo = null;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<SchoolInfoModel> creteriaQuery = builder.createQuery(SchoolInfoModel.class);
+	        Root<SchoolInfoModel> root = creteriaQuery.from(SchoolInfoModel.class);
+	        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_REGNO), SchoolRegNo),
+ 	        	                builder.equal(root.get(SMFixedValue.MODEL_STATUS), SMFixedValue.STATUS));
+	        erMsg += SMFixedValue.PARM_SET_MSG +" ;";
+	        Query<SchoolInfoModel> query = sessionObj.createQuery(creteriaQuery);
+	        List <SchoolInfoModel> rows=(ArrayList<SchoolInfoModel>) query.getResultList();
+	       for(SchoolInfoModel row: rows) {
+	    	   SchoolInfo= row.getName() ;
+		   }
+	       sessionObj.close();
+	       erMsg += SMFixedValue.EXEC_QUERY_MSG + SMFixedValue.OUTPUT + rows.size() 	+ ":" +SchoolInfo ;
+		}catch(Exception e) {
+			//errStatus =1;
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return SchoolInfo;
 	}
 }

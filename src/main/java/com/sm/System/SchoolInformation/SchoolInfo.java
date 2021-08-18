@@ -21,6 +21,7 @@ import org.json.simple.JsonArray;
 
 import com.raoSystem.Utility.CountryList;
 import com.raoSystem.Utility.Utilities;
+import com.sm.System.SMInformation.SMFixedValue;
 
 /**
  * Servlet implementation class SchoolInfo
@@ -57,7 +58,7 @@ public class SchoolInfo extends HttpServlet {
 				out.flush();
 				break;
 			case "information":	 // CREATE NEW USER LOGIN
-				SiModel = UpdFormValueToRModel(SiModel,request);
+				SiModel = UpdFormValueToRModel(SiModel,request,session);
 				erMsg = " form value Update OK.";
 				ShowRegModel(SiModel);
 				erMsg = "showvalue  OK.";
@@ -65,7 +66,7 @@ public class SchoolInfo extends HttpServlet {
 				int rwaStatus = HDAOSchoolInfo.newSchInfo(SiModel,erMsg);
 				String hDAOMessage= rwaStatus>0?"THANKS! YOUR ENQUIRY SUBMITED SUCCESSFULLY.": "TECHNICAL ERROR! YOUR ENQUIRY NOT SUBMITED. PLS TRY AFTER SOMETIME.";
 				session.setAttribute("Message",hDAOMessage );
-				response.sendRedirect("SuccessMsg.jsp");
+				response.sendRedirect("SchoolInformation.jsp");
 
 //				
 //				if(valMsg.length()>1) {
@@ -126,18 +127,22 @@ public class SchoolInfo extends HttpServlet {
 //		}
 		
 	}
-	private SchoolInfoModel UpdFormValueToRModel(SchoolInfoModel siModel, HttpServletRequest request) {
+	private SchoolInfoModel UpdFormValueToRModel(SchoolInfoModel siModel, HttpServletRequest request, HttpSession session) {
+		String erMsg = SMFixedValue.ACTION_UPDATING + SMFixedValue.School + SMFixedValue.INPUT_VALUES + SMFixedValue.ACTION_MODEL;
 		try {
 			siModel.setRegNo(request.getParameter("RegNo"));
 			siModel.setRegDate(Utilities.StringToDate(request.getParameter("RegDate")));
 
 			siModel.setName(request.getParameter("SchName"));
-			siModel.setLoginId(request.getParameter("LoginId"));
-			siModel.setLoginPassword(request.getParameter("Password"));
 			siModel.setMobileNo(request.getParameter("mobileNo"));
 			siModel.setPhoneNo(request.getParameter("phoneNo"));
 			siModel.setHoMobileNo(request.getParameter("HoMobileNo"));
 			siModel.setHoPhoneNo(request.getParameter("HoPhoneNo"));
+			siModel.setStatus(SMFixedValue.STATUS);
+			siModel.setCreatedBy((String) session.getAttribute("UserID"));
+			siModel.setUpdatedBy(siModel.getCreatedBy());
+			siModel.setCreatedOn(new Date());
+			siModel.setUpdatedOn(siModel.getCreatedOn());
 
 			
 			Email email = new Email();
@@ -145,13 +150,14 @@ public class SchoolInfo extends HttpServlet {
 			email.setEmailID(request.getParameter("email"));
 			siModel.getEmailId().add(email);
 			email.setSchEmail(siModel);
-
+			erMsg+= SMFixedValue.EMAIL+ "(School)" + email;
+			
 			Email HoEmail = new Email();
 			HoEmail.setCategory("HO");
 			HoEmail.setEmailID(request.getParameter("HoEmail"));
 			siModel.getEmailId().add(HoEmail);
 			HoEmail.setSchEmail(siModel);
-			
+			erMsg+= SMFixedValue.EMAIL +"(HO)" + HoEmail ;			
 			
 			Address address = new Address();
 			address.setAddress(request.getParameter("Address"));
@@ -168,6 +174,7 @@ public class SchoolInfo extends HttpServlet {
 			
 			siModel.getAddress().add(address);
 			address.setSchAddress(siModel);
+			erMsg+= SMFixedValue.ADDRESS+ "(School)" + address;
 			
 			Address HoAddress = new Address();
 			HoAddress.setAddress(request.getParameter("HoAddress"));
@@ -184,35 +191,34 @@ public class SchoolInfo extends HttpServlet {
 
 			siModel.getAddress().add(HoAddress);
 			HoAddress.setSchAddress(siModel);
+			erMsg+= SMFixedValue.ADDRESS+ "(HO)" + HoAddress;
 
 			SocialMedia socialMediaF = new SocialMedia();
 			socialMediaF.setCategory("FB");
 			socialMediaF.setsMediaName(request.getParameter("Facebook"));
 			siModel.getSocialMedia().add(socialMediaF);
 			socialMediaF.setsMedia(siModel);
+			erMsg+= SMFixedValue.FACEBOOK+ ":" + socialMediaF;
 			
 			SocialMedia socialMediaL = new SocialMedia();
 			socialMediaL.setCategory("LD");
 			socialMediaL.setsMediaName(request.getParameter("Linkdin"));
 			siModel.getSocialMedia().add(socialMediaL);
 			socialMediaL.setsMedia(siModel);
+			erMsg+= SMFixedValue.LINKDIN+ ":" + socialMediaL;
 
 			SocialMedia socialMediaT = new SocialMedia();
 			socialMediaT.setCategory("TW");
 			socialMediaT.setsMediaName(request.getParameter("Twitter"));
 			siModel.getSocialMedia().add(socialMediaT);
 			socialMediaT.setsMedia(siModel);
-
-			
-			siModel.setStatus("A");
-			siModel.setCreatedBy("KNRAI");
-			siModel.setUpdatedBy("KNRAI");
-			siModel.setCreatedOn(new Date());
-			siModel.setUpdatedOn(new Date());
-			System.out.println("\nKNRAI Address :8");
+			erMsg+= SMFixedValue.TWITTER+ ":" + socialMediaT;
+			erMsg += SMFixedValue.ACTION_UPDATING +  SMFixedValue.INPUT_VALUES+  SMFixedValue.COMPLETED;
 			
 		} catch (Exception e) {
-			System.out.println("\nError in UpdFormValueToRModel: \n" + e);
+			erMsg += SMFixedValue.EXEC_CATCH_MSG +"\n"+  e;			
+		} finally {
+			System.out.println("\n" + erMsg);
 		}
 		return siModel;
 	}

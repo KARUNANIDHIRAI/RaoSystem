@@ -27,12 +27,9 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  	
 	</head>
 	<body >
-	
  		<!-- Page Header --><jsp:include page="../HeaderPage.jsp"></jsp:include><!-- Page Header -->
-
  		<div class="container">
 			<form id="XsPORTiNFO" name="XsPORTiNFO" action="../ItemMaster?Action=xNritemInfo" method="post" class="form-horizontal needs-validation" autocomplete="off">
-				<br />
  				<div class="row">
 					<div class="col-sm-12 offset-sm-0">
 						<div class="card" Style="Padding-top:0px">
@@ -60,15 +57,15 @@
 					<div class="row">		
 						<div class="col-sm-4 offset-sm-0">
 						    <label for="SportCategory" class ="h6 "><%=SMFixedValue.ITEM%> <%=SMFixedValue.CATEGORY%>* </label>
-								<select id="SportCategory" name="SportCategory" 	class="form-control blineTl"  >
-								<option selected value ="0"><%=SMFixedValue.Choose%> <%=SMFixedValue.SPORTS%> <%=SMFixedValue.CATEGORY%>*</option>
+								<select id="SportCategory" name="SportCategory" 	class="form-control blineTl" required >
+								<option selected value =""><%=SMFixedValue.Choose%> <%=SMFixedValue.SPORTS%> <%=SMFixedValue.CATEGORY%>*</option>
 							</select>
 						</div>
-						<div class="col-sm-3 offset-sm-0  form-group">
+						<div class="col-sm-4 offset-sm-0  form-group">
 						    <label for="sICode" class ="h6 "><%=SMFixedValue.ITEM%> <%=SMFixedValue.Code%></label>
 							<input type="text" class="form-control blineTl " id="sICode" name="sICode" required>
 						</div>
-						<div class="col-sm-5 offset-sm-0  form-group">
+						<div class="col-sm-4 offset-sm-0  form-group">
 						    <label for="sIName" class ="h6 "><%=SMFixedValue.ITEM%> <%=SMFixedValue.Name%></label>
 							<input type="text" class="form-control blineTl " id="sIName" name="sIName"  required>
 
@@ -77,19 +74,19 @@
 					<div class="row">
 				   		<div class="col-sm-10 text-center offset-sm-2">
 				    		<p class="text-danger"><%= session.getAttribute("Message")== null?"":session.getAttribute("Message") %></p>
-								<%session.removeAttribute("Message");%>
+					 							  <%session.removeAttribute("Message");%>
 			    		</div>
 			  		</div>
 					<div class="form-row">
 						<div class="col-sm-2 offset-sm-5 ">
-							<button type = "button" id ="XsPRTiTEM" name="XsPRTiTEM"  class="form-control text-light text-center h5 btn"
+							<button type = "submit" id ="kXsPRTiTEM" name="kXsPRTiTEM"  class="form-control text-light text-center h5 btn"
 							 style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px">
 							 <%=SMFixedValue.CREATE%> <%=SMFixedValue.New%> <%=SMFixedValue.ITEM%></button>
 						</div>
 					</div>
 						<br />
 				</div>
-				<br /><br /><br /><br /><br />
+				<br /><br /><br />
 				<div class="form-row">
 					<div class="col-sm-10 offset-sm-1" >  <!--  showing data into table -->
 						<div class="table-responsive ">
@@ -113,7 +110,7 @@
 			}
 		});			
 		function xValidateIC(ItemCode){
-			if(ItemCode==null || ItemCode=="" || ItemCode=="Enter Valid Book Code."){ 
+			if(ItemCode==null || ItemCode=="" || ItemCode=="Enter Valid item Code."){ 
 				$("#sICode").val("Enter Valid Item Code.");
 				$("#sICode").focusin();
 				return false;
@@ -147,7 +144,7 @@
 				}	
 			});	 // eof AJAX
 		});
-		$("#XsPRTiTEM").click(function(){
+/* 		$("#XsPRTiTEM").click(function(){
 			var ItemCode  = $("#sICode").val();
 			var ItemName = $("#sIName").val();
 			var category = $("#SportCategory").val();
@@ -157,6 +154,7 @@
 			}
 		});
 		function ValidateItemInfo(ItemCode, ItemName , category ){
+			alert("category" +category);
 			if(ItemCode==""){
 				$("#sICode").val("Code can't be blank");
 				$("#sICode").focusin();
@@ -165,16 +163,20 @@
 				$("#IName").val("Name can't be blank");
 				$("#IName").focusin();
 				return false;
-			}
+			}else if(category=="0"){
+				alert("Select Item Category");
+				$("#SportCategory").focusin();
+				return false;
+			}	
 			$("#sICode").val("");
 			$("#IName").val("");
 			return true;
 		}
 
-		function itemInfo(ItemCode, ItemName ){
+		function itemInfo(ItemCode, ItemName,category ){
 			var request =$.ajax({
 				type:'POST',
-				data:{Action:"xNritemInfo", Code:ItemCode, Name:ItemName},
+				data:{Action:"xNritemInfo", Code:ItemCode, Name:ItemName, itemCategory :category },
 			 	dataType: 'Json',
 				url:'../ItemMaster',
 				success:function(result){
@@ -182,7 +184,7 @@
 				}	
 			});		
 		} // eof subject
-		
+ */		
 		function sportitemInfoList(result){
 			$('#itemInfoList').dataTable({
 			    destroy: true,
@@ -210,7 +212,7 @@
 			 	dataType: 'Json',
 				url:'../ItemMaster',
 				success:function(result){
-					itemInfoList(result);
+					sportitemInfoList(result);
 				}	
 			});
 		});

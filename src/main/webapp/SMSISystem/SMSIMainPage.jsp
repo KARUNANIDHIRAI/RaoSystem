@@ -45,13 +45,16 @@
         <br /><br />
 		<div class="container" > 
 			<div class="row "> 
-                <div class="col-lg-7 " > 
+                <div class="col-lg-2" > 
  					<img src="../images/KSB.png" class="img-responsive "/>
 				</div>
-				<div class="col-lg-5 text-right text-white"> 
+		         <div class="col-lg-5 offset-sm-1" > 
+		              <br /> <p class="h6"><%= session.getAttribute("School") %></p> 
+				</div>
+				<div class="col-lg-4 text-right text-white"> 
 	                <br />  
 	                <h6> <span class ="glyphicon glyphicon-user" ></span>
-						<a href="Common/RLoginPage.jsp"> <%= Information.signin%></a> 
+						<a href="#">Hello, <%= session.getAttribute("UserName") %><%--  <%= Information.signin%> --%></a> 
 	                </h6>
 	        	</div>
  			</div>

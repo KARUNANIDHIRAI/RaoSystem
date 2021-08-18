@@ -66,6 +66,7 @@ public class URBAccessInfo extends HttpServlet {
 				out.print(userRoleList.toJson());
 				out.flush();
 				break; 				
+/*
 			case "xNRLUxInfo":	// Create New User LOGIN
 				erMsg += SMFixedValue.USER + SMFixedValue.ROLE + SMFixedValue.ACTION_CREATING;
 				userRolesModel = URInputDataModel(userRolesModel,request);
@@ -76,13 +77,14 @@ public class URBAccessInfo extends HttpServlet {
 				out.print(userRoleList.toJson());
 				out.flush();
 				break; 
-			case "xXNRLUxInfo":	// Create New User LOGIN
-				UserLoginSubModel userLoginSubModel  = new UserLoginSubModel ();
+*/
+			case "xNRLUxInfo":	// Create New User LOGIN
+				SMSIUserLoginSubModel userLoginSubModel  = new SMSIUserLoginSubModel();
 				erMsg += SMFixedValue.USER + SMFixedValue.ROLE + SMFixedValue.ACTION_CREATING;
 				userLoginSubModel = uULoginModel(userLoginSubModel, request);
-				excStatus = HDAOURBAccess.sMUserLoginCreate(userRolesModel);
+				excStatus = HDAOURBAccess.sMUserLoginCreate(userLoginSubModel);
 				if(excStatus==1) {
-					userRoleList = HDAOURBAccess.getSMUserRoleLoginInfo(userRolesModel);
+					userRoleList = HDAOURBAccess.getSMSIUserLoginInfo(userLoginSubModel);
 				}
 				out.print(userRoleList.toJson());
 				out.flush();
@@ -192,6 +194,7 @@ public class URBAccessInfo extends HttpServlet {
 		}
 		return uRID;
 	}
+/*
 	private UserRolesModel URInputDataModel(UserRolesModel userRolesModel, HttpServletRequest request) {
 		String msg = SMFixedValue.ACTION_UPDATING + SMFixedValue.WEBPAGE_INPUTVALUE_TOMODEL;
 		try {
@@ -231,11 +234,13 @@ public class URBAccessInfo extends HttpServlet {
 		}
 		return userRolesModel;
 	}
-	private UserLoginSubModel uULoginModel(UserLoginSubModel uLoginSubModel, HttpServletRequest request) {
+*/	
+	private SMSIUserLoginSubModel uULoginModel(SMSIUserLoginSubModel uLoginSubModel, HttpServletRequest request) {
 		String msg = SMFixedValue.ACTION_UPDATING + SMFixedValue.WEBPAGE_INPUTVALUE_TOMODEL;
 		try {
 			Object []inputValues = request.getParameterValues("uRLInputData[]");
 			uLoginSubModel.setRegNo(inputValues[0].toString());
+			uLoginSubModel.setUserRoleIdFK(Integer.parseInt((String) inputValues[1]));
 			uLoginSubModel.setfName(inputValues[2].toString());
 			uLoginSubModel.setlName(inputValues[3].toString());
 			uLoginSubModel.setMobileNo(inputValues[4].toString());
@@ -249,7 +254,6 @@ public class URBAccessInfo extends HttpServlet {
 			uLoginSubModel.setCreatedOn(new Date());
 			uLoginSubModel.setUpdatedBy("KBS TECHNOLOGY");
 			uLoginSubModel.setUpdatedOn(new Date());
-			uLoginSubModel.setUserRoleIdFK(1);
 			msg += "\nuRDetailsModel ->" +  uLoginSubModel;
 
 			msg += SMFixedValue.ACTION_UPDATING + SMFixedValue.COMPLETED;

@@ -19,8 +19,6 @@ import javax.persistence.OneToOne;
 	@Entity
 	@Table(name ="SMSchoolInformation")
 	public class SchoolInfoModel implements Serializable{
-		
-
 		@Id
 		@Column(name="RegNO", nullable= false , updatable = false, columnDefinition = "nvarchar(100)")
 		private String regNo;
@@ -57,14 +55,6 @@ import javax.persistence.OneToOne;
 
 		@OneToMany(cascade = CascadeType.ALL,mappedBy = "schAddress")
 		private List<Address> address = new ArrayList<Address>();
-
-
-		@Column(name= "LoginID", nullable= false, columnDefinition = "nvarchar(100)")
-		private String loginId;
-
-		@Column(name= "LoginPassword", nullable= false, columnDefinition = "nvarchar(100)")
-		private String loginPassword;
-		
 
 		@Column(name= "CreatedBy", nullable= false,updatable = false, columnDefinition = "nvarchar(100)")
 		private String createdBy;
@@ -166,22 +156,6 @@ import javax.persistence.OneToOne;
 
 		public void setAddress(List<Address> address) {
 			this.address = address;
-		}
-
-		public String getLoginId() {
-			return loginId;
-		}
-
-		public void setLoginId(String loginId) {
-			this.loginId = loginId;
-		}
-
-		public String getLoginPassword() {
-			return loginPassword;
-		}
-
-		public void setLoginPassword(String loginPassword) {
-			this.loginPassword = loginPassword;
 		}
 
 		public String getCreatedBy() {

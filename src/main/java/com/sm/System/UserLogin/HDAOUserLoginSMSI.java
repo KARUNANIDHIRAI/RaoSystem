@@ -8,6 +8,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
+
+import com.sm.System.SMInformation.SMFixedValue;
+import com.sm.System.URBAccess.SMSIUserLoginModel;
 import com.sm.System.URBAccess.UserRolesDetailsModel;
 
 import org.hibernate.HibernateException;
@@ -238,7 +241,7 @@ public class HDAOUserLoginSMSI {
 			erMsg += "Step 3.1: Parameter OK ";
 	        creteriaQuery.multiselect(rwaNo, lgpwd,FirstName);
 	        creteriaQuery.where(builder.equal(root.get("email"),loginObj.get("UID")),
-	        		            builder.equal(root.get("status"), "A"));
+	        		            builder.equal(root.get(SMFixedValue.MODEL_STATUS), SMFixedValue.STATUS));
 	        
 	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
 			erMsg += "Step 3.2: execute OK ";
@@ -262,6 +265,41 @@ public class HDAOUserLoginSMSI {
 		}
 		return loginObj;
 	}
+	public static HashMap<String, String> getLoginPasswordValidate(HashMap<String, String> loginObj) {
+		String erMsg = SMFixedValue.ACTION_VALIDATING +  SMFixedValue.ACTION_PASSWORD;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<Object[]> creteriaQuery = builder.createQuery(Object[].class);
+	        Root<SMSIUserLoginModel> root = creteriaQuery.from(SMSIUserLoginModel.class);
+	        Path<Object> RegistrationNo   = root.get(SMFixedValue.MODEL_REGNO)          ;
+	        Path<Object> UserCode         = root.get(SMFixedValue.MODEL_USER_CODE)      ;
+	        Path<Object> UserFirstName    = root.get(SMFixedValue.MODEL_USER_FNAME)     ;
+	        Path<Object> UserLoginID     = root.get(SMFixedValue.MODEL_USER_LOGINID)  ;
+	        Path<Object> UserLoginPWD     = root.get(SMFixedValue.MODEL_USER_PASSWORD)  ;
+			erMsg += SMFixedValue.PARM_SET_MSG ;
+	        creteriaQuery.multiselect(RegistrationNo, UserCode, UserFirstName,UserLoginID, UserLoginPWD);
+	        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_USER_LOGINID),loginObj.get("InputUID")),
+	        		            builder.equal(root.get(SMFixedValue.MODEL_STATUS), SMFixedValue.STATUS));
+	        Query<Object[]> query = sessionObj.createQuery(creteriaQuery);
+	       ArrayList <Object[]> rows =  (ArrayList<Object[]>) query.list();
+			erMsg += SMFixedValue.EXEC_QUERY_MSG + SMFixedValue.OUTPUT_VALUES + rows.size() +" Record." ;
+	       for(Object[] row :rows ) {
+	    	   loginObj.put("RegNo",         row[0].toString());
+	    	   loginObj.put("UserID",        row[1].toString());
+	    	   loginObj.put("UserName",      row[2].toString());
+	    	   loginObj.put("OutputLoginID", row[3].toString());
+	    	   loginObj.put("OutputPWD",     row[4].toString());
+	       }
+	       erMsg += SMFixedValue.COMPLETED ;
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG +"\n" + e;
+		}finally {
+	          System.out.println("\n"+erMsg );
+		}
+		return loginObj;
+	}
+
+	
 	public static boolean validEmail(String emailID, String erMsg) {
 		erMsg += "Step 3: validPassword ";
 		boolean valEmail=false;

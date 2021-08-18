@@ -56,7 +56,8 @@
 		<!-- SMSI User Login  -->
 		<mapping class="com.sm.System.UserLogin.UserLoginSMSIModel"/>
 		<mapping class="com.sm.System.UserLogin.UserSMSIAddress"/>
-
+		<mapping class="com.sm.System.URBAccess.SMSIUserLoginSubModel"/>
+		<mapping class="com.sm.System.URBAccess.SMSIUserLoginModel"/>
 
 		<mapping class="com.sm.System.SchoolInformation.SchoolInfoModel"/>
 		<mapping class="com.sm.System.SchoolInformation.Address"/>
