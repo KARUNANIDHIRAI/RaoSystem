@@ -159,7 +159,7 @@ public class HDAOBooksPurchase {
         int executeUpdate = 0;
     	Transaction transaction = null; 
 	    try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
-	        Query query = sessionObj.createQuery(SMFixedValue.HQL_REM_BOOK_INFO);
+	        Query query = sessionObj.createQuery(SMFixedValue.REM_BOOK_INFO);
 	        query.setParameter(SMFixedValue.PARM_IDNO, booksPurchaseModel.getiDNO());
 	        query.setParameter(SMFixedValue.PARM_REGNO, booksPurchaseModel.getRegNo());
 	        query.setParameter(SMFixedValue.PARM_NSTATUS, SMFixedValue.REMOVE_STATUS);

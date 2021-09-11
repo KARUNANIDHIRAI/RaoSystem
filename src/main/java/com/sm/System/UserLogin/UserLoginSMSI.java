@@ -2,8 +2,10 @@ package com.sm.System.UserLogin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.mail.EmailException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.sm.System.Faculty.FacultyMemberModel;
+import com.sm.System.Faculty.HDAOFaculty;
 import com.sm.System.SMInformation.SMFixedValue;
 import com.sm.System.SchoolInformation.HDAOSchoolInfo;
 import com.sm.System.UserLogin.HDAOUserLoginSMSI;
@@ -33,6 +37,7 @@ public class UserLoginSMSI extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession(true);
 		String erMsg= "Step1: Start";
 		String Action = request.getParameter("Action");
@@ -57,16 +62,21 @@ public class UserLoginSMSI extends HttpServlet {
 				String lableCaptcha = userLogin.get("LblCaptcha").toString();
 				userLogin = HDAOUserLoginSMSI.getLoginPasswordValidate(userLogin);
 				String schName = HDAOSchoolInfo.getSchoolName(userLogin.get("RegNo"));
-//|| !PasswordEncoder.matches(loginObj1.get("PWD"),loginObj1.get("password"))
+				List<String> sMFCMemberInfo=new ArrayList<>() ;
+				sMFCMemberInfo= HDAOFaculty.getFMInformation(userLogin.get("RegNo"),userLogin.get("OutputLoginID"));
+				//|| !PasswordEncoder.matches(loginObj1.get("PWD"),loginObj1.get("password"))
 				if (!Captcha.equals(lableCaptcha) || !userLogin.get("InputPWD").equals(userLogin.get("OutputPWD"))) {	
 					String hDAOMessage= "Invalid Login Credential ! ";
 					session.setAttribute("Message",hDAOMessage );
 					response.sendRedirect("SMSISystem/SMSIUserLogin/UserLoginSMSI.jsp");
 				}else {
+					initSessionval( session);
 					session.setAttribute("RegNo"    , userLogin.get("RegNo"));
 					session.setAttribute("UserID"   , userLogin.get("UserID"));
 					session.setAttribute("UserName" , userLogin.get("UserName"));
 					session.setAttribute("School"   , schName);
+					session.setAttribute("FMCode"   , ((String)sMFCMemberInfo.get(0)));
+					session.setAttribute("FMName"   , ((String)sMFCMemberInfo.get(1)));
 					response.sendRedirect("SMSISystem/SMSIMainPage.jsp");
 				}
 				erMsg += "Step 4. HDOA OK: ,";
@@ -180,10 +190,22 @@ public class UserLoginSMSI extends HttpServlet {
 		} catch (EmailException e) {
 			System.out.println("Email Exception: \n"+ e);
 		}finally {
-			session.setAttribute("Message","Technical Error");
 			System.out.println(erMsg);
 		}
 	}
+
+	private void initSessionval(HttpSession session) {
+		session.removeAttribute("RegNo");
+		session.removeAttribute("UserID");
+		session.removeAttribute("UserName");
+		session.removeAttribute("School");
+		session.removeAttribute("FMCode");
+		session.removeAttribute("FMName");
+		session.removeAttribute("KNRAI");
+		System.out.println("RegNo, UserID, UserName, School, FMCode, FMName");
+		// TODO Auto-generated method stub
+	}
+
 
 	private void showPwdObj(HashMap<String, String> pwdObj) {
 		System.out.println("Show Change Password"+ pwdObj);

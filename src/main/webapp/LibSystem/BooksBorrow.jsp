@@ -207,9 +207,9 @@
 				}
 				function showAdmission(result){ 
 					$.each(result, function(id, name){
-						$("#studentInfoList").show();
+//						$("#studentInfoList").show();
 						$("#xSPInfo01").show();
-						$("#xSPInfo02").show();
+//						$("#xSPInfo02").show();
 						$("#sName").html(name.Name);
 						$("#admClass").html(name.Class);
 						$("#sSection").html(name.Section);

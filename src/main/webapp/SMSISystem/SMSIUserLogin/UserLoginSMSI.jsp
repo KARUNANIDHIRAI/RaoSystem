@@ -106,7 +106,7 @@
 										<br />
 										<div class=" row">
 											<div class="col-sm-10 offset-sm-1">
-												<input class="form-control text-center h5" id="refreshCaptcha" 
+												<input class="form-control text-center text-light h5" id="refreshCaptcha" 
 													name="refreshCaptcha" type="button" readonly placeholder="Captcha"
 												   style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px
 												   border-top:0px;border-bottom:0px; border-left:0px;border-right:0px"

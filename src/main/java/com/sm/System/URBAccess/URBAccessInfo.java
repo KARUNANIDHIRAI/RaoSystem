@@ -186,7 +186,7 @@ public class URBAccessInfo extends HttpServlet {
 	}
 	private int subtractNumber(String numString, int id) {
 		int pos = numString.indexOf("/");
-		int uRID=0;
+		int uRID=0;  
 		try {
 			uRID = id==2?Integer.parseInt(numString.substring(pos+1)) :Integer.parseInt(numString.substring(0,pos));
 		} catch (NumberFormatException e) {

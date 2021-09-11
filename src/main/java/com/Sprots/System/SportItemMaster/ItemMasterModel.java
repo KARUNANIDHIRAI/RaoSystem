@@ -12,40 +12,39 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="SMItemMaster")	
+@Table(name = "SMItemMaster")
 public class ItemMasterModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="IDNO",    nullable= false, updatable = false)
+	@Column(name = "IDNO", nullable = false, updatable = false)
 	private Integer iDNO;
 
-	@Column(name="RegNO", nullable= false , updatable = false)
+	@Column(name = "RegNO", nullable = false, updatable = false)
 	private String regNo;
-		
-	@Column(name="Code",    nullable= false, updatable = false)
+
+	@Column(name = "Code", nullable = false, updatable = false)
 	private String code;
 
-	@Column(name="Name",    nullable= false,updatable = true)
+	@Column(name = "Name", nullable = false, updatable = true)
 	private String name;
-	
-	@Column(name="ItemCategory",    nullable= false,updatable = true)
+
+	@Column(name = "ItemCategory", nullable = false, updatable = true)
 	private String itemCategory;
 
-	@Column(name= "Status", nullable= false,updatable = false)
+	@Column(name = "Status", nullable = false, updatable = false)
 	private String status;
 
-
-	@Column(name= "CreatedBy", nullable= false,updatable = false, columnDefinition = "nvarchar(100)")
+	@Column(name = "CreatedBy", nullable = false, updatable = false, columnDefinition = "nvarchar(100)")
 	private String createdBy;
 
-	@Column(name= "CreatedOn", nullable= false,updatable = false, columnDefinition = "date")
+	@Column(name = "CreatedOn", nullable = false, updatable = false, columnDefinition = "date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
 
-	@Column(name= "UpdatedBy", nullable= false,columnDefinition = "nvarchar(100)")
+	@Column(name = "UpdatedBy", nullable = false, columnDefinition = "nvarchar(100)")
 	private String updatedBy;
 
-	@Column(name= "UpdatedOn", nullable= false,columnDefinition = "date")
+	@Column(name = "UpdatedOn", nullable = false, columnDefinition = "date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 

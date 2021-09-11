@@ -6,7 +6,6 @@
 <!-- http://localhost:8080/swagger-ui/#/Brand%20V2%20APIs/setPasswordUsingPOST_1 -->
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
 		<title>Insert title here</title>
 		 	<meta charset="ISO-8859-1">
 			<meta name="viewport" content="width=device-width, initial-scale=1">

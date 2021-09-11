@@ -150,7 +150,7 @@
 									          	<div class="dropdown-divider"></div>
 									        	<a class="dropdown-item" href="SMSystems/SupplierMaster.jsp">Supplier Information</a>
 									        	<a class="dropdown-item" href="../Sports/ItemMaster.jsp">Sport Items Information</a>
-									        	<a class="dropdown-item" href="../Sports/ItemsMasterOpenBal.jsp">Opening Stock Items</a>
+									        	<a class="dropdown-item" href="../SMSISystem/SMItemsInfo/SMItemsOPBal.jsp">Opening Stock Items Master</a>
 									        	<a class="dropdown-item" href="SMSystems/MasSubject.jsp">Purchase Order</a>
 									        	<a class="dropdown-item" href="SMSystems/TimeTable.jsp">Purchase Order Approved</a>
 									        	<a class="dropdown-item" href="../Sports/ItemMasterPurchase.jsp">Purchase New Items</a>
@@ -161,10 +161,10 @@
 											<div class="col-sm-5">
 									          	<a class="dropdown-item" href="#">Borrow Information</a>
 									          	<div class="dropdown-divider"></div>
-									        	<a class="dropdown-item" href="../LibSystem/BooksBorrow.jsp">Borrow Sports Items</a>
-									        	<a class="dropdown-item" href="../LibSystem/BooksBorrowReturn.jsp">Return Sports Items</a>
-									        	<a class="dropdown-item" href="SMSystems/SFeePayment.jsp">Lost Borrowed Sports Item</a>
-									        	<a class="dropdown-item" href="SMSystems/Faculty.jsp">Borrowed Sprots Items Not Return</a>
+									        	<a class="dropdown-item" href="../SMSISystem/SMItemsInfo/SMItemsBorrowed.jsp">Borrow Items</a>
+									        	<a class="dropdown-item" href="../SMSISystem/SMItemsInfo/SMItemsReturned.jsp">Return Items</a>
+									        	<a class="dropdown-item" href="../SMSISystem/SMItemsInfo/SMItemsLost.jsp">Lost Borrowed Item</a>
+									        	<a class="dropdown-item" href="../SMSISystem/SMItemsInfo/SMItemsNotReturn.jsp">Borrowed Items Not Return</a>
 											</div>
 									    </div>
 									</div>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JsonArray;
 
+import com.sm.System.SMInformation.SMFixedValue;
 import com.sm.System.StudentPersonalInfo.HDAOSpInformation;
 import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
 
@@ -21,16 +22,14 @@ public class StudentERP extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Step 1 : Start ") ;
-
-		String erMsg = "Step 1 : Start " ;
 		HttpSession session = request.getSession(true);
+		String erMsg = SMFixedValue.ACTION_START + SMFixedValue.ACTION_STEP +"1" ;
 
 		StudentPersonalInfoModel  SiModel = new StudentPersonalInfoModel();
 		SiModel.setRegNo("MK308");
 		SiModel.setEmailId("KARUNANIDHIRAI@YAHOO.COM");
 
-		String Action = request.getParameter("Action");
+		String Action = request.getParameter(SMFixedValue.ACTION);
 		erMsg += Action;
 
 		JsonArray JsonArrayList = new JsonArray();
@@ -40,7 +39,8 @@ public class StudentERP extends HttpServlet {
 			switch (Action) {
 			case "XSTProfile":	 // sTUDNENT LIST FOR MARKING ATTENDANCE
 				erMsg +=" Retrive Student Information :";
-				JsonArrayList = HDAOSpInformation.rStudentPersonalInfo(SiModel, erMsg);
+//				JsonArrayList = HDAOSpInformation.rStudentPersonalInfo(SiModel, erMsg);
+				JsonArrayList = HDAOSpInformation.getStudentPInfo(SiModel);
 				erMsg +=" done ";
 				System.out.println("\nJsonArrayList.toJson()" + JsonArrayList.toJson());
 				out.print(JsonArrayList.toJson());

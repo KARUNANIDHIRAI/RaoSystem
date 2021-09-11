@@ -58,22 +58,27 @@
 							</ul>
 						</div>
 					</nav>
-
 				</div>
 			</div>
 		</div>		
-        <br /><br />``
-                <div class="col-lg-2 offset-sm-1" > 
+        <br /><br />
+		<div class="container" > 
+			<div class="row "> 
+                <div class="col-lg-2" > 
  					<img src="../images/KSB.png" class="img-responsive "/>
 				</div>
-				<div class="col-lg-7  text-dark"> 
+		         <div class="col-lg-5 offset-sm-1" > 
+		              <br /> <p class="h6"><%= session.getAttribute("School") %></p> 
+				</div>
+				<div class="col-lg-4 text-right text-white"> 
 	                <br />  
-	                <p class="h4"> <%= SMFixedValue.student%> <%= SMFixedValue.information%> <%= SMFixedValue.portal%> </p>  
+	                <h6> <span class ="glyphicon glyphicon-user" ></span>
+						<a href="#">Hello, <%= session.getAttribute("UserName") %><%--  <%= Information.signin%> --%></a> 
+	                </h6>
 	        	</div>
  			</div>
- 		</div>	
-
-		<div class="container-flucid" > 
+        </div>
+ 		<div class="container-flucid" > 
 			<div class="row">
 				<div class="col-lg-2 offset-lg-0 " >
 					<nav class="navbar navbar-expand-lg navbar-light "  Style="paddinb-top:0px; padding-bottom:0px padding-left:0px; padding-right:0px">
@@ -118,12 +123,12 @@
 										<div class="dropdown-menu " id="megha_menu" style ="width:500px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
 											<div class="row">
 												<div class="col-sm-4">
-										          	<a class="dropdown-item" href="#"><h6>Performance</h6></a>
+										          	<a class="dropdown-item h6" href="#">Performance</a>
 										          	<div class="dropdown-divider"></div>
 										          	<a id ="sIERP" class="dropdown-item" onclick="sIERP()()"  href= <%= SMFixedValue.TEST_PERFORMANCE%> target="myFrame">Test Performance</a>
 												</div>
 												<div class="col-sm-4">
-										          	<a class="dropdown-item" href="#"><h6>Academic Details</h6></a>
+										          	<a class="dropdown-item h6" href="#">Academic Details</a>
 										          	<div class="dropdown-divider"></div>
 										          	<a id ="sIERP"class="dropdown-item" onclick="sIERP()"  href= <%= SMFixedValue.ATTENDANCE%> target="myFrame">Attendance</a>
 										          	<a id ="sIERP" class="dropdown-item" onclick="sIERP()"  href= <%= SMFixedValue.TIMETABLE%> target="myFrame">Class Schedule</a>
@@ -165,11 +170,28 @@
 						          		<%= SMFixedValue.LIBRARY%>
 						        	</a>
 							        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							        	<a class="dropdown-item" href="../LibSystem/BooksBorrow.jsp">Boos Borrowed</a>
-							        	<a class="dropdown-item" href="../LibSystem/BooksBorrowedReturn.jsp">Boos Borrowed Return</a>
-							        	<a class="dropdown-item" href="#">Boos Borrowed Due</a>
+							        	<a class="dropdown-item" href="../LibSystem/BooksBorrow.jsp">Books Borrowed</a>
+							        	<a class="dropdown-item" href="../LibSystem/BooksBorrowedReturn.jsp">Books Borrowed Return</a>
+							        	<a class="dropdown-item" href="#">Books Borrowed Due</a>
 							        </div>
 						      	</li>
+  								<li class="nav-item dropdown">
+  								
+						      		<a class="nav-link dropdown-toggle h6" href="#" id="navbarDropdown" role="button" 
+						      		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">	<%= SMFixedValue.SPORTS%>
+						        	</a>
+									<div class="dropdown-menu " id="megha_menu" style ="width:300px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
+										<div class="row">
+											<div class="col-sm-10">
+											    <P id ="sIERP"><a onclick="sIERP()" class="text-dark" href="SISystem/SIItemBorrowed.html" target="myFrame"><%= SMFixedValue.MENU_ITEM_BORROW%></a> </P>
+											    <P id ="sIERP"><a onclick="sIERP()" class="text-dark" href="SISystem/SIItemBorrowedR.html" target="myFrame"><%= SMFixedValue.MENU_ITEM_RETURN%></a> </P>
+											    <P id ="sIERP"><a onclick="sIERP()" class="text-dark" href="SISystem/SIItemBorrowedD.html" target="myFrame"><%= SMFixedValue.MENU_ITEM_DUE%></a> </P>
+											    <P id ="sIERP"><a onclick="sIERP()" class="text-dark" href="SISystem/SIItemBorrowedL.html" target="myFrame"><%= SMFixedValue.MENU_ITEM_LOST%></a> </P>
+											</div>
+									    </div>
+									</div>
+						      	</li>
+						    						    
 						      	<li class="nav-item dropdown">
 						      		<a class="nav-link dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						          		<%= SMFixedValue.studentPayment%>

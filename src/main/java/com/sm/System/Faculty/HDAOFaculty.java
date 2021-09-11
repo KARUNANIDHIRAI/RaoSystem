@@ -6,23 +6,16 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.xml.crypto.Data;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
-
-import com.SLIBM.System.BooksPurchase.BooksPurchaseDetailModel;
-import com.SLIBM.System.BooksPurchase.BooksPurchaseModel;
 import com.raoSystem.daoConnection.HibernateDAO;
 import com.sm.System.SMInformation.SMFixedValue;
 
-
-
 public class HDAOFaculty {
-	
 	public static int facultyNew(FacultyModel siModel, String erMsg) {
 		Transaction transaction = null;
 		erMsg+=" Step 2.0 Start HDAO - ";
@@ -155,7 +148,7 @@ public class HDAOFaculty {
 	        CriteriaQuery<FacultyMemberModel> creteriaQuery = builder.createQuery(FacultyMemberModel.class);
 	        Root<FacultyMemberModel> root = creteriaQuery.from(FacultyMemberModel.class);
 	        creteriaQuery.where(builder.equal(root.get("regNo"), xfacultyMemberModel.getRegNo()),
-		        		builder.equal(root.get("status"), "A"));
+		        		builder.equal(root.get("status"), SMFixedValue.STATUS));
 
 	        Query<FacultyMemberModel> query = sessionObj.createQuery(creteriaQuery);
 	        ArrayList <FacultyMemberModel> rows =  (ArrayList<FacultyMemberModel>) query.getResultList();
@@ -199,7 +192,7 @@ public class HDAOFaculty {
 	    try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
 	        Query query = sessionObj.createQuery(SMFixedValue.HQL_FACULTY_MEMBER);
 	        query.setParameter(SMFixedValue.PARM_NSTATUS, rfacultyMemberModel.getStatus());
-	        query.setParameter(SMFixedValue.PARM_OSTATUS, "A");
+	        query.setParameter(SMFixedValue.PARM_OSTATUS, SMFixedValue.STATUS);
 	        query.setParameter(SMFixedValue.PARM_REGNO, rfacultyMemberModel.getRegNo());
 	        query.setParameter(SMFixedValue.PARM_IDNO, rfacultyMemberModel.getfMIDNO());
 		
@@ -301,5 +294,75 @@ public class HDAOFaculty {
 				System.out.println("\n"+erMsg );
 			}			
 		return facultyMemberInfo;
-	}				
+	}	
+	public static List<String> getFMInformation(String SMRegNo, String emailId) {
+        String erMsg = SMFixedValue.ACTION_GENERATE +SMFixedValue.FACULTY 
+        		+ SMFixedValue.MEMBER + SMFixedValue.INFORMATION +": " ;
+        List<String> sMFMInfo = new ArrayList<String>() ; 
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        CriteriaQuery<FacultyMemberModel> creteriaQuery = builder.createQuery(FacultyMemberModel.class);
+	        Root<FacultyMemberModel> root = creteriaQuery.from(FacultyMemberModel.class);
+	        
+	        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_FACULTYREGNO), SMRegNo),
+	        	builder.equal(root.get(SMFixedValue.MODEL_FACULTYEMAIL), emailId),
+	        	builder.equal(root.get(SMFixedValue.MODEL_FACULTYSTATUS), SMFixedValue.STATUS));
+	        erMsg += SMFixedValue.PARM_SET_MSG;
+
+	        Query<FacultyMemberModel> query = sessionObj.createQuery(creteriaQuery);
+	        ArrayList <FacultyMemberModel> rows=(ArrayList<FacultyMemberModel>) query.getResultList();
+	    	erMsg += SMFixedValue.EXEC_QUERY_MSG; 
+	        for ( FacultyMemberModel data:rows) {
+	    	  if(data.getStatus().equals(SMFixedValue.STATUS)) {
+		    	  sMFMInfo.add(data.getFacultyCode());
+		    	  String fMname = data.getName().concat(" ").concat(data.getlName());
+		    	  sMFMInfo.add(fMname);
+		    	  sMFMInfo.add(data.getDesignation());
+		    	  break;
+	    	  }
+	       }
+	       sessionObj.close();
+	       erMsg += "\n"+ SMFixedValue.OUTPUT +" Rows: " + rows.size()+SMFixedValue.FACULTY + " "+SMFixedValue.MEMBER + " " ;
+	       for(String fMInfo:sMFMInfo)    
+	    	   erMsg += fMInfo; 
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return sMFMInfo;
+	}
+	public static int getfacultyMemberPK(String RegNo, String fMCode) {
+        String erMsg = SMFixedValue.ACTION_GENERATE +SMFixedValue.FACULTY 
+        		+ SMFixedValue.MEMBER + SMFixedValue.ID +": " ;
+        int fMiDNO = 0;
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+	        
+	        CriteriaQuery<FacultyMemberModel> creteriaQuery = builder.createQuery(FacultyMemberModel.class);
+	        Root<FacultyMemberModel> root = creteriaQuery.from(FacultyMemberModel.class);
+	        
+	        creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_FACULTYREGNO), RegNo),
+	        	builder.equal(root.get(SMFixedValue.MODEL_FACULTYCODE), fMCode),
+	        	builder.equal(root.get(SMFixedValue.MODEL_FACULTYSTATUS), SMFixedValue.STATUS));
+	        erMsg += SMFixedValue.PARM_SET_MSG;
+
+	        Query<FacultyMemberModel> query = sessionObj.createQuery(creteriaQuery);
+	        ArrayList <FacultyMemberModel> rows=(ArrayList<FacultyMemberModel>) query.getResultList();
+	    	erMsg += SMFixedValue.EXEC_QUERY_MSG; 
+	        for ( FacultyMemberModel data:rows) {
+		    	  fMiDNO = data.getfMIDNO();
+		    	  break;
+	       }
+	       sessionObj.close();
+	       erMsg += SMFixedValue.OUTPUT +SMFixedValue.FACULTY +SMFixedValue.MEMBER  + SMFixedValue.ID+":" +Integer.toString(fMiDNO);
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return fMiDNO;
+	}
+	
+
 }

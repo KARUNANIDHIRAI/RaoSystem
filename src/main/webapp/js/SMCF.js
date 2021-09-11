@@ -16,13 +16,46 @@ var subjects="";
 var days = " ";
 var gender = " ";
 var facultyOption= " ";
-var actionType =" ";
-var category =" ";
-var uRType = " ";
-var uRLGList=" ";
-var userGroupType= " ";
-alert("knSMFC");
+var actionType   =" ";
+var category     =" ";
+var uRType       =" ";
+var uRLGList     =" ";
+var userGroupType=" ";
+var sportCategory=" ";
+var unit         =" ";
+var trCode       =" ";
+alert("knSMFC22");
 $(document).ready(function(){
+	$("#xtRCode").click(function(){
+		if (trCode!=" "){	return;	}
+		trCode="";
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"genxRouteLX"},
+		 	dataType: 'Json',
+			url:'../../RouteInfo',
+			success:function(result){
+				trCode+=" <option selected value=0>Choose Transport Route*</option>";
+				$.each(result, function(id, name){
+					trCode+=" <option value='"+name.CodeAndName +"'>"+ name.CodeAndName+ "</option>";
+				});
+				$("#xtRCode").html(trCode);
+			}	
+		});	
+	}); 
+	
+
+
+	$("#SportCategory").click(function(){
+		if (sportCategory!=" "){return;}
+		sportCategory=" <option selected value=0>Choose Category*</option>";
+	    var cCategory = ['Football', 'Cricket','Music','Dance','Cultural Programme','Horse Ridding','Swimming', 'Atheletes'];
+       $.each(cCategory, function(index, value){
+    	   sportCategory+=" <option value='"+value +"'>"+ value+ "</option>";
+       });
+       $("#SportCategory").html(sportCategory);
+   });
+	
    $("#UserTypeGRP").click(function(){
 		if (userGroupType!=" "){return;}
 		userGroupType=" <option selected value=0>Choose User Category Type*</option>";

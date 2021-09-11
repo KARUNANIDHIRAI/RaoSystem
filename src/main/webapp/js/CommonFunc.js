@@ -6,7 +6,7 @@ var rcOptions= " ";
 var apartmentOptions=" ";
 var flatOption=" ";
 var VehileOption=" ";
-alert('Apartment');
+alert('Apartment1');
 $(document).ready(function(){
 	$("#ulpwd").load("../UserLogin/UserLoginPwdRest.jsp", function(){
 		getRefreshCaptcha();

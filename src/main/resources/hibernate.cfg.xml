@@ -121,6 +121,29 @@
 		<mapping class="com.sm.System.SupplierMaster.SupplierMasterContact"/> 
 		<!--  Sport Item Master -->
 		<mapping class="com.Sprots.System.SportItemMaster.ItemMasterModel"/> 
+<!-- 		<mapping class="com.sm.System.ItemMaster.ItemMasterModel"/> -->
+		<!--  Opening Balance -->
+		<mapping class="com.sm.System.ItemMasterOPBal.SMItemMasterOPBalSubModel"/>
+		<mapping class="com.sm.System.ItemMasterOPBal.SMItemMasterOPCLBalSubModel"/>
+		<mapping class="com.sm.System.ItemMasterOPBal.SMItemMasterOPBalModel"/>
+		<mapping class="com.sm.System.ItemMasterOPBal.SMItemMasterOPCLBalModel"/>
+
+		<!--  Item borrowed -->
+		<mapping class="com.sm.System.ItemBorrow.SMItemBorrowedModel"/>		 		
+		<mapping class="com.sm.System.ItemBorrow.SMItemBorrowedSubModel"/>		 		
+		<!--  Item returned -->
+		<mapping class="com.sm.System.ItemReturn.SMItemReturnSubModel"/>		 		
+		<mapping class="com.sm.System.ItemReturn.SMItemReturnModel"/>	
+		
+		<!--  Item Lost -->
+		<mapping class="com.sm.System.ItemLost.SMItemLostSubModel"/>		 		
+		<mapping class="com.sm.System.ItemLost.SMItemLostModel"/>	
+		<!--  route Master -->
+		<mapping class="com.sm.System.Transport.RouteModel"/>	
+		<mapping class="com.sm.System.Transport.RouteSubModel"/>		 		
+<!-- 		<mapping class="com.sm.System.Transport.RoutePickUpSubDropModel"/> 		 -->
+		<mapping class="com.sm.System.Transport.RoutePickUpDropModel"/> 		
+		<mapping class="com.sm.System.Transport.RoutePickUpDropSubModel"/> 		
 
     </session-factory>
 </hibernate-configuration>

@@ -60,6 +60,10 @@ p{
 	 border-bottom: 1px solid green;
 	 border-left: 1px solid green;
 }
+.blineTg{
+	 border-top: 1px solid green;
+	 border-left: 1px solid green;
+}
 .blined{
 	 border-bottom: 1px solid black;
 	 border-left: 1px solid black;

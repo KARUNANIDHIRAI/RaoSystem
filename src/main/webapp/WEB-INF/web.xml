@@ -740,6 +740,48 @@
   	<description>Create User Roles Information</description>
   	<servlet-class>com.sm.System.URBAccess.URBAccessInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SportItemsInfo</servlet-name>
+  	<display-name>SportItemsInfo</display-name>
+  	<description>SM Spot Item creating and managing</description>
+  	<servlet-class>com.sm.System.Sports.SportItemsInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SMItemMasterOPBalQty</servlet-name>
+  	<display-name>SMItemMasterOPBalQty</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.ItemMasterOPBal.SMItemMasterOPBalQty</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ItemBorrowedInfo</servlet-name>
+  	<display-name>ItemBorrowedInfo</display-name>
+  	<description>Item Issued to the School management and staff or Students</description>
+  	<servlet-class>com.sm.System.ItemBorrow.ItemBorrowedInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ItemMasterInfo</servlet-name>
+  	<display-name>ItemMasterInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.ItemMaster.ItemMasterInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SMItemReturnInfo</servlet-name>
+  	<display-name>SMItemReturnInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.ItemReturn.SMItemReturnInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SMItemLostInfo</servlet-name>
+  	<display-name>SMItemLostInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.ItemLost.SMItemLostInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RouteInfo</servlet-name>
+  	<display-name>RouteInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.Transport.RouteInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -1230,6 +1272,34 @@
   <servlet-mapping>
   	<servlet-name>URBAccessInfo</servlet-name>
   	<url-pattern>/URBAccessInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SportItemsInfo</servlet-name>
+  	<url-pattern>/SportItemsInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SMItemMasterOPBalQty</servlet-name>
+  	<url-pattern>/SMItemMasterOPBalQty</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ItemBorrowedInfo</servlet-name>
+  	<url-pattern>/ItemBorrowedInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ItemMasterInfo</servlet-name>
+  	<url-pattern>/ItemMasterInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SMItemReturnInfo</servlet-name>
+  	<url-pattern>/SMItemReturnInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SMItemLostInfo</servlet-name>
+  	<url-pattern>/SMItemLostInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RouteInfo</servlet-name>
+  	<url-pattern>/RouteInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

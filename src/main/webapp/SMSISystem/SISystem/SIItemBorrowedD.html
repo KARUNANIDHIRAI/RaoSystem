@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Insert title here</title>
+	 	<meta charset="ISO-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
+
+		<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.css'>
+	 	<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+
+		<script type="text/javascript" 	src="../../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" 	src="../../webjars/jquery/3.4.1/jquery.min.js"></script>
+	
+	 	<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.min.js"></script>
+		<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.js"></script>
+	  	<script type="text/javascript" src="../../js/SMCF.js"></script>
+		<link rel="stylesheet" href="../../css/SMST.css" type="text/css">
+	
+		<link rel="stylesheet"  type="text/css" href="../../webjars/datatables/1.10.19/css/jquery.dataTables.min.css">
+		<script type="text/javascript" src="../../webjars/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript"	src="../../webjars/datatables-buttons/1.6.1/js/buttons.print.min.js"></script>
+
+		<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" ></script>	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  	
+
+		<script type="text/javascript" src="../../webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
+	  	<script type="text/javascript" src="../../js/CommonFunc.js"></script>
+	</head>
+	<body onload="showSEITRInfoXr()">
+		<div class="container">
+			<div class="card" >
+				<div class="card-header  text-dark" id ="xSTPh">
+					<div class="row">		
+						<div class="col-sm-12 offset-sm-0  form-group">
+							<p class = "h5 text-center"> Item Borrowed Returned Information</p>
+						</div>
+					</div>	
+				</div>
+				<div class="card-body  col-lg-12 offset-sm-0 blinew" id ="xSTPb">
+					<div class="row">		
+						<div class="col-sm-12 offset-sm-0  form-group">
+							<div class="table-responsive ">
+								<table id="xSMItemBList" class="table table-striped table-hover compact row-border"
+								 	style="width:100%; font-size:14px"></table>
+							</div>
+ 						</div>
+					</div>	
+				</div>
+			</div>				
+			<br />
+		</div>					
+	</body>
+	<script type="text/javascript">
+		function showSEITRInfoXr(){ 
+			var request =$.ajax({
+				type:'POST',
+	 				data:{Action:"XiTBrPendInfo10", Student :  'RA19002030525'},
+			 	dataType: 'Json',
+				url:'../../ItemBorrowedInfo',
+				success:function(result){
+					xItemBorrowedList(result);
+				}	
+			});
+		}
+		function xItemBorrowedList(result){
+			$('#xSMItemBList').dataTable({
+			    destroy: true,
+				"data":result,
+				 columnDefs: [ {	targets: -1, className: 'dt-body-justify'	}, ],
+			    "columns": [
+					 { title:	'SNo'	          ,data:"SNO"},
+					 { title:	'Reg.No'           ,data:"RegNo"},
+					 { title:	'Adm.No'          ,data:"SAdmNo"},
+					 { title:	'Item Code & Name',data:"ICodeAndName" },  
+					 { title:	'Issue By'        ,data:"IssueBy"},
+					 { title:	'Issued Date'     ,data:"IssFromDate" },  
+					 { title:	'Due Date'      ,data:"IssToDate" },  
+					 { title:	'Iss.Qty'         ,data:"IssQty"},
+					 { title:	'Return Date'     ,data:"RetDate" }  
+				]
+			});
+		}// EOF table FUNCTION	
+	  	$(document).ready(function(){
+
+		});// document.ready eof
+	</script>
+</html>

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Parameter;
 import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Expression;
 import javax.persistence.metamodel.SingularAttribute;
 
 public class SMFixedValue {
@@ -261,9 +262,12 @@ public class SMFixedValue {
 	public static final String HQL_VERIFY_INVOICE_NO = " FROM BooksPurchaseModel "
 	 		                   + " WHERE regNo=:RegNo AND invocieNo=:invoiceNo AND status=:oStatus";	
 
-	public static final String HQL_REM_BOOK_INFO= " Update BooksPurchaseDetailModel set status =:nStatus "
+	public static final String REM_ITEMISSUE_INFO= " Update SMItemBorrowedModel set status =:nStatus "
+			   +  " where iDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus";
+	
+	public static final String REM_BOOK_INFO= " Update BooksPurchaseModel set status =:nStatus "
 			   +  " where iDDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus";
-		
+			
 	public static final String HQL_BKP_LIST = "FROM BooksPurchaseModel "
 	                           + " WHERE regNo=:" + SMFixedValue.PARM_REGNO 
 	                           + " AND invocieNo=:" +SMFixedValue.PARM_INVOICE_NO  + " AND status=:"+ SMFixedValue.PARM_OSTATUS ;
@@ -441,10 +445,96 @@ public class SMFixedValue {
 	public static final String MODEL_USER_PASSWORD = "uLPWD";
 	public static final String MODEL_USER_LOGINID = "emailID";
 	public static final String CAPTCHA ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	public static final String SPORT_ITEMCATEGORY = "itemCategory";
+	public static final String OPENBAL = "Opening Balance";
+	public static final String MODEL_ITEMCODE = "ItemCode";
+	public static final String MODEL_iTEMCODE = "itemCode";
+	public static final String EXEC_DUPLICATE_MSG = "Duplicate Data found. ";
+	public static final String EXEC_NODATAINSERT_MSG = "No Data Insert. ";
+	public static final String ACTION_ITEMCODE_PK = "Getting ItemCode PK...";
+	public static final String MODEL_FACULTYEMAIL = "emailID";
+//  sm item borrrowed by School management , staff and student
+	public static final String ISSUE="Issue" ;
+	public static final String ITEM_BORROW_INPUTVALUES = "Item borrowed Input Values ";
+	public static final String RETURN_DEFAULT_STATUS = "P";
+	public static final String PARA_ITEMCODE = "ItemCode";
+	public static final String PARM_ISSUEDQTY = "IssuedQty";
+	
+	public static final String UPD_ITEMMASTER_OPCLBAL_ISSUE = "Update SMItemMasterOPCLBalModel "
+			+ " SET clBalQty =clBalQty - :IssuedQty "
+			+ ", issueQty = issueQty + :IssuedQty"
+			+ " WHERE regNo =:"+SMFixedValue.PARM_REGNO + " and itemCode =:"+ SMFixedValue.PARA_ITEMCODE 	
+		    + " AND clBalQty -: "+ SMFixedValue.PARM_ISSUEDQTY +">=0 and status=:"+ PARM_STATUS;
+	public static final String MODEL_BORROWED_DATE = "borrowFromDate";
+	public static final String MODEL_ADIMISSIONNO = "admNo";
+	public static final String BORROW_LIST_GENERATED = "Borrowed List Generated sucesscfully.";
+	
+	public static final String RETURN = "Return ";
+	public static final String PARM_RETURNEDQTY = "ReturnedQty";
+	public static final String PARA_RETURNDATE = "ReturnDate";
+	public static final String LATEFEE = "Late Fee";
+	public static final String DUEDATE = "Due Date";
 
+	public static final String UPD_ITEMMASTER_OPCLBAL_RETURN = "Update SMItemMasterOPCLBalModel "
+			+ " SET clBalQty =clBalQty + :" +SMFixedValue.PARM_RETURNEDQTY
+			+ ", returnQty = returnQty + :" +SMFixedValue.PARM_RETURNEDQTY
+			+ " WHERE regNo =:"+SMFixedValue.PARM_REGNO + " and itemCode =:"+ SMFixedValue.PARA_ITEMCODE 	
+		    + " AND status=:"+ PARM_STATUS;
 	
+	public static final String UPD_ITEM_BORROWED ="Update SMItemBorrowedModel "
+			+ " SET returnDate = :" +SMFixedValue.PARA_RETURNDATE
+			+ " WHERE iDNO =:" + SMFixedValue.PARM_IDNO + " AND status=:"+ PARM_STATUS;
 	
+	public static final String REM_ITEM_OPCLBAL = "Update SMItemMasterOPCLBalModel "
+			   + " SET clBalQty = clBalQty - OpBalQty, OpBalQty =0"
+			   + " WHERE itemCode =:" + SMFixedValue.PARM_CODE + " AND regNo =:" +  SMFixedValue.PARM_REGNO 
+			   + " AND  status=:" + SMFixedValue.PARM_OSTATUS + " AND OpBalQty<=clBalQty";
 	
+	public static final String REM_ITEM_OPBAL = "Update SMItemMasterOPBalModel "
+			   + " SET status =:" + SMFixedValue.PARM_NSTATUS
+			   + " WHERE OPBQIDNO =:" + SMFixedValue.PARM_IDNO + " AND regNo =:" +  SMFixedValue.PARM_REGNO 
+			   + " AND  status=:" + SMFixedValue.PARM_OSTATUS ;
+//   Item lost
+	public static final String LOST="Lost";
+	public static final String LOST_CHARGES="Penality Amt.";
+	public static final String ITEM_LOST_INPUTVALUES = "item lost input values ";
+	public static final String TODAY_REPORT_LOSTITEM ="Today Lost Items";
+	public static final String LOSTITEMS ="Lost Items List";
+	public static final String LOST_STATUS = "L";
+	public static final String MODEL_LOST_DATE = "lostDate";
+	// Student ERP
+	public static final String MODEL_STUDENT_EMAIL= "emailId";
+	public static final String MENU_ITEM_BORROW   = "Item Borrowed";
+	public static final String MENU_ITEM_RETURN   = "Item Borrowed Return";
+	public static final String MENU_ITEM_DUE      = "Item Borrowed Due";
+	public static final String MENU_ITEM_LOST     = "Item Borrowed Lost";
+	public static final String ITEM_RETURN_INPUTVALUES = "item return input values ";
+	public static final String MODEL_USERID       = "emailID";
+	public static final String MODEL_RETURNQTY    = "returnedQty";
+	public static final String TODAY              = "Today ";
+	public static final String MODEL_RETURN_DATE  = "returnDate";
+	public static final String TODAY_ITEM_RETURN  ="View Today Item Returned";
+	public static final String LIST_ITEM_RETURN   ="List Items to Return";
+	public static final String REMOVED            =" Removed";
+	public static final String MODEL_OPBALQTY     = "opBalQty";
+	public static final String MODEL_CLBALQTY     = "clBalQty";
+	public static final String MODEL_BorrowedStatus = "borrowedRetStatus";
+	public static final String MODEL_BRStatus = "borrowedRetStatus";
+//  Transport route
+	public static final String ROUTE          = "Route";
+	public static final String TRANSPORT      = "Transport";
+	public static final String DESCRIPTION    = "Description";
+	public static final String PICKUP_POINT   = "Pickup Point";
+	public static final String PICKUP_TIME    = "Time";
+	public static final String SNO            = "SNo.";
+	public static final String DROP_POINT     = "Drop Point";
+	public static final String DROP_TIME      = "Time";
+	public static final String PICKUP_DROP_POINT = "Pickup And Drop";
+	public static final String MODEL_ROUTE_NAME = "routeName";
+	public static final String HQL_PICKUP_DROP="select a.routename, b.pickDropSNo,b.pickupDropType, b.pickupDropPoint, a.idno,b.iDNOFK " + 
+			" from  SMTransportRoute a" + 
+			" inner join SMTransportRoutePickupDrop b on a.IDNO = b.iDNOFK" + 
+			" where a.IDNO =1 and a.status='A' and b.status='A' order by b.PickupDropType, b.PickDropSNo";
 	
-
+  
 }

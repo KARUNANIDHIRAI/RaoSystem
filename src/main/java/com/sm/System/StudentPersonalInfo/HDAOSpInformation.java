@@ -1,13 +1,21 @@
 package com.sm.System.StudentPersonalInfo;
 
 import java.util.ArrayList;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
 import com.raoSystem.daoConnection.HibernateDAO;
+import com.sm.System.ItemBorrow.SMItemBorrowedModel;
 import com.sm.System.SMInformation.SMFixedValue;
+
+import net.sf.ehcache.CacheOperationOutcomes.GetAllOutcome;
 
 public class HDAOSpInformation {
 
@@ -138,9 +146,9 @@ public class HDAOSpInformation {
 		      rObj.put("EmailId"     , (String) row[11]) ;
 		      rObj.put("FName"       , (String) row[12] + " "+(String) row[13]) ;
 		      rObj.put("MName"       , (String) row[14] + " "+(String) row[15]) ;
-		      rObj.put("FProfession"   , (String) row[16]) ;
+		      rObj.put("FProfession" , (String) row[16]) ;
 		      rObj.put("PEmailId"    , (String) row[17]) ;
-		      rObj.put("PMobileNo" , (String) row[18]) ;
+		      rObj.put("PMobileNo"   , (String) row[18]) ;
 		      StudentAdmInfo.add(rObj);	
 		      break;
 	       }
@@ -195,5 +203,51 @@ public class HDAOSpInformation {
 		}			
 		return StudentList;
 	}
+
+	public static JsonArray getStudentPInfo(StudentPersonalInfoModel siModel) {
+		String erMsg = SMFixedValue.GENERATING + SMFixedValue.STUDENT + SMFixedValue.PERSONAL + SMFixedValue.INFORMATION+ ":";
+		JsonArray studentPerInfo = new JsonArray();
+		try (Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+			CriteriaBuilder builder = sessionObj.getCriteriaBuilder();
+			CriteriaQuery<StudentPersonalInfoModel> creteriaQuery = builder.createQuery(StudentPersonalInfoModel.class);
+			Root<StudentPersonalInfoModel> root = creteriaQuery.from(StudentPersonalInfoModel.class);
+			creteriaQuery.where(builder.equal(root.get(SMFixedValue.MODEL_REGNO), siModel.getRegNo()),
+					builder.equal(root.get(SMFixedValue.MODEL_STUDENT_EMAIL), siModel.getEmailId()),
+					builder.equal(root.get(SMFixedValue.MODEL_STATUS), SMFixedValue.STATUS));
+			erMsg += SMFixedValue.PARM_SET_MSG;
+
+			Query<StudentPersonalInfoModel> query = sessionObj.createQuery(creteriaQuery);
+			ArrayList<StudentPersonalInfoModel> rows = (ArrayList<StudentPersonalInfoModel>) query.getResultList();
+			erMsg += SMFixedValue.EXEC_QUERY_MSG;
+			int sNO = 0;
+			for (StudentPersonalInfoModel row : rows) {
+				JsonObject rObj = new JsonObject();
+		          rObj.put("RegNo"       , row.getRegNo());
+			      rObj.put("AdmNo"       , row.getAdmNo());
+			      rObj.put("Course"      , row.getCourse());
+			      rObj.put("Class"       , row.getPromotedInClass()) ;
+			      rObj.put("RollNo"      , row.getRollNo()) ;
+			      rObj.put("Section"     , row.getSection()) ;
+			      rObj.put("SName"       , row.getfName()  + " "+row.getlName()) ;
+			      rObj.put("Gender"      , row.getGender())  ;
+			      rObj.put("MobileNo"    , row.getMobileNo()) ;
+			      rObj.put("EmailId"     , row.getEmailId()) ;
+			      rObj.put("FName"       , row.getFfName() + " "+row.getFlName()) ;
+			      rObj.put("MName"       , row.getMfName() + " "+row.getMlName()) ;
+			      rObj.put("FProfession" , row.getFprofession()) ;
+			      rObj.put("PEmailId"    , row.getpEmailId()) ;
+			      rObj.put("PMobileNo"   , row.getpMobileNo()) ;
+			      studentPerInfo.add(rObj);
+			} // EOF outer for loop
+			sessionObj.close();
+			erMsg += SMFixedValue.OUTPUT + " Total Rows:(" + rows.size() +") :" + studentPerInfo;
+		} catch (Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n" + e;
+		} finally {
+			System.out.println("\n" + erMsg);
+		}
+		return studentPerInfo;
+	}
+	
 	
 }
