@@ -41,6 +41,9 @@ public class PickupDropInfo extends HttpServlet {
 		PrintWriter out = response.getWriter(); 
 		String Action = request.getParameter(SMFixedValue.ACTION);
 		erMsg+= Action;
+		
+		
+		
 		try {
 			switch (Action) {
 			case "xtNRouteInf":	
