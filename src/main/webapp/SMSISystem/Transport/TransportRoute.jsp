@@ -2,7 +2,6 @@
 <%@page import="com.sm.System.SMInformation.SMFixedValue"%>
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<title>Insert title here</title>
 	 	<meta charset="ISO-8859-1">
