@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
-
 import com.sm.System.SMUtility.SMDataCreatedUpdated;
 import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
 import com.sm.System.Transport.RouteModel;
