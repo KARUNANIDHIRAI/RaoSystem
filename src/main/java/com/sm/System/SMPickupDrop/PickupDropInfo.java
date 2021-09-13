@@ -36,7 +36,6 @@ public class PickupDropInfo extends HttpServlet {
 		String hDAOMessage= "";
 		int excStatus =0;
 		Boolean result;
-		
 		JsonArray JsonArrayList = new JsonArray();
 		response.setContentType(SMFixedValue.ACTION_PLAIN_TEXT);
 		PrintWriter out = response.getWriter(); 
