@@ -141,9 +141,13 @@
 		<!--  route Master -->
 		<mapping class="com.sm.System.Transport.RouteModel"/>	
 		<mapping class="com.sm.System.Transport.RouteSubModel"/>		 		
-<!-- 		<mapping class="com.sm.System.Transport.RoutePickUpSubDropModel"/> 		 -->
+		<!-- <mapping class="com.sm.System.Transport.RoutePickUpSubDropModel"/> 		 -->
 		<mapping class="com.sm.System.Transport.RoutePickUpDropModel"/> 		
 		<mapping class="com.sm.System.Transport.RoutePickUpDropSubModel"/> 		
+
+		<!-- Student pickup drop "/> 		 -->
+		<mapping class="com.sm.System.SMPickupDrop.SMPickupDropModel"/> 		
+		<mapping class="com.sm.System.SMPickupDrop.RoutePickUpDropSubModel"/> 		
 
     </session-factory>
 </hibernate-configuration>

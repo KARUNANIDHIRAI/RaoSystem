@@ -83,6 +83,10 @@ public class SMFixedValue {
 	public static final String COURSE ="Course";
 	public static final String DETAILS="Detail";
 	public static final String CATEGORY="Category";
+	
+	public static final String PARM_CLASS   ="SClass";
+	public static final String PARM_SECTION ="SSection";
+	
 	public static final String HQL_RSPINFO="SELECT regNo,	fName, lName, promotedInClass, rollNo, course, section " 
                                           + " FROM  StudentPersonalInfoModel"
                                           + " WHERE regNo=:regNo AND admNo=:admNo AND status=:Fstatus";
@@ -103,6 +107,15 @@ public class SMFixedValue {
                      + " FROM  StudentPersonalInfoModel"
                      + " WHERE regNo=:regNO AND promotedInClass=:studentClass"
                      + " AND section=: studentClassSection AND rollNo=: studentRollNo AND status=:Fstatus";
+	public static final String STUDENT_CLASS_SECTION_LIST = "SELECT regNo,	 admNo, fName, lName,"
+	        + " rollNo, promotedInClass, section, sIdNo" 
+            + " FROM  StudentPersonalInfoModel"
+            + " WHERE regNo=:"+SMFixedValue.PARM_REGNO 
+            + " AND promotedInClass=:"+SMFixedValue.PARM_CLASS 
+            + " AND section=:"+ SMFixedValue.PARM_SECTION 
+            + " AND status=:" + SMFixedValue.PARM_STATUS;
+
+	
 	public static final String HQL_STUDENT_ATTENDANCE_SUMMARY ="SELECT regNo, subject, totalHours as TotalClassHours," 
                     + " (SELECT COUNT(sAIDNO) FROM StudentAttendanceModel B WHERE regNo=:regNO "
 	                + " AND sClass=:studentClass AND section=:studentClassSection AND B.subject=A.subject)" 
@@ -531,10 +544,15 @@ public class SMFixedValue {
 	public static final String DROP_TIME      = "Time";
 	public static final String PICKUP_DROP_POINT = "Pickup And Drop";
 	public static final String MODEL_ROUTE_NAME = "routeName";
+	public static final String PICKUP_DROP_TIME = "Pickup/Drop Point & Time";
 	public static final String HQL_PICKUP_DROP="select a.routename, b.pickDropSNo,b.pickupDropType, b.pickupDropPoint, a.idno,b.iDNOFK " + 
 			" from  SMTransportRoute a" + 
 			" inner join SMTransportRoutePickupDrop b on a.IDNO = b.iDNOFK" + 
 			" where a.IDNO =1 and a.status='A' and b.status='A' order by b.PickupDropType, b.PickDropSNo";
 	
-  
+	public static final String PICKUP_DROP ="select pickDropSNo, pickupDropPoint, pickupDropTime, pickupDropType"
+					+ " from SMTransportRoute a inner join SMTransportRoutePickupDrop b"  
+					+ " on  A.iDNO = iDNOFK AND routeName =:"+ SMFixedValue.PARM_CODE 
+					+ " AND pickupDropType=:" + SMFixedValue.PARM_CODE
+					+ " a.status=:" + SMFixedValue.STATUS +" AND b.status=:" + SMFixedValue.STATUS;
 }

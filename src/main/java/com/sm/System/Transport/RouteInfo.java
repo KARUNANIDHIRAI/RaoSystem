@@ -27,8 +27,8 @@ public class RouteInfo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		String erMsg= SMFixedValue.ACTION_STEP + SMFixedValue.ACTION_START + 1 ;
-		String RegNo=session.getAttribute("RegNo")==null?"":session.getAttribute("RegNo").toString();
-		RegNo="MK308";
+		String RegNo=session.getAttribute(SMFixedValue.PARM_REGNO)==null?"":session.getAttribute("RegNo").toString();
+		RegNo = "MK308";
 		String hDAOMessage= "";
 		int excStatus =0;
 		Boolean result;
@@ -79,14 +79,22 @@ public class RouteInfo extends HttpServlet {
 				out.print(JsonArrayList.toJson());
 				out.flush();
 				break; 	
-			case "xRIPdpInfoX":	// Create New pickup / Drop point based on school
+			case "xRIPdpInfoX":	// Generate pickup / Drop point based on transport route's idNo 
 				erMsg= SMFixedValue.GENERATING + SMFixedValue.PICKUP_DROP_POINT + SMFixedValue.INFORMATION ;
 				JsonArrayList = HDAOTransport.getRoutePickUPDropList(Integer.parseInt(request.getParameter("Code")));
 				erMsg+= SMFixedValue.COMPLETED+":";
 				out.print(JsonArrayList.toJson());
 				out.flush();
 				break; 	
-			case "xRmPDPInfoX":	// delete pickup drop point based on school route's idNo 
+			case "xSSPDPr":	// Generate pickup / Drop point based on transport route's idNo and Pick/Tdrop Type 
+				erMsg= SMFixedValue.GENERATING + SMFixedValue.PICKUP_DROP_POINT + SMFixedValue.INFORMATION ;
+				String routeName= SMUtilities.subtractStringAndNumber(request.getParameter("code").toString(), 1);	
+				JsonArrayList = HDAOTransport.getRoutePickUPDropList(RegNo,routeName,request.getParameter("xPDPType"));
+				erMsg+= SMFixedValue.COMPLETED+":";
+				out.print(JsonArrayList.toJson());
+				out.flush();
+				break; 	
+			case "xRmPDPInfoX":	// delete pickup drop point based on transport route's idNo 
 				excStatus= SMUtilities.subtractIntAndInt((String)request.getParameter("Code"), 1);
 				result = HDAOTransport.delPDPByiDNO(excStatus);
 				if(result){
@@ -113,8 +121,7 @@ public class RouteInfo extends HttpServlet {
 			}
 		} catch (Exception e) {
 			erMsg += SMFixedValue.EXEC_TECHERROR_MSG +"\n "+ e;
-		}
-		finally {
+		} finally {
 			System.out.println(erMsg);
 		}
 	}

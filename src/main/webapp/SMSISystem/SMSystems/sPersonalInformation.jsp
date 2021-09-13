@@ -6,38 +6,66 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
+<!-- 		<title>Insert title here</title>
+	 	<meta charset="ISO-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../css/custom.css" type="text/css">
+		<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
+	 	<link rel="stylesheet" 	href='../../webjars/datetimepicker/2.5.1/jquery.datetimepicker.css'>
+	 	<link rel="stylesheet" 	href='../../webjars/bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css'>
+
+		<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.css'>
+	 	<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+
+		<script type="text/javascript" 	src="../../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" 	src="../../webjars/bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" 	src="../../webjars/jquery/3.4.1/jquery.min.js"></script>
+	
+	 	<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.min.js"></script>
+		<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.js"></script>
+		<script type="text/javascript"	src="../../webjars/datetimepicker/2.5.1/jquery.datetimepicker.min.js"></script>
+	
+		<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" ></script>	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  	
+
+		<script type="text/javascript" src="../../webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
+	  	<script type="text/javascript" src="../../js/CommonFunc.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" ></script>
+		<link rel="stylesheet" 	href='https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css'>
+	  	<script type="text/javascript" src="../../js/SMCF.js"></script>			
+ -->
 		<title>Insert title here</title>
-		 	<meta charset="ISO-8859-1">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 			<link rel="stylesheet" href="css/custom.css" type="text/css"> -->
-<!-- 			<link rel="stylesheet" href="../css/custom.css" type="text/css"> -->
-			<link rel="stylesheet" href="../../css/custom.css" type="text/css">
-			<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
-		 	<link rel="stylesheet" 	href='../../webjars/datetimepicker/2.5.1/jquery.datetimepicker.css'>
-		 	<link rel="stylesheet" 	href='../../webjars/bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css'>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	 	<meta charset="ISO-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
+	 	<link rel="stylesheet" 	href='../../webjars/datetimepicker/2.5.1/jquery.datetimepicker.css'>
+	 	<link rel="stylesheet" 	href='../../webjars/bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css'>
 
-			<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.css'>
-		 	<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+		<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.css'>
+	 	<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
 
-			<script type="text/javascript" 	src="../../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-			<script type="text/javascript" 	src="../../webjars/bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
-			<script type="text/javascript" 	src="../../webjars/jquery/3.4.1/jquery.min.js"></script>
-		
-		 	<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.min.js"></script>
-			<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.js"></script>
-			<script type="text/javascript"	src="../../webjars/datetimepicker/2.5.1/jquery.datetimepicker.min.js"></script>
-		
-			<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" ></script>	
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  	
+		<script type="text/javascript" 	src="../../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" 	src="../../webjars/bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" 	src="../../webjars/jquery/3.4.1/jquery.min.js"></script>
+	
+	 	<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.min.js"></script>
+		<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.js"></script>
+	  	<script type="text/javascript" src="../../js/SMCF.js"></script>
+		<link rel="stylesheet" href="../../css/SMST.css" type="text/css">
+	
+		<link rel="stylesheet"  type="text/css" href="../../webjars/datatables/1.10.19/css/jquery.dataTables.min.css">
+		<script type="text/javascript" src="../../webjars/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript"	src="../../webjars/datatables-buttons/1.6.1/js/buttons.print.min.js"></script>
 
-			<script type="text/javascript" src="../../webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
-		  	<script type="text/javascript" src="../../js/CommonFunc.js"></script>
+		<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" ></script>	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  	
 
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" ></script>
-			<link rel="stylesheet" 	href='https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css'>
-		  	<script type="text/javascript" src="../../js/SMCF.js"></script>			
-
+		<script type="text/javascript" src="../../webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
+	  	<script type="text/javascript" src="../../js/CommonFunc.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" ></script>
+		<link rel="stylesheet" 	href='https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css'>
 	</head>
 	<body >
 	
@@ -83,13 +111,13 @@
 							<div class="row">	
 								<div class="col-sm-7 offset-sm-0">
 									<label for="sMobileNo" class="form-label h6">First Name*</label>
-									<input type="text" class="form-control blinebl " id="fName" name="fName"
+									<input type="text" class="form-control blineTl " id="fName" name="fName"
 									pattern="[A-Za-z\s]{3,40}" title="Enter character between a-z or A-Z Min 4 char" 
 									placeholder="" required >
 								</div>
 								<div class="col-sm-5 offset-sm-0">
 									<label for="sMobileNo" class="form-label h6">Last Name*</label>
-									<input type="text" class="form-control   blinew " id="lName" 	name="lName" 
+									<input type="text" class="form-control   blineTl " id="lName" 	name="lName" 
 										pattern="[A-Za-z\s]{3,40}" title="Enter character between a-z or A-Z Min 3 char"							
 									placeholder="" required>
 								</div>
@@ -106,14 +134,14 @@
 								</div>
 								<div class="col-sm-5 offset-sm-0">
 									<label for="dob" class="form-label">Date of Birth*</label>
-									<input type="text" class="form-control   blinew " id="dob" 	name="dob" 
+									<input type="text" class="form-control   blineTl " id="dob" 	name="dob" 
 											placeholder="" required>
 								</div>
 							</div>
 							<div class="row">		
 								<div class="col-sm-7 offset-sm-0">
 									<label for="sIdProofNo" class="form-label">Id Proof No.*</label>
-									<input type="text" class="form-control   blinew " id="sIdProofNo" name="sIdProofNo" required> 
+									<input type="text" class="form-control   blineTl " id="sIdProofNo" name="sIdProofNo" required> 
 								</div>
 								<div class="col-sm-5 offset-sm-0">
 									<label for="sIdDocType" class="form-label">Document Type*</label>
@@ -130,30 +158,30 @@
 							<div class="row">	
 								<div class="col-sm-7 offset-sm-0">
 									<label for="admNo" class="form-label text-danger">Admission No.*</label>
-									<input type="text" class="form-control   blinew " id="admNo" 	name="admNo" 
+									<input type="text" class="form-control   blineTl " id="admNo" 	name="admNo" 
 										 title="Enter character between [a-z, A-Z, 0-9] Min 5 char"							
 										placeholder="" >
 								</div>
 								<div class="col-sm-5 offset-sm-0">
 									<label for="dob" class="form-label">Admission Date*</label>
-									<input type="text" class="form-control   blinew " id="admDate" 	name="admDate" 
+									<input type="text" class="form-control   blineTl " id="admDate" 	name="admDate" 
 										placeholder="" required>
 								</div>
 							</div>
 							<div class="row">	
  								<div class="col-sm-3 offset-sm-0">
 									<label for="admClass" class="form-label ">Adm.In Class*</label>
-									<input type="text" class="form-control   blinew " id="admClass" 	name="admClass" 
+									<input type="text" class="form-control   blineTl " id="admClass" 	name="admClass" 
 										 title="Enter Admission taken in Class " placeholder=""  >
 								</div>
 								<div class="col-sm-4 offset-sm-0">
 									<label for="sSection" class="form-label ">Section*</label>
-									<input type="text" class="form-control   blinew " id="sSection" 	name="sSection" 
+									<input type="text" class="form-control   blineTl " id="sSection" 	name="sSection" 
 										 title="Enter Admission taken in Class " placeholder=""  >
 								</div>
 								<div class="col-sm-5 offset-sm-0">
 									<label for="sRollNo" class="form-label">Roll No.*</label>
-									<input type="text" class="form-control   blinew " id="sRollNo" 	name="sRollNo" 
+									<input type="text" class="form-control   blineTl " id="sRollNo" 	name="sRollNo" 
 										placeholder="" required>
 								</div>
 							</div>
@@ -166,12 +194,12 @@
 								</div>
 								<div class="col-sm-4 offset-sm-0">
 									<label for="siblingNo" class="form-label">Number of sibling Studing*</label>
-									<input type="text" class="form-control   blinew " id="siblingNo" 	name="siblingNo"  
+									<input type="text" class="form-control   blineTl " id="siblingNo" 	name="siblingNo"  
 									pattern="[0-9]" title="" placeholder="">
 								</div>
 								<div class="col-sm-5 offset-sm-0">
 									<label for="curClass" class="form-label">Promoted in Class*</label>
-									<input type="text" class="form-control   blinew " id="curClass" 	name="curClass" 
+									<input type="text" class="form-control   blineTl " id="curClass" 	name="curClass" 
 										placeholder="" required>
 								</div>
 							</div>
@@ -201,7 +229,7 @@
 								<div class="row">	
 									<div class="col-sm-12 offset-sm-0">
 										<label for="sMobileNo" class="form-label h6">Mobile No*</label>
-										<input type="text" class="form-control blinebl" id="sMobileNo" 	name="sMobileNo" required 
+										<input type="text" class="form-control blineTl" id="sMobileNo" 	name="sMobileNo" required 
 									   pattern="[0-9\s]{10,100}"	>
 									</div>
 								</div>
@@ -216,14 +244,14 @@
 								<div class="row">		
 									<div class="col-sm-12 offset-sm-0">
 										<label for="pMobileNo" class="form-label h6">Parent Mobile No*</label>
-										<input type="text" class="form-control blinebl" id="pMobileNo" 	name="pMobileNo" required 
+										<input type="text" class="form-control blineTl" id="pMobileNo" 	name="pMobileNo" required 
 									   pattern="[0-9\s]{10,100}">
 									</div>
 								</div>
 								<div class="row">	
 									<div class="col-sm-12 offset-sm-0">
 										<label for="pEmail" class="form-label h6">Email ID</label>
-										<input type="email" class="form-control   blinebl " id="pEmail" name="pEmail"  
+										<input type="email" class="form-control   blineTl " id="pEmail" name="pEmail"  
 										pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" placeholder="parent Email"
 										title="Enter character between [A-Za-z09]@[A-Za-z09].[A-Za-z] " >
 									</div>
@@ -244,12 +272,12 @@
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
 							<label for="mFName" class="form-label">Father First Name</label>
-							<input type="text" class="form-control   blinew " id="fFName" 	name="fFName" required
+							<input type="text" class="form-control   blineTl " id="fFName" 	name="fFName" required
 							title="" placeholder="" >
 						</div>
 						<div class="col-sm-4 offset-sm-0">
 							<label for="mFName" class="form-label">Last Name</label>
-							<input type="text" class="form-control    " id="fLName" name="fLName" 
+							<input type="text" class="form-control  blineTl  " id="fLName" name="fLName" 
 							 placeholder="" style="border-top: 1px solid blue;" >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
@@ -278,7 +306,7 @@
 						</div>
 						<div class="col-sm-4 offset-sm-0">
 							<label for="fIdDocType" class="form-label">ID Number</label>
-							<input type="text" class="form-control   blinew " id="fIdProofNo" 	name="fIdProofNo" required 
+							<input type="text" class="form-control   blineTl " id="fIdProofNo" 	name="fIdProofNo" required 
 							       placeholder="" >
 						</div>
 					</div>
@@ -286,12 +314,12 @@
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
 							<label for="mFName" class="form-label">Mother First Name</label>
-							<input type="text" class="form-control   blinew " id="mFName" 	name="mFName" required
+							<input type="text" class="form-control   blineTl " id="mFName" 	name="mFName" required
 							    placeholder="" >
 						</div>
 						<div class="col-sm-4 offset-sm-0">
 							<label for="mFName" class="form-label">Last Name</label>
-							<input type="text" class="form-control    " id="mLName" name="mLName" 
+							<input type="text" class="form-control  blineTl  " id="mLName" name="mLName" 
 							       placeholder="" style="border-top: 1px solid blue;" >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
@@ -321,12 +349,12 @@
 						</div>
 						<div class="col-sm-4 offset-sm-0">
 							<label for="mIdProofNo" class="form-label">ID Number</label>
-							<input type="text" class="form-control   blinew " id="mIdProofNo" 	name="mIdProofNo" required 
+							<input type="text" class="form-control   blineTl " id="mIdProofNo" 	name="mIdProofNo" required 
 							 placeholder="" >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
 							<label for="sPAIncome" class="form-label text-danger">Parent Annual Income*</label>
-							<input type="number" class="form-control   blinew" id="sPAIncome" 	name="sPAIncome"  
+							<input type="number" class="form-control   blineTl" id="sPAIncome" 	name="sPAIncome"  
 							pattern="[0-9]{5,8}" >
 						</div>
 					</div>
@@ -342,31 +370,31 @@
 					</div>
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<input type="text" class="form-control   blinew " id="Address" 	name="Address" required
+							<input type="text" class="form-control  blinebl" id="Address" 	name="Address" required
 							       placeholder="Student Residential Address*" >
 						</div>
 						<div class="col-sm-4 offset-sm-0">
-							<input type="text" class="form-control    " id="Sector" name="Sector" 
-							        placeholder="Street/Sector*" style="border-top: 1px solid blue;" >
+							<input type="text" class="form-control blinebl " id="Sector" name="Sector" 
+							        placeholder="Street/Sector*"  >
 						</div>
 						<div class="col-sm-3 offset-sm-0">
-							<input type="text" class="form-control   blinew " id="City" 	name="City" required 
+							<input type="text" class="form-control blinebl" id="City" name="City" required 
 							 placeholder="City*" >
 						</div>
 					</div>
 					<br />
 					<div class="row">		
 						<div class="col-sm-5 offset-sm-0">
-							<select id="country" name="country" 	class="form-control    blinew" required>
+							<select id="country" name="country" class="form-control blinew" required>
 								<option selected value ="0">Country Name*</option>
 							</select>
 						</div>
 						<div class="col-sm-4 offset-sm-0">
-							<input type="text" class="form-control   blinew " id="State" 	name="State" required 
+							<input type="text" class="form-control blinebl" id="State" 	name="State" required 
 							 title="" placeholder="State*" >
 						</div>
 						<div class="col-sm-3">
-							<input type="number" class="form-control   blinew" id="PostalCode" 	name="PostalCode"  
+							<input type="number" class="form-control blinebl" id="PostalCode" 	name="PostalCode"  
 							pattern="[0-9]{6,8}" title=""placeholder="Pin Code" >
 						</div>
 					</div>

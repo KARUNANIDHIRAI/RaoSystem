@@ -24,8 +24,43 @@ var userGroupType=" ";
 var sportCategory=" ";
 var unit         =" ";
 var trCode       =" ";
+var sSClass      =" ";
+var xSPP = "";
+var xSDP = "";
 alert("knSMFC22");
 $(document).ready(function(){
+	$("#xSPP").click(function(){
+		if (xSPP!=""){	return;	}
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"xSSPDPr", code : $("#xtRCode").val(), xPDPType : 'PP' },
+		 	dataType: 'Json',
+			url:'../../RouteInfo',
+			success:function(result){
+				xSPP=" <option selected value=0>Choose Pickup Point *</option>";
+				$.each(result, function(id, name){
+					xSPP+=" <option value='"+name.RTPD +"'>"+ name.PDPT+ "</option>";
+				});
+				$("#xSPP").html(xSPP);
+			}	
+		});	
+	});
+	$("#xSDP").click(function(){
+		if (xSDP!=""){	return;	}
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"xSSPDPr", code : $("#xtRCode").val(), xPDPType : 'DP' },
+		 	dataType: 'Json',
+			url:'../../RouteInfo',
+			success:function(result){
+				xSDP=" <option selected value=0>Choose Drop Point *</option>";
+				$.each(result, function(id, name){
+					xSDP+=" <option value='"+name.RTPD +"'>"+ name.PDPT+ "</option>";
+				});
+				$("#xSDP").html(xSDP);
+			}	
+		});	
+	});
 	$("#xtRCode").click(function(){
 		if (trCode!=" "){	return;	}
 		trCode="";
@@ -43,9 +78,6 @@ $(document).ready(function(){
 			}	
 		});	
 	}); 
-	
-
-
 	$("#SportCategory").click(function(){
 		if (sportCategory!=" "){return;}
 		sportCategory=" <option selected value=0>Choose Category*</option>";
@@ -372,12 +404,22 @@ $(document).ready(function(){
    $("#Ssection").click(function(){
 		if (section!=" "){return;}
 		section=" <option selected value=0>Choose Student Section*</option>";
-	    var StudentSection = ['A', 'B', 'C', 'D', 'E' , 'F','G'];
+	    var StudentSection = ['A', 'B', 'C', 'D', 'E' , 'F','G','H', 'I', 'J', 'K', 'L' , 'M','N'];
         $.each(StudentSection, function(index, value){
         	section+=" <option value='"+value +"'>"+ value+ "</option>";
         });
         $("#Ssection").html(section);
    });
+   $("#SSClass").click(function(){
+		if (sSClass!=" "){return;}
+		sSClass=" <option selected value=0>Choose Student Class*</option>";
+	    var StudentClass = ['1', '2', '3', '4', '5' , '6','7', '8', '9', '10' , '11','12'];
+       $.each(StudentClass, function(index, value){
+    	   sSClass+=" <option value='"+value +"'>"+ value+ "</option>";
+       });
+       $("#SSClass").html(sSClass);
+  });
+
    $("#Days").click(function(){
 		if (days!=" "){return;}
 		days=" <option selected value=0>Choose Day*</option>";

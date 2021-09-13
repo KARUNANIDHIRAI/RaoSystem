@@ -1,5 +1,6 @@
 package com.sm.System.StudentPersonalInfo;
 import com.sm.System.FeeDefine.HDAOFeeDefine;
+import com.sm.System.SMInformation.SMFixedValue;
 import com.sm.System.StudentPersonalInfo.StudentPInformation;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,15 +30,17 @@ public class StudentPInformation extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		String erMsg= "Step1:";
 		String valMsg=""; 
 		StudentPersonalInfoModel SiModel = new StudentPersonalInfoModel();
 		SiModel.setRegNo("MK308");
-		String Action = request.getParameter("Action");
-		System.out.println(Action);
 		JsonArray JsonArrayList = new JsonArray();
-		response.setContentType("text/plain");
-		PrintWriter out = response.getWriter(); // using becaz of json in javascript
+		String erMsg= SMFixedValue.ACTION_STEP + SMFixedValue.ACTION_START + 1 ;
+		String RegNo=session.getAttribute(SMFixedValue.PARM_REGNO)==null?"":session.getAttribute("RegNo").toString();
+		RegNo = "MK308";
+
+		response.setContentType(SMFixedValue.ACTION_PLAIN_TEXT);
+		PrintWriter out = response.getWriter(); 
+		String Action = request.getParameter(SMFixedValue.ACTION);
 		try {
 			switch (Action) {
 			case "spInformation":	
@@ -68,27 +71,17 @@ public class StudentPInformation extends HttpServlet {
 				out.flush();
 				erMsg +=" : Retrieve info done";
 				break; 
-//				System.out.println("\nknrai");
-//				System.out.println(request.getParameter("RegDate"));
-//				try {
-//					System.out.println("String to date Reg :" +Utilities.StringToDate(request.getParameter("RegDate")));
-//				} catch (ParseException e) {
-//					System.out.println("Error in RegDate Convert:\n" + e);
-//				}
-//				SchoolInfoModel siModel = new SchoolInfoModel();
-//				try {
-//					siModel.setRegDate(Utilities.StringToDate(request.getParameter("RegDate")));
-//					System.out.println("RegDate Convert:\n" + siModel.getRegDate());
-//				} catch (ParseException e) {
-//					System.out.println("Error in RegDate Convert:\n" + e);
-//				}
-			case "RWAInformation":	
+			case "xRScsInfox":	
+				erMsg= SMFixedValue.GENERATING + SMFixedValue.STUDENT + SMFixedValue.ACTION_LIST ;
+				JsonArrayList = HDAOSpInformation.getStudentInformationList(RegNo, request.getParameter("xZClass"), request.getParameter("xZSecion"));
+				erMsg+= SMFixedValue.COMPLETED+":";
+				out.print(JsonArrayList.toJson());
+				out.flush();
 				break; 
 			}
 		} catch (Exception e) {
-			System.out.println("Technical Error"+ e);
-		}
-		finally {
+			erMsg += SMFixedValue.EXEC_TECHERROR_MSG +"\n "+ e;
+		}finally {
 			System.out.println(erMsg);
 		}
 	}

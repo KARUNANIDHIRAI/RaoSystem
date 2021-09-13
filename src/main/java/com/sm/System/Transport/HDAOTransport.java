@@ -266,6 +266,41 @@ public class HDAOTransport {
 		}			
 		return routList;
 	}
+	public static JsonArray getRoutePickUPDropList(String RegNo, String rName, String pDPType) {
+		String erMsg= SMFixedValue.ACTION_GENERATE + SMFixedValue.ROUTE + SMFixedValue.PICKUP_DROP_POINT ;
+        JsonArray routList = new JsonArray();
+		String pdType = "";
+		String status ="";
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+			Criteria criteria=  sessionObj.createCriteria(RouteModel.class);
+			
+			criteria.add(Restrictions.eq(SMFixedValue.MODEL_REGNO, RegNo));
+			criteria.add(Restrictions.eq(SMFixedValue.MODEL_ROUTE_NAME, rName));
+			criteria.add(Restrictions.eq(SMFixedValue.MODEL_STATUS,SMFixedValue.STATUS));
+			List<RouteModel> results =(ArrayList<RouteModel>) criteria.list();			
+			for (RouteModel row:results) {
+				List<RoutePickUpDropModel> routePDPModel = row.getRoutePickUpDropModel();				
+				for(RoutePickUpDropModel pDProw:routePDPModel) {
+					pdType = pDProw.getPickupDropType();
+					status =pDProw.getStatus();
+					if (status.equals(SMFixedValue.DELETE_STATUS) || (!pdType.equals(pDPType) ) /* || pDProw.getStatus().equals("D") */ ) {continue;}
+					JsonObject rObj = new JsonObject()                          ;
+					rObj.put("PDPoint"  , pDProw.getPickupDropPoint())          ;
+					rObj.put("PDTime"   , pDProw.getPickupDropTime().toString());
+					rObj.put("PDPT"     , pDProw.getPickupDropPoint() + "---->   " + pDProw.getPickupDropTime().toString());
+					rObj.put("RTPD"     , Integer.toString(pDProw.getiDNO()) + "/" + Integer.toString(row.getiDNO()))      ;
+					routList.add(rObj);
+				}
+			}
+	       sessionObj.close();
+	       erMsg += SMFixedValue.OUTPUT + ":(" +Integer.toString(results.size()) + ") " + routList;
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return routList;
+	}
 	public static Boolean delPDPByiDNO(int pDPiDNO) {
 		String erMsg= SMFixedValue.ACTION_REMOVING + SMFixedValue.PICKUP_DROP_POINT + SMFixedValue.INFORMATION ;
 		Transaction tx=null;

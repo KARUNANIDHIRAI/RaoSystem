@@ -248,6 +248,40 @@ public class HDAOSpInformation {
 		}
 		return studentPerInfo;
 	}
-	
-	
+
+	public static JsonArray getStudentInformationList(String RegNo, String sClass, String sSection) {
+		String erMsg= SMFixedValue.GENERATING + SMFixedValue.STUDENT + SMFixedValue.INFORMATION + SMFixedValue.ACTION_LIST ;
+	    JsonArray StudentList = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+			Query<Object[]> rsQuery = sessionObj.createQuery(SMFixedValue.STUDENT_CLASS_SECTION_LIST);
+			rsQuery.setParameter(SMFixedValue.PARM_REGNO, RegNo);
+			rsQuery.setParameter(SMFixedValue.PARM_CLASS, sClass);
+			rsQuery.setParameter(SMFixedValue.PARM_SECTION, sSection);
+			rsQuery.setParameter(SMFixedValue.PARM_STATUS,SMFixedValue.STATUS);
+			erMsg += SMFixedValue.PARM_SET_MSG + " ," ;
+	       ArrayList <Object[]> results = (ArrayList <Object[]>)  rsQuery.list();
+	       int sNO =0;
+	       for(Object[] row: results) {
+	          JsonObject rObj = new JsonObject(); 
+              rObj.put("SNO"        , Integer.toString(++ sNO)) ;
+		      rObj.put("RegNo"      , (String) row[0]) ;
+		      rObj.put("AdmNo"      , (String) row[1]) ;
+		      rObj.put("FName"      , (String) row[2]) ;
+		      rObj.put("LName"      , (String) row[3]) ;
+		      rObj.put("Name"       , (String) row[2] + " "+(String) row[3]) ;
+		      rObj.put("RollNo"     , (String) row[4]) ;
+		      rObj.put("Class"      , (String) row[5]) ;
+		      rObj.put("Section"    , (String) row[6]) ;
+		      rObj.put("SIDNO"      , (Integer.toString((Integer)row[7]))) ;
+		      StudentList.add(rObj);	
+	       }
+	       erMsg += SMFixedValue.OUTPUT + ":(" +Integer.toString(results.size()) + ") " + StudentList;
+	       sessionObj.close();
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return StudentList;
+	}
 }

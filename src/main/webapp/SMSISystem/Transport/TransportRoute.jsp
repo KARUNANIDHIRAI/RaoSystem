@@ -86,7 +86,7 @@
  							<select id="xtRType" name="xtRType" 	class="form-control  blineTl" required>
 								<option selected value ="0"><%=SMFixedValue.Choose%> <%=SMFixedValue.ROUTE%> <%=SMFixedValue.Type%> *</option>
 								<option  value ="PP">Pickup Point</option>
-								<option  value ="PD">Drop Point</option>
+								<option  value ="DP">Drop Point</option>
 							</select>
 						</div>
 					</div>	
