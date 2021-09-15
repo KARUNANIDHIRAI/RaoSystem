@@ -272,7 +272,7 @@ public class HDAOSpInformation {
 		      rObj.put("RollNo"     , (String) row[4]) ;
 		      rObj.put("Class"      , (String) row[5]) ;
 		      rObj.put("Section"    , (String) row[6]) ;
-		      rObj.put("SIDNO"      , (Integer.toString((Integer)row[7]))) ;
+		      rObj.put("SIDNO"      , (Integer.toString((Integer)row[7]))+ "/"+(String) row[1]) ;
 		      StudentList.add(rObj);	
 	       }
 	       erMsg += SMFixedValue.OUTPUT + ":(" +Integer.toString(results.size()) + ") " + StudentList;

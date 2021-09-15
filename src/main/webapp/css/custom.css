@@ -180,5 +180,103 @@ To https://github.com/KARUNANIDHIRAI/BEGINNER.git
  * [new branch]      DEMO1 -> DEMO1
 Branch 'DEMO1' set up to track remote branch 'DEMO1' from 'origin'.
 
+E:\PROJECT\JAVA\BEGINNER>git config --global user.name "KARUNANIDHIRAI560100" // set user name
+E:\PROJECT\JAVA\BEGINNER>git config --global user.email "KARUNANIDHIRAI@YAHOO.COM" // set user email
+E:\PROJECT\JAVA\BEGINNER>git config --global user.name "$Jaiho12708$" // set user password
+E:\PROJECT\JAVA\BEGINNER>git config --global user.name // display username
+E:\PROJECT\JAVA\BEGINNER>git config --global --list // display all setting
+
+
+
+On branch DEMO1
+nothing to commit, working tree clean
+
+
 E:\PROJECT\JAVA\BEGINNER>
 */
+
+
+
+/*
+
+INSTALLTION OF GITLAB RUNNER (CI/CD)
+
+Microsoft Windows [Version 10.0.19043.1165]
+(c) Microsoft Corporation. All rights reserved.
+
+Step1: Do to GitLab RunnerDoc and download Gitlab-Runner-window-64.exe
+Step2: Rename the exe file to GitLabRunner.exe 
+Step3: Copy the exe file in the folder from where the file will run.
+STEP4: Open cmd prompt/ git bash in admintration mode and go tho the folder where exe file is downloaded.
+
+	D:\>cd GitLabRunner
+
+Step5: Install 
+
+	D:\GitLabRunner>gitlab-runner.exe install
+	Runtime platform                                    arch=amd64 os=windows pid=13992 revision=58ba2b95 version=14.2.0
+
+Step6: Check version  
+
+	D:\GitLabRunner>gitlab-runner --version
+	Version:      14.2.0
+	Git revision: 58ba2b95
+	Git branch:   14-2-stable
+	GO version:   go1.13.8
+	Built:        2021-08-22T19:47:56+0000
+	OS/Arch:      windows/amd64
+	
+Step7: Start gitlab-runner
+ 
+	D:\GitLabRunner>gitlab-runner.exe start
+	Runtime platform                                    arch=amd64 os=windows pid=6848 revision=58ba2b95 version=14.2.0
+
+Step8: Stop gitlab-runner
+
+	D:\GitLabRunner>gitlab-runner.exe stop
+	Runtime platform                                    arch=amd64 os=windows pid=976 revision=58ba2b95 version=14.2.0
+
+Step9: Register gitlab-runner
+Step10: Enter GitLab instance URL (https://gitlab.com)
+Step11: Enter the registration token 
+		a) Go to your gitlab account
+		b) Select project.
+		c) Setting-> CI/CD -> Runner (expand) --> token ID  
+Step12: Enter description for the runner
+Step12: Enter tags for the runner (comma-separated) example: SSH , CI (It could be any thing)
+Step13: Enter Shell 
+
+
+	D:\GitLabRunner>gitlab-runner.exe register
+	Runtime platform                                    arch=amd64 os=windows pid=9296 revision=58ba2b95 version=14.2.0
+	Enter the GitLab instance URL (for example, https://gitlab.com/):
+	https://gitlab.com
+	Enter the registration token:
+	2y7SbSD65Fkqoj6EtHbN
+	Enter a description for the runner:
+	[LAPTOP-3QC3HN03]: SMSI-Runner
+	Enter tags for the runner (comma-separated):
+	SSH , CI
+	Registering runner... succeeded                     runner=2y7SbSD6
+	Enter an executor: docker, docker-ssh, ssh, virtualbox, docker-ssh+machine, kubernetes, custom, docker-windows, parallels, shell, docker+machine:
+	shell
+	Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
+
+Step13: gitlab-runner.exe start 
+Step14: Verfiy  Gitlab Running
+		a) Go to your gitlab account
+		b) Select project.
+		c) Setting-> CI/CD 
+
+D:\GitLabRunner>gitlab-runner.exe start
+Runtime platform                                    arch=amd64 os=windows pid=14308 revision=58ba2b95 version=14.2.0
+
+D:\GitLabRunner>
+
+
+
+*/
+
+
+
+

@@ -40,7 +40,7 @@
 	<body >
 		<!-- Page Header --><jsp:include page="../../HeaderPage.jsp"></jsp:include><!-- Page Header -->
 		<div class="container">
-			<form id="subInfo" name="subInfo" action="../../RouteInfo?Action=xtNRoutePD" method="post" class="form-horizontal needs-validation" autocomplete="off">
+			<form id="subInfo" name="subInfo" action="../../PickupDropInfo?Action=xtNRoutePDInfo" method="post" class="form-horizontal needs-validation" autocomplete="off">
 				<br />
 				<div class="row">
 					<div class="col-sm-12 offset-sm-0">
@@ -92,6 +92,12 @@
 				<br />
 				<div class="bg-light col-sm-12 offset-sm-0">
 					<div class="row">		
+						<div class="col-sm-3 text-center offset-sm-3">
+							<p class="text-danger"><%=session.getAttribute("Message") == null ? "" : session.getAttribute("Message")%></p>
+							<%session.removeAttribute("Message");%>
+						</div>
+					</div>
+					<div class="row">		
 						<div class="col-sm-3 offset-sm-1  form-group">
 							<label for="SSClass" class="h6 "><%=SMFixedValue.CLASS%></label> 
 							<select id="SSClass" name="SSClass" class="form-control  blineTl" required>
@@ -110,9 +116,9 @@
 							 style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px">
 							 <%=SMFixedValue.View%> <%=SMFixedValue.STUDENT%><%=SMFixedValue.ACTION_LIST%></button>
 						</div>
-						<div class="col-sm-2 offset-sm-0 ">
+						<div class="col-sm-2 offset-sm-1 ">
 							<label class ="h6"  for=""></label>
-							<button type = "submit" id ="xSPDPInfoCX" name="xSPDPInfoCX"  class="form-control text-light text-left h6 btn"
+							<button type = "submit" id ="xSPDPInfoCX" name="xSPDPInfoCX"  class="form-control text-light text-center h6 btn"
 							 style= "background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); padding-left:0 px">
 							 <%=SMFixedValue.SAVE%> </button>
 						</div>
@@ -135,6 +141,7 @@
 	</body>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$("#xSPDPInfoCX").prop('disabled', true);
 			$("#xtNRoutePD").click(function(){
 				if(validatePKDPRroute()){ 
 					var request =$.ajax({
@@ -148,37 +155,6 @@
 					});	 // eof AJAX
 				}
 			});
-
-			$("#xSPDPInfoCX").click(function(){
-	          	var sPDPSelected = [];
-				$.each($("input[name='XsPDPmARKS']:checked"), function(){
-					sPDPSelected.push($(this).val());
-		        });
-		        if (sPDPSelected.length>0){
-			        alert("jaiho");
-	 				var InputData = [];
-					InputData = updateValue(InputData);
-		            alert("My favourite input values: " + InputData.join("; "));
-					var request =$.ajax({
-						type:'POST',
-		 				data:{Action:"StdPresent", attendance: sAttendance, InputValues :  InputData},
-					 	dataType: 'Json',
-						url:'../StudentAttendanceInfo',
-						success:function(result){
-							$("#XsAttMarks").prop('disabled', true);
-							alert("Attendance marked Successfully");
-						}	
-					});	 // eof AJAX
-		        }
-			});	
-			function updateValue(atdInfos){
- 		    	atdInfos.push($("#CltName").val());
-		    	atdInfos.push($("#fApplCF").val());
-		    	atdInfos.push($("#Ssection").val());
-		    	atdInfos.push($("#SRollN").val());
-		    	atdInfos.push($("#Subject").val());
-		    	return atdInfos;
-			}			
 
 			function validatePKDPRroute(){
 				if($("#xtRCode").val()==0){
@@ -230,12 +206,16 @@
 						 { title:	'Section'  ,data:"Section"},
 			    		 { title:	'Action' ,data:"SIDNO",
 						     	"render": function(data,type,row,meta){
-						       	 	return	'<INPUT type="checkbox" name="XsPDPmARKS" align="left" value="'+data+'" class="bg-warning text-info" data-toggle="tooltip" data-placement="right" title="Click to Check Box assigned Pickup and Drop point" ><span> Pickup/Drop </span>'; 
+						       	 	return	'<input type="checkbox" name="XsPDPChecked" align="left" value="'+data+'" class="bg-warning text-info" data-toggle="tooltip" data-placement="right" title="Click to Check Box assigned Pickup and Drop point" ><span> Pickup/Drop </span>'; 
 				        		},
 				        }
 					]
 				}); // EOF table
 			}// EOF table FUNCTION	
+			$(document).on('click', "input[name='XsPDPChecked']", function(){ 
+				$("#xSPDPInfoCX").prop('disabled', false);
+			});
+			
 		});// eof of document
 	</script>
 </html>

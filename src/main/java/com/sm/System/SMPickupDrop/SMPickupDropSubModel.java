@@ -2,16 +2,18 @@ package com.sm.System.SMPickupDrop;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.ColumnDefault;
 
 import com.sm.System.SMUtility.SMDataCreatedUpdated;
-import com.sm.System.StudentPersonalInfo.StudentPersonalInfoModel;
-import com.sm.System.Transport.RouteModel;
-import com.sm.System.Transport.RoutePickUpDropModel;
 
+@Entity
+@Table(name ="SMStudentPickupDrop")
 public class SMPickupDropSubModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,21 +32,22 @@ public class SMPickupDropSubModel {
 	@Column(name="SClass", nullable= true)
 	private String sClass;
 	
-	@Column(name="PDDescription", nullable= true) // [PPPD="PICKUP AND DROP",PP="PICKUP POINT",DP="DROP POINT"]
-	private String PDDescription;
-
     @Column(name="StudentSIdNoFK") // Strudent information primary key
-    private StudentPersonalInfoModel StudentSIdNoFK;
+    private Integer StudentSIdNoFK;
+    
+    @Column(name="RoutePPiDNOFK") // Route pickup drop primary key
+    private Integer RoutePPiDNOFK;
     
     @Column(name="RoutePDiDNOFK") // Route pickup drop primary key
-    private RoutePickUpDropModel RoutePDiDNOFK;
-    
+    private Integer RoutePDiDNOFK;
+
+	@Column(name = "RouteiDNOFK")
+	private Integer routeiDNOFK;
+
 	@Column(name="Status", nullable= false)
 	@ColumnDefault("'A'") // A=Active status
 	private String status;
 
-	@Column(name = "iDNOFK")
-	private RouteModel PickUpDropModel;
 	
 	@Embedded
 	private SMDataCreatedUpdated userRefInfo;
@@ -89,27 +92,27 @@ public class SMPickupDropSubModel {
 		this.sClass = sClass;
 	}
 
-	public String getPDDescription() {
-		return PDDescription;
-	}
-
-	public void setPDDescription(String pDDescription) {
-		PDDescription = pDDescription;
-	}
-
-	public StudentPersonalInfoModel getStudentSIdNoFK() {
+	public Integer getStudentSIdNoFK() {
 		return StudentSIdNoFK;
 	}
 
-	public void setStudentSIdNoFK(StudentPersonalInfoModel studentSIdNoFK) {
+	public void setStudentSIdNoFK(Integer studentSIdNoFK) {
 		StudentSIdNoFK = studentSIdNoFK;
 	}
 
-	public RoutePickUpDropModel getRoutePDiDNOFK() {
+	public Integer getRoutePPiDNOFK() {
+		return RoutePPiDNOFK;
+	}
+
+	public void setRoutePPiDNOFK(Integer routePPiDNOFK) {
+		RoutePPiDNOFK = routePPiDNOFK;
+	}
+
+	public Integer getRoutePDiDNOFK() {
 		return RoutePDiDNOFK;
 	}
 
-	public void setRoutePDiDNOFK(RoutePickUpDropModel routePDiDNOFK) {
+	public void setRoutePDiDNOFK(Integer routePDiDNOFK) {
 		RoutePDiDNOFK = routePDiDNOFK;
 	}
 
@@ -121,12 +124,12 @@ public class SMPickupDropSubModel {
 		this.status = status;
 	}
 
-	public RouteModel getPickUpDropModel() {
-		return PickUpDropModel;
+	public Integer getRouteiDNOFK() {
+		return routeiDNOFK;
 	}
 
-	public void setPickUpDropModel(RouteModel pickUpDropModel) {
-		PickUpDropModel = pickUpDropModel;
+	public void setRouteiDNOFK(Integer routeiDNOFK) {
+		this.routeiDNOFK = routeiDNOFK;
 	}
 
 	public SMDataCreatedUpdated getUserRefInfo() {
@@ -140,10 +143,12 @@ public class SMPickupDropSubModel {
 	@Override
 	public String toString() {
 		return "SMPickupDropSubModel [pDiDNO=" + pDiDNO + ", regNo=" + regNo + ", admNo=" + admNo + ", section="
-				+ section + ", sClass=" + sClass + ", PDDescription=" + PDDescription + ", StudentSIdNoFK="
-				+ StudentSIdNoFK + ", RoutePDiDNOFK=" + RoutePDiDNOFK + ", status=" + status + ", PickUpDropModel="
-				+ PickUpDropModel + ", userRefInfo=" + userRefInfo + "]";
+				+ section + ", sClass=" + sClass + ", StudentSIdNoFK=" + StudentSIdNoFK + ", RoutePPiDNOFK="
+				+ RoutePPiDNOFK + ", RoutePDiDNOFK=" + RoutePDiDNOFK + ", status=" + status + ", routeiDNOFK="
+				+ routeiDNOFK + ", userRefInfo=" + userRefInfo + "]";
 	}
-	
+
+
+
 
 }

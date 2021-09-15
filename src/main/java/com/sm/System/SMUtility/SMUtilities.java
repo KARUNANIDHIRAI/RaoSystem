@@ -69,5 +69,16 @@ public class SMUtilities {
 		}
 		return uRID;
 	}	
+	public static Object subtractUserData(String uString, int id) {
+		Object userString= "";  
+		int pos = uString.indexOf("/");
+		if(pos<=0) {return userString;}
+		try {
+			userString = id==2?uString.substring(pos+1) :uString.substring(0,pos);
+		} catch (Exception e) {
+			System.out.println(SMFixedValue.EXEC_CATCH_MSG +"\n" +  e);			
+		}
+		return userString;
+	}	
 
 }

@@ -2,6 +2,8 @@ package com.sm.System.SMPickupDrop;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,16 +47,18 @@ public class PickupDropInfo extends HttpServlet {
 		
 		try {
 			switch (Action) {
-			case "xtNRouteInf":	
+			case "xtNRoutePDInfo":	
 				erMsg= SMFixedValue.ACTION_CREATING + SMFixedValue.ITEM + SMFixedValue.BORROWED  + SMFixedValue.INFORMATION ;
 				SMPickupDropSubModel sMPDSModel= new SMPickupDropSubModel();
 				sMPDSModel.setRegNo(RegNo);
-				sMPDSModel = inputValueToRouteSModel(sMPDSModel,request,session);
-				excStatus = HDAOTransport.getRouteNew(sMPDSModel);
+				sMPDSModel = inputValuesToPDModel(sMPDSModel,request, session);
+				if(ValidatePDinputValues(sMPDSModel)) {
+					excStatus = HDAOSMPickupDrop.postStudentPickupDrop(sMPDSModel);
+				};
 				hDAOMessage= excStatus>0? SMFixedValue.EXEC_CREATE_MSG:"0 "+ SMFixedValue.EXEC_CREATE_MSG; 
 				session.setAttribute(SMFixedValue.MESSAGE,hDAOMessage );
 				erMsg+= hDAOMessage;
-				response.sendRedirect("SMSISystem/Transport/Route.jsp");
+				response.sendRedirect("SMSISystem/Transport/StudentPickupDrop.jsp");
 				break; 				
 			case "genxRouteLX":	// retriev route List based on school 
 				break; 	
@@ -66,38 +70,50 @@ public class PickupDropInfo extends HttpServlet {
 		} finally {
 			System.out.println(erMsg);
 		}
+	}
 
-		private RouteModel inputValueToRouteModel(RouteModel routeModel, HttpServletRequest request, HttpSession session) {
-			String erMsg =  SMFixedValue.ACTION_UPDATING + SMFixedValue.PICKUP_DROP_POINT + SMFixedValue.INPUT_VALUES  
-			        +SMFixedValue.TOMODEL ;
-			Object []inputValues = request.getParameterValues("xPKAndDRP[]");
-			try {
-				routeModel.setRouteName(SMUtilities.subtractStringAndNumber(inputValues[0].toString(), 1));
-				routeModel.setRouteDescription(inputValues[1].toString());
-				routeModel.setStatus(SMFixedValue.STATUS);
-				routeModel.setUserRefInfo(SMUtilities.getUserInfo(session));
-				erMsg+=  SMFixedValue.INPUT_VALUES  + routeModel;
-				
-				 RoutePickUpDropModel routePDModel = new RoutePickUpDropModel();
-				 routePDModel.setRegNo(routeModel.getRegNo());
-				 routePDModel.setPickupDropType(inputValues[1].toString());
-				 routePDModel.setPickDropSNo(inputValues[2].toString());
-				 routePDModel.setPickupDropPoint(inputValues[3].toString());
-				 routePDModel.setPickupDropTime(inputValues[4].toString());
-				 routePDModel.setStatus(SMFixedValue.STATUS);
-				 routePDModel.setUserRefInfo(SMUtilities.getUserInfo(session));
-				 
-				 routeModel.getRoutePickUpDropModel().add(routePDModel);
-				 routePDModel.setPickUpDropModel(routeModel);
-				erMsg+= routePDModel;
-			} catch (Exception e) {
-				erMsg+= "\n"+ SMFixedValue.EXEC_CATCH_MSG + e;
-			}finally {
-				System.out.println(erMsg);
-			}
-			return routeModel;
+
+	private boolean ValidatePDinputValues(SMPickupDropSubModel sMPDSModel) {
+		if(sMPDSModel.getRegNo().equals("")    ||
+			sMPDSModel.getStudentSIdNoFK().equals("")  ||
+		    sMPDSModel.getRoutePPiDNOFK().equals("")   ||
+			sMPDSModel.getRoutePDiDNOFK().equals("")   ||
+			sMPDSModel.getRouteiDNOFK().equals("")     ||
+			sMPDSModel.getAdmNo().equals("")) {
+			return false;
 		}
-	
+		return true;
+	}
+
+	private SMPickupDropSubModel inputValuesToPDModel(SMPickupDropSubModel sMPDSModel, HttpServletRequest request, HttpSession session) {
+		String erMsg =  SMFixedValue.ACTION_UPDATING + SMFixedValue.PICKUP_DROP_POINT + SMFixedValue.INPUT_VALUES  
+		        +SMFixedValue.TOMODEL ;
+		try {
+			sMPDSModel.setsClass(request.getParameter("SSClass"));
+			sMPDSModel.setSection(request.getParameter("Ssection"));
+			sMPDSModel.setRoutePPiDNOFK(SMUtilities.subtractIntAndInt(request.getParameter("xSPP"), 1));
+			sMPDSModel.setRoutePDiDNOFK(Integer.parseInt(SMUtilities.subtractUserData(request.getParameter("xSDP"), 1).toString()));
+			sMPDSModel.setRouteiDNOFK(Integer.parseInt(SMUtilities.subtractUserData(request.getParameter("xSPP"), 2).toString()));
+			sMPDSModel.setStatus(SMFixedValue.STATUS );	
+			sMPDSModel.setUserRefInfo(SMUtilities.getUserInfo(session));			
+
+			String[] names = null;
+			names =request.getParameterValues("XsPDPChecked");
+			
+			if(names!=null) {
+				List<String> list = Arrays.asList(names);
+				sMPDSModel.setAdmNo((String)SMUtilities.subtractUserData(request.getParameter("XsPDPChecked"), 2));
+				for(String pdCheckedValue:list) {
+					sMPDSModel.setStudentSIdNoFK(Integer.parseInt(SMUtilities.subtractUserData(pdCheckedValue, 1).toString()));
+				}
+			}
+			erMsg+= sMPDSModel + " : Completed";
+		} catch (Exception e) {
+			erMsg+= "\n"+ SMFixedValue.EXEC_CATCH_MSG + e;
+		}finally {
+			System.out.println(erMsg);
+		}
+		return sMPDSModel;
 	}
 
 }

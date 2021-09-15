@@ -147,7 +147,7 @@
 
 		<!-- Student pickup drop "/> 		 -->
 		<mapping class="com.sm.System.SMPickupDrop.SMPickupDropModel"/> 		
-		<mapping class="com.sm.System.SMPickupDrop.RoutePickUpDropSubModel"/> 		
+		<mapping class="com.sm.System.SMPickupDrop.SMPickupDropSubModel"/> 		
 
     </session-factory>
 </hibernate-configuration>

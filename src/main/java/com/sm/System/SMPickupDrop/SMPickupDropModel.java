@@ -38,7 +38,7 @@ public class SMPickupDropModel {
 		@Column(name="SClass", nullable= true)
 		private String sClass;
 		
-		@Column(name="PDDescription", nullable= true)
+		@Column(name="PDDescription", nullable= true) //BOTH[PP/DP], PP,DP
 		private String PDDescription;
 
 		@OneToOne
