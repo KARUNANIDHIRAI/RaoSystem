@@ -21,6 +21,7 @@ public class SMFixedValue {
 	public static final String STATUS= "A";
 	
 	public static final String SAVE="Save";
+	public static final String SAVE_CONT="Save & Cont..";
 	public static final String SUBMIT="Submit";
 	public static final String Action="Add";
 	public static final String Edit="Edit";
@@ -30,6 +31,10 @@ public class SMFixedValue {
 	public static final String ACTION="Action";
 	public static final String CANCEL="Cancel";
 	public static final String CLICKME="Click Me";
+	public static final String BACK="Back";
+	public static final String SAVE_NEXT="Save & Next";
+	public static final String CHOOSE="Choose";
+	public static final String SELECT="Select";
 	
 	public static final String Summary="Summary";
 	public static final String Item="Subject";
@@ -355,6 +360,7 @@ public class SMFixedValue {
 	public static final String LIST_GENERATING = "List Generating ";
 	public static final String MODEL_IDNO = "iDNO";
 	public static final String UPDATE_MODEL = "Updating to Model";
+	public static final String ORIGIN_COUNTRY ="Origin Country";
 	public static final String HQL_REM_SUPPLIER_IDNO =" Update SupplierMasterModel "
 			+" SET status =:nStatus WHERE iDNO =:remFIDNO AND regNo =:RegNo AND  status=:oStatus " ;
 	public static final String CONTACT_CATEGORY_HO = "HO";
@@ -545,6 +551,8 @@ public class SMFixedValue {
 	public static final String PICKUP_DROP_POINT = "Pickup And Drop";
 	public static final String MODEL_ROUTE_NAME = "routeName";
 	public static final String PICKUP_DROP_TIME = "Pickup/Drop Point & Time";
+	public static final String ROUTE_VEHICLE = "Transport Vehicle";
+	public static final String MODEL_ROUTEID = "routeIDFK";
 	public static final String HQL_PICKUP_DROP="select a.routename, b.pickDropSNo,b.pickupDropType, b.pickupDropPoint, a.idno,b.iDNOFK " + 
 			" from  SMTransportRoute a" + 
 			" inner join SMTransportRoutePickupDrop b on a.IDNO = b.iDNOFK" + 
@@ -555,4 +563,32 @@ public class SMFixedValue {
 					+ " on  A.iDNO = iDNOFK AND routeName =:"+ SMFixedValue.PARM_CODE 
 					+ " AND pickupDropType=:" + SMFixedValue.PARM_CODE
 					+ " a.status=:" + SMFixedValue.STATUS +" AND b.status=:" + SMFixedValue.STATUS;
+	public static final String MODEL_ROUTEIDNO = "iDNO";
+	
+	public static final String VEHICLE="Vechicle";
+	public static final String VEHICLE_TYPE="Vechicle Type";
+	public static final String ENGINE_NO="Chessis No.";
+	public static final String MODEL="Model";
+	public static final String COLOR="Color";
+	public static final String REGISTRATION_NO="Registration No.";
+	
+	//--------------------------
+	public static final String BANK_NAME="Bank Name";
+	public static final String BANK_BRANCH="Branch Name";
+	public static final String BANK_IFSC="Bank IFSC";
+	public static final String ACCOUNT_HOLDER_NAME="Account Holder Name";
+	public static final String ACCOUNT_NO="Account No.";
+	public static final String ACCOUNT_TYPE="Account Type";
+	public static final String PANCARD_NO="Pan Card No.";
+	//--------------------------PARANET INFORMATION
+	public static final String FATHER="Father";
+	public static final String MOTHER="Mother";
+	public static final String CONTACT_NO="Contact No.";
+	public static final String CLASS_FROM="Class From";
+	public static final String CLASS_TO=" To";
+	public static final String SECTION="Section";
+	public static final String STUDENT_LIST_GENERATE="Search Students Criteria";
+	public static final String GENERATE_LIST="Genearate List";
+	public static final String SEARCH="Search";
+	
 }

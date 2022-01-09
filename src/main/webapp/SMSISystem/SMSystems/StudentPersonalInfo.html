@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href='../../webjars/jquery-ui/1.12.1/jquery-ui.css'>
+
+			<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.css'>
+		 	<link rel="stylesheet" 	href='../../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+
+			<script type="text/javascript" 	src="../../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			<script type="text/javascript" 	src="../../webjars/jquery/3.4.1/jquery.min.js"></script>
+		
+		 	<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.min.js"></script>
+			<script type="text/javascript" src="../../webjars/popper.js/1.14.3/popper.js"></script>
+		  	<script type="text/javascript" src="../../js/SMCF.js"></script>
+			<link rel="stylesheet" href="../../css/custom.css" type="text/css">
+			<link rel="stylesheet" href="../../css/SMST.css" type="text/css">
+		
+			<link rel="stylesheet"  type="text/css" href="../../webjars/datatables/1.10.19/css/jquery.dataTables.min.css">
+			<script type="text/javascript" src="../../webjars/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+			<script type="text/javascript"	src="../../webjars/datatables-buttons/1.6.1/js/buttons.print.min.js"></script>
+	
+			<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" ></script>	
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  	
+
+			<script type="text/javascript" src="../../webjars/jquery-ui/1.12.1/jquery-ui.js"> </script>
+		  	<script type="text/javascript" src="../../js/CommonFunc.js"></script>
+			<style>
+			  p {font-size:13px;color:black;}
+ 			  .card {width:420px; height:290px;font-size: 13px; border:0px;background-color:#E5E8E8;color:white;}
+ 			  .card-body{ padding-top: 10px;}
+			  .card-header{height:40px;padding-top: 0px; padding-bottom: 6px; background-color: #E5E8E8;color:white;}
+ 			  .h6{font-weight: 500;color:dark};
+			</style>
+	</head>
+	<body>
+		<div class="container-flucid" Style="width:1340px; margin-left:30px;"> 
+			<div class="row">
+				<div class="col-sm-12 offset-sm-0 text-center"  >
+					<h4> Student Personal Informatin </h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 offset-sm-0 " style="padding-left: 55px" >
+					<div class="card "  >
+ 					  	<div class="card-body ">
+	 						<div class="card-titel  text-left" >
+							  		<h3> <span class="badge bg-secondary text-white">Personal Details</span></h3>
+						  	</div>
+						   	<table>
+						        <tr>
+						        	<td><p class="h6">Registration No.</p></td>
+						        	<td><p id="regNo"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Name</p></td>
+						        	<td><p id="SName"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Gender</p></td>
+						        	<td ><p id="gender"></p></td>
+						        </tr>
+						        <tr>
+						        	<td ><p class="h6">Date of Birth </p> </td>
+						        	<td ><p id="studentDob"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Father Name</p></td>
+						        	<td><p id="sFName"></p></td>
+						        </tr>
+						        <tr>
+						            <td><p class="h6">Mother Name</p> </td>
+						        	<td><p id="sMName"></p></td>
+						        </tr>
+						        <tr>
+						            <td><p class="h6">Id Proof No  </p> </td>
+						        	<td><p id="idProofNo">  </p> </td>
+						        </tr>
+						        <tr>
+						            <td><p class="h6"> Sibling : </p> </td>
+						        	<td><p id="siblingNo"></p></td>
+						        </tr>
+					      </table>
+					  	</div>
+					 </div>
+				</div>		
+					
+				<div class="col-sm-4 offset-sm-0" style="padding-left:35px">
+					<div class="card"   >
+					  	<div class="card-body   ">
+	 						<div class="card-titel  text-left" >
+							  		<h3> <span class="badge bg-secondary text-white">Admission Details</span></h3>
+						  	</div>
+						   	<table>
+						        <tr>
+						        	<td><p class="h6">Adm.No. </p> </td>
+						        	<td><p id="admNo"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Adm.Date </p> </td>
+						        	<td><p id="admDate"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Course  </p> </td>
+						        	<td><p id="streamName"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Class </p> </td>
+						        	<td><p id="admInClass"></p>  </td>
+						        </tr>
+						        <tr>
+						        	<td ><p class="h6">Section</p> </td>
+						        	<td ><p id="Section"></p>  </td>
+						        </tr>
+						        <tr>
+						            <td ><p class="h6">Roll No.  </td>
+						        	<td ><p id="rollNo"></p></td>
+						        </tr>
+						        <tr>
+						            <td ><p class="h6"></td>
+						        	<td ><p id=""></p></td>
+						        </tr>
+					      </table>
+						</div>
+					</div>				
+				</div>			
+				<div class="col-sm-4 offset-sm-0" >
+					<div class="card"  >
+					  	<div class="card-body " style="padding-right: 10px">
+	 						<div class="card-titel  text-left" >
+							  		<h3> <span class="badge bg-secondary text-white">Contact Details</span></h3>
+						  	</div>
+						   	<table>
+						        <tr>
+						        	<td><p class="h6">Mobile No. </p></td>
+						        	<td><p id="studentContact"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Email Id </p></td>
+						        	<td><p id="emailId"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Father Mobile No. </p></td>
+						        	<td><p id="fatherContact"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Email ID </p></td>
+						        	<td><p id="fatherEmail"></p></td>
+						        </tr>
+						        <tr>
+						        	<td ><p class="h6">Mother Mobile No.</p> </td>
+						        	<td ><p id="motherContact"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Email ID </p></td>
+						        	<td><p id="motherEmail"></p></td>
+						        </tr>
+						        <tr>
+						            <td ><p class="h6"></td>
+						        	<td ><p id=""></p></td>
+						        </tr>
+					      </table>
+					  	
+						</div>
+					</div>				
+				</div>			
+			</div>
+			<br />	
+			<div class="row">
+				<div class="col-sm-4 offset-sm-0 " style="padding-left:55px" >
+					<div class="card"  >
+					  	<div class="card-body " >
+	 						<div class="card-titel  text-left" >
+							  		<h3> <span class="badge bg-secondary text-white">Bank Details</span></h3>
+						  	</div>
+						   	<table>
+						        <tr>
+						        	<td><p class="h6">Bank Name</p></td>
+						        	<td><p id="bank"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Branch</p></td>
+						        	<td><p id="branch"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">IFSCode</p></td>
+						        	<td><p id="ifsc"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Account No.</p> </td>
+						        	<td><p id="bankAccount"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">A/c Holder </p> </td>
+						        	<td><p id="accountHolderName"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Pan Card No.</p> </td>
+						        	<td><p id="accountHolderPan"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">City</p> </td>
+						        	<td><p id="bankCityName"></p>  </td>
+						        </tr>
+						        <tr>
+						            <td><p class="h6">State</td>
+						        	<td><p id="bankStateName"></p></td>
+						        </tr>
+					      </table>
+					  	</div>
+					 </div>
+				</div>			
+				<div class="col-sm-4 offset-sm-0" style="padding-left:35px">
+					<div class="card" >
+					  	<div class="card-body   ">
+	 						<div class="card-titel  text-left" >
+							  		<h3> <span class="badge bg-secondary text-white">Hostel Details</span></h3>
+						  	</div>
+						   	<table>
+						        <tr>
+						        	<td><p class="h6">Hostel Name</p></td>
+						        	<td><p id="sFName"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Room No.</p></td>
+						        	<td><p id="fatherEmail"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Warden No.</p></td>
+						        	<td ><p id="sMName"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Mobile No.</p> </td>
+						        	<td><p id="motherEmail"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Email ID</p> </td>
+						        	<td><p id="motherEmail"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Address</p> </td>
+						        	<td><p id="motherEmail"></p></td>
+						        </tr>
+						    </table>  
+						</div>
+					</div>				
+				</div>			
+				<div class="col-sm-4 offset-sm-0" >
+					<div class="card"  >
+					  	<div class="card-body" >
+	 						<div class="card-titel  text-left" >
+							  		<h3> <span class="badge bg-secondary text-white">Transport Details</span></h3>
+						  	</div>
+						   	<table>
+						        <tr>
+						        	<td><p class="h6">Transport Route</p></td>
+						        	<td><p id="routeName"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Pickup Point</p></td>
+						        	<td><p id="pickupPoint"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Pickup Time</p></td>
+						        	<td ><p id="pickupTime"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Drop Point</p> </td>
+						        	<td><p id="dropPoint"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Drop Time</p> </td>
+						        	<td><p id="dropTime"></p></td>
+						        </tr>
+						        <tr>
+						        	<td><p class="h6">Vehicle No.</p> </td>
+						        	<td><p id="admDate"></p></td>
+						        </tr>
+					      </table>
+						</div>
+					</div>				
+				</div>			
+			</div>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+
+	function showStudentPersonalInfo(){
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const admNo = urlParams.get('admNo')
+		var request =$.ajax({
+			type:'GET',
+			data:{Action:"XSTProfile"},
+		 	dataType: 'json',
+			url:'http://localhost:8088/smsi/sInformation/StudentInfo?admNo='+ admNo,
+			success:function(result){
+				$.each(result.data, function(id, name){
+					$("#regNo").text(name.regNo);
+					$("#SName").text(name.firstName + "  "+name.lastName);
+					$("#gender").text(name.gender);
+					$("#studentDob").text(name.studentDob);
+					$("#admNo").text(name.admNo );
+					$("#admDate").text(name.admDate);
+					$("#admInClass").text(name.admInClass + ", Section " + name.admInSection); 
+					$("#Section").text(name.admInSection);
+					$("#rollNo").text(name.rollNo);
+					$("#streamName").text(name.streamName);
+					$("#idProofNo").text(name.idProofNo + "  , Document - "+name.docType );
+					$("#docType").text(name.docType);
+					$("#siblingNo").text(name.siblingNo);
+					$("#emailId").text(name.emailId);
+
+ 					$("#sFName").text(name.fatherFirstName + " " + name.fatherLastName );
+					$("#sMName").text(name.motherFirstName + " " + name.motherLastName);
+
+					$("#houseAptNo").text(name.houseAptNo);
+					$("#blockSector").text(name.blockSector);
+					$("#cityName").text(name.cityName);
+					$("#stateName").text(name.stateName);
+					$("#countryName").text(name.countryName);
+					$("#zipCode").text(name.zipCode);
+
+					$("#bank").text(name.bank);
+					$("#branch").text(name.branch);
+					$("#ifsc").text(name.ifsc);
+					$("#bankAccount").text(name.bankAccount + " , A/c Type -" + name.acType );
+					$("#accountHolderName").text(name.accountHolderName);
+					$("#acType").text(name.acType);
+					$("#accountHolderPan").text(name.accountHolderPan);
+					$("#bankCityName").text(name.bankCityName);
+					$("#bankStateName").text(name.bankStateName + ", Country - " +name.bankCountryName);
+					$("#bankCountryName").text(name.bankCountryName);
+					
+					$("#studentContact").text(name.studentContact);
+					$("#fatherContact").text(name.fatherContact);
+					$("#motherContact").text(name.motherContact);
+					$("#fatherEmail").text(name.fatherEmail);
+					$("#motherEmail").text(name.motherEmail);
+
+					$("#routeName").text(name.routeName);
+					$("#pickupPoint").text(name.pickupPoint);
+					$("#dropPoint").text(name.dropPoint);
+					$("#pickupTime").text(name.pickupTime);
+					$("#dropTime").text(name.dropTime);
+				});
+			}	
+		});	 // eof AJAX
+	}
+	$(document).ready(function(){
+		showStudentPersonalInfo();
+	});
+	</script>
+</html>

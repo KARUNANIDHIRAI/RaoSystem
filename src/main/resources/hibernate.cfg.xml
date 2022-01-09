@@ -144,6 +144,8 @@
 		<!-- <mapping class="com.sm.System.Transport.RoutePickUpSubDropModel"/> 		 -->
 		<mapping class="com.sm.System.Transport.RoutePickUpDropModel"/> 		
 		<mapping class="com.sm.System.Transport.RoutePickUpDropSubModel"/> 		
+		<mapping class="com.sm.System.TransportVehicle.RouteVehicleModel"/> 		
+		<mapping class="com.sm.System.TransportVehicle.RouteVehicleSubModel"/> 		
 
 		<!-- Student pickup drop "/> 		 -->
 		<mapping class="com.sm.System.SMPickupDrop.SMPickupDropModel"/> 		

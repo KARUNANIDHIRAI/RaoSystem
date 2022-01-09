@@ -1,6 +1,5 @@
 package com.sm.System.Transport;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import org.json.simple.JsonObject;
 import com.raoSystem.daoConnection.HibernateDAO;
 import com.sm.System.SMInformation.SMFixedValue;
 import com.sm.System.SMUtility.SMUtilities;
+import com.sm.System.TransportVehicle.RouteVehicleSubModel;
 
 public class HDAOTransport {
 	public static int routePickupDropNew(RouteModel routeModel , HttpSession session) {
@@ -266,7 +266,7 @@ public class HDAOTransport {
 		}			
 		return routList;
 	}
-	public static JsonArray getRoutePickUPDropList(String RegNo, String rName, String pDPType) {
+	public static JsonArray getRoutePickUPDropList(String RegNo, int rIDNO, String pDPType) {
 		String erMsg= SMFixedValue.ACTION_GENERATE + SMFixedValue.ROUTE + SMFixedValue.PICKUP_DROP_POINT ;
         JsonArray routList = new JsonArray();
 		String pdType = "";
@@ -275,7 +275,9 @@ public class HDAOTransport {
 			Criteria criteria=  sessionObj.createCriteria(RouteModel.class);
 			
 			criteria.add(Restrictions.eq(SMFixedValue.MODEL_REGNO, RegNo));
-			criteria.add(Restrictions.eq(SMFixedValue.MODEL_ROUTE_NAME, rName));
+			
+//			criteria.add(Restrictions.eq(SMFixedValue.MODEL_ROUTE_NAME, rName));
+			criteria.add(Restrictions.eq(SMFixedValue.MODEL_ROUTEIDNO, rIDNO));
 			criteria.add(Restrictions.eq(SMFixedValue.MODEL_STATUS,SMFixedValue.STATUS));
 			List<RouteModel> results =(ArrayList<RouteModel>) criteria.list();			
 			for (RouteModel row:results) {
@@ -321,4 +323,31 @@ public class HDAOTransport {
 		}			
 		return result;
 	}
+	public static JsonArray getSchoolRoutBusList(String regNo, int routeid) {
+		String erMsg= SMFixedValue.ACTION_GENERATE + SMFixedValue.ROUTE + SMFixedValue.ROUTE_VEHICLE ;
+        JsonArray routList = new JsonArray();
+		try(Session sessionObj = HibernateDAO.getSessionFactory().openSession()) {
+			Criteria criteria=  sessionObj.createCriteria(RouteModel.class);
+			criteria.add(Restrictions.eq(SMFixedValue.MODEL_REGNO, regNo));
+			criteria.add(Restrictions.eq(SMFixedValue.MODEL_ROUTEID, routeid));
+			criteria.add(Restrictions.eq(SMFixedValue.MODEL_STATUS,SMFixedValue.STATUS));
+			List<RouteVehicleSubModel> results =(ArrayList<RouteVehicleSubModel>) criteria.list();			
+			for (RouteVehicleSubModel row:results) {
+				JsonObject rObj = new JsonObject()                          ;
+				rObj.put("VehicleNo"    , row.getVehicleNo())                       ;
+				rObj.put("VehicleType"  , row.getVehicleType())                   ;
+				rObj.put("VehicleName"  , row.getVehicleNo() + " / "+row.getVehicleType())                   ;
+				rObj.put("VRBID"     , Integer.toString(row.getrVIDNO()) + "/" + Integer.toString(row.getRouteIDFK()))      ;
+				routList.add(rObj);
+			}
+	       sessionObj.close();
+	       erMsg += SMFixedValue.OUTPUT + ":(" +Integer.toString(results.size()) + ") " + routList;
+		}catch(Exception e) {
+			erMsg += SMFixedValue.EXEC_CATCH_MSG + "\n"+ e;
+		}finally {
+			System.out.println("\n"+erMsg );
+		}			
+		return routList;
+	}
+
 }

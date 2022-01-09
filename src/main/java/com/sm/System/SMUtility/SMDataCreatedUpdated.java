@@ -21,7 +21,7 @@ public class SMDataCreatedUpdated {
 	@Column(name = "UpdatedBy", nullable = false)
 	private String updatedBy;
 
-	@Column(name = "UpdatededOn", nullable = false)
+	@Column(name = "UpdatedOn", nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date updatedOn;
 

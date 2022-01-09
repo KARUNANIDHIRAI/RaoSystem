@@ -406,12 +406,7 @@ public class Information {
 		public static final String Registration="Registration";
 		public static final String Config="Configuration";
 		public static final String Item="Item";
-
-		
-		
-		
-
-		
+		public static final String TRANSPORT="Transpot";
 }
 
 

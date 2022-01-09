@@ -788,6 +788,12 @@
   	<description></description>
   	<servlet-class>com.sm.System.SMPickupDrop.PickupDropInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>RouteVehicleInfo</servlet-name>
+  	<display-name>RouteVehicleInfo</display-name>
+  	<description></description>
+  	<servlet-class>com.sm.System.TransportVehicle.RouteVehicleInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CaptchServlet</servlet-name>
   	<url-pattern>/CaptchServlet</url-pattern>
@@ -1310,6 +1316,10 @@
   <servlet-mapping>
   	<servlet-name>PickupDropInfo</servlet-name>
   	<url-pattern>/PickupDropInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RouteVehicleInfo</servlet-name>
+  	<url-pattern>/RouteVehicleInfo</url-pattern>
   </servlet-mapping>
  
  </web-app>

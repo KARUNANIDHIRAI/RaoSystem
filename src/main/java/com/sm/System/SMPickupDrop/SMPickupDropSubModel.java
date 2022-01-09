@@ -41,8 +41,11 @@ public class SMPickupDropSubModel {
     @Column(name="RoutePDiDNOFK") // Route pickup drop primary key
     private Integer RoutePDiDNOFK;
 
-	@Column(name = "RouteiDNOFK")
+	@Column(name = "RouteiDNOFK") // route id primary key
 	private Integer routeiDNOFK;
+	
+	@Column(name = "RouteVehicleRVIDNFK") // route id primary key
+	private Integer routeVehicleRVIDNFK;
 
 	@Column(name="Status", nullable= false)
 	@ColumnDefault("'A'") // A=Active status
@@ -128,6 +131,14 @@ public class SMPickupDropSubModel {
 		return routeiDNOFK;
 	}
 
+	public Integer getRouteVehicleRVIDNFK() {
+		return routeVehicleRVIDNFK;
+	}
+
+	public void setRouteVehicleRVIDNFK(Integer routeVehicleRVIDNFK) {
+		this.routeVehicleRVIDNFK = routeVehicleRVIDNFK;
+	}
+
 	public void setRouteiDNOFK(Integer routeiDNOFK) {
 		this.routeiDNOFK = routeiDNOFK;
 	}
@@ -144,9 +155,11 @@ public class SMPickupDropSubModel {
 	public String toString() {
 		return "SMPickupDropSubModel [pDiDNO=" + pDiDNO + ", regNo=" + regNo + ", admNo=" + admNo + ", section="
 				+ section + ", sClass=" + sClass + ", StudentSIdNoFK=" + StudentSIdNoFK + ", RoutePPiDNOFK="
-				+ RoutePPiDNOFK + ", RoutePDiDNOFK=" + RoutePDiDNOFK + ", status=" + status + ", routeiDNOFK="
-				+ routeiDNOFK + ", userRefInfo=" + userRefInfo + "]";
+				+ RoutePPiDNOFK + ", RoutePDiDNOFK=" + RoutePDiDNOFK + ", routeiDNOFK=" + routeiDNOFK
+				+ ", routeVehicleRVIDNFK=" + routeVehicleRVIDNFK + ", status=" + status + ", userRefInfo=" + userRefInfo
+				+ "]";
 	}
+
 
 
 

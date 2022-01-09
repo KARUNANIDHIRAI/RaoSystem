@@ -94,6 +94,7 @@ public class PickupDropInfo extends HttpServlet {
 			sMPDSModel.setRoutePPiDNOFK(SMUtilities.subtractIntAndInt(request.getParameter("xSPP"), 1));
 			sMPDSModel.setRoutePDiDNOFK(Integer.parseInt(SMUtilities.subtractUserData(request.getParameter("xSDP"), 1).toString()));
 			sMPDSModel.setRouteiDNOFK(Integer.parseInt(SMUtilities.subtractUserData(request.getParameter("xSPP"), 2).toString()));
+			sMPDSModel.setRouteVehicleRVIDNFK(Integer.parseInt((String)request.getParameter("routeVehicle")));
 			sMPDSModel.setStatus(SMFixedValue.STATUS );	
 			sMPDSModel.setUserRefInfo(SMUtilities.getUserInfo(session));			
 

@@ -71,25 +71,6 @@
 					        	<a class="nav-link h5" href="#"><%= Information.home%> <span class="sr-only">(current)</span></a>
 					      	</li>
 					      	<li class="nav-item dropdown">
-					      		<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" 
-					      		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">	<%= Information.product%>
-					        	</a>
-								<div class="dropdown-menu " id="megha_menu" style ="width:400px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
-									<div class="row">
-										<div class="col-sm-10">
-										    <P>	<a class="text-dark" href="SMSystems/SchoolInformation.jsp">School Information</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/sPersonalInformation.jsp">Student Profile</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/MasSubject.jsp">Teaching Subject</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/MasSFeeType.jsp">Fee Type</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/MasSFeeDefine.jsp">Define Fee</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/SFeePayment.jsp">Fee Payment</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/SAttendance.jsp">Attendance</a> </P>
-										    <P>	<a class="text-dark" href="SMSystems/SPerformance.jsp">Test Perfromance</a> </P>
-										</div>
-								    </div>
-								</div>
-					      	</li>
-					      	<li class="nav-item dropdown">
 					        	<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" 
 					        	aria-expanded="false"><%= Information.service%></a>
 								<div class="row">
@@ -116,6 +97,21 @@
 											</div>
 									    </div>
 									</div>
+								</div>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					      		<a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdown" role="button" 
+					      		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">	<%= Information.TRANSPORT%>
+					        	</a>
+								<div class="dropdown-menu " id="megha_menu" style ="width:400px;padding-left:20px; margin-bottom:.90rem" aria-labelledby="navbarDropdown" >
+									<div class="row">
+										<div class="col-sm-10">
+										    <P>	<a class="text-dark" href="SchoolTransport/TransportRoute.jsp">Transport Route</a> </P>
+										    <P>	<a class="text-dark" href="SchoolTransport/PickupDropRoute.jsp">Pickup and Drop Points</a> </P>
+										    <P>	<a class="text-dark" href="SchoolTransport/SchoolVehicles.jsp">Vehicle Information</a> </P>
+										    <P>	<a class="text-dark" href="SchoolTransport/StudentPickDrop.jsp">Student Pickup and Drop</a> </P>
+										</div>
+								    </div>
 								</div>
 					      	</li>
 					      	<li class="nav-item dropdown">

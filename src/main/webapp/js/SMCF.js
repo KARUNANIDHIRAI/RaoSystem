@@ -27,9 +27,16 @@ var trCode       =" ";
 var sSClass      =" ";
 var xSPP = "";
 var xSDP = "";
+var xRouteName="";
+var routeVehicle="";
+var routeNo="";
+var pickId ="";
+var dropId ="";
+
 alert("knSMFC22");
 $(document).ready(function(){
-	$("#xSPP").click(function(){
+
+	$("#knxSPP").click(function(){
 		if (xSPP!=""){	return;	}
 		var request =$.ajax({
 			type:'POST',
@@ -45,11 +52,28 @@ $(document).ready(function(){
 			}	
 		});	
 	});
+	$("#xSPP").click(function(){
+		if (xSPP!=""){	return;	}
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"xSSPDPr", code : $("#XRouteName").val(), xPDPType : 'PP' },
+		 	dataType: 'Json',
+			url:'../../RouteInfo',
+			success:function(result){
+				xSPP=" <option selected value=0>Choose Pickup Point *</option>";
+				$.each(result, function(id, name){
+					xSPP+=" <option value='"+name.RTPD +"'>"+ name.PDPT+ "</option>";
+				});
+				$("#xSPP").html(xSPP);
+			}	
+		});	
+	});
+
 	$("#xSDP").click(function(){
 		if (xSDP!=""){	return;	}
 		var request =$.ajax({
 			type:'POST',
-			data:{Action:"xSSPDPr", code : $("#xtRCode").val(), xPDPType : 'DP' },
+			data:{Action:"xSSPDPr", code : $("#XRouteName").val(), xPDPType : 'DP' },
 		 	dataType: 'Json',
 			url:'../../RouteInfo',
 			success:function(result){
@@ -61,7 +85,7 @@ $(document).ready(function(){
 			}	
 		});	
 	});
-	$("#xtRCode").click(function(){
+	$("#KNxtRCode").click(function(){ // 20112021
 		if (trCode!=" "){	return;	}
 		trCode="";
 		var request =$.ajax({
@@ -78,6 +102,25 @@ $(document).ready(function(){
 			}	
 		});	
 	}); 
+	$("#knXRouteName").click(function(){ // 20112021
+		if (xRouteName!=""){	return;	}
+		xRouteName="";
+		var request =$.ajax({
+			type:'POST',
+			data:{Action:"genxRouteLX"},
+		 	dataType: 'Json',
+			url:'../../RouteInfo',
+			success:function(result){
+				xRouteName+=" <option selected value=0>Choose Transport Route*</option>";
+				$.each(result, function(id, name){
+					xRouteName+=" <option value='"+name.RTD +"'>"+ name.CodeAndName+ "</option>";
+				});
+				$("#XRouteName").html(xRouteName);
+			}	
+			
+		});	
+	}); 
+
 	$("#SportCategory").click(function(){
 		if (sportCategory!=" "){return;}
 		sportCategory=" <option selected value=0>Choose Category*</option>";
@@ -162,7 +205,7 @@ $(document).ready(function(){
 	$("#xfmMainPage").load("../SMSISystem/SMSystems/FacultyMemberMain.jsp", function(){
 		actionType();
 	});
-	actionType
+	
 	$("#country").click(function(){
 		countryOptions!=" "?retrun:countryList('C');
 	});
@@ -210,7 +253,7 @@ $(document).ready(function(){
 	}
 	$(function () {
 		  $('[data-toggle="tooltip"]').tooltip()
-	})				
+	});				
 	$("#refreshCaptcha").click(function(){
 		getRefreshCaptcha();
 	});		
@@ -486,6 +529,7 @@ $(document).ready(function(){
 	function yearStart(){
 		var cdate = new Date();
 		return cdate.getFullYear();
+		
 	}
 	$("#doj").datetimepicker({
 		timepicker: false,
@@ -559,6 +603,28 @@ $(document).ready(function(){
 		yearEnd:'2030',
 		weeks:true	
 	});
+	$("#kadmDate").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'yy-m-d', // formate date
+		value:  false, //defaultTime and date
+		step: 5,	
+		yearStart:'2021',
+		yearEnd:'2030',
+		weeks:true	
+	});
+	$("#ksDob").datetimepicker({
+		timepicker: false,
+		datepicker: true,
+		format: 'yy-m-d', // formate date
+		value:  false, //defaultTime and date
+		step: 5,	
+		yearStart:'2021',
+		yearEnd:'2030',
+		weeks:true	
+	});
+	
+	
 	/*$("#retnDate").datetimepicker({
 		timepicker: false,
 		datepicker: true,
@@ -591,7 +657,7 @@ $(document).ready(function(){
    	function scrollPageDown(pos){
 		$("html, body").animate({
 		    scrollTop: $('html, body').get(0).scrollHeight}, pos);				
-	}// eof function -> function for scroll page bottom
+	}// eof -> scroll page bottom
 	function scrollPageUP(pos){
 		$("html, body").animate({
 		    scrollTop: $('html, body').get(0).scrollHeight}, pos);	
@@ -630,26 +696,6 @@ $(document).ready(function(){
 		}); // EOF table
 	}// EOF table FUNCTION	
 
-/*	function checkDuplicateURLEmail(email) {	
-		if(!IsEmail(email)){
-			$("#xEmail").val(email +' Invalid email format');
-			$("#xEmail").focus();
-			return;
-		}
-		var request =$.ajax({
-			type:'POST',
-			data:{"EmailId":email, Action:"Email"},
-		 	dataType: 'text',
-			url:'../../URBAccessInfo',
-			success:function(result){
-				if(result=="Duplicate"){
-					$("#xEmail").val("Email Id Already exist!")
-					$("#xEmail").focus()
-				}
-			},	
-		    error: function () { $("#xEmail").val("Sorry, there was an error"); }				
-		});	 // eof AJAX
-	}*/
 
 
 });

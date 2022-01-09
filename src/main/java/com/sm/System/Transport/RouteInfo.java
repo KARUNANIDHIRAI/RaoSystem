@@ -88,8 +88,10 @@ public class RouteInfo extends HttpServlet {
 				break; 	
 			case "xSSPDPr":	// Generate pickup / Drop point based on transport route's idNo and Pick/Tdrop Type 
 				erMsg= SMFixedValue.GENERATING + SMFixedValue.PICKUP_DROP_POINT + SMFixedValue.INFORMATION ;
-				String routeName= SMUtilities.subtractStringAndNumber(request.getParameter("code").toString(), 1);	
-				JsonArrayList = HDAOTransport.getRoutePickUPDropList(RegNo,routeName,request.getParameter("xPDPType"));
+//				String routeName= SMUtilities.subtractStringAndNumber(request.getParameter("code").toString(), 1);	
+				int routeid= Integer.parseInt(request.getParameter("code").toString());	
+				JsonArrayList = HDAOTransport.getRoutePickUPDropList(RegNo,routeid,request.getParameter("xPDPType"));
+//				JsonArrayList = HDAOTransport.getRoutePickUPDropList(RegNo,routeName,request.getParameter("xPDPType"));
 				erMsg+= SMFixedValue.COMPLETED+":";
 				out.print(JsonArrayList.toJson());
 				out.flush();
